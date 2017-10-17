@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WSL Programming Blog</title>
+    <link>https://zwilder.github.io/</link>
+    <description>Recent content on WSL Programming Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; &lt;a href=&#34;https://github.com/zwilder&#34;&gt;Zach Wilder&lt;/a&gt; 2017</copyright>
+    <lastBuildDate>Mon, 16 Oct 2017 20:55:23 -0700</lastBuildDate>
+    
+	<atom:link href="https://zwilder.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Yet Another Blog Attempt</title>
+      <link>https://zwilder.github.io/posts/2017-10-15-yet-another-blog-attempt/</link>
+      <pubDate>Mon, 16 Oct 2017 20:55:23 -0700</pubDate>
+      
+      <guid>https://zwilder.github.io/posts/2017-10-15-yet-another-blog-attempt/</guid>
+      <description>Man, I really don&amp;rsquo;t do a lot of work on this blog - maybe because I am not a web programmer but I can see when this blog does not look very good.
+Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore.</description>
+    </item>
+    
+    <item>
+      <title>Gradients for Colors, and Actions for Actors</title>
+      <link>https://zwilder.github.io/posts/2017-01-07-gradients-and-actions/</link>
+      <pubDate>Sat, 07 Jan 2017 11:45:00 -0700</pubDate>
+      
+      <guid>https://zwilder.github.io/posts/2017-01-07-gradients-and-actions/</guid>
+      <description>Over the past couple of weeks I&amp;rsquo;ve been working on simplifying the code for my roguelike project - heavily inspired by one of my favorite books on my shelf, Game Programming Patterns.
+I&amp;rsquo;ve seriously read this book cover to cover, multiple times - and every time find a new use for one of the &amp;lsquo;patterns&amp;rsquo; in it. I just discovered that the author&amp;rsquo;s blog has a bunch of good reads on it as well.</description>
+    </item>
+    
+    <item>
+      <title>Randomly Generated Caves with Cellular Automata</title>
+      <link>https://zwilder.github.io/posts/2016-12-20-automata-caves/</link>
+      <pubDate>Thu, 22 Dec 2016 19:18:06 -0700</pubDate>
+      
+      <guid>https://zwilder.github.io/posts/2016-12-20-automata-caves/</guid>
+      <description>So, every time I get the urge to write a blog post about whatever random bit of code I&amp;rsquo;m writing - I look at the blog and think: &amp;ldquo;Hm, this is kinda ugly.&amp;rdquo; Then, I have to rewrite it until I&amp;rsquo;m mostly satisfied with how it looks.
+Recently, I&amp;rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&amp;rsquo;t seem to find a satisfactory &amp;lsquo;look and feel&amp;rsquo; - I think I&amp;rsquo;ve got a good start though.</description>
+    </item>
+    
+    <item>
+      <title>Commenting System with Staticman!</title>
+      <link>https://zwilder.github.io/posts/2016-11-15-commenting-system/</link>
+      <pubDate>Tue, 15 Nov 2016 19:18:06 -0700</pubDate>
+      
+      <guid>https://zwilder.github.io/posts/2016-11-15-commenting-system/</guid>
+      <description>The one bad thing about hosting a static blog is that implementing comments means you:
+ Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&amp;rsquo;t an option - Disqus looks nice and all, and I&amp;rsquo;m sure it would be fine for a lot of people, but it just wasn&amp;rsquo;t what I wanted.</description>
+    </item>
+    
+    <item>
+      <title>Partying With Jekyll</title>
+      <link>https://zwilder.github.io/posts/2016-11-12-partying-with-jekyll/</link>
+      <pubDate>Sat, 12 Nov 2016 18:15:06 -0700</pubDate>
+      
+      <guid>https://zwilder.github.io/posts/2016-11-12-partying-with-jekyll/</guid>
+      <description>I&amp;rsquo;ve been wanting to fix this blog for a while now, and I decided in the process that I am awful at web design/programming. Haha, well, the first step to being kinda good at something is kinda sucking at something, right?
+In my scouring of the internet I discovered that a lot of static blog sites used Jekyll to generate their site. At first, I figured it was nothing more than another insta-blog program where you just dump some content into a folder and it spits out a blog - but holy cow it is so much more than (and can be exactly) that.</description>
+    </item>
+    
+    <item>
+      <title>Fun With Dijkstra Mapping</title>
+      <link>https://zwilder.github.io/posts/2016-07-15-fun-with-dijkstra-mapping/</link>
+      <pubDate>Fri, 15 Jul 2016 08:29:06 -0700</pubDate>
+      
+      <guid>https://zwilder.github.io/posts/2016-07-15-fun-with-dijkstra-mapping/</guid>
+      <description>Continuing in my never-ending project to make a &amp;ldquo;simple&amp;rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&amp;rsquo;t going to work.</description>
+    </item>
+    
+  </channel>
+</rss>

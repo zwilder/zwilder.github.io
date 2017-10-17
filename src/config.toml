@@ -5,7 +5,7 @@ theme = "hemingway"
 copyright = "&copy; <a href=\"https://github.com/zwilder\">Zach Wilder</a> 2017"
 disqusShortname = "wsl-programming-blog"
 # googleAnalytics = ""
-publishDir = "build"
+publishDir = "../"
 
 [params]
 

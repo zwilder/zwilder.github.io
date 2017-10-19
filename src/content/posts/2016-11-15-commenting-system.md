@@ -1,6 +1,9 @@
 ---
 title:  "Commenting System with Staticman!"
 date:   2016-11-15 19:18:06 -0700
+tags:
+  - Jekyll
+  - Web Programming
 ---
 
 The one bad thing about hosting a static blog is that implementing comments means you:

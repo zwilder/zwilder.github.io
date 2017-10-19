@@ -1,6 +1,10 @@
 ---
 title:  "Randomly Generated Caves with Cellular Automata"
 date:   2016-12-22 19:18:06 -0700
+tags:
+  - Roguelike
+  - C++
+  - Cellular Automata
 ---
 
 So, every time I get the urge to write a blog post about whatever random bit of code I'm writing - I look at the blog and think: "Hm, this is kinda ugly." Then, I have to rewrite it until I'm mostly satisfied with
@@ -57,7 +61,7 @@ The whole idea is based on [Conway's Game of Life](https://en.wikipedia.org/wiki
 
 This generates some pretty neat looking caves:
 
-<pre style="color: #f8f8f2; text-align: center;">
+<pre style="background: #272822; color: #f8f8f2; text-align: center;">
 <code>
 
 ################################################################################

@@ -1,9 +1,9 @@
 baseurl = "/"
 languageCode = "en-us"
-title = "WSL Programming Blog"
+title = "A minimal Hugo website"
 theme = "hugo-xmin"
 googleAnalytics = ""
-disqusShortname = "wsl-programming-blog"
+disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
@@ -21,13 +21,17 @@ footnotereturnlinkcontents = "↩"
     url = "/about/"
     weight = 2
 [[menu.main]]
+    name = "Categories"
+    url = "/categories/"
+    weight = 3
+[[menu.main]]
     name = "Tags"
     url = "/tags/"
-    weight = 3
+    weight = 4
 [[menu.main]]
     name = "Subscribe"
     url = "/index.xml"
 
 [params]
     description = "A website built through Hugo and blogdown."
-    footer = "&copy; <a href=\"https://github.com/zwilder\">Zach Wilder</a> 2017"
+    footer = "&copy; [Yihui Xie](https://yihui.name) 2017 | [Github](https://github.com/yihui) | [Twitter](https://twitter.com/xieyihui)"

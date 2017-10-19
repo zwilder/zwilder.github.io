@@ -1,0 +1,29 @@
+{{ partial "header.html" . }}
+
+{{if not .IsHome }}
+<h1>{{ .Title }}</h1>
+{{ end }}
+
+{{ .Content }}
+
+<!-- <ul> -->
+  {{ range (where .Data.Pages "Section" "!=" "") }}
+  <!-- <li> -->
+    <!-- <span class="date">{{ .Date.Format "02 January 2006" }}</span> -->
+    <!-- <a href="{{ .URL }}">{{ .Title }}</a> -->
+    <div style="font-size: 85%;">{{ .Date.Format "02 January 2006" }}</div>
+    <div style="line-height: 1.25; font-size: 115%;"><a href="{{ .URL }}">{{ .Title }}</a></div>
+    <div>
+    {{ .Summary | plainify | safeHTML }}
+        {{ if .Truncated }}
+        ...<a href="{{ .Permalink }}" style="height:28px">
+            Read more 
+          </a>
+        {{ end }}
+    </div>
+    <br />
+  <!-- </li> -->
+  {{ end }}
+<!-- </ul> -->
+
+{{ partial "footer.html" . }}

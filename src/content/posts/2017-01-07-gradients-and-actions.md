@@ -1,6 +1,9 @@
 ---
 title:  "Gradients for Colors, and Actions for Actors"
 date:   2017-01-07 11:45:00 -0700
+tags:
+  - C++
+  - Roguelike
 ---
 
 Over the past couple of weeks I've been working on simplifying the code for my roguelike project - heavily inspired by one of my favorite books on my shelf,

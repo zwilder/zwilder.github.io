@@ -1,6 +1,11 @@
 ---
 title: "Yet Another Blog Attempt"
 date: 2017-10-16T20:55:23-07:00
+tags:
+  - C++
+  - Web Programming
+  - Roguelike
+  - Hugo
 ---
 
 Man, I really don't do a lot of work on this blog - maybe because I am **not** a web programmer but I can see when this blog does not look very

@@ -1,6 +1,10 @@
 ---
 title:  "Fun With Dijkstra Mapping"
 date:   2016-07-15 08:29:06 -0700
+tags:
+  - C++
+  - Roguelike
+  - AI
 ---
 
 Continuing in my never-ending project to make a "simple" roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn't going to work.

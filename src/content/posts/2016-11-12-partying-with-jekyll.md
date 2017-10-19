@@ -1,6 +1,9 @@
 ---
 title:  "Partying With Jekyll"
 date:   2016-11-12 18:15:06 -0700
+tags:
+  - Jekyll
+  - Web Programming
 ---
 
 I've been wanting to fix this blog for a while now, and I decided in the process that I am **awful** at web design/programming. Haha, well, the first step to being kinda good at something is kinda sucking at something, right?

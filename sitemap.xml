@@ -3,54 +3,105 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zwilder.github.io/posts/2017-10-15-yet-another-blog-attempt/</loc>
+    <loc>/posts/2017-10-22-messing-with-web/</loc>
+    <lastmod>2017-10-22T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/2017-10-15-yet-another-blog-attempt/</loc>
     <lastmod>2017-10-16T20:55:23-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zwilder.github.io/posts/2017-01-07-gradients-and-actions/</loc>
+    <loc>/posts/2017-01-07-gradients-and-actions/</loc>
     <lastmod>2017-01-07T11:45:00-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zwilder.github.io/posts/2016-12-20-automata-caves/</loc>
+    <loc>/posts/2016-12-20-automata-caves/</loc>
     <lastmod>2016-12-22T19:18:06-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zwilder.github.io/posts/2016-11-15-commenting-system/</loc>
+    <loc>/posts/2016-11-15-commenting-system/</loc>
     <lastmod>2016-11-15T19:18:06-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zwilder.github.io/posts/2016-11-12-partying-with-jekyll/</loc>
+    <loc>/posts/2016-11-12-partying-with-jekyll/</loc>
     <lastmod>2016-11-12T18:15:06-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zwilder.github.io/posts/2016-07-15-fun-with-dijkstra-mapping/</loc>
+    <loc>/posts/2016-07-15-fun-with-dijkstra-mapping/</loc>
     <lastmod>2016-07-15T08:29:06-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zwilder.github.io/categories/</loc>
+    <loc>/tags/ai/</loc>
+    <lastmod>2016-07-15T08:29:06-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zwilder.github.io/posts/</loc>
+    <loc>/about/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/c&#43;&#43;/</loc>
     <lastmod>2017-10-16T20:55:23-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zwilder.github.io/tags/</loc>
+    <loc>/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zwilder.github.io/</loc>
+    <loc>/tags/cellular-automata/</loc>
+    <lastmod>2016-12-22T19:18:06-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/hugo/</loc>
+    <lastmod>2017-10-22T07:00:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/jekyll/</loc>
+    <lastmod>2016-11-15T19:18:06-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2017-10-22T07:00:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/roguelike/</loc>
     <lastmod>2017-10-16T20:55:23-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2016-07-15T08:29:06-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2017-10-22T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/web-programming/</loc>
+    <lastmod>2017-10-22T07:00:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on WSL Programming Blog</title>
+    <link>/tags/hugo/</link>
+    <description>Recent content in Hugo on WSL Programming Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Oct 2017 07:00:00 -0700</lastBuildDate>
+    
+	<atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Messing With Web Design - Again</title>
+      <link>/posts/2017-10-22-messing-with-web/</link>
+      <pubDate>Sun, 22 Oct 2017 07:00:00 -0700</pubDate>
+      
+      <guid>/posts/2017-10-22-messing-with-web/</guid>
+      <description>Ok, so it turns out I still can&amp;rsquo;t stand using a premade theme. I decided to look again at Hugo themes, and found XMin. Clean, simple, and a good basic idea of what I wanted this blog to look like. Cracked open the source code and was playing around&amp;hellip; one thing led to another and this is what I ended up with.
+Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things.</description>
+    </item>
+    
+    <item>
+      <title>Yet Another Blog Attempt</title>
+      <link>/posts/2017-10-15-yet-another-blog-attempt/</link>
+      <pubDate>Mon, 16 Oct 2017 20:55:23 -0700</pubDate>
+      
+      <guid>/posts/2017-10-15-yet-another-blog-attempt/</guid>
+      <description>Man, I really don&amp;rsquo;t do a lot of work on this blog - maybe because I am not a web programmer but I can see when this blog does not look very good.
+Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore.</description>
+    </item>
+    
+  </channel>
+</rss>

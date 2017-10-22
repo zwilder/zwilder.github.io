@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on WSL Programming Blog</title>
-    <link>/posts/</link>
-    <description>Recent content in Posts on WSL Programming Blog</description>
+    <title>Roguelike on WSL Programming Blog</title>
+    <link>/tags/roguelike/</link>
+    <description>Recent content in Roguelike on WSL Programming Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Oct 2017 07:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 16 Oct 2017 20:55:23 -0700</lastBuildDate>
     
-	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/roguelike/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Messing With Web Design - Again</title>
-      <link>/posts/2017-10-22-messing-with-web/</link>
-      <pubDate>Sun, 22 Oct 2017 07:00:00 -0700</pubDate>
-      
-      <guid>/posts/2017-10-22-messing-with-web/</guid>
-      <description>Ok, so it turns out I still can&amp;rsquo;t stand using a premade theme. I decided to look again at Hugo themes, and found XMin. Clean, simple, and a good basic idea of what I wanted this blog to look like. Cracked open the source code and was playing around&amp;hellip; one thing led to another and this is what I ended up with.
-Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things.</description>
-    </item>
     
     <item>
       <title>Yet Another Blog Attempt</title>
@@ -49,26 +39,6 @@ I&amp;rsquo;ve seriously read this book cover to cover, multiple times - and eve
       <guid>/posts/2016-12-20-automata-caves/</guid>
       <description>So, every time I get the urge to write a blog post about whatever random bit of code I&amp;rsquo;m writing - I look at the blog and think: &amp;ldquo;Hm, this is kinda ugly.&amp;rdquo; Then, I have to rewrite it until I&amp;rsquo;m mostly satisfied with how it looks.
 Recently, I&amp;rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&amp;rsquo;t seem to find a satisfactory &amp;lsquo;look and feel&amp;rsquo; - I think I&amp;rsquo;ve got a good start though.</description>
-    </item>
-    
-    <item>
-      <title>Commenting System with Staticman!</title>
-      <link>/posts/2016-11-15-commenting-system/</link>
-      <pubDate>Tue, 15 Nov 2016 19:18:06 -0700</pubDate>
-      
-      <guid>/posts/2016-11-15-commenting-system/</guid>
-      <description>The one bad thing about hosting a static blog is that implementing comments means you:
- Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&amp;rsquo;t an option - Disqus looks nice and all, and I&amp;rsquo;m sure it would be fine for a lot of people, but it just wasn&amp;rsquo;t what I wanted.</description>
-    </item>
-    
-    <item>
-      <title>Partying With Jekyll</title>
-      <link>/posts/2016-11-12-partying-with-jekyll/</link>
-      <pubDate>Sat, 12 Nov 2016 18:15:06 -0700</pubDate>
-      
-      <guid>/posts/2016-11-12-partying-with-jekyll/</guid>
-      <description>I&amp;rsquo;ve been wanting to fix this blog for a while now, and I decided in the process that I am awful at web design/programming. Haha, well, the first step to being kinda good at something is kinda sucking at something, right?
-In my scouring of the internet I discovered that a lot of static blog sites used Jekyll to generate their site. At first, I figured it was nothing more than another insta-blog program where you just dump some content into a folder and it spits out a blog - but holy cow it is so much more than (and can be exactly) that.</description>
     </item>
     
     <item>

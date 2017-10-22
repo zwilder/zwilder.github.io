@@ -1,53 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fun With Dijkstra Mapping | WSL Programming Blog</title>
-<link rel="stylesheet" href="https://zwilder.github.io//css/style.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fun With Dijkstra Mapping | WSL Programming Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/github.min.css">
+      
 
 
-<section class="section">
-  <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <a class="nav-item" href="https://zwilder.github.io/"><h1 class="title is-4">WSL Programming Blog</h1></a>
-      </div>
-      <div class="nav-right">
-        <nav class="nav-item level is-mobile">
-          
-          <a class="level-item" href="https://github.com/zwilder">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="">
-            <span class="icon">
-              <i class="fa "></i>
-            </span>
-          </a>
-          
-          <a class="level-item" href="/index.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-          </a>
-          
-        </nav>
-      </div>
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">home</a></li>
+      
+      <li><a href="/about/">about</a></li>
+      
+      <li><a href="/tags/">tags</a></li>
+      
+      <li><a href="/index.xml">rss</a></li>
+      
+    </ul>
+    <hr/>
     </nav>
-  </div>
-</section>
 
-<section class="section">
-  <div class="container">
-    <h2 class="subtitle is-6">15 July 2016</h2>
-    <h1 class="title">Fun With Dijkstra Mapping</h1>
-    <div class="content">
-      <p>Continuing in my never-ending project to make a &ldquo;simple&rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&rsquo;t going to work.</p>
+<div class="article-meta">
+<h1><span class="title">Fun With Dijkstra Mapping</span></h1>
+
+<h2 class="date">15 July 2016</h2>
+</div>
+
+<main>
+<p>Continuing in my never-ending project to make a &ldquo;simple&rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&rsquo;t going to work.</p>
 
 <p>After browsing <a href="http://www.reddit.com/r/roguelikedev">/r/roguelikedev</a> and <a href="http://www.roguebasin.com/">RogueBasin</a> I came across a few articles on &ldquo;need driven AI&rdquo; - an absurdly cool concept, and so (seemingly) simple to implement I wasn&rsquo;t sure how I didn&rsquo;t stumble across this earlier. Basically, creatures in the game assign a value to things they know about (treasure, the player, exits, other monsters they are friendly with, other monsters they are terrified of, etc. etc.) and make an &lsquo;informed&rsquo; decision about where to move next. A monster could desire killing the player over treasure, and would &ldquo;decide&rdquo; to move towards the player instead of a closer pile of gold. Maybe that monster is a pack hunter, and also strongly desires to be near it&rsquo;s pack - so when singled out it moves away to regroup with others. Cats could hunt mice, the undead could wander aimlessly attacking anything, golems could guard exits, archers could stay a safe distance away, and</p>
 
@@ -318,9 +308,8 @@
 
 <p>The next project will be actually using this in the game AI, and adding a &lsquo;desire&rsquo; component for each monster. Of course, this might also be a good time to implement a time/turn tracking system&hellip; Or a health system&hellip;</p>
 
-    </div>
-  </div>
-</section>
+</main>
+
 
 <section class="section">
   <div class="container">
@@ -338,19 +327,13 @@
 </section>
 
 
-<section class="section">
-  <div class="container has-text-centered">
-    <p>&copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2017</p>
-  </div>
-</section>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/languages/go.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/languages/dockerfile.min.js"></script>
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/languages/cpp.min.js"></script>
-
-<script>hljs.initHighlightingOnLoad();</script>
-
+  <footer>
+  
+  
+  <hr/>
+  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2017
+  
+  </footer>
+  </body>
+</html>
 

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on WSL Programming Blog</title>
-    <link>/posts/</link>
-    <description>Recent content in Posts on WSL Programming Blog</description>
+    <title>Web Programming on WSL Programming Blog</title>
+    <link>/tags/web-programming/</link>
+    <description>Recent content in Web Programming on WSL Programming Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Oct 2017 07:00:00 -0700</lastBuildDate>
     
-	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/web-programming/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -32,26 +32,6 @@ Well, I officially gave up on web design. Yep! Turns out, I should probably leav
     </item>
     
     <item>
-      <title>Gradients for Colors, and Actions for Actors</title>
-      <link>/posts/2017-01-07-gradients-and-actions/</link>
-      <pubDate>Sat, 07 Jan 2017 11:45:00 -0700</pubDate>
-      
-      <guid>/posts/2017-01-07-gradients-and-actions/</guid>
-      <description>Over the past couple of weeks I&amp;rsquo;ve been working on simplifying the code for my roguelike project - heavily inspired by one of my favorite books on my shelf, Game Programming Patterns.
-I&amp;rsquo;ve seriously read this book cover to cover, multiple times - and every time find a new use for one of the &amp;lsquo;patterns&amp;rsquo; in it. I just discovered that the author&amp;rsquo;s blog has a bunch of good reads on it as well.</description>
-    </item>
-    
-    <item>
-      <title>Randomly Generated Caves with Cellular Automata</title>
-      <link>/posts/2016-12-20-automata-caves/</link>
-      <pubDate>Thu, 22 Dec 2016 19:18:06 -0700</pubDate>
-      
-      <guid>/posts/2016-12-20-automata-caves/</guid>
-      <description>So, every time I get the urge to write a blog post about whatever random bit of code I&amp;rsquo;m writing - I look at the blog and think: &amp;ldquo;Hm, this is kinda ugly.&amp;rdquo; Then, I have to rewrite it until I&amp;rsquo;m mostly satisfied with how it looks.
-Recently, I&amp;rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&amp;rsquo;t seem to find a satisfactory &amp;lsquo;look and feel&amp;rsquo; - I think I&amp;rsquo;ve got a good start though.</description>
-    </item>
-    
-    <item>
       <title>Commenting System with Staticman!</title>
       <link>/posts/2016-11-15-commenting-system/</link>
       <pubDate>Tue, 15 Nov 2016 19:18:06 -0700</pubDate>
@@ -69,15 +49,6 @@ Recently, I&amp;rsquo;ve been working on writing a nice little interface for han
       <guid>/posts/2016-11-12-partying-with-jekyll/</guid>
       <description>I&amp;rsquo;ve been wanting to fix this blog for a while now, and I decided in the process that I am awful at web design/programming. Haha, well, the first step to being kinda good at something is kinda sucking at something, right?
 In my scouring of the internet I discovered that a lot of static blog sites used Jekyll to generate their site. At first, I figured it was nothing more than another insta-blog program where you just dump some content into a folder and it spits out a blog - but holy cow it is so much more than (and can be exactly) that.</description>
-    </item>
-    
-    <item>
-      <title>Fun With Dijkstra Mapping</title>
-      <link>/posts/2016-07-15-fun-with-dijkstra-mapping/</link>
-      <pubDate>Fri, 15 Jul 2016 08:29:06 -0700</pubDate>
-      
-      <guid>/posts/2016-07-15-fun-with-dijkstra-mapping/</guid>
-      <description>Continuing in my never-ending project to make a &amp;ldquo;simple&amp;rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&amp;rsquo;t going to work.</description>
     </item>
     
   </channel>

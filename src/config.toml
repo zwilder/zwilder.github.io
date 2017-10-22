@@ -9,6 +9,7 @@ preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
 publishDir = "../"
 
+
 [permalinks]
     post = "/post/:year/:month/:day/:slug/"
     note = "/note/:year/:month/:day/:slug/"

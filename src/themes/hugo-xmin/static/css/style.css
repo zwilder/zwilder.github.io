@@ -3,28 +3,44 @@ body {
   margin: auto;
   padding: 1em;
   line-height: 1.5em;
+  color: #333;
+  /* font-family: 'Source Code Pro',monospace;  */
+  /* font-size: 16px; */
 }
 
 /* header and footer areas */
-.menu { padding: 0; }
+.menu {
+  padding: 0;
+  font-family: 'Source Code Pro', monospace;
+}
 .menu li { display: inline-block; }
 .article-meta {
   text-decoration: none;
-  font-family: 'Source Code Pro', monospace;
   /* background: #ddd; */
   padding: 5px;
   /* border-radius: 5px; */
 }
-.menu a:link, .menu a:visited, .menu a:active {
-    font-family: 'Source Code Pro',monospace; 
+a:link {
     text-decoration: none;
-    color: black;
+    /* color: #42464c; */
+    color: #107896;
     /* border: 1px solid black; */
     background: white;
     padding: 5px;
 }
-.menu a:hover{
+
+a:visited {
+    text-decoration: none;
+    /* color: #42464c; */
+    color: #107896;
+    /* border: 1px solid black; */
+    background: white;
+    padding: 5px;
+}
+
+a:hover, a:active {
     text-decoration: underline;
+    color: #C2571A;
 }
 .menu, .article-meta, footer { text-align: center; }
 .title { font-size: 1.1em; }
@@ -32,6 +48,11 @@ footer a { text-decoration: none; }
 hr {
   border-style: dashed;
   color: #ddd;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Source Code Pro', monospace;
+    text-align: center;
 }
 
 /* code */

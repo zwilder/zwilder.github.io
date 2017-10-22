@@ -1,7 +1,5 @@
 ---
-title: Home
+title: WSL Programming Blog
+author: Successes, Failures, and Experiments in Programming
 ---
-# WSL Programming Blog
-
-## _Successes, Failures, and Expirements with Programming_
 

@@ -61,9 +61,9 @@ would be a good fit for bit flags - instead of checking if something blocksMovem
 
 {{< highlight cpp >}}
 int flag = blocksMovement | blocksLight | isDoor;
-if(tile->checkFlag(flag)
+if(tile->checkFlag(flag))
 {
-    ///
+    // Do something cool here!
 }
 ...
 bool checkFlag(int flag)

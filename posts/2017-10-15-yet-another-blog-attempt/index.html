@@ -85,25 +85,25 @@ the player checks to see if it is standing on stairs and if so moves down them.<
 
 <p>Previously this would have been handled by something like</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="">states_</span><span style="">[</span><span style="">activeState</span><span style="">]</span><span style="color:#f92672">-&gt;</span><span style="">window_</span><span style="">[</span><span style="">activeWindow</span><span style="">]</span><span style="color:#f92672">-&gt;</span><span style="">world_</span><span style="color:#f92672">-&gt;</span><span style="">locations</span><span style="">[</span><span style="">world_</span><span style="color:#f92672">-&gt;</span><span style="">currentLocationID</span><span style="">]</span><span style="color:#f92672">-&gt;</span><span style="">player</span><span style="color:#f92672">-&gt;</span><span style="">moveDownstairs</span><span style="">();</span></code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">states_[activeState]<span style="color:#f92672">-&gt;</span>window_[activeWindow]<span style="color:#f92672">-&gt;</span>world_<span style="color:#f92672">-&gt;</span>locations[world_<span style="color:#f92672">-&gt;</span>currentLocationID]<span style="color:#f92672">-&gt;</span>player<span style="color:#f92672">-&gt;</span>moveDownstairs();
+</code></pre></div>
 
 <p>Yuck. Lets replace that with:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="">Engine</span><span style="color:#f92672">::</span><span style="">HandleEvents</span><span style="">()</span><span style="">
-</span><span style=""></span><span style="">{</span><span style="">
-</span><span style=""></span><span style="">...</span><span style="">
-</span><span style="">    </span><span style="">mailbox_</span><span style="color:#f92672">-&gt;</span><span style="">push_back</span><span style="">(</span><span style="">Message</span><span style="color:#f92672">::</span><span style="">toState</span><span style="">(</span><span style="">Command</span><span style="color:#f92672">::</span><span style="">Keypress</span><span style="">,</span><span style=""> </span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&gt;&#39;</span><span style="">);</span><span style="">
-</span><span style=""></span><span style="">...</span><span style="">
-</span><span style=""></span><span style="">}</span><span style="">
-</span><span style="">
-</span><span style=""></span><span style="">GameWindow</span><span style="color:#f92672">::</span><span style="">ProcessMessage</span><span style="">()</span><span style="">
-</span><span style=""></span><span style="">{</span><span style="">
-</span><span style=""></span><span style="">...</span><span style="">
-</span><span style="">    </span><span style="">mailbox_</span><span style="color:#f92672">-&gt;</span><span style="">push_back</span><span style="">(</span><span style="">Message</span><span style="color:#f92672">::</span><span style="">toPlayer</span><span style="">(</span><span style="">Command</span><span style="color:#f92672">::</span><span style="">MoveDownStairs</span><span style="">));</span><span style="">
-</span><span style=""></span><span style="">...</span><span style="">
-</span><span style=""></span><span style="">}</span></code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Engine<span style="color:#f92672">::</span>HandleEvents()
+{
+...
+    mailbox_<span style="color:#f92672">-&gt;</span>push_back(Message<span style="color:#f92672">::</span>toState(Command<span style="color:#f92672">::</span>Keypress, <span style="color:#e6db74">&#39;&gt;&#39;</span>);
+...
+}
+
+GameWindow<span style="color:#f92672">::</span>ProcessMessage()
+{
+...
+    mailbox_<span style="color:#f92672">-&gt;</span>push_back(Message<span style="color:#f92672">::</span>toPlayer(Command<span style="color:#f92672">::</span>MoveDownStairs));
+...
+}
+</code></pre></div>
 
 <p>Much, much more readable and less prone to accidentally breaking. So each component during the update routine recieves the mail cart, looks through each message,
 processes each one that is addressed to it, and passes the mail cart to the next component.</p>

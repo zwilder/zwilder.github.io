@@ -47,25 +47,25 @@ how it looks.</p>
 tiles properties are simple boolean flags anyways, so why not make tiles just a bitflag and glyph to represent them? After running some halfassed tests on this idea, the size of an entire map (100x100, or 10,000 tiles) worth of tiles was a mere 24 bytes. Yeah, this idea will work just fine.</p>
 
 <p>Basically, how it works now is a tile is just:
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span><span style=""> </span><span style="">Tile</span><span style=""> 
-</span><span style=""></span><span style="">{</span><span style="">
-</span><span style="">    </span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">bitMask</span><span style="">;</span><span style="">
-</span><span style="">    </span><span style="color:#66d9ef">char</span><span style=""> </span><span style="">glyph</span><span style="">;</span><span style="">
-</span><span style=""></span><span style="">}</span></code></pre>
-</div></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> Tile 
+{
+    <span style="color:#66d9ef">int</span> bitMask;
+    <span style="color:#66d9ef">char</span> glyph;
+}
+</code></pre></div></p>
 
 <p>And the flags:
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">enum</span><span style=""> </span><span style="">TileFlags</span><span style=""> </span><span style="">:</span><span style=""> </span><span style="color:#66d9ef">int</span><span style="">
-</span><span style=""></span><span style="">{</span><span style="">
-</span><span style="">    </span><span style="">NONE</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0</span><span style="">,</span><span style="">
-</span><span style="">    </span><span style="">BLOCKS_MOVEMENT</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0x001</span><span style="">,</span><span style="">
-</span><span style="">    </span><span style="">BLOCKS_LIGHT</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0x002</span><span style="">,</span><span style="">
-</span><span style="">    </span><span style="">UP_STAIR</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0x004</span><span style="">,</span><span style="">
-</span><span style="">    </span><span style="">DOWN_STAIR</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0x008</span><span style="">,</span><span style="">
-</span><span style="">    </span><span style="">DOOR</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0x010</span><span style="">,</span><span style="">
-</span><span style="">    </span><span style="">FLOOR</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0x020</span><span style="">
-</span><span style=""></span><span style="">};</span></code></pre>
-</div></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">enum</span> TileFlags : <span style="color:#66d9ef">int</span>
+{
+    NONE <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,
+    BLOCKS_MOVEMENT <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x001</span>,
+    BLOCKS_LIGHT <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x002</span>,
+    UP_STAIR <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x004</span>,
+    DOWN_STAIR <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x008</span>,
+    DOOR <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x010</span>,
+    FLOOR <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x020</span>
+};
+</code></pre></div></p>
 
 <p>I&rsquo;m a pretty huge fan of bitflags, mostly because it allows me to do all sorts of cool stuff. Say for instance we added a <code>LIQUID</code> flag to <code>TileFlags</code> - liquid blocks movement (our fearless adventurer never took swim lessons, apparently) but doesn&rsquo;t block light, so the adventurer&rsquo;s field of vision would see over the murky pool of whatever liquid.</p>
 

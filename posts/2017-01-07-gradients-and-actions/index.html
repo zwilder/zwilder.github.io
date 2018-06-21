@@ -49,28 +49,28 @@ all the actions that an actor (player or enemy) can take are issued as &lsquo;co
 gets to call it&rsquo;s most current action&rsquo;s <code>perform()</code> routine. What makes this super cool and useful is that the perform routine returns an <code>ActionResult</code>, which
 has a flag stating whether or not the current action was successful, and a suggested alternate action (for use if the action was unsuccessful).</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style=""> </span><span style="color:#a6e22e">Action</span><span style=""> 
-</span><span style=""></span><span style="">{</span><span style="">
-</span><span style=""></span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span><span style="">
-</span><span style="">    </span><span style="color:#66d9ef">virtual</span><span style=""> </span><span style="">ActionResult</span><span style=""> </span><span style="">perform</span><span style="">(</span><span style="">Actor</span><span style=""> </span><span style="color:#f92672">&amp;</span><span style=""> </span><span style="">actor</span><span style="">)</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0</span><span style="">;</span><span style="">
-</span><span style=""></span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span><span style="">
-</span><span style="">    </span><span style="">Action</span><span style="">()</span><span style=""> </span><span style="">{</span><span style=""> </span><span style="">}</span><span style="">
-</span><span style=""></span><span style="">};</span><span style="">
-</span><span style="">
-</span><span style=""></span><span style="color:#66d9ef">class</span><span style=""> </span><span style="color:#a6e22e">ActionResult</span><span style="">
-</span><span style=""></span><span style="">{</span><span style="">
-</span><span style=""></span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span><span style="">
-</span><span style="">    </span><span style="">ActionResult</span><span style="">()</span><span style=""> </span><span style="">{</span><span style=""> </span><span style="">status_</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">true</span><span style="">;</span><span style=""> </span><span style="">}</span><span style="">
-</span><span style="">    </span><span style="color:#66d9ef">bool</span><span style=""> </span><span style="">success</span><span style="">()</span><span style=""> </span><span style="">{</span><span style=""> </span><span style="color:#66d9ef">return</span><span style=""> </span><span style="">status_</span><span style="">;</span><span style=""> </span><span style="">}</span><span style="">
-</span><span style="">    </span><span style="color:#66d9ef">void</span><span style=""> </span><span style="">setFalse</span><span style="">()</span><span style=""> </span><span style="">{</span><span style=""> </span><span style="">status_</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">false</span><span style="">;</span><span style=""> </span><span style="">}</span><span style="">
-</span><span style="">    </span><span style="color:#66d9ef">void</span><span style=""> </span><span style="">setTrue</span><span style="">()</span><span style=""> </span><span style="">{</span><span style=""> </span><span style="">status_</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">true</span><span style="">;</span><span style=""> </span><span style="">}</span><span style="">
-</span><span style="">    </span><span style="">Action</span><span style=""> </span><span style="color:#f92672">*</span><span style=""> </span><span style="">getAlternate</span><span style="">()</span><span style=""> </span><span style="">{</span><span style=""> </span><span style="color:#66d9ef">return</span><span style=""> </span><span style="">alternative_</span><span style="">;</span><span style=""> </span><span style="">}</span><span style="">
-</span><span style="">    </span><span style="color:#66d9ef">void</span><span style=""> </span><span style="">setAlternate</span><span style="">(</span><span style="">Action</span><span style=""> </span><span style="color:#f92672">*</span><span style=""> </span><span style="">alternate</span><span style="">)</span><span style=""> </span><span style="">{</span><span style=""> </span><span style="">alternative_</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">alternate</span><span style="">;</span><span style=""> </span><span style="">}</span><span style="">
-</span><span style=""></span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span><span style="">
-</span><span style="">    </span><span style="">Action</span><span style=""> </span><span style="color:#f92672">*</span><span style=""> </span><span style="">alternative_</span><span style="">;</span><span style="">
-</span><span style="">    </span><span style="color:#66d9ef">bool</span><span style=""> </span><span style="">status_</span><span style="">;</span><span style="">
-</span><span style=""></span><span style="">};</span></code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Action</span> 
+{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">virtual</span> ActionResult perform(Actor <span style="color:#f92672">&amp;</span> actor) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+    Action() { }
+};
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ActionResult</span>
+{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    ActionResult() { status_ <span style="color:#f92672">=</span> true; }
+    <span style="color:#66d9ef">bool</span> success() { <span style="color:#66d9ef">return</span> status_; }
+    <span style="color:#66d9ef">void</span> setFalse() { status_ <span style="color:#f92672">=</span> false; }
+    <span style="color:#66d9ef">void</span> setTrue() { status_ <span style="color:#f92672">=</span> true; }
+    Action <span style="color:#f92672">*</span> getAlternate() { <span style="color:#66d9ef">return</span> alternative_; }
+    <span style="color:#66d9ef">void</span> setAlternate(Action <span style="color:#f92672">*</span> alternate) { alternative_ <span style="color:#f92672">=</span> alternate; }
+<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+    Action <span style="color:#f92672">*</span> alternative_;
+    <span style="color:#66d9ef">bool</span> status_;
+};
+</code></pre></div>
 
 <p>Now, if the player moves into a square - instead of the keypress moving the player, the keypress just sets the player&rsquo;s next action to attack in the direction of that tile.
 During the players update, the <code>perform()</code> for the attack action checks to see if there is another actor there - and if there isn&rsquo;t returns a move action as an alternate. If
@@ -83,42 +83,42 @@ since moving into them will just use their turn to open the door - if they are c
 <p>Another fun thing I wrote recently is some code to dynamically create color gradients. It turns out, you can just do a simple line (y=mx+b) for component (r,g,b) of a color: <code>m</code> being equal to the change in color (finish - start) divided by the number
 of steps, and <code>b</code> as the start color.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span><span style=""> </span><span style="color:#a6e22e">getDeltaColor</span><span style="">(</span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">sC</span><span style="">,</span><span style=""> </span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">fC</span><span style="">,</span><span style=""> </span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">steps</span><span style="">)</span><span style="">
-</span><span style=""></span><span style="">{</span><span style="">
-</span><span style="">    </span><span style="color:#75715e">// This is the slope equation for &#39;m&#39; : (finishColor - startColor) / NumberOfSteps
-</span><span style="color:#75715e"></span><span style="">	</span><span style="color:#66d9ef">if</span><span style="">(</span><span style="">steps</span><span style=""> </span><span style="color:#f92672">==</span><span style=""> </span><span style="color:#ae81ff">0</span><span style="">)</span><span style="">
-</span><span style="">	</span><span style="">{</span><span style="">
-</span><span style="">		</span><span style="color:#66d9ef">return</span><span style=""> </span><span style="color:#ae81ff">0</span><span style="">;</span><span style="">
-</span><span style="">	</span><span style="">}</span><span style=""> 
-</span><span style="">	</span><span style="color:#66d9ef">return</span><span style=""> </span><span style="color:#66d9ef">int</span><span style="">((</span><span style="">fC</span><span style=""> </span><span style="color:#f92672">-</span><span style=""> </span><span style="">sC</span><span style="">)</span><span style=""> </span><span style="color:#f92672">/</span><span style=""> </span><span style="">steps</span><span style="">);</span><span style="">
-</span><span style=""></span><span style="">}</span><span style="">
-</span><span style="">
-</span><span style=""></span><span style="">std</span><span style="color:#f92672">::</span><span style="">vector</span><span style="color:#f92672">&lt;</span><span style="">WColor</span><span style="color:#f92672">&gt;</span><span style=""> </span><span style="">getColorGradient</span><span style="">(</span><span style="">WColor</span><span style=""> </span><span style="">startColor</span><span style="">,</span><span style=""> </span><span style="">WColor</span><span style=""> </span><span style="">finishColor</span><span style="">,</span><span style=""> </span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">steps</span><span style="">)</span><span style="">
-</span><span style=""></span><span style="">{</span><span style="">
-</span><span style="">	</span><span style="">std</span><span style="color:#f92672">::</span><span style="">vector</span><span style="color:#f92672">&lt;</span><span style="">WColor</span><span style="color:#f92672">&gt;</span><span style=""> </span><span style="">result</span><span style="">;</span><span style="">
-</span><span style="">
-</span><span style="">    </span><span style="color:#75715e">// First, we get the slopes for each color component
-</span><span style="color:#75715e"></span><span style="">	</span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">redDelta</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">getDeltaColor</span><span style="">(</span><span style="">startColor</span><span style="">.</span><span style="">r</span><span style="">,</span><span style=""> </span><span style="">finishColor</span><span style="">.</span><span style="">r</span><span style="">,</span><span style=""> </span><span style="">steps</span><span style="">);</span><span style="">
-</span><span style="">	</span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">greenDelta</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">getDeltaColor</span><span style="">(</span><span style="">startColor</span><span style="">.</span><span style="">g</span><span style="">,</span><span style=""> </span><span style="">finishColor</span><span style="">.</span><span style="">g</span><span style="">,</span><span style=""> </span><span style="">steps</span><span style="">);</span><span style="">
-</span><span style="">	</span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">blueDelta</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">getDeltaColor</span><span style="">(</span><span style="">startColor</span><span style="">.</span><span style="">b</span><span style="">,</span><span style=""> </span><span style="">finishColor</span><span style="">.</span><span style="">b</span><span style="">,</span><span style=""> </span><span style="">steps</span><span style="">);</span><span style="">
-</span><span style="">	</span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">alphaDelta</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">getDeltaColor</span><span style="">(</span><span style="">startColor</span><span style="">.</span><span style="">a</span><span style="">,</span><span style=""> </span><span style="">finishColor</span><span style="">.</span><span style="">a</span><span style="">,</span><span style=""> </span><span style="">steps</span><span style="">);</span><span style="">
-</span><span style="">
-</span><span style="">	</span><span style="">result</span><span style="">.</span><span style="">push_back</span><span style="">(</span><span style="">startColor</span><span style="">);</span><span style="">
-</span><span style="">	</span><span style="color:#66d9ef">for</span><span style="">(</span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">i</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0</span><span style="">;</span><span style=""> </span><span style="">i</span><span style=""> </span><span style="color:#f92672">&lt;</span><span style=""> </span><span style="">steps</span><span style="">;</span><span style=""> </span><span style="color:#f92672">++</span><span style="">i</span><span style="">)</span><span style="">
-</span><span style="">	</span><span style="">{</span><span style="">
-</span><span style="">		</span><span style="">WColor</span><span style=""> </span><span style="">stepColor</span><span style="">;</span><span style="">
-</span><span style="">        </span><span style="color:#75715e">//Then at each step: stepColor = slope * stepNumber + startColor
-</span><span style="color:#75715e"></span><span style="">		</span><span style="">stepColor</span><span style="">.</span><span style="">r</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">(</span><span style="">redDelta</span><span style=""> </span><span style="color:#f92672">*</span><span style=""> </span><span style="">i</span><span style="">)</span><span style=""> </span><span style="color:#f92672">+</span><span style=""> </span><span style="">startColor</span><span style="">.</span><span style="">r</span><span style="">;</span><span style="">
-</span><span style="">		</span><span style="">stepColor</span><span style="">.</span><span style="">g</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">(</span><span style="">greenDelta</span><span style=""> </span><span style="color:#f92672">*</span><span style=""> </span><span style="">i</span><span style="">)</span><span style=""> </span><span style="color:#f92672">+</span><span style=""> </span><span style="">startColor</span><span style="">.</span><span style="">g</span><span style="">;</span><span style="">
-</span><span style="">		</span><span style="">stepColor</span><span style="">.</span><span style="">b</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">(</span><span style="">blueDelta</span><span style=""> </span><span style="color:#f92672">*</span><span style=""> </span><span style="">i</span><span style="">)</span><span style=""> </span><span style="color:#f92672">+</span><span style=""> </span><span style="">startColor</span><span style="">.</span><span style="">b</span><span style="">;</span><span style="">
-</span><span style="">		</span><span style="">stepColor</span><span style="">.</span><span style="">a</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">(</span><span style="">alphaDelta</span><span style=""> </span><span style="color:#f92672">*</span><span style=""> </span><span style="">i</span><span style="">)</span><span style=""> </span><span style="color:#f92672">+</span><span style=""> </span><span style="">startColor</span><span style="">.</span><span style="">a</span><span style="">;</span><span style="">
-</span><span style="">		</span><span style="">result</span><span style="">.</span><span style="">push_back</span><span style="">(</span><span style="">stepColor</span><span style="">);</span><span style="">
-</span><span style="">	</span><span style="">}</span><span style="">
-</span><span style="">	</span><span style="">result</span><span style="">.</span><span style="">push_back</span><span style="">(</span><span style="">finishColor</span><span style="">);</span><span style="">
-</span><span style="">
-</span><span style="">	</span><span style="color:#66d9ef">return</span><span style=""> </span><span style="">result</span><span style="">;</span><span style="">
-</span><span style=""></span><span style="">}</span></code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDeltaColor</span>(<span style="color:#66d9ef">int</span> sC, <span style="color:#66d9ef">int</span> fC, <span style="color:#66d9ef">int</span> steps)
+{
+    <span style="color:#75715e">// This is the slope equation for &#39;m&#39; : (finishColor - startColor) / NumberOfSteps
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(steps <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+	{
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+	} 
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">int</span>((fC <span style="color:#f92672">-</span> sC) <span style="color:#f92672">/</span> steps);
+}
+
+std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>WColor<span style="color:#f92672">&gt;</span> getColorGradient(WColor startColor, WColor finishColor, <span style="color:#66d9ef">int</span> steps)
+{
+	std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>WColor<span style="color:#f92672">&gt;</span> result;
+
+    <span style="color:#75715e">// First, we get the slopes for each color component
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> redDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.r, finishColor.r, steps);
+	<span style="color:#66d9ef">int</span> greenDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.g, finishColor.g, steps);
+	<span style="color:#66d9ef">int</span> blueDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.b, finishColor.b, steps);
+	<span style="color:#66d9ef">int</span> alphaDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.a, finishColor.a, steps);
+
+	result.push_back(startColor);
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> steps; <span style="color:#f92672">++</span>i)
+	{
+		WColor stepColor;
+        <span style="color:#75715e">//Then at each step: stepColor = slope * stepNumber + startColor
+</span><span style="color:#75715e"></span>		stepColor.r <span style="color:#f92672">=</span> (redDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.r;
+		stepColor.g <span style="color:#f92672">=</span> (greenDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.g;
+		stepColor.b <span style="color:#f92672">=</span> (blueDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.b;
+		stepColor.a <span style="color:#f92672">=</span> (alphaDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.a;
+		result.push_back(stepColor);
+	}
+	result.push_back(finishColor);
+
+	<span style="color:#66d9ef">return</span> result;
+}
+</code></pre></div>
 
 <p>Finally, another cool thing I&rsquo;ve been working on is playing around with Perlin noise. Inspired by <a href="http://www.redblobgames.com/maps/terrain-from-noise/">Red Blob Games&rsquo;s post</a> on using Perlin noise to generate 2D maps I decided that I had to do something similar for my roguelike.
 The code for the noise generating function is just a straight translation of Ken Perlin&rsquo;s <a href="http://mrl.nyu.edu/~perlin/noise">improved noise function</a> which was written in Java. I have no idea the math behind most of this - but

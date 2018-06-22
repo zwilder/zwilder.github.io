@@ -4,7 +4,7 @@ title = "WSL Programming Blog"
 theme = "hugo-xmin"
 googleAnalytics = ""
 disqusShortname = "wsl-programming-blog"
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "\\.bak$", "\\.un~$"]
 preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
 publishDir = "../"
@@ -32,4 +32,4 @@ publishDir = "../"
 
 [params]
     description = "A website built through Hugo by a guy who doesn't exactly know what he's doing..."
-    footer = "&copy; <a href=\"https://github.com/zwilder\">Zach Wilder</a> 2017"
+    footer = "&copy; <a href=\"https://github.com/zwilder\">Zach Wilder</a> 2018"

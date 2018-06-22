@@ -3,11 +3,18 @@
 <h1><span class="title">{{ .Title }}</span></h1>
 {{ with .Params.author }}<h2 class="author">{{ . }}</h2>{{ end }}
 {{ if .Params.date }}<h2 class="date">{{ .Date.Format "02 January 2006" }}</h2>{{ end }}
+{{ if .Params.tags }}
+<span style="font-size: 0.9em; font-family: 'Source Code Pro', monospace;text-align:center;">
+    {{ range .Params.tags }}
+    <a href="/tags/{{ . | urlize }}">{{ . }}</a> 
+    {{ end }}
+</span>
+{{ end }}
 </div>
-
+<hr>
 <main>
 {{ .Content }}
 </main>
-
+<br>
 {{ partial "disqus.html" .}}
 {{ partial "footer.html" . }}

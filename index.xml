@@ -17,7 +17,7 @@
       <pubDate>Wed, 20 Jun 2018 07:00:00 -0700</pubDate>
       
       <guid>/posts/2018-06-20-the-roguelike-tutorial-week1/</guid>
-      <description>Last year r/roguelikedev did a really cool thing with weekly post where everyone followed along with a tutorial, shared ideas and problems, and motivated each other to actually finish a project. Well they&amp;rsquo;re doing it again this year, and with the announcement last week I decided to take a look at the new and improved, Python3 version of the tutorial.
+      <description>Last year r/roguelikedev did a really cool thing with a weekly post where everyone followed along with a tutorial, shared ideas and problems, and motivated each other to actually finish a project. Well they&amp;rsquo;re doing it again this year, and with the announcement last week I decided to take a look at the new and improved, Python3 version of the tutorial.
 For those not familiar with this famous tutorial - each part covers a small chunk of building a roguelike using simple language and easy to follow code.</description>
     </item>
     

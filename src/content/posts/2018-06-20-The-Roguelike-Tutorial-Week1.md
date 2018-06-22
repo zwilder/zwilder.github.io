@@ -7,7 +7,7 @@ tags:
   - Barbarian!
 ---
 
-Last year r/roguelikedev did a really cool thing with weekly post where everyone followed along with a tutorial, shared ideas and problems, and motivated each other
+Last year r/roguelikedev did a really cool thing with a weekly post where everyone followed along with a tutorial, shared ideas and problems, and motivated each other
 to actually finish a project. Well [they're doing it again](https://old.reddit.com/r/roguelikedev/comments/8s5x5n/roguelikedev_does_the_complete_roguelike_tutorial/)
 this year, and with the announcement last week I decided to take a look at the new and improved, [Python3 version of the tutorial](rogueliketutorials.com/libtcod1).
 
@@ -18,7 +18,7 @@ coding before beginning, but was able to follow along and even add my own stuff 
 single file Python program started to become difficult to modify and maintain. I took a step back, and decided to start relearning C and then ventured into C++.
 
 I quickly found that I actually really enjoy more of the building of the game than the designing of the game. Which, is cool because the amount of things to build
-and the resources available for building things from scratch are darn near infinite with the knowledge of the internet at my fingertips. It is not, however,
+and the resources available for building things from scratch are darn near infinite - especially with the knowledge of the internet at my fingertips. It is not, however,
 conducive to finishing a project or making something playable.
 
 As I read through the new and improved tutorial, I realized something pretty amazing: I could build this in C++. Reading each part I could think of ways (plural!)
@@ -72,7 +72,7 @@ bool checkFlag(int flag)
 }
 {{< / highlight >}}
 
-GameMap (defined in [game_map.hpp](https://github.com/zwilder/Barbarian/blob/master/include/game_map.hpp)) is a grid of Tiles (defined in [tile.hpp](https://github.com/zwilder/Barbarian/blob/master/include/tile.hpp)). Easy enough. For part 2, the game_map class generates a nice hardcoded wall for testing
+GameMap (defined in [game_map.hpp](https://github.com/zwilder/Barbarian/blob/master/include/game_map.hpp)) is a grid of Tiles (defined in [tile.hpp](https://github.com/zwilder/Barbarian/blob/master/include/tile.hpp)). Easy enough. For part 2, the GameMap class generates a nice hard-coded wall for testing
 Tiles and player movement. 
 
 ---
@@ -82,4 +82,4 @@ of many opportunities to branch out from the tutorial and do your own thing. I'l
 for that.
 
 I've nicknamed this project 'Barbarian!', since the player character in this type of roguelike does very little that is like a rogue and a lot that is like a 
-loin-cloth wearing, great sword weilding burly barbarian. I even have some fun ideas for flavoring the project with more brute force and shiny muscles!
+loin-cloth wearing, great sword wielding burly barbarian. I even have some fun ideas for flavoring the project with more brute force and shiny muscles!

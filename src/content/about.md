@@ -11,9 +11,10 @@ I have a weird obsession with making things from scratch - so naturally I decide
 
 I'm currently working on a roguelike, written in C++. I do all of my code in [VIM](http://www.vim.org/) on [Arch Linux](https://www.archlinux.org/).
 
-This website was created using [Hugo](/), the [XMin](/) theme, and some borrowed ideas from the internet.
+This website was created using [Hugo](gohugo.io), the [XMin](https://github.com/yihui/hugo-xmin/) theme, and some borrowed ideas from the internet.
 
 ## What is WSL?
 
-It's short for "weasel" - Most of my ideas began as inspiration gained from watching too many cartoons - this one was from Cow and Chicken. Also, hilariously, it's the abbreviation for the World Surf League - which I am 100% not affiliated with, unless they want to hook me up with a t-shirt featuring a surfing mustelid or something.
+It's short for "weasel". Most of my ideas began as inspiration gained from watching too many cartoons, this one was from Cow and Chicken. I've used it as
+an abbreviation in my code for years now, prefacing classes and objects with it. Also, hilariously, it's the abbreviation for the World Surf League - which I am 100% not affiliated with, unless they want to hook me up with a t-shirt featuring a surfing mustelid or something.
 

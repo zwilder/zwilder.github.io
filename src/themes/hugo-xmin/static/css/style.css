@@ -64,9 +64,13 @@ pre {
 }
 code { background: #f9f9f9; }
 pre code { background: none; }
+p code {
+  border: 1px solid #ddd;
+  box-shadow: 1px 1px 1px #ddd;
+}
 
 /* misc elements */
-img, iframe, video { max-width: 100%; }
+img, iframe, video { max-width: 100%; display: block; margin-left: auto; margin-right: auto; }
 main { hyphens: auto; }
 blockquote {
   background: #f9f9f9;

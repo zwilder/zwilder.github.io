@@ -184,3 +184,16 @@ ready to put some rooms in! Here's a picture of what a result can look like with
 
 {{< figure src="/assets/2018-06-25/Screenshot2.png" >}}
 
+In each of those rectangles a smaller rectangle is then randomly placed, which gives something like this:
+
+{{< figure src="/assets/2018-06-25/Screenshot3.png" >}}
+
+Unfortunately... After all this fun work, if each room is connected to the room in the sibling node working our way up the tree, it ends up with a single
+path connecting the dungeon! If instead the rooms are connected Rogue style (choosing a random x,y point on each room to connect) or tutorial style (connecting
+the center of the rooms) this ends up looking darn near identical to the tutorial dungeon algorithm! Shoot. 
+
+<!-- {{< figure src="https://media.giphy.com/media/hwIhyQDzVhn56/giphy.gif" >}} -->
+![](https://media.giphy.com/media/hwIhyQDzVhn56/giphy.gif)
+
+Well, they can't all be winners. Fortunately, roguebasin has some other awesome dungeon generation articles - I've already modified one of them for use in 
+another project, and will most likely modify that same one again for this project.

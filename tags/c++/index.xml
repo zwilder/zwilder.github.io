@@ -6,10 +6,20 @@
     <description>Recent content in C&#43;&#43; on WSL Programming Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Jun 2018 07:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 25 Jun 2018 08:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Roguelike Tutorial - Week 2</title>
+      <link>/posts/2018-06-25-the-roguelike-tutorial-week2/</link>
+      <pubDate>Mon, 25 Jun 2018 08:00:00 -0700</pubDate>
+      
+      <guid>/posts/2018-06-25-the-roguelike-tutorial-week2/</guid>
+      <description>So this week&amp;rsquo;s goal is to finish part 2 and part 3 of the tutorial - I worked ahead because I was excited to get this project going, which worked out well since shortly after finishing part 2 I switched to SDL from SFML and it gave me some time to work on this blog.
+The Switch to SDL So the game logic is completely divorced from the rendering system - I don&amp;rsquo;t want to be tied into using a set framework if I want to change later, and I know for a fact from previous projects this will make save files much easier to generate.</description>
+    </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 1</title>

@@ -191,8 +191,7 @@ Unfortunately... After all this fun work, if each room is connected to the room 
 path connecting the dungeon! If instead the rooms are connected Rogue style (choosing a random x,y point on each room to connect) or tutorial style (connecting
 the center of the rooms) this ends up looking darn near identical to the tutorial dungeon algorithm! Shoot. 
 
-<!-- {{< figure src="https://media.giphy.com/media/hwIhyQDzVhn56/giphy.gif" >}} -->
-![](https://media.giphy.com/media/hwIhyQDzVhn56/giphy.gif)
+<!-- <iframe src="https://giphy.com/embed/hwIhyQDzVhn56" width="480" height="265" frameBorder="0"></iframe> -->
 
 Well, they can't all be winners. Fortunately, roguebasin has some other awesome dungeon generation articles - I've already modified one of them for use in 
 another project, and will most likely modify that same one again for this project.

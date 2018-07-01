@@ -1,0 +1,8 @@
+<video class="video-js" width="{{ if .Get "width" }}{{ .Get "width" }}{{ else }}640{{ end }}" height="{{ if .Get "height" }}{{ .Get "height" }}{{ else }}385{{ end }}" controls>
+ 
+    {{ if .Get "mp4"  }}<source src="{{ .Get "mp4" }}" type="video/mp4">{{ end }}
+    {{ if .Get "ogg"  }}<source src="{{ .Get "ogg" }}" type="video/ogg">{{ end }}
+    {{ if .Get "webm" }}<source src="{{ .Get "webm" }}" type="video/webm">{{ end }}
+ 
+Your browser does not support the video tag.
+</video>

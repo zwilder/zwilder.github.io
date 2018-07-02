@@ -199,12 +199,18 @@ The next video shows the results without doing anything fancy, just showing expl
 "visible" cells.
 {{< video mp4="/assets/2018-07-02/FoV.mp4" >}}
 
+After a bit of tweaking, ending up somewhere in the middle of the two previous videos ends up with this:
+{{< video mp4="/assets/2018-07-02/FoV_final.mp4" >}}
+
+Also, you might have noticed that the range of vision looks more round in the last video - I was calculating vision as a rectangle around the player, and changed
+to a circle between the two videos. Also, in addition to changing the background of the lit cells to a light yellow, I changed the foreground to a dark grey, and
+removed the highlight from the walls in the visible range. A fun idea for later is to keep track of the players turn's and treat this vision radius as a torch radius 
+that decreases as the game moves on...
+
 ---
 
 The tutorial dungeon actually ends up being pretty nice to explore, and looks a bit less chaotic when not everything is visible. I'll probably continue tinkering with
-the results of the FoV algorithm, and possibly come up with some sort of 'fog' to differentiate what is visible to the player and what isn't. As is, the player might
-see enemies 'randomly appear' in large rooms when the vision range of the player doesn't extend all the way to the walls. Speaking of enemies, this dungeon is getting
-a little lonely! Time to start working on some adversaries...
-
----
+the results of the FoV algorithm - as is, the player might see enemies 'randomly appear' in large rooms when the vision range of the player doesn't extend all the way
+to the walls. I'm not sure if this is really cool or not yet. Speaking of enemies, this dungeon is getting a little lonely! Time to start working on some
+adversaries...
 

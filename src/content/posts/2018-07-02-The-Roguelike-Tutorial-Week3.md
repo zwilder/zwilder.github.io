@@ -207,6 +207,9 @@ to a circle between the two videos. Also, in addition to changing the background
 removed the highlight from the walls in the visible range. A fun idea for later is to keep track of the players turn's and treat this vision radius as a torch radius 
 that decreases as the game moves on...
 
+Some more tweaking, and color adjustments yields:
+{{< video mp4="/assets/2018-07-02/FoV_final2.mp4" >}}
+
 ---
 
 The tutorial dungeon actually ends up being pretty nice to explore, and looks a bit less chaotic when not everything is visible. I'll probably continue tinkering with

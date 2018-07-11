@@ -6,10 +6,19 @@
     <description>Recent content in Roguelike on WSL Programming Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Jul 2018 08:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 10 Jul 2018 22:31:00 -0700</lastBuildDate>
     
 	<atom:link href="/tags/roguelike/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Roguelike Tutorial - Week 3b</title>
+      <link>/posts/2018-07-10-the-roguelike-tutorial-week3b/</link>
+      <pubDate>Tue, 10 Jul 2018 22:31:00 -0700</pubDate>
+      
+      <guid>/posts/2018-07-10-the-roguelike-tutorial-week3b/</guid>
+      <description>I originally planned for this week&amp;rsquo;s blog post to cover my adaptation of part 5 of the Python RL tutorial - but after finishing part 5 in a matter of minutes I realized there wouldn&amp;rsquo;t be much to write here! Part 5 is basically making new entities and getting the collision logic in place before combat is added in part 6. However, before adding combat I thought it would be beneficial to start thinking about game time - it&amp;rsquo;s far more fun when some enemies are a lot quicker than the player, forcing the player to devise strategies for survival.</description>
+    </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 3a</title>

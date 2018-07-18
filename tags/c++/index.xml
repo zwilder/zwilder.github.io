@@ -6,10 +6,19 @@
     <description>Recent content in C&#43;&#43; on WSL Programming Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Jul 2018 22:31:00 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 18 Jul 2018 12:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Roguelike Tutorial - Week 4</title>
+      <link>/posts/2018-07-18-the-roguelike-tutorial-week4/</link>
+      <pubDate>Wed, 18 Jul 2018 12:00:00 -0700</pubDate>
+      
+      <guid>/posts/2018-07-18-the-roguelike-tutorial-week4/</guid>
+      <description>The past week has been equal parts frustration and excitement with this project. I ran into a pretty common design problem: entity components need to know about the rest of the game. Well, since each entity is just a collection of components it shouldn&amp;rsquo;t be difficult to pass a pointer to the game engine. Then, the components would have a pointer to the entity that &amp;ldquo;owns&amp;rdquo; it. Simple and clean&amp;hellip; or so I thought.</description>
+    </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 3b</title>

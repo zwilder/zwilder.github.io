@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Makefile on WSL Programming Blog</title>
+    <link>/tags/makefile/</link>
+    <description>Recent content in Makefile on WSL Programming Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Jul 2018 16:00:00 -0700</lastBuildDate>
+    
+	<atom:link href="/tags/makefile/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Roguelike Tutorial - Week 5a</title>
+      <link>/posts/2018-07-24-the-roguelike-tutorial-week5a/</link>
+      <pubDate>Tue, 24 Jul 2018 16:00:00 -0700</pubDate>
+      
+      <guid>/posts/2018-07-24-the-roguelike-tutorial-week5a/</guid>
+      <description>Another very productive week for this project! Although I was unable to finish last weeks goals of getting Parts 8 and 9 completed by today, I still feel pretty darn good about what I did accomplish. Besides, Parts 10, 11, and 12 are all fairly simple - heck the code is already in place, just needs to actually be used!
+After finishing Part 7 last week I decided to try and fix/change a few things that have been bothering me.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/posts/2018-07-24-the-roguelike-tutorial-week5a/</loc>
+    <lastmod>2018-07-24T16:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/2018-07-18-the-roguelike-tutorial-week4/</loc>
     <lastmod>2018-07-18T12:00:00-07:00</lastmod>
   </url>
@@ -74,13 +79,13 @@
   
   <url>
     <loc>/tags/barbarian/</loc>
-    <lastmod>2018-07-18T12:00:00-07:00</lastmod>
+    <lastmod>2018-07-24T16:00:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/c&#43;&#43;/</loc>
-    <lastmod>2018-07-18T12:00:00-07:00</lastmod>
+    <lastmod>2018-07-24T16:00:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -108,14 +113,20 @@
   </url>
   
   <url>
+    <loc>/tags/makefile/</loc>
+    <lastmod>2018-07-24T16:00:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/posts/</loc>
-    <lastmod>2018-07-18T12:00:00-07:00</lastmod>
+    <lastmod>2018-07-24T16:00:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/roguelike/</loc>
-    <lastmod>2018-07-18T12:00:00-07:00</lastmod>
+    <lastmod>2018-07-24T16:00:00-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -127,7 +138,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-07-18T12:00:00-07:00</lastmod>
+    <lastmod>2018-07-24T16:00:00-07:00</lastmod>
   </url>
   
   <url>

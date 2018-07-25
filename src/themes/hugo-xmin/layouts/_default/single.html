@@ -15,6 +15,21 @@
 <main>
 {{ .Content }}
 </main>
+<div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">
+    {{ with .PrevInSection }}
+    <span>
+        <!-- <a href = "{{ .Permalink }}">&#38;laquo;&#38;laquo; Previous Post</a> -->
+        <a href = "{{ .Permalink }}">&laquo;&laquo; {{ .Title }}</a>
+    </span>
+    {{ end }}
+    {{ with .NextInSection }}
+    <span>
+        |
+        <!-- <a href = "{{ .Permalink }}">Next Post &#38;raquo;&#38;raquo;</a> -->
+        <a href = "{{ .Permalink }}">{{ .Title }} &raquo;&raquo;</a>
+    </span>
+    {{ end }}
+</div>
 <br>
 {{ partial "disqus.html" .}}
 {{ partial "footer.html" . }}

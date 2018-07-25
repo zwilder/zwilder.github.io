@@ -44,22 +44,22 @@ but it works and looks darn nice. Here’s my version of this solution:
 {{< highlight cpp >}}
 if(fullscreen_)
 {
-            windowWidth_ = 800;
-            windowHeight_ = 600;
-            SDL_SetWindowSize(window_, windowWidth_, windowHeight_);
-            SDL_SetWindowPosition(window_, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-            fullscreen_ = false;
-        }
-        else
-        {
-            SDL_DisplayMode dm;
-            SDL_GetDesktopDisplayMode(0, &dm);
-            windowWidth_ = dm.w;
-            windowHeight_ = dm.h;
-            SDL_SetWindowSize(window_, windowWidth_ + 10, windowHeight_ + 10);
-            SDL_SetWindowPosition(window_, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-            fullscreen_ = true;
-        }
+    windowWidth_ = 800;
+    windowHeight_ = 600;
+    SDL_SetWindowSize(window_, windowWidth_, windowHeight_);
+    SDL_SetWindowPosition(window_, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+    fullscreen_ = false;
+}
+else
+{
+    SDL_DisplayMode dm;
+    SDL_GetDesktopDisplayMode(0, &dm);
+    windowWidth_ = dm.w;
+    windowHeight_ = dm.h;
+    SDL_SetWindowSize(window_, windowWidth_ + 10, windowHeight_ + 10);
+    SDL_SetWindowPosition(window_, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+    fullscreen_ = true;
+}
 {{< / highlight >}}
 
 I might have to revisit this when it comes time to get this running on
@@ -129,7 +129,7 @@ about items and the inventory screen - possibly one of the most
 important parts of any roguelike game is items and item management.
 Additionally, this is yet another hurdle I’ve never effectively made it
 past. Previous attempts at defining items and inventory were messy and
-ineffective, especially when trying to allow monster’s to pick up and
+ineffective, especially when trying to allow monsters to pick up and
 use items.
 
 First, I had to define what an item is in the context of my code. The
@@ -194,20 +194,20 @@ now has a simple char tracking what letter was pressed, and that is
 easily checked against which item in the inventory it corresponds to:
 
 {{< highlight cpp >}}
-else if (gameState_ == GameState::INVENTORY)
+if (gameState_ == GameState::INVENTORY)
+{
+    if(input.alpha() >= 'a' && input.alpha() <= 'z')
     {
-        if(input.alpha() >= 'a' && input.alpha() <= 'z')
+        int index = int(input.alpha() - 97);
+        wsl::DLNode<Entity> * itemNode = player_->inventory()->at(index);
+        if(itemNode)
         {
-            int index = int(input.alpha() - 97);
-            wsl::DLNode<Entity> * itemNode = player_->inventory()->at(index);
-            if(itemNode)
-            {
-                player_->use(index);
-                addMessage("You use the " + itemNode->data.name() + "!");
-                changeState(GameState::ENEMY_TURN);
-            }
+            player_->use(index);
+            addMessage("You use the " + itemNode->data.name() + "!");
+            changeState(GameState::ENEMY_TURN);
         }
     }
+}
 {{< / highlight >}}
 
 This basically checks if the player has an item in their inventory at

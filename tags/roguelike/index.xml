@@ -6,10 +6,19 @@
     <description>Recent content in Roguelike on WSL Programming Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Jul 2018 16:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 31 Jul 2018 13:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/tags/roguelike/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Roguelike Tutorial - Week 5b/6</title>
+      <link>/posts/2018-07-31-the-roguelike-tutorial-week5b6/</link>
+      <pubDate>Tue, 31 Jul 2018 13:00:00 -0700</pubDate>
+      
+      <guid>/posts/2018-07-31-the-roguelike-tutorial-week5b6/</guid>
+      <description>Oh man, this has been a super exciting and productive week - this project is starting to feel like a real game! Started off last week a bit behind schedule, having just finished part 8. After my rant last week about my source code files getting too long, I decided to spend a bit of time going back over my core classes and cleaning up the code. I also split Engine into multiple files - which ended up making a lot of things a lot easier.</description>
+    </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 5a</title>

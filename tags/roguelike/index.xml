@@ -6,10 +6,19 @@
     <description>Recent content in Roguelike on WSL Programming Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Jul 2018 13:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 09 Aug 2018 13:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/tags/roguelike/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Roguelike Tutorial - Week 7</title>
+      <link>/posts/2018-08-09-the-rogueliketutorial-week7/</link>
+      <pubDate>Thu, 09 Aug 2018 13:00:00 -0700</pubDate>
+      
+      <guid>/posts/2018-08-09-the-rogueliketutorial-week7/</guid>
+      <description>I didn&amp;rsquo;t do a lot of coding over the last week, but I did finish the challenge! Had a bit of a scare after finishing part 12, I found a horrible lurking bug in the program that caused a LOT of little errors and I wasn&amp;rsquo;t sure (at first) how to track it down. Basically, shortly after finishing adding in some cool randomization functions I found that some entities weren&amp;rsquo;t being copied correctly, or saved correctly.</description>
+    </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 5b/6</title>

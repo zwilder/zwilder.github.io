@@ -59,3 +59,5 @@ Here’s a video with this week’s progress and how the game looks at the end o
 {{< video mp4="/assets/2018-07-18/RoughUI.mp4" >}}
 
 Super cool, and I’m pretty stoked at this point. Next on the agenda (besides some minor fixes listed above) is tackling items and healing potions!
+
+Here is the source code for [Part 6](https://github.com/zwilder/Barbarian/tree/Part_6) and [Part 7](https://github.com/zwilder/Barbarian/tree/Part_7)!

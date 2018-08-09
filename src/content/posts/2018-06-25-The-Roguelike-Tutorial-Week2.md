@@ -195,3 +195,5 @@ the center of the rooms) this ends up looking darn near identical to the tutoria
 
 Well, they can't all be winners. Fortunately, roguebasin has some other awesome dungeon generation articles - I've already modified one of them for use in 
 another project, and will most likely modify that same one again for this project.
+
+Here is the source code for [Part 3](https://github.com/zwilder/Barbarian/tree/Part_3)!

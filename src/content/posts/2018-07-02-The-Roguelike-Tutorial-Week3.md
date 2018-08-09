@@ -217,3 +217,4 @@ the results of the FoV algorithm - as is, the player might see enemies 'randomly
 to the walls. I'm not sure if this is really cool or not yet. Speaking of enemies, this dungeon is getting a little lonely! Time to start working on some
 adversaries...
 
+Here is the source code for [Part 4](https://github.com/zwilder/Barbarian/tree/Part_4)!

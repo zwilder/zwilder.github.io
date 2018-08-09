@@ -255,4 +255,5 @@ the back of my brain every time I open a super long code file (engine is
 trigger and try this during the next week - if not it is definitely
 going on the top of the To-Do ~~list~~ pile!
 
-
+Here is the source code for [Part
+8](https://github.com/zwilder/Barbarian/tree/Part_8)!

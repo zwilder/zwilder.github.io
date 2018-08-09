@@ -155,3 +155,4 @@ explode, arrows need to fly, blood needs to splatter, etc) - how cool
 would this logo look if the blood on the right dripped down into the
 puddle at the bottom?!
 
+Here is the source code for [Part 9](https://github.com/zwilder/Barbarian/tree/Part_9), [Part 10](https://github.com/zwilder/Barbarian/tree/Part_10), and [Part 11](https://github.com/zwilder/Barbarian/tree/Part_11)!

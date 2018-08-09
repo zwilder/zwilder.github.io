@@ -83,3 +83,5 @@ for that.
 
 I've nicknamed this project 'Barbarian!', since the player character in this type of roguelike does very little that is like a rogue and a lot that is like a 
 loin-cloth wearing, great sword wielding burly barbarian. I even have some fun ideas for flavoring the project with more brute force and shiny muscles!
+
+Here is the source code for [Parts 0-2](https://github.com/zwilder/Barbarian/tree/Part_0-2)

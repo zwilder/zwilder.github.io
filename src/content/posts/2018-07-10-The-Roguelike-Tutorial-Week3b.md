@@ -116,3 +116,5 @@ Up next in part 6 is combat, which should be a lot more fun now that enemies can
 Hopefully, if all goes well, I'll be able to show off a nice video with the next update that will also feature a scrolling message log and an inventory screen
 (part 7)! In the meantime, the [repository](https://github.com/zwilder/barbarian) is here - CLOC reports 2561 lines of code written, and hopefully it's legible
 and easy enough to follow.
+
+Here is the source code for [Part 5](https://github.com/zwilder/Barbarian/tree/Part_5)!

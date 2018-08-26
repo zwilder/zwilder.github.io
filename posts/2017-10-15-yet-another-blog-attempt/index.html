@@ -98,22 +98,22 @@ the player checks to see if it is standing on stairs and if so moves down them.<
 
 <p>Previously this would have been handled by something like</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">states_[activeState]<span style="color:#f92672">-&gt;</span>window_[activeWindow]<span style="color:#f92672">-&gt;</span>world_<span style="color:#f92672">-&gt;</span>locations[world_<span style="color:#f92672">-&gt;</span>currentLocationID]<span style="color:#f92672">-&gt;</span>player<span style="color:#f92672">-&gt;</span>moveDownstairs();
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">states_[activeState]-&gt;window_[activeWindow]-&gt;world_-&gt;locations[world_-&gt;currentLocationID]-&gt;player-&gt;moveDownstairs();
 </code></pre></div>
 
 <p>Yuck. Lets replace that with:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Engine<span style="color:#f92672">::</span>HandleEvents()
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Engine::HandleEvents()
 {
 ...
-    mailbox_<span style="color:#f92672">-&gt;</span>push_back(Message<span style="color:#f92672">::</span>toState(Command<span style="color:#f92672">::</span>Keypress, <span style="color:#e6db74">&#39;&gt;&#39;</span>);
+    mailbox_-&gt;push_back(Message::toState(Command::Keypress, <span style="color:#00afaf">&#39;&gt;&#39;</span>);
 ...
 }
 
-GameWindow<span style="color:#f92672">::</span>ProcessMessage()
+GameWindow::ProcessMessage()
 {
 ...
-    mailbox_<span style="color:#f92672">-&gt;</span>push_back(Message<span style="color:#f92672">::</span>toPlayer(Command<span style="color:#f92672">::</span>MoveDownStairs));
+    mailbox_-&gt;push_back(Message::toPlayer(Command::MoveDownStairs));
 ...
 }
 </code></pre></div>

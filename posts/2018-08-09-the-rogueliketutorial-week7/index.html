@@ -97,56 +97,56 @@ head. There is a lot of number generators out there, and some of them
 seemed like they would be pretty simple to implement. So, I decided to
 write a quick simple implementation of an xorshift generator:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">RNGState</span>
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">class</span> <span style="color:#0087ff">RNGState</span>
 {
-    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-        <span style="color:#75715e">// These are random numbers - Literally could use anything here. I&#39;ve been just seeding the first number with the system time
-</span><span style="color:#75715e"></span>        RNGState(uint32_t a <span style="color:#f92672">=</span> <span style="color:#ae81ff">123456789</span>, uint32_t b <span style="color:#f92672">=</span> <span style="color:#ae81ff">362436069</span>, uint32_t c <span style="color:#f92672">=</span> <span style="color:#ae81ff">521288629</span>, uint32_t d <span style="color:#f92672">=</span> <span style="color:#ae81ff">88675123</span>) <span style="color:#f92672">:</span> x(a), y(b), z(c), w(d) { }
+    <span style="color:#5f8700">public</span>:
+        <span style="color:#4e4e4e">// These are random numbers - Literally could use anything here. I&#39;ve been just seeding the first number with the system time
+</span><span style="color:#4e4e4e"></span>        RNGState(uint32_t a = <span style="color:#00afaf">123456789</span>, uint32_t b = <span style="color:#00afaf">362436069</span>, uint32_t c = <span style="color:#00afaf">521288629</span>, uint32_t d = <span style="color:#00afaf">88675123</span>) : x(a), y(b), z(c), w(d) { }
         uint32_t x;
         uint32_t y;
         uint32_t z;
         uint32_t w;
 };
 
-uint32_t <span style="color:#a6e22e">xor128</span>(RNGState <span style="color:#f92672">*</span> rng)
+uint32_t <span style="color:#0087ff">xor128</span>(RNGState * rng)
 {
-    uint32_t s <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>w;
-    uint32_t t <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>w;
-    t <span style="color:#f92672">^=</span> t <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">11</span>;
-    t <span style="color:#f92672">^=</span> t <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>;
-    rng<span style="color:#f92672">-&gt;</span>w <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>z;
-    rng<span style="color:#f92672">-&gt;</span>z <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>y;
-    rng<span style="color:#f92672">-&gt;</span>y <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>x;
-    s <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>x;
-    t <span style="color:#f92672">^=</span> s;
-    t <span style="color:#f92672">^=</span> s <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">19</span>;
-    rng<span style="color:#f92672">-&gt;</span>x <span style="color:#f92672">=</span> t;
-    <span style="color:#66d9ef">return</span> t;
+    uint32_t s = rng-&gt;w;
+    uint32_t t = rng-&gt;w;
+    t ^= t &lt;&lt; <span style="color:#00afaf">11</span>;
+    t ^= t &gt;&gt; <span style="color:#00afaf">8</span>;
+    rng-&gt;w = rng-&gt;z;
+    rng-&gt;z = rng-&gt;y;
+    rng-&gt;y = rng-&gt;x;
+    s = rng-&gt;x;
+    t ^= s;
+    t ^= s &gt;&gt; <span style="color:#00afaf">19</span>;
+    rng-&gt;x = t;
+    <span style="color:#5f8700">return</span> t;
 }
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">randomInt</span>(<span style="color:#66d9ef">int</span> max, RNGState <span style="color:#f92672">*</span> rng)
+<span style="color:#af0000">int</span> <span style="color:#0087ff">randomInt</span>(<span style="color:#af0000">int</span> max, RNGState * rng)
 {
-    <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> xor128(rng) <span style="color:#f92672">%</span> max <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">return</span> result;
+    <span style="color:#af0000">int</span> result = xor128(rng) % max + <span style="color:#00afaf">1</span>;
+    <span style="color:#5f8700">return</span> result;
 }
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">randomInt</span>(<span style="color:#66d9ef">int</span> min, <span style="color:#66d9ef">int</span> max, RNGState <span style="color:#f92672">*</span> rng)
+<span style="color:#af0000">int</span> <span style="color:#0087ff">randomInt</span>(<span style="color:#af0000">int</span> min, <span style="color:#af0000">int</span> max, RNGState * rng)
 {
-    <span style="color:#66d9ef">if</span>(min <span style="color:#f92672">&gt;</span> max)
+    <span style="color:#5f8700">if</span>(min &gt; max)
     {
-        <span style="color:#66d9ef">int</span> tmp <span style="color:#f92672">=</span> min;
-        min <span style="color:#f92672">=</span> max;
-        max <span style="color:#f92672">=</span> tmp;
+        <span style="color:#af0000">int</span> tmp = min;
+        min = max;
+        max = tmp;
     }
-    <span style="color:#66d9ef">if</span>(min <span style="color:#f92672">==</span> max)
+    <span style="color:#5f8700">if</span>(min == max)
     {
-        <span style="color:#66d9ef">return</span> min;
+        <span style="color:#5f8700">return</span> min;
     }
 
-    <span style="color:#75715e">// Finding the random number this way is what allows the xorshift function to return &#39;0&#39;
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> range <span style="color:#f92672">=</span> max <span style="color:#f92672">-</span> min;
-    <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> randomInt(range <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, rng) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">return</span> (min <span style="color:#f92672">+</span> result);
+    <span style="color:#4e4e4e">// Finding the random number this way is what allows the xorshift function to return &#39;0&#39;
+</span><span style="color:#4e4e4e"></span>    <span style="color:#af0000">int</span> range = max - min;
+    <span style="color:#af0000">int</span> result = randomInt(range + <span style="color:#00afaf">1</span>, rng) - <span style="color:#00afaf">1</span>;
+    <span style="color:#5f8700">return</span> (min + result);
 }
 </code></pre></div>
 
@@ -171,35 +171,35 @@ than I could have before.</p>
 it&rsquo;s just a template wrapper around the <code>DLList</code> class I&rsquo;ve been using
 everywhere.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
-<span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">WeightedList</span>
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+<span style="color:#5f8700">class</span> <span style="color:#0087ff">WeightedList</span>
 {
-    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-        <span style="color:#66d9ef">void</span> add(T obj, <span style="color:#66d9ef">int</span> wt);
-        T <span style="color:#a6e22e">pick</span>(RNGState <span style="color:#f92672">*</span> rng);
+    <span style="color:#5f8700">public</span>:
+        <span style="color:#af0000">void</span> add(T obj, <span style="color:#af0000">int</span> wt);
+        T <span style="color:#0087ff">pick</span>(RNGState * rng);
 
-    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-        DLList<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> list_;
+    <span style="color:#5f8700">private</span>:
+        DLList&lt;T&gt; list_;
 };
 
-<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
-<span style="color:#66d9ef">void</span> WeightedList<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;::</span>add(T obj, <span style="color:#66d9ef">int</span> wt)
+<span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+<span style="color:#af0000">void</span> WeightedList&lt;T&gt;::add(T obj, <span style="color:#af0000">int</span> wt)
 {
-    <span style="color:#66d9ef">if</span>(wt <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">0</span>)
+    <span style="color:#5f8700">if</span>(wt &lt;=<span style="color:#00afaf">0</span>)
     {
-        <span style="color:#66d9ef">return</span>;
+        <span style="color:#5f8700">return</span>;
     }
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> wt; <span style="color:#f92672">++</span>i)
+    <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i = <span style="color:#00afaf">0</span>; i &lt; wt; ++i)
     {
         list_.push(obj);
     }
 }
 
-<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
-T WeightedList<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;::</span>pick(RNGState <span style="color:#f92672">*</span> rng)
+<span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+T WeightedList&lt;T&gt;::pick(RNGState * rng)
 {
-    <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> randomInt(<span style="color:#ae81ff">0</span>, list_.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, rng);
-    <span style="color:#66d9ef">return</span> list_.at(index)<span style="color:#f92672">-&gt;</span>data;
+    <span style="color:#af0000">int</span> index = randomInt(<span style="color:#00afaf">0</span>, list_.size() - <span style="color:#00afaf">1</span>, rng);
+    <span style="color:#5f8700">return</span> list_.at(index)-&gt;data;
 }
 </code></pre></div>
 
@@ -312,6 +312,12 @@ bad but sometimes the log or UI can obscure the map.</p></li>
         <a href = "/posts/2018-07-31-the-roguelike-tutorial-week5b6/">&laquo;&laquo; The Roguelike Tutorial - Week 5b/6</a>
     </span>
     
+    
+    <span>
+        |
+        
+        <a href = "/posts/2018-08-26-lists/">Wonderful Lists &raquo;&raquo;</a>
+    </span>
     
 </div>
 <br>

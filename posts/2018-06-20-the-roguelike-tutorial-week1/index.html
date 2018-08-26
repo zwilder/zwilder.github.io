@@ -104,15 +104,15 @@ game to the console, and then reads the console and translates that to the windo
 easy. The GameMap is where things get fun - so I spent a bit more time on it. The tutorial uses simple booleans to check for tile values, again I decided that this
 would be a good fit for bit flags - instead of checking if something blocksMovement and blocksLight and isDoor (or whatever) I could just do something simple like</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> flag <span style="color:#f92672">=</span> blocksMovement <span style="color:#f92672">|</span> blocksLight <span style="color:#f92672">|</span> isDoor;
-<span style="color:#66d9ef">if</span>(tile<span style="color:#f92672">-&gt;</span>checkFlag(flag))
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">int</span> flag = blocksMovement | blocksLight | isDoor;
+<span style="color:#5f8700">if</span>(tile-&gt;checkFlag(flag))
 {
-    <span style="color:#75715e">// Do something cool here!
-</span><span style="color:#75715e"></span>}
+    <span style="color:#4e4e4e">// Do something cool here!
+</span><span style="color:#4e4e4e"></span>}
 ...
-<span style="color:#66d9ef">bool</span> checkFlag(<span style="color:#66d9ef">int</span> flag)
+<span style="color:#af0000">bool</span> checkFlag(<span style="color:#af0000">int</span> flag)
 {
-    <span style="color:#66d9ef">return</span> ((tileMask_ <span style="color:#f92672">&amp;</span> flag) <span style="color:#f92672">==</span> flag);
+    <span style="color:#5f8700">return</span> ((tileMask_ &amp; flag) == flag);
 }
 </code></pre></div>
 

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wonderful Lists | WSL Programming Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+
+      
+
+
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">home</a></li>
+      
+      <li><a href="/about/">about</a></li>
+      
+      <li><a href="/tags/">tags</a></li>
+      
+      <li><a href="/index.xml">rss</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Wonderful Lists</span></h1>
+
+<h2 class="date">26 August 2018</h2>
+
+<span style="font-size: 0.9em; font-family: 'Source Code Pro', monospace;text-align:center;">
+    
+    <a href="/tags/c&#43;&#43;">C&#43;&#43;</a> 
+    
+    <a href="/tags/barbarian">Barbarian!</a> 
+    
+    <a href="/tags/roguelike">Roguelike</a> 
+    
+    <a href="/tags/tutorials">Tutorials</a> 
+    
+</span>
+
+</div>
+<hr>
+<main>
+
+
+<p>Over the course of the <a href="https://www.reddit.com/r/roguelikedev/wiki/python_tutorial_series">2018 r/roguelikedev tutorial tuesday
+challenge</a>
+I decided to invest some time learning some fundamental programming
+concepts that I probably should have learned years ago. The fun (and
+challenging) part of being a hobby programmer is that most of my
+learning comes from books, and then random tutorials on the internet.
+Somewhere in the course of my &lsquo;education&rsquo; I never learned about basic
+data structures and how they can be used.</p>
+
+<p>Around week three of the challenge I decided to implement a scheduling
+system for Barbarian - which led me to learn about creating lists and
+priority queues. STL has <code>std::priority_queue</code>, but like many STL
+classes never seems to want to play nicely with my code. Again, likely a
+byproduct of me learning C++ from a book and probably not the fault of
+STL.</p>
+
+<p>This is my very first attempt at writing a tutorial - expect some errors
+and feel free to comment with any corrections. I will absolutely
+guarantee that there is probably a better way of doing what I&rsquo;ve written
+here, so don&rsquo;t read this as gospel.</p>
+
+<h2 id="making-a-list">Making a List</h2>
+
+<p>A list is a fantastic data structure - and is so simple
+to implement I&rsquo;m not sure why it was never included in the beginning
+programming books I have read.  A list is an ordered collection of
+nodes, where each node has some data and a pointer to the next node. The
+list has a head and a tail - the very first and very last nodes in the
+list. That&rsquo;s it! That&rsquo;s all they are.</p>
+
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">Head
+ A ---&gt; B ---&gt; C  &lt;- Node
+ 1      2      3  &lt;- Data
+              Tail</code></pre></div>
+
+<p>Definining a node is simple, and using the power of C++ templates you
+can make a node hold any data you can imagine!</p>
+
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+<span style="color:#5f8700">class</span> <span style="color:#0087ff">Node</span>
+{
+    <span style="color:#5f8700">public</span>:
+        Node(T d) : data(d) { next = <span style="color:#0087ff">NULL</span>; prev = <span style="color:#0087ff">NULL</span>; }
+         
+        T data;
+        Node * next; 
+        Node * prev;
+};
+</code></pre></div>
+
+<p>Then to create the list all we need is a couple of functions - one to
+add nodes and one to remove nodes.</p>
+
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+<span style="color:#5f8700">class</span> <span style="color:#0087ff">List</span>
+{
+    <span style="color:#5f8700">public</span>:
+        List(); <span style="color:#4e4e4e">// Default constructor
+</span><span style="color:#4e4e4e"></span>        List(T data); <span style="color:#4e4e4e">// Alternate constructor
+</span><span style="color:#4e4e4e"></span>        List(<span style="color:#5f8700">const</span> List&lt;T&gt; &amp; other); <span style="color:#4e4e4e">// Copy constructor
+</span><span style="color:#4e4e4e"></span>        List&lt;T&gt; <span style="color:#5f8700">operator</span> =(<span style="color:#5f8700">const</span> List&lt;T&gt; &amp; other) <span style="color:#4e4e4e">// Copy assignment using copy/swap idiom
+</span><span style="color:#4e4e4e"></span>        {
+            swap(*<span style="color:#5f8700">this</span>, other);
+            <span style="color:#5f8700">return</span> *<span style="color:#5f8700">this</span>;
+        }
+        <span style="color:#5f8700">friend</span> <span style="color:#af0000">void</span> swap(List&lt;T&gt; &amp; first, List&lt;T&gt; &amp; other)
+        {
+            List&lt;T&gt; * temp = first.head;
+            first.head = other.head;
+            other.head = temp;
+        }
+        ~List(); <span style="color:#4e4e4e">// Custom destructor
+</span><span style="color:#4e4e4e"></span>        
+        
+        <span style="color:#af0000">void</span> <span style="color:#0087ff">push</span>(T data); <span style="color:#4e4e4e">// Add a node
+</span><span style="color:#4e4e4e"></span>        T <span style="color:#0087ff">pop</span>(); <span style="color:#4e4e4e">// Remove head
+</span><span style="color:#4e4e4e"></span>
+        Node&lt;T&gt; * head;
+}; 
+</code></pre></div>
+
+<p>Now, the definition of <code>List&lt;T&gt;</code> has a copy constructor, copy
+assignment, and custom destructor following the C++ rule of 0/3/5 - yet
+another very important thing that seemed to be glossed over or missed in
+the books I read. Basically, it&rsquo;s a good idea if you have to assign
+memory (or use smart pointers) to have a custom destructor to make sure
+that memory is freed appropriately.  If you have a custom destructor,
+the program needs a way to make a copy of your object from another
+object and a way to figure out what <code>ListA = ListB</code> means. The
+constructors look something like the following.</p>
+
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+List&lt;T&gt;::List()
+{
+    <span style="color:#4e4e4e">// Create an empty list
+</span><span style="color:#4e4e4e"></span>    head = <span style="color:#0087ff">NULL</span>;
+}   
+
+<span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+List&lt;T&gt;::List(T data)
+{
+    <span style="color:#4e4e4e">// Create a list, with T data
+</span><span style="color:#4e4e4e"></span>    push(data);
+}   
+
+<span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+List&lt;T&gt;::List(<span style="color:#5f8700">const</span> List&lt;T&gt; &amp; other)
+{
+    <span style="color:#4e4e4e">// Copy constructor
+</span><span style="color:#4e4e4e"></span>    <span style="color:#4e4e4e">// Iterate through the other list, adding that list&#39;s data to this list
+</span><span style="color:#4e4e4e"></span>    <span style="color:#5f8700">for</span>(Node&lt;T&gt; * node = other.head; node != <span style="color:#0087ff">NULL</span>; node = node-&gt;next)
+    {
+        push(node-&gt;data);
+    }
+}
+</code></pre></div>
+
+<p>Easy enough! One cool thing to notice here is the way we iterate through
+the list. The <code>for</code> loop is initialized by creating a <code>Node&lt;T&gt; *</code>
+variable that is initialized to the head of the list, and while that
+variable does not equal <code>NULL</code> we execute the following and then set the
+variable to the next node.</p>
+
+<p>The destructor loops through the list in a slightly different way,
+removing nodes as it goes.</p>
+
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+List&lt;T&gt;::~List()
+{
+    Node&lt;T&gt; * node = head;
+    Node&lt;T&gt; * next;
+    
+    <span style="color:#5f8700">while</span>(node != <span style="color:#0087ff">NULL</span>)
+    {
+        next = node-&gt;next;
+        <span style="color:#5f8700">delete</span> node;
+        node = next;
+    }
+}
+</code></pre></div>
+
+<p>With all that settled, all that&rsquo;s left is adding the functions to add
+and remove nodes from the list!</p>
+
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+<span style="color:#af0000">void</span> List&lt;T&gt;::push(T data)
+{
+    Node&lt;T&gt; * newNode = <span style="color:#5f8700">new</span> Node&lt;T&gt;(data);
+    <span style="color:#5f8700">if</span>(head != <span style="color:#0087ff">NULL</span>)
+    {
+        newNode-&gt;next = head;
+        head-&gt;prev = newNode;
+    }
+    head = newNode;
+}
+
+<span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+T List&lt;T&gt;::pop()
+{
+    T result = T();
+    <span style="color:#5f8700">if</span>(head) <span style="color:#4e4e4e">// if head is NULL this returns false, same as &#39;head != NULL&#39;
+</span><span style="color:#4e4e4e"></span>    {
+        result = head-&gt;data; <span style="color:#4e4e4e">// Get result 
+</span><span style="color:#4e4e4e"></span>        Node&lt;T&gt; * temp = head; <span style="color:#4e4e4e">// Store a pointer to the current (old) list head
+</span><span style="color:#4e4e4e"></span>        head = head-&gt;next; <span style="color:#4e4e4e">// Set the list head to the next item
+</span><span style="color:#4e4e4e"></span>        head-&gt;prev = <span style="color:#0087ff">NULL</span>; <span style="color:#4e4e4e">// The head has no previous node
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">delete</span> temp; <span style="color:#4e4e4e">// Delete the old list head
+</span><span style="color:#4e4e4e"></span>    }
+    <span style="color:#5f8700">return</span> result;
+}
+</code></pre></div>
+
+<p>Again, nothing too complicated - and that&rsquo;s all that&rsquo;s needed for a
+basic list! As is, however, this list is not very useful&hellip; so lets add
+a couple of more functions! (Don&rsquo;t forget to add the declarations in the
+class definition)</p>
+
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#4e4e4e">// It&#39;s pretty common to want to remove a specific node from the list,
+</span><span style="color:#4e4e4e">//  here&#39;s an idea of how that can be accomplished:
+</span><span style="color:#4e4e4e"></span><span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+<span style="color:#af0000">void</span> List&lt;T&gt;::remove(Node&lt;T&gt; * node)
+{
+    <span style="color:#4e4e4e">// If for some silly reason this function is called with NULL
+</span><span style="color:#4e4e4e"></span>    <span style="color:#4e4e4e">// this prevents an annoying segfault.
+</span><span style="color:#4e4e4e"></span>    <span style="color:#5f8700">if</span>(!node) <span style="color:#5f8700">return</span>; 
+    <span style="color:#5f8700">if</span>(!head) <span style="color:#5f8700">return</span>; <span style="color:#4e4e4e">// If there&#39;s nothing in the list, we can&#39;t remove a node from it
+</span><span style="color:#4e4e4e"></span>    <span style="color:#5f8700">if</span>(head == node)
+    {
+        <span style="color:#4e4e4e">// If we delete the head, we need to set the head to the next item in the list
+</span><span style="color:#4e4e4e"></span>        head = node-&gt;next;
+        head-&gt;prev = <span style="color:#0087ff">NULL</span>; <span style="color:#4e4e4e">// The head has no previous node
+</span><span style="color:#4e4e4e"></span>    }
+    <span style="color:#5f8700">if</span>(node-&gt;next != <span style="color:#0087ff">NULL</span>)
+    {
+        <span style="color:#4e4e4e">// The next item&#39;s previous has to point to this item&#39;s previous 
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">// Eg: A-&gt;B-&gt;C
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">// Remove B, so C&#39;s previous has to be A
+</span><span style="color:#4e4e4e"></span>        node-&gt;next-&gt;prev = node-&gt;prev;
+    }
+    <span style="color:#5f8700">if</span>(node-&gt;prev != <span style="color:#0087ff">NULL</span>)
+    {
+        <span style="color:#4e4e4e">// The previous item&#39;s next has to point to this item&#39;s next
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">// Eg:: A-&gt;B-&gt;C
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">// Remove B, so A&#39;s next has to be C
+</span><span style="color:#4e4e4e"></span>        node-&gt;prev-&gt;next = node-&gt;next;
+    }
+    <span style="color:#5f8700">delete</span> node;
+}
+
+<span style="color:#4e4e4e">// A few other common things that are pretty useful
+</span><span style="color:#4e4e4e">//  and simple to implement:
+</span><span style="color:#4e4e4e">// - Determining the size of a list
+</span><span style="color:#4e4e4e">// - Determining if the list is empty
+</span><span style="color:#4e4e4e">// - Getting a specific item from a list
+</span><span style="color:#4e4e4e"></span><span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+<span style="color:#af0000">int</span> List&lt;T&gt;::size()
+{
+    <span style="color:#af0000">int</span> result = <span style="color:#00afaf">0</span>;
+    <span style="color:#5f8700">for</span>(Node&lt;T&gt; * node = head; node != <span style="color:#0087ff">NULL</span>; node = node-&gt;next)
+    {
+        result++;
+    }
+    <span style="color:#5f8700">return</span> result;
+}
+
+<span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+<span style="color:#af0000">bool</span> List&lt;T&gt;::isEmpty()
+{
+    <span style="color:#5f8700">return</span> (head == <span style="color:#0087ff">NULL</span>);
+}
+
+<span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+Node&lt;T&gt; * List&lt;T&gt;::at(<span style="color:#af0000">int</span> index)
+{
+    Node&lt;T&gt; * result = <span style="color:#0087ff">NULL</span>;
+    
+    <span style="color:#af0000">int</span> count = <span style="color:#00afaf">0</span>;
+    <span style="color:#5f8700">for</span>(Node&lt;T&gt; * node = head; node != <span style="color:#0087ff">NULL</span>; node = node-&gt;next)
+    {
+        <span style="color:#5f8700">if</span>(count == index)
+        {
+            result = node;
+            <span style="color:#5f8700">break</span>;
+        }
+        ++count;
+    }
+    <span style="color:#5f8700">return</span> result;
+}
+</code></pre></div>
+
+<p>With those additions you now have a nice, full featured, doubly-linked
+list! You could easily change this into a circular list by making the
+head node&rsquo;s previous point to the tail, and the tail&rsquo;s next point to the
+head. All you would need to do is add in a function to find the tail
+(ie: iterate through list, return the last node).</p>
+
+<h2 id="how-barbarian-uses-lists">How Barbarian! Uses Lists</h2>
+
+<p>Since learning about lists and writing a few different implementations,
+I obviously tried to find any place in the code where a list would be
+useful.  The engine runs through a standard Events-Update-Draw loop, and
+during each of these functions it&rsquo;s necessary to run through a list of
+entities. This was stored in a <code>std::vector&lt;Entity&gt;</code>, but one of the
+(many) shortcomings of the STL vector is that it can&rsquo;t arbitrarily
+remove items. What happens when an entity dies? Do we just create a
+whole new vector for the engine&rsquo;s entity list? Heck no. Using a doubly
+linked list like the one above it&rsquo;s a simple matter to cull the entity
+list of dead entities.</p>
+
+<p>Another very useful place that Barbarian uses lists is in path finding -
+making a list into a priority queue is a simple matter of adding a
+&lsquo;priority&rsquo; to a node, then when pushing a new node onto the stack making
+sure to add the node in the correct place according to it&rsquo;s priority.
+Greedy breadth first search, Dijkstra, and A-star path finding all use a
+priority queue.</p>
+
+<p>Entity and item placement use weighted lists, which is a list whose
+nodes have a weight and has a function to pick a random piece of data
+from a node.</p>
+
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
+T WList&lt;T&gt;::pick(RNGState * rng)
+{
+    T result = T();
+    <span style="color:#af0000">int</span> totalWt = <span style="color:#00afaf">0</span>;
+    <span style="color:#5f8700">for</span>(WNode&lt;T&gt; * node = head_; node != <span style="color:#0087ff">NULL</span>; node = node-&gt;next)
+    {
+        totalWt += node-&gt;weight;
+    }
+
+    <span style="color:#af0000">int</span> choiceWt = randomInt(<span style="color:#00afaf">0</span>, totalWt, rng);
+    <span style="color:#af0000">int</span> runningWt = <span style="color:#00afaf">0</span>;
+
+    <span style="color:#5f8700">for</span>(WNode&lt;T&gt; * node = head_; node != <span style="color:#0087ff">NULL</span>; node = node-&gt;next)
+    {
+        <span style="color:#5f8700">if</span>(runningWt + node-&gt;weight &gt;= choiceWt)
+        {
+            result = node-&gt;data;
+            <span style="color:#5f8700">break</span>;
+        }
+        runningWt += node-&gt;weight;
+    }
+    <span style="color:#5f8700">return</span> result;
+}
+</code></pre></div>
+
+<p>The scheduling/time management system uses a list - it&rsquo;s not currently
+used in the game, but the functionality is there. Basically, every time
+the game updates, entities are granted some energy. When they pass a
+certain energy threshold they get put on a list. Then, the game makes
+sure that each entity on that list gets to take a turn before granting
+energy to any other entity.</p>
+
+<p>The inventory component of an entity is another great place for a list -
+and one of the places where a STL vector would only work with a bunch of
+trade-offs and mashing square pegs into round holes. The player has to
+be able to pick up and add items to their inventory, and remove
+arbitrary items by using or dropping.  Using a list makes those things
+easier. Heck, a priority queue could be used with each category of item
+at a different priority to easily sort the inventory screen (and to be
+honest, I literally just thought of that while typing this post -
+definitely adding that to the &lsquo;to-do&rsquo; pile).</p>
+
+<p>Anywhere in the game where I need a collection of something, I try and
+use a list. The fun part about that is that I&rsquo;ve ran into times where my
+list class doesn&rsquo;t have some functionality that I want - but it&rsquo;s a
+piece of cake to add it.</p>
+
+<p>The game map (and virtual console) could be stored as a list as well,
+since it&rsquo;s currently stored as a one dimensional vector. Assuming a
+Cartesian grid, the <code>(x,y)</code> coordinates correspond to the index of a
+list by <code>x + (y * width)</code> - <code>map-&gt;at(x + (y*width))</code> for example, or if
+using a simple array <code>map[x+(y*width)]</code>. I have not changed Barbarian to
+use lists in this manner, but I see no reason why it would not work. The
+great part about these lists is that they manage their own memory like a
+STL vector but have more useful functionality.</p>
+
+<p>Barbarian is a turn based game, and does not need to run at break neck
+speeds and efficiency - I have no idea how these lists compare in speed
+to STL offerings.  They work quickly and efficiently enough on my older
+hardware, so with modern systems they would work just as well.</p>
+
+<hr />
+
+<p>Hopefully this gives an idea of how neat this simple little data
+structure can be. Give them a try! See how they work in your own
+project, at the very least you&rsquo;ll learn something useful and have the
+satisfaction of having built an incredibly useful tool yourself.</p>
+
+</main>
+<div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">
+    
+    <span>
+        
+        <a href = "/posts/2018-08-09-the-rogueliketutorial-week7/">&laquo;&laquo; The Roguelike Tutorial - Week 7</a>
+    </span>
+    
+    
+</div>
+<br>
+
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'wsl-programming-blog';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+  <footer>
+  
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-121310852-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  
+  <hr/>
+  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  
+  </footer>
+  </body>
+</html>
+

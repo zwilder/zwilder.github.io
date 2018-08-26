@@ -90,26 +90,26 @@ any function in the game to have the player move and set the cursor to a
 desired location, and then the function can do something at that
 position. Neat!</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> Engine<span style="color:#f92672">::</span>target()
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">void</span> Engine::target()
 {
-    <span style="color:#75715e">// This function is called by other functions to have the player move the cursor to a desired location,
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// select that location with [enter], and then the other function has access to the cursorPos via Engine::cursor();
-</span><span style="color:#75715e"></span>    targetSelected_ <span style="color:#f92672">=</span> false;
-    targeting_ <span style="color:#f92672">=</span> true;
-    std<span style="color:#f92672">::</span>string prevMsg <span style="color:#f92672">=</span> currentMsg_;
-    GameState prevState <span style="color:#f92672">=</span> gameState_;
+    <span style="color:#4e4e4e">// This function is called by other functions to have the player move the cursor to a desired location,
+</span><span style="color:#4e4e4e"></span>    <span style="color:#4e4e4e">// select that location with [enter], and then the other function has access to the cursorPos via Engine::cursor();
+</span><span style="color:#4e4e4e"></span>    targetSelected_ = <span style="color:#0087ff">false</span>;
+    targeting_ = <span style="color:#0087ff">true</span>;
+    std::string prevMsg = currentMsg_;
+    GameState prevState = gameState_;
     advanceMsg_();
 
-    <span style="color:#75715e">// Target is a mini-main loop - so this limits it&#39;s speed a bit
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std<span style="color:#f92672">::</span>chrono;
-    <span style="color:#66d9ef">const</span> milliseconds MS_PER_FRAME <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>chrono<span style="color:#f92672">::</span>milliseconds(<span style="color:#ae81ff">16</span>); <span style="color:#75715e">// 16ms = ~60fps, 33ms = ~30fps
-</span><span style="color:#75715e"></span>
-    <span style="color:#66d9ef">while</span>(targeting_)
+    <span style="color:#4e4e4e">// Target is a mini-main loop - so this limits it&#39;s speed a bit
+</span><span style="color:#4e4e4e"></span>    <span style="color:#5f8700">using</span> <span style="color:#5f8700">namespace</span> std::chrono;
+    <span style="color:#5f8700">const</span> milliseconds MS_PER_FRAME = std::chrono::milliseconds(<span style="color:#00afaf">16</span>); <span style="color:#4e4e4e">// 16ms = ~60fps, 33ms = ~30fps
+</span><span style="color:#4e4e4e"></span>
+    <span style="color:#5f8700">while</span>(targeting_)
     {
-        milliseconds start <span style="color:#f92672">=</span> duration_cast<span style="color:#f92672">&lt;</span>milliseconds<span style="color:#f92672">&gt;</span>(system_clock<span style="color:#f92672">::</span>now().time_since_epoch());
-        handleEvents(); <span style="color:#75715e">// moving the cursor, waiting for [enter] to set targetSelected_ to true
-</span><span style="color:#75715e"></span>        draw(); <span style="color:#75715e">// Drawing the path from the player to the cursor
-</span><span style="color:#75715e"></span>        std<span style="color:#f92672">::</span>this_thread<span style="color:#f92672">::</span>sleep_for(milliseconds(start <span style="color:#f92672">+</span> MS_PER_FRAME <span style="color:#f92672">-</span> duration_cast<span style="color:#f92672">&lt;</span>milliseconds<span style="color:#f92672">&gt;</span>(system_clock<span style="color:#f92672">::</span>now().time_since_epoch())));
+        milliseconds start = duration_cast&lt;milliseconds&gt;(system_clock::now().time_since_epoch());
+        handleEvents(); <span style="color:#4e4e4e">// moving the cursor, waiting for [enter] to set targetSelected_ to true
+</span><span style="color:#4e4e4e"></span>        draw(); <span style="color:#4e4e4e">// Drawing the path from the player to the cursor
+</span><span style="color:#4e4e4e"></span>        std::this_thread::sleep_for(milliseconds(start + MS_PER_FRAME - duration_cast&lt;milliseconds&gt;(system_clock::now().time_since_epoch())));
     } 
     changeState(prevState);
     addMessage(prevMsg);
@@ -148,8 +148,8 @@ requires that you provide a template for archiving your classes in each
 class that will be archived, basically a set of instructions on what to
 save and what to load back.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Archive</span><span style="color:#f92672">&gt;</span>
-<span style="color:#66d9ef">void</span> serialize(Archive <span style="color:#f92672">&amp;</span> ar)
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">class</span> <span style="color:#0087ff">Archive</span>&gt;
+<span style="color:#af0000">void</span> serialize(Archive &amp; ar)
 {
     ar(myData_);
 }

@@ -92,23 +92,23 @@ with is to make the window a bit larger than the computer desktop
 resolution, and then center it. So, it’s very much a fake fullscreen,
 but it works and looks darn nice. Here’s my version of this solution:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">if</span>(fullscreen_)
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">if</span>(fullscreen_)
 {
-    windowWidth_ <span style="color:#f92672">=</span> <span style="color:#ae81ff">800</span>;
-    windowHeight_ <span style="color:#f92672">=</span> <span style="color:#ae81ff">600</span>;
+    windowWidth_ = <span style="color:#00afaf">800</span>;
+    windowHeight_ = <span style="color:#00afaf">600</span>;
     SDL_SetWindowSize(window_, windowWidth_, windowHeight_);
     SDL_SetWindowPosition(window_, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-    fullscreen_ <span style="color:#f92672">=</span> false;
+    fullscreen_ = <span style="color:#0087ff">false</span>;
 }
-<span style="color:#66d9ef">else</span>
+<span style="color:#5f8700">else</span>
 {
     SDL_DisplayMode dm;
-    SDL_GetDesktopDisplayMode(<span style="color:#ae81ff">0</span>, <span style="color:#f92672">&amp;</span>dm);
-    windowWidth_ <span style="color:#f92672">=</span> dm.w;
-    windowHeight_ <span style="color:#f92672">=</span> dm.h;
-    SDL_SetWindowSize(window_, windowWidth_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>, windowHeight_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>);
+    SDL_GetDesktopDisplayMode(<span style="color:#00afaf">0</span>, &amp;dm);
+    windowWidth_ = dm.w;
+    windowHeight_ = dm.h;
+    SDL_SetWindowSize(window_, windowWidth_ + <span style="color:#00afaf">10</span>, windowHeight_ + <span style="color:#00afaf">10</span>);
     SDL_SetWindowPosition(window_, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-    fullscreen_ <span style="color:#f92672">=</span> true;
+    fullscreen_ = <span style="color:#0087ff">true</span>;
 }
 </code></pre></div>
 
@@ -127,38 +127,38 @@ apparently capable of tracking these things, and GCC has options for
 creating a dependency file for each source file, so I tinkered around
 with the makefile and ended up with this:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make">CXX <span style="color:#f92672">=</span> g++
-<span style="color:#75715e"># OPTS = -std=c++17 -O2
-</span><span style="color:#75715e"></span>OPTS <span style="color:#f92672">=</span> -std<span style="color:#f92672">=</span>c++17 -Og -g -Wall
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-make" data-lang="make"><span style="color:#0087ff">CXX</span> = g++
+<span style="color:#4e4e4e"># OPTS = -std=c++17 -O2
+</span><span style="color:#4e4e4e"></span><span style="color:#0087ff">OPTS</span> = -std=c++17 -Og -g -Wall
 
-LIBS <span style="color:#f92672">=</span> -lSDL2 -lSDL2_image
-OBJ_NAME <span style="color:#f92672">=</span> Barbarian
-FILES <span style="color:#f92672">:=</span> color texture sprite random console input_handlers entity tile game_map pathfinding fov engine main
-OBJS <span style="color:#f92672">:=</span> <span style="color:#66d9ef">$(</span>FILES:<span style="color:#f92672">=</span>.o<span style="color:#66d9ef">)</span>
-SRC <span style="color:#f92672">:=</span> <span style="color:#66d9ef">$(</span>OBJS:.o<span style="color:#f92672">=</span>.cpp<span style="color:#66d9ef">)</span>
-DEP <span style="color:#f92672">:=</span> <span style="color:#66d9ef">$(</span>FILES:<span style="color:#f92672">=</span>.d<span style="color:#66d9ef">)</span>
+<span style="color:#0087ff">LIBS</span> = -lSDL2 -lSDL2_image
+<span style="color:#0087ff">OBJ_NAME</span> = Barbarian
+<span style="color:#0087ff">FILES</span> := color texture sprite random console input_handlers entity tile game_map pathfinding fov engine main
+<span style="color:#0087ff">OBJS</span> := <span style="color:#5f8700">$(</span>FILES:=.o<span style="color:#5f8700">)</span>
+<span style="color:#0087ff">SRC</span> := <span style="color:#5f8700">$(</span>OBJS:.o=.cpp<span style="color:#5f8700">)</span>
+<span style="color:#0087ff">DEP</span> := <span style="color:#5f8700">$(</span>FILES:=.d<span style="color:#5f8700">)</span>
 
-VPATH <span style="color:#f92672">=</span> ./src:./include
+<span style="color:#0087ff">VPATH</span> = ./src:./include
 
-<span style="color:#a6e22e">.PHONY</span><span style="color:#f92672">:</span> clean
+<span style="color:#0087ff">.PHONY</span>: clean
 
-<span style="color:#a6e22e">all</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJ_NAME<span style="color:#66d9ef">)</span>
+<span style="color:#0087ff">all</span>: <span style="color:#5f8700">$(</span><span style="color:#0087ff">OBJ_NAME</span><span style="color:#5f8700">)</span>
 
-<span style="color:#a6e22e">$(OBJ_NAME)</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
-	<span style="color:#66d9ef">$(</span>CXX<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>OPTS<span style="color:#66d9ef">)</span> -o <span style="color:#66d9ef">$(</span>OBJ_NAME<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>LIBS<span style="color:#66d9ef">)</span>
+<span style="color:#0087ff">$(OBJ_NAME)</span>: <span style="color:#5f8700">$(</span><span style="color:#0087ff">OBJS</span><span style="color:#5f8700">)</span>
+	<span style="color:#5f8700">$(</span>CXX<span style="color:#5f8700">)</span> <span style="color:#5f8700">$(</span>OPTS<span style="color:#5f8700">)</span> -o <span style="color:#5f8700">$(</span>OBJ_NAME<span style="color:#5f8700">)</span> <span style="color:#5f8700">$(</span>OBJS<span style="color:#5f8700">)</span> <span style="color:#5f8700">$(</span>LIBS<span style="color:#5f8700">)</span>
 
-<span style="color:#a6e22e">$(OBJS)</span><span style="color:#f92672">:</span> %.o: %.cpp %.d
-	<span style="color:#66d9ef">$(</span>CXX<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>OPTS<span style="color:#66d9ef">)</span> -c $&lt; -o $@
+<span style="color:#0087ff">$(OBJS)</span>: %.o: %.cpp %.d
+	<span style="color:#5f8700">$(</span>CXX<span style="color:#5f8700">)</span> <span style="color:#5f8700">$(</span>OPTS<span style="color:#5f8700">)</span> -c $&lt; -o <span style="color:#0087ff">$@</span>
 
-<span style="color:#a6e22e">%.d</span><span style="color:#f92672">:</span> %.cpp
-	@set -e; rm -f $@; <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>	<span style="color:#66d9ef">$(</span>CXX<span style="color:#66d9ef">)</span> -M <span style="color:#66d9ef">$(</span>OPTS<span style="color:#66d9ef">)</span> $&lt; &gt; $@.$$$$; <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>	sed <span style="color:#e6db74">&#39;s,\($*\)\.o[ :]*,\1.o $@ : ,g&#39;</span> &lt; $@.$$$$ &gt; $@; <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>	rm -f $@.$$$$
+<span style="color:#0087ff">%.d</span>: %.cpp
+	@set -e; rm -f <span style="color:#0087ff">$@</span>; <span style="color:#af0000">\
+</span><span style="color:#af0000"></span>	<span style="color:#5f8700">$(</span>CXX<span style="color:#5f8700">)</span> -M <span style="color:#5f8700">$(</span>OPTS<span style="color:#5f8700">)</span> $&lt; &gt; <span style="color:#0087ff">$@</span>.<span style="color:#0087ff">$$$$</span>; <span style="color:#af0000">\
+</span><span style="color:#af0000"></span>	sed <span style="color:#00afaf">&#39;s,\($*\)\.o[ :]*,\1.o $@ : ,g&#39;</span> &lt; <span style="color:#0087ff">$@</span>.<span style="color:#0087ff">$$$$</span> &gt; <span style="color:#0087ff">$@</span>; <span style="color:#af0000">\
+</span><span style="color:#af0000"></span>	rm -f <span style="color:#0087ff">$@</span>.<span style="color:#0087ff">$$$$</span>
 
-<span style="color:#960050;background-color:#1e0010">-include</span> <span style="color:#66d9ef">$(</span>DEP<span style="color:#66d9ef">)</span>
+-include <span style="color:#5f8700">$(</span>DEP<span style="color:#5f8700">)</span>
 
-<span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
+<span style="color:#0087ff">clean</span>:
 	rm *.o *.d
 </code></pre></div>
 
@@ -249,17 +249,17 @@ for keyboard input for each alphabet key on the keyboard. The class also
 now has a simple char tracking what letter was pressed, and that is
 easily checked against which item in the inventory it corresponds to:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">if</span> (gameState_ <span style="color:#f92672">==</span> GameState<span style="color:#f92672">::</span>INVENTORY)
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">if</span> (gameState_ == GameState::INVENTORY)
 {
-    <span style="color:#66d9ef">if</span>(input.alpha() <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">&amp;&amp;</span> input.alpha() <span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;z&#39;</span>)
+    <span style="color:#5f8700">if</span>(input.alpha() &gt;= <span style="color:#00afaf">&#39;a&#39;</span> &amp;&amp; input.alpha() &lt;= <span style="color:#00afaf">&#39;z&#39;</span>)
     {
-        <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#66d9ef">int</span>(input.alpha() <span style="color:#f92672">-</span> <span style="color:#ae81ff">97</span>);
-        wsl<span style="color:#f92672">::</span>DLNode<span style="color:#f92672">&lt;</span>Entity<span style="color:#f92672">&gt;</span> <span style="color:#f92672">*</span> itemNode <span style="color:#f92672">=</span> player_<span style="color:#f92672">-&gt;</span>inventory()<span style="color:#f92672">-&gt;</span>at(index);
-        <span style="color:#66d9ef">if</span>(itemNode)
+        <span style="color:#af0000">int</span> index = <span style="color:#af0000">int</span>(input.alpha() - <span style="color:#00afaf">97</span>);
+        wsl::DLNode&lt;Entity&gt; * itemNode = player_-&gt;inventory()-&gt;at(index);
+        <span style="color:#5f8700">if</span>(itemNode)
         {
-            player_<span style="color:#f92672">-&gt;</span>use(index);
-            addMessage(<span style="color:#e6db74">&#34;You use the &#34;</span> <span style="color:#f92672">+</span> itemNode<span style="color:#f92672">-&gt;</span>data.name() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;!&#34;</span>);
-            changeState(GameState<span style="color:#f92672">::</span>ENEMY_TURN);
+            player_-&gt;use(index);
+            addMessage(<span style="color:#00afaf">&#34;You use the &#34;</span> + itemNode-&gt;data.name() + <span style="color:#00afaf">&#34;!&#34;</span>);
+            changeState(GameState::ENEMY_TURN);
         }
     }
 }

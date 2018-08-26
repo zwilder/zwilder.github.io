@@ -58,26 +58,26 @@ all the actions that an actor (player or enemy) can take are issued as &lsquo;co
 gets to call it&rsquo;s most current action&rsquo;s <code>perform()</code> routine. What makes this super cool and useful is that the perform routine returns an <code>ActionResult</code>, which
 has a flag stating whether or not the current action was successful, and a suggested alternate action (for use if the action was unsuccessful).</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Action</span> 
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">class</span> <span style="color:#0087ff">Action</span> 
 {
-<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    <span style="color:#66d9ef">virtual</span> ActionResult perform(Actor <span style="color:#f92672">&amp;</span> actor) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+<span style="color:#5f8700">public</span>:
+    <span style="color:#5f8700">virtual</span> ActionResult perform(Actor &amp; actor) = <span style="color:#00afaf">0</span>;
+<span style="color:#5f8700">protected</span>:
     Action() { }
 };
 
-<span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">ActionResult</span>
+<span style="color:#5f8700">class</span> <span style="color:#0087ff">ActionResult</span>
 {
-<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    ActionResult() { status_ <span style="color:#f92672">=</span> true; }
-    <span style="color:#66d9ef">bool</span> success() { <span style="color:#66d9ef">return</span> status_; }
-    <span style="color:#66d9ef">void</span> setFalse() { status_ <span style="color:#f92672">=</span> false; }
-    <span style="color:#66d9ef">void</span> setTrue() { status_ <span style="color:#f92672">=</span> true; }
-    Action <span style="color:#f92672">*</span> getAlternate() { <span style="color:#66d9ef">return</span> alternative_; }
-    <span style="color:#66d9ef">void</span> setAlternate(Action <span style="color:#f92672">*</span> alternate) { alternative_ <span style="color:#f92672">=</span> alternate; }
-<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-    Action <span style="color:#f92672">*</span> alternative_;
-    <span style="color:#66d9ef">bool</span> status_;
+<span style="color:#5f8700">public</span>:
+    ActionResult() { status_ = <span style="color:#0087ff">true</span>; }
+    <span style="color:#af0000">bool</span> success() { <span style="color:#5f8700">return</span> status_; }
+    <span style="color:#af0000">void</span> setFalse() { status_ = <span style="color:#0087ff">false</span>; }
+    <span style="color:#af0000">void</span> setTrue() { status_ = <span style="color:#0087ff">true</span>; }
+    Action * getAlternate() { <span style="color:#5f8700">return</span> alternative_; }
+    <span style="color:#af0000">void</span> setAlternate(Action * alternate) { alternative_ = alternate; }
+<span style="color:#5f8700">private</span>:
+    Action * alternative_;
+    <span style="color:#af0000">bool</span> status_;
 };
 </code></pre></div>
 
@@ -92,40 +92,40 @@ since moving into them will just use their turn to open the door - if they are c
 <p>Another fun thing I wrote recently is some code to dynamically create color gradients. It turns out, you can just do a simple line (y=mx+b) for component (r,g,b) of a color: <code>m</code> being equal to the change in color (finish - start) divided by the number
 of steps, and <code>b</code> as the start color.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDeltaColor</span>(<span style="color:#66d9ef">int</span> sC, <span style="color:#66d9ef">int</span> fC, <span style="color:#66d9ef">int</span> steps)
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">int</span> <span style="color:#0087ff">getDeltaColor</span>(<span style="color:#af0000">int</span> sC, <span style="color:#af0000">int</span> fC, <span style="color:#af0000">int</span> steps)
 {
-    <span style="color:#75715e">// This is the slope equation for &#39;m&#39; : (finishColor - startColor) / NumberOfSteps
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(steps <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+    <span style="color:#4e4e4e">// This is the slope equation for &#39;m&#39; : (finishColor - startColor) / NumberOfSteps
+</span><span style="color:#4e4e4e"></span>	<span style="color:#5f8700">if</span>(steps == <span style="color:#00afaf">0</span>)
 	{
-		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+		<span style="color:#5f8700">return</span> <span style="color:#00afaf">0</span>;
 	} 
-	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">int</span>((fC <span style="color:#f92672">-</span> sC) <span style="color:#f92672">/</span> steps);
+	<span style="color:#5f8700">return</span> <span style="color:#af0000">int</span>((fC - sC) / steps);
 }
 
-std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>WColor<span style="color:#f92672">&gt;</span> getColorGradient(WColor startColor, WColor finishColor, <span style="color:#66d9ef">int</span> steps)
+std::vector&lt;WColor&gt; getColorGradient(WColor startColor, WColor finishColor, <span style="color:#af0000">int</span> steps)
 {
-	std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>WColor<span style="color:#f92672">&gt;</span> result;
+	std::vector&lt;WColor&gt; result;
 
-    <span style="color:#75715e">// First, we get the slopes for each color component
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> redDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.r, finishColor.r, steps);
-	<span style="color:#66d9ef">int</span> greenDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.g, finishColor.g, steps);
-	<span style="color:#66d9ef">int</span> blueDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.b, finishColor.b, steps);
-	<span style="color:#66d9ef">int</span> alphaDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.a, finishColor.a, steps);
+    <span style="color:#4e4e4e">// First, we get the slopes for each color component
+</span><span style="color:#4e4e4e"></span>	<span style="color:#af0000">int</span> redDelta = getDeltaColor(startColor.r, finishColor.r, steps);
+	<span style="color:#af0000">int</span> greenDelta = getDeltaColor(startColor.g, finishColor.g, steps);
+	<span style="color:#af0000">int</span> blueDelta = getDeltaColor(startColor.b, finishColor.b, steps);
+	<span style="color:#af0000">int</span> alphaDelta = getDeltaColor(startColor.a, finishColor.a, steps);
 
 	result.push_back(startColor);
-	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> steps; <span style="color:#f92672">++</span>i)
+	<span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i = <span style="color:#00afaf">0</span>; i &lt; steps; ++i)
 	{
 		WColor stepColor;
-        <span style="color:#75715e">//Then at each step: stepColor = slope * stepNumber + startColor
-</span><span style="color:#75715e"></span>		stepColor.r <span style="color:#f92672">=</span> (redDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.r;
-		stepColor.g <span style="color:#f92672">=</span> (greenDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.g;
-		stepColor.b <span style="color:#f92672">=</span> (blueDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.b;
-		stepColor.a <span style="color:#f92672">=</span> (alphaDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.a;
+        <span style="color:#4e4e4e">//Then at each step: stepColor = slope * stepNumber + startColor
+</span><span style="color:#4e4e4e"></span>		stepColor.r = (redDelta * i) + startColor.r;
+		stepColor.g = (greenDelta * i) + startColor.g;
+		stepColor.b = (blueDelta * i) + startColor.b;
+		stepColor.a = (alphaDelta * i) + startColor.a;
 		result.push_back(stepColor);
 	}
 	result.push_back(finishColor);
 
-	<span style="color:#66d9ef">return</span> result;
+	<span style="color:#5f8700">return</span> result;
 }
 </code></pre></div>
 

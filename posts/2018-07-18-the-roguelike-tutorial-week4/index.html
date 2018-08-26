@@ -68,28 +68,28 @@
 
 <p>So I have an idea of how I want this game to look - eventually. However, I decided to just drop a basic UI in the game for Part 7. The first task here was to add a <code>Console::print()</code> function - ha, the last time I opened the console code was <strong>way</strong> back when the project was first started! Fortunately it’s all pretty simple and I tried my best to write it with modularity in mind so I can use it on later projects. A print function has one task, display a string at a coordinate position. Easy enough - but what if the string is longer than the console width? Well, thats another easy fix, just advance the y part of the coordinate pair and continue writing! Simple!</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> Console<span style="color:#f92672">::</span>print(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, std<span style="color:#f92672">::</span>string msg)
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">void</span> Console::print(<span style="color:#af0000">int</span> x, <span style="color:#af0000">int</span> y, std::string msg)
 {
-    size_t msgLength <span style="color:#f92672">=</span> msg.size();
-    <span style="color:#66d9ef">int</span> widthAvailable <span style="color:#f92672">=</span> width_ <span style="color:#f92672">-</span> x;
-    <span style="color:#66d9ef">int</span> dX <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">int</span> dY <span style="color:#f92672">=</span> y;
-    <span style="color:#66d9ef">for</span>(size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> msgLength; <span style="color:#f92672">++</span>i)
+    size_t msgLength = msg.size();
+    <span style="color:#af0000">int</span> widthAvailable = width_ - x;
+    <span style="color:#af0000">int</span> dX = <span style="color:#00afaf">0</span>;
+    <span style="color:#af0000">int</span> dY = y;
+    <span style="color:#5f8700">for</span>(size_t i = <span style="color:#00afaf">0</span>; i &lt; msgLength; ++i)
     {
-        <span style="color:#66d9ef">if</span>(dY <span style="color:#f92672">!=</span> y)
+        <span style="color:#5f8700">if</span>(dY != y)
         {
-            dX <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#66d9ef">int</span>(i) <span style="color:#f92672">-</span> widthAvailable;
+            dX = x + <span style="color:#af0000">int</span>(i) - widthAvailable;
         }
-        <span style="color:#66d9ef">else</span>
+        <span style="color:#5f8700">else</span>
         {
-            dX <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#66d9ef">int</span>(i);
+            dX = x + <span style="color:#af0000">int</span>(i);
         }
-        <span style="color:#66d9ef">if</span>(dX <span style="color:#f92672">&gt;=</span> width_)
+        <span style="color:#5f8700">if</span>(dX &gt;= width_)
         {
-            dX <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-            dY <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+            dX = <span style="color:#00afaf">0</span>;
+            dY += <span style="color:#00afaf">1</span>;
         }
-        screen_[dX <span style="color:#f92672">+</span> (dY <span style="color:#f92672">*</span> width_)] <span style="color:#f92672">=</span> msg[i];
+        screen_[dX + (dY * width_)] = msg[i];
     }
 }
 </code></pre></div>

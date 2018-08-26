@@ -61,25 +61,25 @@ making this a playable game!</p>
 code in the implementation. This is something I <strong>thought</strong> I did already, but apparently using non-trivial types inline in headers is bad for performance. This means
 stuff like this is OK:</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Foo</span>
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">class</span> <span style="color:#0087ff">Foo</span>
 {
-    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#5f8700">public</span>:
         ...
-        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span> count() { <span style="color:#66d9ef">return</span> count_; }
+        <span style="color:#5f8700">const</span> <span style="color:#af0000">int</span> &amp; count() { <span style="color:#5f8700">return</span> count_; }
         ...
-    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-        <span style="color:#66d9ef">int</span> count_;
+    <span style="color:#5f8700">private</span>:
+        <span style="color:#af0000">int</span> count_;
 };
 </code></pre></div>
 
 <p>However, doing this is not:
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Bar</span>
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">class</span> <span style="color:#0087ff">Bar</span>
 {
-    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#5f8700">public</span>:
         ...
-        Foo badFunc() { <span style="color:#66d9ef">return</span> data_; }
+        Foo badFunc() { <span style="color:#5f8700">return</span> data_; }
         ...
-    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+    <span style="color:#5f8700">private</span>:
         Foo data_;
 };
 </code></pre></div></p>
@@ -103,119 +103,119 @@ My adaptation is straightforward, and probably a bit verbose - I think that any 
 map and results vector are owned by <code>Engine</code> and stored there. Also, I apologize for the abstract variable names - <code>xO,yO</code> are the x,y coordinates of the origin,
 <code>xF,yF</code> are the final coordinates, <code>i,j</code> are the test coordinates for each point.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bhline</span>(<span style="color:#66d9ef">int</span> xO, <span style="color:#66d9ef">int</span> yO, <span style="color:#66d9ef">int</span> xF, <span style="color:#66d9ef">int</span> yF, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>wsl<span style="color:#f92672">::</span>Vector2i<span style="color:#f92672">&gt;</span> <span style="color:#f92672">*</span> results, GameMap <span style="color:#f92672">*</span> map)
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">void</span> <span style="color:#0087ff">bhline</span>(<span style="color:#af0000">int</span> xO, <span style="color:#af0000">int</span> yO, <span style="color:#af0000">int</span> xF, <span style="color:#af0000">int</span> yF, std::vector&lt;wsl::Vector2i&gt; * results, GameMap * map)
 {
-    <span style="color:#66d9ef">int</span> dX <span style="color:#f92672">=</span> abs(xF <span style="color:#f92672">-</span> xO);
-    <span style="color:#66d9ef">int</span> dY <span style="color:#f92672">=</span> abs(yF <span style="color:#f92672">-</span> yO);
+    <span style="color:#af0000">int</span> dX = abs(xF - xO);
+    <span style="color:#af0000">int</span> dY = abs(yF - yO);
 
-    <span style="color:#66d9ef">if</span>(dX <span style="color:#f92672">&gt;=</span> dY)
+    <span style="color:#5f8700">if</span>(dX &gt;= dY)
     {
-        <span style="color:#66d9ef">int</span> e <span style="color:#f92672">=</span> dY <span style="color:#f92672">-</span> dX; <span style="color:#75715e">// [e]rror
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> yO;
+        <span style="color:#af0000">int</span> e = dY - dX; <span style="color:#4e4e4e">// [e]rror
+</span><span style="color:#4e4e4e"></span>        <span style="color:#af0000">int</span> j = yO;
 
-        <span style="color:#66d9ef">if</span>(xO <span style="color:#f92672">&lt;</span> xF)
+        <span style="color:#5f8700">if</span>(xO &lt; xF)
         {
-            <span style="color:#75715e">// Octants 1,2
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> xO; i <span style="color:#f92672">&lt;=</span> xF; <span style="color:#f92672">++</span>i)
+            <span style="color:#4e4e4e">// Octants 1,2
+</span><span style="color:#4e4e4e"></span>            <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i = xO; i &lt;= xF; ++i)
             {
-                add(results, wsl<span style="color:#f92672">::</span>Vector2i(i,j));
-                <span style="color:#66d9ef">if</span>(map<span style="color:#f92672">-&gt;</span>tiles[map<span style="color:#f92672">-&gt;</span>index(i,j)].blocksLight())
+                add(results, wsl::Vector2i(i,j));
+                <span style="color:#5f8700">if</span>(map-&gt;tiles[map-&gt;index(i,j)].blocksLight())
                 {
-                    <span style="color:#66d9ef">break</span>;
+                    <span style="color:#5f8700">break</span>;
                 }
-                <span style="color:#66d9ef">if</span>((e <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> (yF <span style="color:#f92672">&gt;=</span> yO))
+                <span style="color:#5f8700">if</span>((e &gt;= <span style="color:#00afaf">0</span>) &amp;&amp; (yF &gt;= yO))
                 {
-                    <span style="color:#75715e">// 1
-</span><span style="color:#75715e"></span>                    j <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-                    e <span style="color:#f92672">-=</span> dX;
+                    <span style="color:#4e4e4e">// 1
+</span><span style="color:#4e4e4e"></span>                    j += <span style="color:#00afaf">1</span>;
+                    e -= dX;
                 }
-                <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>((e <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> (yF <span style="color:#f92672">&lt;</span> yO))
+                <span style="color:#5f8700">else</span> <span style="color:#5f8700">if</span>((e &gt;= <span style="color:#00afaf">0</span>) &amp;&amp; (yF &lt; yO))
                 {
-                    <span style="color:#75715e">// 2
-</span><span style="color:#75715e"></span>                    j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
-                    e <span style="color:#f92672">-=</span> dX;
+                    <span style="color:#4e4e4e">// 2
+</span><span style="color:#4e4e4e"></span>                    j -= <span style="color:#00afaf">1</span>;
+                    e -= dX;
                 }
-                e <span style="color:#f92672">+=</span> dY;
+                e += dY;
             }
         }
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(xO <span style="color:#f92672">&gt;</span> xF)
+        <span style="color:#5f8700">else</span> <span style="color:#5f8700">if</span>(xO &gt; xF)
         {
-            <span style="color:#75715e">// Octants 5,6
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> xO; i <span style="color:#f92672">&gt;=</span> xF; <span style="color:#f92672">--</span>i)
+            <span style="color:#4e4e4e">// Octants 5,6
+</span><span style="color:#4e4e4e"></span>            <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i = xO; i &gt;= xF; --i)
             {
-                add(results, wsl<span style="color:#f92672">::</span>Vector2i(i, j));
-                <span style="color:#66d9ef">if</span>(map<span style="color:#f92672">-&gt;</span>tiles[map<span style="color:#f92672">-&gt;</span>index(i,j)].blocksLight())
+                add(results, wsl::Vector2i(i, j));
+                <span style="color:#5f8700">if</span>(map-&gt;tiles[map-&gt;index(i,j)].blocksLight())
                 {
-                    <span style="color:#66d9ef">break</span>;
+                    <span style="color:#5f8700">break</span>;
                 }
-                <span style="color:#66d9ef">if</span>((e <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> (yF <span style="color:#f92672">&gt;=</span> yO))
+                <span style="color:#5f8700">if</span>((e &gt;= <span style="color:#00afaf">0</span>) &amp;&amp; (yF &gt;= yO))
                 {
-                    <span style="color:#75715e">// 6
-</span><span style="color:#75715e"></span>                    j <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-                    e <span style="color:#f92672">-=</span> dX;
+                    <span style="color:#4e4e4e">// 6
+</span><span style="color:#4e4e4e"></span>                    j += <span style="color:#00afaf">1</span>;
+                    e -= dX;
                 }
-                <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>((e <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> (yF <span style="color:#f92672">&lt;</span> yO))
+                <span style="color:#5f8700">else</span> <span style="color:#5f8700">if</span>((e &gt;= <span style="color:#00afaf">0</span>) &amp;&amp; (yF &lt; yO))
                 {
-                    <span style="color:#75715e">// 5
-</span><span style="color:#75715e"></span>                    j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
-                    e <span style="color:#f92672">-=</span> dX;
+                    <span style="color:#4e4e4e">// 5
+</span><span style="color:#4e4e4e"></span>                    j -= <span style="color:#00afaf">1</span>;
+                    e -= dX;
                 }
-                e <span style="color:#f92672">+=</span> dY;
+                e += dY;
             }
         }
     }
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (dX <span style="color:#f92672">&lt;</span> dY)
+    <span style="color:#5f8700">else</span> <span style="color:#5f8700">if</span> (dX &lt; dY)
     {
-        <span style="color:#66d9ef">int</span> e <span style="color:#f92672">=</span> dX <span style="color:#f92672">-</span> dY; <span style="color:#75715e">// [e]rror
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> xO;
-        <span style="color:#66d9ef">if</span>(yO <span style="color:#f92672">&lt;</span> yF)
+        <span style="color:#af0000">int</span> e = dX - dY; <span style="color:#4e4e4e">// [e]rror
+</span><span style="color:#4e4e4e"></span>        <span style="color:#af0000">int</span> i = xO;
+        <span style="color:#5f8700">if</span>(yO &lt; yF)
         {
-            <span style="color:#75715e">// Octants 7,8
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> yO; j <span style="color:#f92672">&lt;=</span> yF; <span style="color:#f92672">++</span>j)
+            <span style="color:#4e4e4e">// Octants 7,8
+</span><span style="color:#4e4e4e"></span>            <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> j = yO; j &lt;= yF; ++j)
             {
-                add(results, wsl<span style="color:#f92672">::</span>Vector2i(i,j));
-                <span style="color:#66d9ef">if</span>(map<span style="color:#f92672">-&gt;</span>tiles[map<span style="color:#f92672">-&gt;</span>index(i,j)].blocksLight())
+                add(results, wsl::Vector2i(i,j));
+                <span style="color:#5f8700">if</span>(map-&gt;tiles[map-&gt;index(i,j)].blocksLight())
                 {
-                    <span style="color:#66d9ef">break</span>;
+                    <span style="color:#5f8700">break</span>;
                 }
-                <span style="color:#66d9ef">if</span>((e <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> (xF <span style="color:#f92672">&gt;=</span> xO))
+                <span style="color:#5f8700">if</span>((e &gt;= <span style="color:#00afaf">0</span>) &amp;&amp; (xF &gt;= xO))
                 {
-                    <span style="color:#75715e">// 8
-</span><span style="color:#75715e"></span>                    i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-                    e <span style="color:#f92672">-=</span> dY;
+                    <span style="color:#4e4e4e">// 8
+</span><span style="color:#4e4e4e"></span>                    i += <span style="color:#00afaf">1</span>;
+                    e -= dY;
                 }
-                <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>((e <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> (xF <span style="color:#f92672">&lt;</span> xO))
+                <span style="color:#5f8700">else</span> <span style="color:#5f8700">if</span>((e &gt;= <span style="color:#00afaf">0</span>) &amp;&amp; (xF &lt; xO))
                 {
-                    <span style="color:#75715e">// 7
-</span><span style="color:#75715e"></span>                    i <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
-                    e <span style="color:#f92672">-=</span> dY;
+                    <span style="color:#4e4e4e">// 7
+</span><span style="color:#4e4e4e"></span>                    i -= <span style="color:#00afaf">1</span>;
+                    e -= dY;
                 }
-                e <span style="color:#f92672">+=</span> dX;
+                e += dX;
             }
         }
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(yO <span style="color:#f92672">&gt;</span> yF)
+        <span style="color:#5f8700">else</span> <span style="color:#5f8700">if</span>(yO &gt; yF)
         {
-            <span style="color:#75715e">// Octants 3,4
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> yO; j <span style="color:#f92672">&gt;=</span> yF; <span style="color:#f92672">--</span>j)
+            <span style="color:#4e4e4e">// Octants 3,4
+</span><span style="color:#4e4e4e"></span>            <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> j = yO; j &gt;= yF; --j)
             {
-                add(results, wsl<span style="color:#f92672">::</span>Vector2i(i,j));
-                <span style="color:#66d9ef">if</span>(map<span style="color:#f92672">-&gt;</span>tiles[map<span style="color:#f92672">-&gt;</span>index(i,j)].blocksLight())
+                add(results, wsl::Vector2i(i,j));
+                <span style="color:#5f8700">if</span>(map-&gt;tiles[map-&gt;index(i,j)].blocksLight())
                 {
-                    <span style="color:#66d9ef">break</span>;
+                    <span style="color:#5f8700">break</span>;
                 }
-                <span style="color:#66d9ef">if</span>((e <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> (xF <span style="color:#f92672">&gt;=</span> xO))
+                <span style="color:#5f8700">if</span>((e &gt;= <span style="color:#00afaf">0</span>) &amp;&amp; (xF &gt;= xO))
                 {
-                    <span style="color:#75715e">// 3
-</span><span style="color:#75715e"></span>                    i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-                    e <span style="color:#f92672">-=</span> dY;
+                    <span style="color:#4e4e4e">// 3
+</span><span style="color:#4e4e4e"></span>                    i += <span style="color:#00afaf">1</span>;
+                    e -= dY;
                 }
-                <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>((e <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> (xF <span style="color:#f92672">&lt;</span> xO))
+                <span style="color:#5f8700">else</span> <span style="color:#5f8700">if</span>((e &gt;= <span style="color:#00afaf">0</span>) &amp;&amp; (xF &lt; xO))
                 {
-                    <span style="color:#75715e">// 4
-</span><span style="color:#75715e"></span>                    i <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
-                    e <span style="color:#f92672">-=</span> dY;
+                    <span style="color:#4e4e4e">// 4
+</span><span style="color:#4e4e4e"></span>                    i -= <span style="color:#00afaf">1</span>;
+                    e -= dY;
                 }
-                e <span style="color:#f92672">+=</span> dX;
+                e += dX;
             }
         }
     }

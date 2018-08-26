@@ -8,7 +8,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "\\.bak$", "\\.
 preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
 publishDir = "../"
-
+pygmentsStyle = "solarized-dark256"
 
 [permalinks]
     post = "/post/:year/:month/:day/:slug/"

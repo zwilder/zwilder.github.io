@@ -63,19 +63,19 @@ hosting site and write some crazy PHP and set up a SQL database to set up commen
 
 <p>Obviously, the first thing I did was read the documentation on the <a href="https://staticman.net/docs/">Staticman</a> site, and followed the steps listed there. This is what was added to my <code>_config.yml</code> file for the site.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">staticman:
-  allowedFields: [<span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#e6db74">&#39;message&#39;</span>]
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">staticman:
+  allowedFields: [<span style="color:#00afaf">&#39;name&#39;</span>, <span style="color:#00afaf">&#39;message&#39;</span>]
   branch: master
-  filename: <span style="color:#e6db74">&#39;entry{@timestamp}&#39;</span>
+  filename: <span style="color:#00afaf">&#39;entry{@timestamp}&#39;</span>
   format: yml
   generatedFields:
     date:
       type: date
       options:
-        format: <span style="color:#e6db74">&#34;timestamp-seconds&#34;</span>
-  moderation: <span style="color:#66d9ef">false</span>
-  path: <span style="color:#e6db74">&#34;_data/comments/{options.slug}&#34;</span>
-  requiredFields: [<span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#e6db74">&#39;message&#39;</span>]
+        format: <span style="color:#00afaf">&#34;timestamp-seconds&#34;</span>
+  moderation: <span style="color:#d75f00">false</span>
+  path: <span style="color:#00afaf">&#34;_data/comments/{options.slug}&#34;</span>
+  requiredFields: [<span style="color:#00afaf">&#39;name&#39;</span>, <span style="color:#00afaf">&#39;message&#39;</span>]
   url: https://api.staticman.net/v1/entry/zwilder/Hack_Blog/master</code></pre></div>
 
 <p>Now, since the blog is accessible from GitHub, and the repository is public - I removed the email field. I don&rsquo;t think anyone would appreciate their email being so easily accessible (something something security).

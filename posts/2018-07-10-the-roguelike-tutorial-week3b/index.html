@@ -50,90 +50,125 @@
 <main>
 
 
-<p>I originally planned for this week&rsquo;s blog post to cover my adaptation of part 5 of the Python RL tutorial - but after finishing part 5 in a matter of minutes
-I realized there wouldn&rsquo;t be much to write here! Part 5 is basically making new entities and getting the collision logic in place before combat is added in
-part 6. However, before adding combat I thought it would be beneficial to start thinking about game time - it&rsquo;s far more fun when some enemies are a lot quicker than
-the player, forcing the player to devise strategies for survival.</p>
+<p>I originally planned for this week&rsquo;s blog post to cover my adaptation of
+part 5 of the Python RL tutorial - but after finishing part 5 in a
+matter of minutes I realized there wouldn&rsquo;t be much to write here! Part
+5 is basically making new entities and getting the collision logic in
+place before combat is added in part 6. However, before adding combat I
+thought it would be beneficial to start thinking about game time - it&rsquo;s
+far more fun when some enemies are a lot quicker than the player,
+forcing the player to devise strategies for survival.</p>
 
-<p>Naturally, there&rsquo;s a few <a href="http://www.roguebasin.com/index.php?title=Articles#Time_management">articles</a> on roguebasin - <a href="http://www.roguebasin.com/index.php?title=An_elegant_time-management_system_for_roguelikes">one</a>
-of which I&rsquo;ve read <strong>many</strong> times over the years, and never understood a word of it. Pascal is a goofy, blunt looking language and really makes you appreciate
-how nice programming languages read these days. Or, maybe I&rsquo;m just dense and don&rsquo;t get it. I love that article though - not only because it references my favorite
-roguelike <a href="https://www.adom.de/home/index.html">ADOM</a>(which, despite playing for over a decade have never beat), but because of the word &ldquo;elegant.&rdquo; It just sounds
-so, appealing.</p>
+<p>Naturally, there&rsquo;s a few
+<a href="http://www.roguebasin.com/index.php?title=Articles#Time_management">articles</a>
+on roguebasin -
+<a href="http://www.roguebasin.com/index.php?title=An_elegant_time-management_system_for_roguelikes">one</a>
+of which I&rsquo;ve read <strong>many</strong> times over the years, and never understood a
+word of it. Pascal is a goofy, blunt looking language and really makes
+you appreciate how nice programming languages read these days. Or, maybe
+I&rsquo;m just dense and don&rsquo;t get it. I love that article though - not only
+because it references my favorite roguelike
+<a href="https://www.adom.de/home/index.html">ADOM</a>(which, despite playing for
+over a decade have never beat), but because of the word &ldquo;elegant.&rdquo; It
+just sounds so, appealing.</p>
 
-<p>I sat down, notebook ready, to try and break this article in pieces and figure out what it&rsquo;s saying. The very first thing it says is:</p>
+<p>I sat down, notebook ready, to try and break this article in pieces and
+figure out what it&rsquo;s saying. The very first thing it says is:</p>
 
 <blockquote>
-<p>Readers should be familiar with a linked list (next) and doubly-linked list (prev and next). A circular list simply means that the last object&rsquo;s &ldquo;next&rdquo; points to the first object; and in a doubly-linked circular list the first object&rsquo;s &ldquo;prev&rdquo; points to the last object. The advantage of a circular list over a regular list is that a circular list need not cater for null-references during insertion or deletion of objects.</p>
+<p>Readers should be familiar with a linked list (next) and
+doubly-linked list (prev and next). A circular list simply means that
+the last object&rsquo;s &ldquo;next&rdquo; points to the first object; and in a
+doubly-linked circular list the first object&rsquo;s &ldquo;prev&rdquo; points to the
+last object. The advantage of a circular list over a regular list is
+that a circular list need not cater for null-references during
+insertion or deletion of objects.</p>
 </blockquote>
 
-<p>Well, my severe lack of formal computer science education meant that I had no idea what any of those things are, really, beyond the fact that they exist and there
-is likely an STL implementation of those I could find. Searching google for &ldquo;linked list C++&rdquo; led me to <a href="https://www.geeksforgeeks.org/data-structures/linked-list/">this fantastic site</a>.</p>
+<p>Well, my severe lack of formal computer science education meant that I
+had no idea what any of those things are, really, beyond the fact that
+they exist and there is likely an STL implementation of those I could
+find. Searching google for &ldquo;linked list C++&rdquo; led me to <a href="https://www.geeksforgeeks.org/data-structures/linked-list/">this fantastic
+site</a>.</p>
 
-<p>I decided to take a step back from this project at this point and learn all about lists.</p>
+<p>I decided to take a step back from this project at this point and learn
+all about lists.</p>
 
-<h2 id="super-cool-lists">Super Cool Lists</h2>
+<h2 id="super-cool-lists-a-list-is-apparently-nothing-more-than-a-bunch-of">Super Cool Lists A list is apparently nothing more than a bunch of</h2>
 
-<p>A list is apparently nothing more than a bunch of linked nodes, with each node containing a piece of data and a pointer to the next element in the list. Simple
-enough, right? Well after reading and writing a few simple little examples toying with creating lists, I had the realization that this was exactly what I was
-missing in my understanding of pathfinding algorithms and could easily be used for a sort of scheduling system. If a list contained nodes whose data was just a
-pointer to an entity, when that node is &ldquo;popped&rdquo; off the top of the list it could be called for updating in the engine. This means that if a list was kept as
-a &ldquo;schedule&rdquo;, the entities who can act could be added to the schedule and popped off in sequence for updating. Cool right?</p>
+<p>linked nodes, with each node containing a piece of data and a pointer to
+the next element in the list. Simple enough, right? Well after reading
+and writing a few simple little examples toying with creating lists, I
+had the realization that this was exactly what I was missing in my
+understanding of pathfinding algorithms and could easily be used for a
+sort of scheduling system. If a list contained nodes whose data was just
+a pointer to an entity, when that node is &ldquo;popped&rdquo; off the top of the
+list it could be called for updating in the engine. This means that if a
+list was kept as a &ldquo;schedule&rdquo;, the entities who can act could be added
+to the schedule and popped off in sequence for updating. Cool right?</p>
 
-<p>So the update routine is now split into two parts: First if the schedule is not empty, it goes through and updates each actor in the schedule by popping them
-off the top. Ideally, I would be doing this in a <code>while(!schedule_-&gt;isEmpty())</code> loop, and will probably do that once I finish the actor update routines. A more
-graceful way of handling entity updates would be to just return if the entity hasn&rsquo;t decided on an action, and set the entity actions in their AI update (for the
-enemies) or in the keyboard input handling (for the player). For now,
-since we have to let the player have a chance to use their turn, the conditional just returns after removing one actor from the schedule which allows the engine to
-continue monitoring input.</p>
+<p>So the update routine is now split into two parts: First if the schedule
+is not empty, it goes through and updates each actor in the schedule by
+popping them off the top. Ideally, I would be doing this in a
+<code>while(!schedule_-&gt;isEmpty())</code> loop, and will probably do that once I
+finish the actor update routines. A more graceful way of handling entity
+updates would be to just return if the entity hasn&rsquo;t decided on an
+action, and set the entity actions in their AI update (for the enemies)
+or in the keyboard input handling (for the player). For now, since we
+have to let the player have a chance to use their turn, the conditional
+just returns after removing one actor from the schedule which allows the
+engine to continue monitoring input.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> Engine<span style="color:#f92672">::</span>update()
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">void</span> Engine::update()
 {
-    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>schedule_<span style="color:#f92672">-&gt;</span>isEmpty())
+    <span style="color:#5f8700">if</span>(!schedule_-&gt;isEmpty())
     {
-        <span style="color:#66d9ef">if</span>(curActor_ <span style="color:#f92672">==</span> NULL)
+        <span style="color:#5f8700">if</span>(curActor_ == <span style="color:#0087ff">NULL</span>)
         {
-            curActor_ <span style="color:#f92672">=</span> schedule_<span style="color:#f92672">-&gt;</span>popFront();
+            curActor_ = schedule_-&gt;popFront();
         }
-        <span style="color:#75715e">/*
-</span><span style="color:#75715e">         * The next few lines will be replaced with
-</span><span style="color:#75715e">         * if(curActor_-&gt;nextAction == Action::NONE) return;
-</span><span style="color:#75715e">         * else curActor_-&gt;update();
-</span><span style="color:#75715e">         * once that system is in place.
-</span><span style="color:#75715e">         */</span>
-        <span style="color:#66d9ef">if</span>(gameState_ <span style="color:#f92672">==</span> GameState<span style="color:#f92672">::</span>PLAYERS_TURN)
+        <span style="color:#4e4e4e">/*
+</span><span style="color:#4e4e4e">         * The next few lines will be replaced with
+</span><span style="color:#4e4e4e">         * if(curActor_-&gt;nextAction == Action::NONE) return;
+</span><span style="color:#4e4e4e">         * else curActor_-&gt;update();
+</span><span style="color:#4e4e4e">         * once that system is in place.
+</span><span style="color:#4e4e4e">         */</span>
+        <span style="color:#5f8700">if</span>(gameState_ == GameState::PLAYERS_TURN)
         {
-            <span style="color:#66d9ef">return</span>;
+            <span style="color:#5f8700">return</span>;
         }
-        <span style="color:#66d9ef">else</span>
+        <span style="color:#5f8700">else</span>
         {
-            curActor_<span style="color:#f92672">-&gt;</span>update();
+            curActor_-&gt;update();
         }
-        curActor_<span style="color:#f92672">-&gt;</span>energy() <span style="color:#f92672">-=</span> ACTION_COST;
-        curActor_ <span style="color:#f92672">=</span> schedule_<span style="color:#f92672">-&gt;</span>popFront();
-        <span style="color:#66d9ef">return</span>;
+        curActor_-&gt;energy() -= ACTION_COST;
+        curActor_ = schedule_-&gt;popFront();
+        <span style="color:#5f8700">return</span>;
     }
 </code></pre></div>
 
-<p>Next, when the schedule is empty the game advances a &ldquo;tick&rdquo; and grants each actor a set amount of energy. Currently, the actors have a base speed that is added
-to their energy pool every tick. When their energy level is greater than the cost of an action (a constant, currently set to 100), they get added to the schedule.</p>
+<p>Next, when the schedule is empty the game advances a &ldquo;tick&rdquo; and grants
+each actor a set amount of energy. Currently, the actors have a base
+speed that is added to their energy pool every tick. When their energy
+level is greater than the cost of an action (a constant, currently set
+to 100), they get added to the schedule.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#66d9ef">else</span>
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#5f8700">else</span>
     {
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> entityList_<span style="color:#f92672">-&gt;</span>size(); <span style="color:#f92672">++</span>i)
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i = <span style="color:#00afaf">0</span>; i &lt; entityList_-&gt;size(); ++i)
         {
-            entityList_<span style="color:#f92672">-&gt;</span>at(i).grantEnergy();
-            <span style="color:#66d9ef">if</span>(entityList_<span style="color:#f92672">-&gt;</span>at(i).energy() <span style="color:#f92672">&gt;=</span> ACTION_COST)
+            entityList_-&gt;at(i).grantEnergy();
+            <span style="color:#5f8700">if</span>(entityList_-&gt;at(i).energy() &gt;= ACTION_COST)
             {
-                schedule_<span style="color:#f92672">-&gt;</span>push(<span style="color:#f92672">&amp;</span>entityList_<span style="color:#f92672">-&gt;</span>at(i));
+                schedule_-&gt;push(&amp;entityList_-&gt;at(i));
             }
         }
-        player_<span style="color:#f92672">-&gt;</span>grantEnergy();
-        <span style="color:#66d9ef">if</span>(player_<span style="color:#f92672">-&gt;</span>energy() <span style="color:#f92672">&gt;=</span> ACTION_COST)
+        player_-&gt;grantEnergy();
+        <span style="color:#5f8700">if</span>(player_-&gt;energy() &gt;= ACTION_COST)
         {
-            schedule_<span style="color:#f92672">-&gt;</span>push(player_.get());
+            schedule_-&gt;push(player_.get());
         }
-        gameState_ <span style="color:#f92672">=</span> GameState<span style="color:#f92672">::</span>PLAYERS_TURN;
+        gameState_ = GameState::PLAYERS_TURN;
     }
 } 
 </code></pre></div>
@@ -147,23 +182,40 @@ to their energy pool every tick. When their energy level is greater than the cos
 <li>Bat speed is 100</li>
 </ul>
 
-<p>Then for every 4 turns the player takes, the bat gets 8 and the slug gets 1. Now if the Bat is able to intelligently use hit and run tactics&hellip;</p>
+<p>Then for every 4 turns the player takes, the bat gets 8 and the slug
+gets 1. Now if the Bat is able to intelligently use hit and run
+tactics&hellip;</p>
 
-<p>The other cool thing about lists is that making a simple priority queue is an easy leap from a linked list - just attach a priority to each node and arrange them
-when the nodes are inserted! This made pathfinding much, much easier, and I can finally understand and interpret the <a href="https://www.redblobgames.com/pathfinding/a-star/introduction.html">Red Blob Pathfinding Guide</a>!
-Right now I have a basic greedy best first search up and running, and it&rsquo;s <strong>quick</strong>. Now, it&rsquo;s not very optimal for long paths, but the way I figure it is the
-undead denizens of the ruins our burly hero is delving will only start tracking the player once they see/sense the player - which means they won&rsquo;t start hunting all
-the way across the map right off. I&rsquo;m still tinkering with trying to get A-Star pathfinding working, but I&rsquo;m anxious to get the enemy actors to actually start doing
-something! Plus, I&rsquo;m a tad bit behind the current challenge schedule. I&rsquo;m going to add this to my list of things to continue working on after the challenge is over.</p>
+<p>The other cool thing about lists is that making a simple priority queue
+is an easy leap from a linked list - just attach a priority to each node
+and arrange them when the nodes are inserted! This made pathfinding
+much, much easier, and I can finally understand and interpret the <a href="https://www.redblobgames.com/pathfinding/a-star/introduction.html">Red
+Blob Pathfinding
+Guide</a>!
+Right now I have a basic greedy best first search up and running, and
+it&rsquo;s <strong>quick</strong>. Now, it&rsquo;s not very optimal for long paths, but the way I
+figure it is the undead denizens of the ruins our burly hero is delving
+will only start tracking the player once they see/sense the player -
+which means they won&rsquo;t start hunting all the way across the map right
+off. I&rsquo;m still tinkering with trying to get A-Star pathfinding working,
+but I&rsquo;m anxious to get the enemy actors to actually start doing
+something! Plus, I&rsquo;m a tad bit behind the current challenge schedule.
+I&rsquo;m going to add this to my list of things to continue working on after
+the challenge is over.</p>
 
 <hr />
 
-<p>Up next in part 6 is combat, which should be a lot more fun now that enemies can take turns at different rates and can intelligently move towards the player.
-Hopefully, if all goes well, I&rsquo;ll be able to show off a nice video with the next update that will also feature a scrolling message log and an inventory screen
-(part 7)! In the meantime, the <a href="https://github.com/zwilder/barbarian">repository</a> is here - CLOC reports 2561 lines of code written, and hopefully it&rsquo;s legible
-and easy enough to follow.</p>
+<p>Up next in part 6 is combat, which should be a lot more fun now that
+enemies can take turns at different rates and can intelligently move
+towards the player.  Hopefully, if all goes well, I&rsquo;ll be able to show
+off a nice video with the next update that will also feature a scrolling
+message log and an inventory screen (part 7)! In the meantime, the
+<a href="https://github.com/zwilder/barbarian">repository</a> is here - CLOC
+reports 2561 lines of code written, and hopefully it&rsquo;s legible and easy
+enough to follow.</p>
 
-<p>Here is the source code for <a href="https://github.com/zwilder/Barbarian/tree/Part_5">Part 5</a>!</p>
+<p>Here is the source code for <a href="https://github.com/zwilder/Barbarian/tree/Part_5">Part
+5</a>!</p>
 
 </main>
 <div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">

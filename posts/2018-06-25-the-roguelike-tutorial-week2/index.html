@@ -121,27 +121,27 @@ rooms/corridors. The Node class contains the logic for splitting itself into chi
 
 <p>Now, granted, this is all pretty abstract - so let&rsquo;s break down the code for splitting the Node first.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Node<span style="color:#f92672">::</span>Node(wsl<span style="color:#f92672">::</span>Rect rect, Node <span style="color:#f92672">*</span> parent)
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Node::Node(wsl::Rect rect, Node * parent)
 </code></pre></div>
 
 <p>A Node is created by passing it a rectangle representing it&rsquo;s area, and a reference to it&rsquo;s parent. Parent can be <code>NULL</code> - since the root has no parent.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">bool</span> Node<span style="color:#f92672">::</span>split()
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">bool</span> Node::split()
 {
-    <span style="color:#66d9ef">bool</span> success <span style="color:#f92672">=</span> false;
-    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>hasSplit())
+    <span style="color:#af0000">bool</span> success = <span style="color:#0087ff">false</span>;
+    <span style="color:#5f8700">if</span>(!hasSplit())
     {
-        <span style="color:#66d9ef">bool</span> horizontalSplit <span style="color:#f92672">=</span> wsl<span style="color:#f92672">::</span>randomBool();
-        <span style="color:#66d9ef">int</span> width <span style="color:#f92672">=</span> nodeRect.w;
-        <span style="color:#66d9ef">int</span> height <span style="color:#f92672">=</span> nodeRect.h;
+        <span style="color:#af0000">bool</span> horizontalSplit = wsl::randomBool();
+        <span style="color:#af0000">int</span> width = nodeRect.w;
+        <span style="color:#af0000">int</span> height = nodeRect.h;
 
-        <span style="color:#66d9ef">if</span>((width <span style="color:#f92672">&gt;</span> height) <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> (width <span style="color:#f92672">/</span> height) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">125</span>))
+        <span style="color:#5f8700">if</span>((width &gt; height) &amp;&amp; (<span style="color:#00afaf">100</span> * (width / height) &gt; <span style="color:#00afaf">125</span>))
         {
-            horizontalSplit <span style="color:#f92672">=</span> false;
+            horizontalSplit = <span style="color:#0087ff">false</span>;
         }
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>((height <span style="color:#f92672">&gt;</span> width) <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> (height <span style="color:#f92672">/</span> width) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">125</span>))
+        <span style="color:#5f8700">else</span> <span style="color:#5f8700">if</span>((height &gt; width) &amp;&amp; (<span style="color:#00afaf">100</span> * (height / width) &gt; <span style="color:#00afaf">125</span>))
         {
-            horizontalSplit <span style="color:#f92672">=</span> true;
+            horizontalSplit = <span style="color:#0087ff">true</span>;
         }
 </code></pre></div>
 
@@ -151,40 +151,40 @@ select a random boolean - but what if splitting it horizontally makes the childr
 the width is greater than the height and the ratio of width to height is greater than 1.25 then horizontalSplit will always be false. Note that since width
 and height are integers, I normalized both sides by multiplying by 100.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">        <span style="color:#66d9ef">int</span> max <span style="color:#f92672">=</span> (horizontalSplit <span style="color:#f92672">?</span> height : width) <span style="color:#f92672">-</span> MIN_NODE_SIZE;
-        <span style="color:#66d9ef">if</span>(max <span style="color:#f92672">&lt;=</span> MIN_NODE_SIZE) 
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">        <span style="color:#af0000">int</span> max = (horizontalSplit ? height : width) - MIN_NODE_SIZE;
+        <span style="color:#5f8700">if</span>(max &lt;= MIN_NODE_SIZE) 
         {
-            <span style="color:#75715e">// Too small to split further
-</span><span style="color:#75715e"></span>            success <span style="color:#f92672">=</span> false;
+            <span style="color:#4e4e4e">// Too small to split further
+</span><span style="color:#4e4e4e"></span>            success = <span style="color:#0087ff">false</span>;
         }
-        <span style="color:#66d9ef">else</span> <span style="color:#75715e">// max &gt; MIN_NODE_SIZE
-</span><span style="color:#75715e"></span>        {
-            <span style="color:#66d9ef">int</span> split <span style="color:#f92672">=</span> wsl<span style="color:#f92672">::</span>randomInt(MIN_NODE_SIZE, max);
+        <span style="color:#5f8700">else</span> <span style="color:#4e4e4e">// max &gt; MIN_NODE_SIZE
+</span><span style="color:#4e4e4e"></span>        {
+            <span style="color:#af0000">int</span> split = wsl::randomInt(MIN_NODE_SIZE, max);
 
-            <span style="color:#66d9ef">if</span>(horizontalSplit)
+            <span style="color:#5f8700">if</span>(horizontalSplit)
             {
-                splitPos_.y <span style="color:#f92672">=</span> split;
-                splitPos_.x <span style="color:#f92672">=</span> nodeRect.x1;
-                leftChild_ <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Node(wsl<span style="color:#f92672">::</span>Rect(nodeRect.x1, nodeRect.y1, width, split), <span style="color:#66d9ef">this</span>);
-                rightChild_ <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Node(wsl<span style="color:#f92672">::</span>Rect(nodeRect.x1, nodeRect.y1 <span style="color:#f92672">+</span> split, width, height <span style="color:#f92672">-</span> split), <span style="color:#66d9ef">this</span>);
+                splitPos_.y = split;
+                splitPos_.x = nodeRect.x1;
+                leftChild_ = <span style="color:#5f8700">new</span> Node(wsl::Rect(nodeRect.x1, nodeRect.y1, width, split), <span style="color:#5f8700">this</span>);
+                rightChild_ = <span style="color:#5f8700">new</span> Node(wsl::Rect(nodeRect.x1, nodeRect.y1 + split, width, height - split), <span style="color:#5f8700">this</span>);
             }
-            <span style="color:#66d9ef">else</span>
+            <span style="color:#5f8700">else</span>
             {
-                splitPos_.x <span style="color:#f92672">=</span> split;
-                splitPos_.y <span style="color:#f92672">=</span> nodeRect.y1;
-                leftChild_ <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Node(wsl<span style="color:#f92672">::</span>Rect(nodeRect.x1, nodeRect.y1, split, height), <span style="color:#66d9ef">this</span>); 
-                rightChild_ <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Node(wsl<span style="color:#f92672">::</span>Rect(nodeRect.x1 <span style="color:#f92672">+</span> split, nodeRect.y1, width <span style="color:#f92672">-</span> split, height), <span style="color:#66d9ef">this</span>);
+                splitPos_.x = split;
+                splitPos_.y = nodeRect.y1;
+                leftChild_ = <span style="color:#5f8700">new</span> Node(wsl::Rect(nodeRect.x1, nodeRect.y1, split, height), <span style="color:#5f8700">this</span>); 
+                rightChild_ = <span style="color:#5f8700">new</span> Node(wsl::Rect(nodeRect.x1 + split, nodeRect.y1, width - split, height), <span style="color:#5f8700">this</span>);
             }
-            leftChild_<span style="color:#f92672">-&gt;</span>sibling_ <span style="color:#f92672">=</span> rightChild_;
-            rightChild_<span style="color:#f92672">-&gt;</span>sibling_ <span style="color:#f92672">=</span> leftChild_;
-            horizontal_ <span style="color:#f92672">=</span> horizontalSplit;
-            success <span style="color:#f92672">=</span> true;
-            split_ <span style="color:#f92672">=</span> true;
+            leftChild_-&gt;sibling_ = rightChild_;
+            rightChild_-&gt;sibling_ = leftChild_;
+            horizontal_ = horizontalSplit;
+            success = <span style="color:#0087ff">true</span>;
+            split_ = <span style="color:#0087ff">true</span>;
         }
        
     }
 
-    <span style="color:#66d9ef">return</span> success;
+    <span style="color:#5f8700">return</span> success;
 }
 </code></pre></div>
 
@@ -195,32 +195,32 @@ horizontally the left/right child are on the left and right of the node. If it&r
 
 <p>All that is left now is to populate the tree!</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> Tree<span style="color:#f92672">::</span>populate(wsl<span style="color:#f92672">::</span>Rect rootRect)
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">void</span> Tree::populate(wsl::Rect rootRect)
 {
-    root_ <span style="color:#f92672">=</span> Node(rootRect);
+    root_ = Node(rootRect);
 
-    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>Node <span style="color:#f92672">*&gt;</span> growth;
-    growth.push_back(<span style="color:#f92672">&amp;</span>root_);
+    std::vector&lt;Node *&gt; growth;
+    growth.push_back(&amp;root_);
     
-    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>growth.empty())
+    <span style="color:#5f8700">while</span>(!growth.empty())
     {
-        Node <span style="color:#f92672">*</span> currentNode <span style="color:#f92672">=</span> growth.back();
-        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>currentNode<span style="color:#f92672">-&gt;</span>hasSplit())
+        Node * currentNode = growth.back();
+        <span style="color:#5f8700">if</span>(!currentNode-&gt;hasSplit())
         {
-            <span style="color:#75715e">// Check if node can split, if so split it and add children to growth
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(currentNode<span style="color:#f92672">-&gt;</span>split())
+            <span style="color:#4e4e4e">// Check if node can split, if so split it and add children to growth
+</span><span style="color:#4e4e4e"></span>            <span style="color:#5f8700">if</span>(currentNode-&gt;split())
             {
-                growth.push_back(currentNode<span style="color:#f92672">-&gt;</span>leftChild());
-                growth.push_back(currentNode<span style="color:#f92672">-&gt;</span>rightChild());
+                growth.push_back(currentNode-&gt;leftChild());
+                growth.push_back(currentNode-&gt;rightChild());
             }
-            <span style="color:#66d9ef">else</span> <span style="color:#75715e">// if it can&#39;t split, add it to leaves
-</span><span style="color:#75715e"></span>            {
+            <span style="color:#5f8700">else</span> <span style="color:#4e4e4e">// if it can&#39;t split, add it to leaves
+</span><span style="color:#4e4e4e"></span>            {
                 leaves_.push_back(currentNode);
                 growth.pop_back();
             }
         }
-        <span style="color:#66d9ef">else</span> <span style="color:#75715e">// currentNode.hasSplit() == true
-</span><span style="color:#75715e"></span>        {
+        <span style="color:#5f8700">else</span> <span style="color:#4e4e4e">// currentNode.hasSplit() == true
+</span><span style="color:#4e4e4e"></span>        {
             growth.pop_back();
         }
     }

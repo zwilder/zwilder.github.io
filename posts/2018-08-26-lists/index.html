@@ -242,7 +242,7 @@ class definition)</p>
     {
         <span style="color:#4e4e4e">// If we delete the head, we need to set the head to the next item in the list
 </span><span style="color:#4e4e4e"></span>        head = node-&gt;next;
-        head-&gt;prev = <span style="color:#0087ff">NULL</span>; <span style="color:#4e4e4e">// The head has no previous node
+        <span style="color:#5f8700">if</span>(head) head-&gt;prev = <span style="color:#0087ff">NULL</span>; <span style="color:#4e4e4e">// If head still exists, it has no previous node
 </span><span style="color:#4e4e4e"></span>    }
     <span style="color:#5f8700">if</span>(node-&gt;next != <span style="color:#0087ff">NULL</span>)
     {

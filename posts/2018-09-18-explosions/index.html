@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Explosions in the Dungeon | WSL Programming Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+
+      
+
+
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">home</a></li>
+      
+      <li><a href="/about/">about</a></li>
+      
+      <li><a href="/tags/">tags</a></li>
+      
+      <li><a href="/index.xml">rss</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Explosions in the Dungeon</span></h1>
+
+<h2 class="date">18 September 2018</h2>
+
+<span style="font-size: 0.9em; font-family: 'Source Code Pro', monospace;text-align:center;">
+    
+    <a href="/tags/c&#43;&#43;">C&#43;&#43;</a> 
+    
+    <a href="/tags/roguelike">Roguelike</a> 
+    
+    <a href="/tags/barbarian">Barbarian!</a> 
+    
+</span>
+
+</div>
+<hr>
+<main>
+
+
+<p>One of the big goals for Barbarian and one of the coolest things on my
+to do list was to add animations into the game. How exciting is it to
+see an arrow flying toward your character, a firebolt explode in the
+face of an undead horde, blood splatter flying from the wounds inflicted
+by the mighty barbarian decorating the walls of the dungeon?</p>
+
+<p>Obviously, the excitement added by all these visual effects is well
+worth the time spent adding them in. I started thinking about how I
+wanted to incorporate animations during the Tutorial Tuesday Challenge,
+and started jotting implementation ideas down in my notebook almost two
+months ago. For the life of me I could not find a good writeup on
+creating procedural explosions on a 2d grid, and could not wrap my head
+around how to make them look decent. I shared my struggles on the
+<a href="https://www.reddit.com/r/roguelikedev/comments/9e007b/sharing_saturday_223/e5m8y55/">r/roguelikedev sharing Saturday post, and another dev (u/darkgnostic)
+gave me some fantastic ideas about reusing my line-of-sight
+code</a>.
+So, armed with this knowledge I sat down last week and decided to
+finally try some of my implementation ideas.</p>
+
+<p>The idea was simple, for each frame expand outward from the origin of
+the explosion to a set radius.</p>
+
+<h2 id="the-framework">The Framework</h2>
+
+<p>In order to test this out, I needed to actually get the animations
+working. Like most bits of code that I only have a vague idea of how to
+accomplish I started at the top: <code>Engine::update()</code> and <code>Engine::draw()</code>
+should loop through a list of animations, updating and drawing them.
+Easy enough to draw them, just need an <code>Animation::draw()</code> routine.
+Update would be similar, but would need to know how much time had passed
+since the last update. To get this, I needed to visit the main loop code
+- something that hasn&rsquo;t been looked at in quite a while.</p>
+
+<p>Cracked open <code>main.cpp</code>, dusted it off and examined my loop. Previously
+the game was limited to 60fps by using a call to sleep the thread -
+definitely gross and in need of some work. Where had I seen a beautiful,
+simple game loop before? Ah - <a href="http://gameprogrammingpatterns.com/game-loop.html">Game Programming
+Patterns</a>! Probably
+my favorite, most well worn book on my shelf of programming books. Easy
+enough to modify the example given in that chapter to modern C++ using
+the <code>std::chrono</code> library.</p>
+
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">using</span> <span style="color:#5f8700">namespace</span> std::chrono;
+milliseconds previous = duration_cast&lt;milliseconds&gt;(system_clock::now().time_since_epoch());
+milliseconds lag = std::chrono::milliseconds(<span style="color:#00afaf">0</span>);
+<span style="color:#5f8700">while</span>(engine-&gt;running())
+{
+    milliseconds current = duration_cast&lt;milliseconds&gt;(system_clock::now().time_since_epoch());
+    milliseconds elapsed = current - previous;
+    previous = current;
+    lag += elapsed;
+
+    engine-&gt;handleEvents();
+    engine-&gt;update(<span style="color:#af0000">int</span>(elapsed.count()));
+    engine-&gt;draw();
+    <span style="color:#5f8700">while</span>(lag &gt;= MS_PER_FRAME)
+    {
+        <span style="color:#4e4e4e">// Note that in the Game Programming Patterns example,
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">// update is placed here, and draw is placed after this
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">// loop. This forces draw to update less frequently since
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">// it is technially the most expensive function in terms
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">// of processing power. Not a problem in a turn based,
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">// non-graphics intensive game like this.
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">//
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">// Instead, this loop just holds the framerate constant at
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">// 60fps (MS_PER_FRAME = 17)
+</span><span style="color:#4e4e4e"></span>        lag -= MS_PER_FRAME;
+    }
+}
+</code></pre></div>
+
+<p>Once all that was straightened out I knew that I needed a draw and
+update function in the animation class. Also, from my doodles in my
+notebook I knew that the way I wanted to approach animations was to make
+each animation a collection of frames, and each frame a collection of
+tiles consisting of a glyph (character, foreground/background color) and
+a position. Also, I wanted to make sure that the animations would not
+block input or advancement of the games update loop.</p>
+
+<p>Now, for some reason these collections just would not work with my fancy
+list class. I&rsquo;m not sure why, and spent an insane amount of time trying
+to track down what was causing horrible segfaults. I then switched over
+to using a <code>std::vector</code> and realized it was because I was trying to
+access parts of the list out of bounds - I literally forgot an equals
+sign in a single <code>currentFrame &gt; frames.size()</code> conditional. With
+everything working I didn&rsquo;t feel like changing code back to using my
+list class - if it isn&rsquo;t broken why fix it?</p>
+
+<h2 id="making-an-explosion">Making an Explosion</h2>
+
+<p>I started the explosion with the basic idea given to me: expand outwards
+from an origin.</p>
+
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">// as a circle with r=2
+Frame   0   1    2
+
+                 2
+            1   212
+         0 101 21012
+            1   212
+                 2
+
+// as a square
+Frame   0   1    2
+
+               22222
+           111 21112
+         0 101 21012
+           111 21112
+               22222</code></pre></div>
+
+<p>Each frame is simply one expansion outward. Setting the glyph of each
+animation tile to a simple red <code>^</code> made a pleasing simple looking
+explosion and reminded me of the explosions in the old great roguelikes.
+<a href="https://www.gridsagegames.com/cogmind/">Cogmind</a> has the most beautiful
+animations and tasty explosions I have seen in just about any game, and
+the developer has a <a href="https://www.gridsagegames.com/blog/2014/04/making-particles/">fantastic blog
+post</a>
+about the explosions.  Playing Cogmind and seeing these explosions in
+action inspired most of my desire to get animations working, and my goal
+is to try and get something similar in place for Barbarian.</p>
+
+<p>Watching my simple explosion moving outwards I realized that a simple
+way to make the explosion procedural was to just add in a random chance
+that the cell would get &ldquo;lit up&rdquo; by the blast. I decided to set the
+chance at 75% initially each time a cell is visited to light it up, and
+change just the background color of the cell to randomly
+orange/yellow/red. This worked, and looked <strong>awesome</strong>.</p>
+
+<video class="video-js" width="640" height="385" controls>
+ 
+    <source src="/assets/Various/Explosions.mp4" type="video/mp4">
+    
+    
+ 
+Your browser does not support the video tag.
+</video>
+
+
+<p>I realized after playing around with making things explode that there
+should be a set of frames moving inward towards the origin as well, but
+with a smaller chance of lighting up. Playing around with the numbers I
+found 65%/25% to look pretty darn good. Shortened the duration by a bit
+too to speed things up.</p>
+
+<video class="video-js" width="640" height="385" controls>
+ 
+    <source src="/assets/Various/Explosions3.mp4" type="video/mp4">
+    
+    
+ 
+Your browser does not support the video tag.
+</video>
+
+
+<p>I also played with changing the glyph in the explosion tile to a random
+character, which ended up looking sorta cool&hellip; but I&rsquo;m not sure I like
+it. It definitely made the explosion more chunky, and gave it some
+texture.</p>
+
+<video class="video-js" width="640" height="385" controls>
+ 
+    <source src="/assets/Various/Explosions2.mp4" type="video/mp4">
+    
+    
+ 
+Your browser does not support the video tag.
+</video>
+
+
+<p>The &ldquo;final&rdquo; code for the explosion animation looks like this:</p>
+
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Animation <span style="color:#0087ff">explosion</span>(wsl::Vector2i origin, <span style="color:#af0000">int</span> radius)
+{
+    uint32_t seed = uint32_t(std::chrono::duration_cast&lt; std::chrono::milliseconds &gt;(std::chrono::system_clock::now().time_since_epoch()).count());
+    wsl::RNGState rng(<span style="color:#00afaf">123987445</span>, seed); <span style="color:#4e4e4e">// Random numbers
+</span><span style="color:#4e4e4e"></span>    <span style="color:#5f8700">const</span> <span style="color:#af0000">int</span> ANIMATION_DURATION = <span style="color:#00afaf">250</span>;
+    Animation result;
+    <span style="color:#af0000">int</span> frameDuration = ANIMATION_DURATION / (radius * <span style="color:#00afaf">2</span>); <span style="color:#4e4e4e">// Outward explosion/Inward Explosion
+</span><span style="color:#4e4e4e"></span>    <span style="color:#4e4e4e">//Outward explosion
+</span><span style="color:#4e4e4e"></span>    <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i = <span style="color:#00afaf">1</span>; i &lt;= radius; ++i)
+    {
+        AnimationFrame frame;
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> x = origin.x - i; x &lt;= origin.x + i; ++x)
+        {
+            <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> y = origin.y - i; y &lt;= origin.y + i; ++y)
+            {
+                <span style="color:#4e4e4e">// Without adding in an if sqrt(x^2 + y^2) &lt;= r this just makes a square instead of a circle
+</span><span style="color:#4e4e4e"></span>                <span style="color:#4e4e4e">// if(sqrt(pow(x, 2) + pow(y, 2)) &lt;= radius) continue;
+</span><span style="color:#4e4e4e"></span>                <span style="color:#5f8700">if</span>(wsl::randomInt(<span style="color:#00afaf">1</span>,<span style="color:#00afaf">100</span>,&amp;rng) &gt;= <span style="color:#00afaf">65</span>)
+                {
+                    <span style="color:#5f8700">continue</span>;
+                }
+                wsl::Color bg = wsl::Color::Red;
+                <span style="color:#5f8700">switch</span>(wsl::randomInt(<span style="color:#00afaf">1</span>,<span style="color:#00afaf">3</span>,&amp;rng))
+                {
+                    <span style="color:#5f8700">case</span> <span style="color:#00afaf">1</span>: bg = wsl::Color::Yellow; <span style="color:#5f8700">break</span>;
+                    <span style="color:#5f8700">case</span> <span style="color:#00afaf">2</span>: bg = wsl::Color::Orange; <span style="color:#5f8700">break</span>;
+                    <span style="color:#5f8700">case</span> <span style="color:#00afaf">3</span>: bg = wsl::Color::Red; <span style="color:#5f8700">break</span>;
+                    <span style="color:#5f8700">default</span>: <span style="color:#5f8700">break</span>;
+                }
+                frame.tiles.push_back(AnimationTile(wsl::Glyph(<span style="color:#00afaf">&#39;.&#39;</span>,wsl::Color::Yellow,bg), wsl::Vector2i(x,y)));
+            }
+        }
+        frame.duration = frameDuration;
+        result.frames.push_back(frame);
+    }
+    <span style="color:#4e4e4e">//Inward explosion
+</span><span style="color:#4e4e4e"></span>    <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i = radius; i &gt;= <span style="color:#00afaf">1</span>; --i)
+    {
+        AnimationFrame frame;
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> x = origin.x - i; x &lt;= origin.x + i; ++x)
+        {
+            <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> y = origin.y - i; y &lt;= origin.y + i; ++y)
+            {
+                <span style="color:#5f8700">if</span>(wsl::randomInt(<span style="color:#00afaf">1</span>,<span style="color:#00afaf">100</span>,&amp;rng) &gt;= <span style="color:#00afaf">25</span>)
+                {
+                    <span style="color:#5f8700">continue</span>;
+                }
+                wsl::Color bg = wsl::Color::Red;
+                <span style="color:#5f8700">switch</span>(wsl::randomInt(<span style="color:#00afaf">1</span>,<span style="color:#00afaf">3</span>,&amp;rng))
+                {
+                    <span style="color:#5f8700">case</span> <span style="color:#00afaf">1</span>: bg = wsl::Color::Yellow; <span style="color:#5f8700">break</span>;
+                    <span style="color:#5f8700">case</span> <span style="color:#00afaf">2</span>: bg = wsl::Color::Orange; <span style="color:#5f8700">break</span>;
+                    <span style="color:#5f8700">case</span> <span style="color:#00afaf">3</span>: bg = wsl::Color::Red; <span style="color:#5f8700">break</span>;
+                    <span style="color:#5f8700">default</span>: <span style="color:#5f8700">break</span>;
+                }
+                frame.tiles.push_back(AnimationTile(wsl::Glyph(<span style="color:#00afaf">&#39;.&#39;</span>,wsl::Color::Yellow,bg), wsl::Vector2i(x,y)));
+            }
+        }
+        frame.duration = frameDuration;
+        result.frames.push_back(frame);
+    }
+    result.engage(Animation::Flags::APPLY_BG | Animation::Flags::APPLY_BG | Animation::Flags::APPLY_GLYPH);
+    <span style="color:#5f8700">return</span> result;
+}
+</code></pre></div>
+
+<p>Now, if you look closely at the above videos you may notice the
+projectile launching from the player to the origin of the explosion -
+those frames had to be added before the others (obviously) into the same
+animation. If it was just another animation added to the list it would
+be launching and exploding at the same time - not ideal.</p>
+
+<p>To accomplish this I have a couple of functions, one for a projectile
+animation, one for a firebolt projectile, one for the explosion, and one
+for the fireball. The normal projectile animation creates a projectile
+that travels from point A to B with a specialized glyph. This can now be
+used for weapon throwing, arrow shooting, fireball launching, etc. The
+firebolt projectile code starts off by creating a projectile, but then
+modifies the glyph in each frame. I want to add some smoke trails to
+this as well eventually, and this gives me a good spot to put that code.
+The explosion animation is described above, and the fireball code
+combines the explosion and firebolt projectile animations into one.
+Neat!</p>
+
+<hr />
+
+<p>With the way animations are made and represented in the game, I should
+be able to make animations by hand with just as much ease as the
+procedural animations&hellip; which means the next big animation is going to
+have to be the main menu!</p>
+
+</main>
+<div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">
+    
+    <span>
+        
+        <a href = "/posts/2018-08-26-lists/">&laquo;&laquo; Wonderful Lists</a>
+    </span>
+    
+    
+</div>
+<br>
+
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'wsl-programming-blog';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+  <footer>
+  
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-121310852-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+  
+  <hr/>
+  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  
+  </footer>
+  </body>
+</html>
+

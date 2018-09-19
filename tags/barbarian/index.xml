@@ -6,10 +6,20 @@
     <description>Recent content in Barbarian! on WSL Programming Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 Aug 2018 15:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 18 Sep 2018 14:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/tags/barbarian/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Explosions in the Dungeon</title>
+      <link>/posts/2018-09-18-explosions/</link>
+      <pubDate>Tue, 18 Sep 2018 14:00:00 -0700</pubDate>
+      
+      <guid>/posts/2018-09-18-explosions/</guid>
+      <description>One of the big goals for Barbarian and one of the coolest things on my to do list was to add animations into the game. How exciting is it to see an arrow flying toward your character, a firebolt explode in the face of an undead horde, blood splatter flying from the wounds inflicted by the mighty barbarian decorating the walls of the dungeon?
+Obviously, the excitement added by all these visual effects is well worth the time spent adding them in.</description>
+    </item>
     
     <item>
       <title>Wonderful Lists</title>

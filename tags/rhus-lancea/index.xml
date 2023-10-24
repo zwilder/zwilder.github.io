@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rhus lancea on Wsl Blog</title>
+    <link>/tags/rhus-lancea/</link>
+    <description>Recent content in Rhus lancea on Wsl Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Aug 2019 07:00:00 -0700</lastBuildDate>
+    
+	<atom:link href="/tags/rhus-lancea/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>*Sersia lancea* African Sumac</title>
+      <link>/posts/2019-08-02-africansumac/</link>
+      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
+      
+      <guid>/posts/2019-08-02-africansumac/</guid>
+      <description>Background Sersia lancea, the African sumac, is a common tree around the valley - the strong fragrance of its diminuitive flowers remind me strongly of spring time as a kid growing up in Phoenix. The tree is relatively unassuming, no showy flowers in the spring and no vibrant colours in the fall. Like most invading trees, it was originally brought to the valley in the 60s as a landscape tree.</description>
+    </item>
+    
+  </channel>
+</rss>

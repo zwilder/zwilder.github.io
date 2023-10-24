@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tales from the Field on Wsl Blog</title>
+    <link>/categories/tales-from-the-field/</link>
+    <description>Recent content in Tales from the Field on Wsl Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 26 Jul 2019 08:00:00 -0700</lastBuildDate>
+    
+	<atom:link href="/categories/tales-from-the-field/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Shed</title>
+      <link>/posts/2019-07-26-theshed/</link>
+      <pubDate>Fri, 26 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/posts/2019-07-26-theshed/</guid>
+      <description>Since this blog now exists I thought I would share one of my favorite old stories, and possibly one of the stranger encounters I&amp;rsquo;ve had. A good alternative title for this story would be &amp;ldquo;Out of the hole and facing rebirth&amp;rdquo;&amp;hellip;
+One of my favorite things about this job is completing service requests - these are generally requests from people who actually want to see us. A nice change of pace from being the bearer of usually unpleasant news.</description>
+    </item>
+    
+  </channel>
+</rss>

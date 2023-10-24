@@ -3,190 +3,226 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Yet Another Blog Attempt | WSL Programming Blog</title>
+    <title>Yet Another Blog Attempt | Wsl Blog</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Raleway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Belgrano|Lato&display=swap" rel="stylesheet">
 
-      
 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+    
+        
+    
+    $('.ltbox-trigger').click(function(e) {
+    	
+        
+		e.preventDefault();
+		
+		
+		var image_href = $(this).attr("href");
+		
+		
+
+		
+		if ($('#ltbox').length > 0) { 
+			
+			
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			
+			
+            
+            $('#ltbox').toggle();
+		}
+		
+        return false;
+    });
+    $('body').on('click', '#ltbox', function() { 
+        
+        $('#ltbox').toggle();
+    });
+});
+</script>
 
   </head>
 
   <body>
+      <div class="site-title">
+          <img class="wsl-logo" src="/wsl.svg" />
+          <span class="wsl-title">
+             Wsl Blog
+          </span>
+      </div>
     <nav>
-    <ul class="menu">
-      
-      <li><a href="/">home</a></li>
-      
-      <li><a href="/about/">about</a></li>
-      
-      <li><a href="/tags/">tags</a></li>
-      
-      <li><a href="/index.xml">rss</a></li>
-      
-    </ul>
+    <p class="sub-title">Adventures in making, arting, exploring, and other things.</p>
+    <div class="menu">
+        <ul>
+          
+              <li><a href="/">Home</a></li>
+          
+              <li><a href="/posts/">Archive</a></li>
+          
+              <li><a href="/categories/">Categories</a></li>
+          
+              <li><a href="/tags/">Tags</a></li>
+          
+              <li><a href="/subscribe/">Subscribe</a></li>
+          
+        </ul>
+    </div>
     <hr/>
     </nav>
 
 <div class="article-meta">
-<h1><span class="title">Yet Another Blog Attempt</span></h1>
+    <div class="title"><span>Yet Another Blog Attempt</span></div>
 
-<h2 class="date">16 October 2017</h2>
-
-<span style="font-size: 0.9em; font-family: 'Source Code Pro', monospace;text-align:center;">
-    
-    <a href="/tags/c&#43;&#43;">C&#43;&#43;</a> 
-    
-    <a href="/tags/web-programming">Web Programming</a> 
-    
-    <a href="/tags/roguelike">Roguelike</a> 
-    
-    <a href="/tags/hugo">Hugo</a> 
-    
-</span>
-
+    <div>
+        
+          <span class="author">By Zach Wilder
+          </span>
+        
+        
+            <span class="date"> : Monday, October 16 2017</span>
+        
+    </div>
 </div>
-<hr>
+
+<hr/>
+
 <main>
 <p>Man, I really don&rsquo;t do a lot of work on this blog - maybe because I am <strong>not</strong> a web programmer but I can see when this blog does not look very
 good.</p>
-
 <p>Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the <em>professionals</em>. Oh, and I also decided to heck with
 Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore. Not to mention getting all the silly ruby nonsense to work.
 Even tried playing around with Ruby and seeing what all the fuss was about. No thanks.</p>
-
 <p>Stumbled upon Hu(go) - another static blog generator. Well, Hu(go) is blazingly fast, and has a ton of cool features that you don&rsquo;t have to even
 try hard to get to work. Not to mention the themes are easily searched through, easily switched, easily customized/expanded, and look darn good.
 So, for now, this is what the blog will look like - A theme called <a href="https://github.com/tanksuzuki/hemingway">Hemmingway</a> powered by <a href="https://gohugo.io">Hugo</a>.
 I also caved and signed up for Disqus, to handle comments. It really is so much easier using premade tools, haha.</p>
-
 <p>&ndash;</p>
-
 <p>In other news, I continued the process of learning C++ by programming in C++ and made a bit of progress on my rougelike attempt. I had a revelation
 while working one day about how the &ldquo;engine&rdquo; should be structured: Everything manages its own shit and nothing else. No exceptions. But, you ask, how
 will my keypresses to move the player work? Wouldn&rsquo;t the game engine have to interpret those key presses and then tell the game state to move the player,
 and then the player respond with&hellip;</p>
-
 <p>No. Doing that causes all sorts of crazy dependencies and connections that do not have to exist.</p>
-
 <p>My solution?</p>
-
 <ul>
-<li><p>Engine manages a stack of states. It doesn&rsquo;t really know what a state is, just that it has them, and that it can add states to itself and remove states from
-itself. The engine is responsible for interacting with the computer and reading user input.</p></li>
-
-<li><p>Each state manages a stack of windows. Again, the state doesn&rsquo;t know or care what a window contains, but is responsible for drawing the window in the correct
-spot on the screen and adding/removing windows as needed.</p></li>
-
-<li><p>Each window contains a grid of cells that can contain a glyph (character, with a foreground/background color). Windows are responsible for interpreting user
-input. A game window might contain a world (that has locations which has actors which have actions).</p></li>
+<li>
+<p>Engine manages a stack of states. It doesn&rsquo;t really know what a state is, just that it has them, and that it can add states to itself and remove states from
+itself. The engine is responsible for interacting with the computer and reading user input.</p>
+</li>
+<li>
+<p>Each state manages a stack of windows. Again, the state doesn&rsquo;t know or care what a window contains, but is responsible for drawing the window in the correct
+spot on the screen and adding/removing windows as needed.</p>
+</li>
+<li>
+<p>Each window contains a grid of cells that can contain a glyph (character, with a foreground/background color). Windows are responsible for interpreting user
+input. A game window might contain a world (that has locations which has actors which have actions).</p>
+</li>
 </ul>
-
 <p>Brilliant! Extraordinary! Very minimal multitasking! But wait - from the description above each component has to interact with the others. How that is accomplished
 is another fun thing: messages.</p>
-
 <p>Imagine a mailcart. Like, a literal cart that has a bunch of mail. Now, each component recieves the mailcart, looks for letters addressed to it, and then passes
 it on to the next component. The <code>update</code> routine now does exactly that.</p>
-
 <p>So the major difference is that instead of each component directly influencing another, they now interact only through messages. Now, the engine could care less
 what pressing <code>&gt;</code> does, it just generates a message saying &ldquo;Hey, this key was pressed&rdquo; and sticks it in the mailcart. The state doesn&rsquo;t care about that message,
 so whatever, sticks it back in the mailcart. The active window pulls that out of the mailcart and decides that pressing that means the player needs to move down
 a flight of stairs. The window generates a message saying &ldquo;Hey player, move downstairs&rdquo; and puts that message in the cart. When the cart gets to the player,
 the player checks to see if it is standing on stairs and if so moves down them.</p>
-
 <p>Previously this would have been handled by something like</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">states_[activeState]-&gt;window_[activeWindow]-&gt;world_-&gt;locations[world_-&gt;currentLocationID]-&gt;player-&gt;moveDownstairs();
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">states_[activeState]<span style="color:#f92672">-&gt;</span>window_[activeWindow]<span style="color:#f92672">-&gt;</span>world_<span style="color:#f92672">-&gt;</span>locations[world_<span style="color:#f92672">-&gt;</span>currentLocationID]<span style="color:#f92672">-&gt;</span>player<span style="color:#f92672">-&gt;</span>moveDownstairs();
 </code></pre></div>
-
 <p>Yuck. Lets replace that with:</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Engine::HandleEvents()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Engine<span style="color:#f92672">::</span>HandleEvents()
 {
 ...
-    mailbox_-&gt;push_back(Message::toState(Command::Keypress, <span style="color:#00afaf">&#39;&gt;&#39;</span>);
+    mailbox_<span style="color:#f92672">-&gt;</span>push_back(Message<span style="color:#f92672">::</span>toState(Command<span style="color:#f92672">::</span>Keypress, <span style="color:#e6db74">&#39;&gt;&#39;</span>);
 ...
 }
 
-GameWindow::ProcessMessage()
+GameWindow<span style="color:#f92672">::</span>ProcessMessage()
 {
 ...
-    mailbox_-&gt;push_back(Message::toPlayer(Command::MoveDownStairs));
+    mailbox_<span style="color:#f92672">-&gt;</span>push_back(Message<span style="color:#f92672">::</span>toPlayer(Command<span style="color:#f92672">::</span>MoveDownStairs));
 ...
 }
 </code></pre></div>
-
 <p>Much, much more readable and less prone to accidentally breaking. So each component during the update routine recieves the mail cart, looks through each message,
 processes each one that is addressed to it, and passes the mail cart to the next component.</p>
-
 <p>A cool side effect of doing things this way is that you don&rsquo;t have to worry about the timing of events at every step! Each component determines the order and
 priority of each message. To hell with micromanaging!</p>
-
 <p>The best part of all this was it made working with the UI so much simpler. An inventory window could read a keypress as a selection of a certain item, the game window could read the same keypress as an action! Opening and closing windows becomes a simple manner of sending a message to the State! Its simple and quick - especially
 because the only game entity that will interpret messages is the player. Everything else can generate messages, but has no need for intrepreting them.</p>
-
 <p>So, I made yet another little demo to test all this out, and it worked. Flawlessly. Now, I&rsquo;m beginning work rewriting the engine to use SFML (again) instead of SDL.
 I learned a lot from SDL, but also feel like I have no idea what I&rsquo;m doing and that there has to be a more efficient way. Conviently, since everything is decoupled
 so nicely this isn&rsquo;t really a big deal to switch frameworks. I&rsquo;ve also been polishing and cleaning up some of the code, and thinking about the next project: managing
 locations and travel? AI? Better dungeons?</p>
 
 </main>
-<div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">
+<hr/>
+<div style="width:100%;text-align:center;">
     
     <span>
         
-        <a href = "/posts/2017-01-07-gradients-and-actions/">&laquo;&laquo; Gradients for Colors, and Actions for Actors</a>
+        <a href = "/posts/2017-01-07-gradients-and-actions/">&laquo;&laquo; Previous Post</a>
     </span>
     
     
     <span>
         |
         
-        <a href = "/posts/2017-10-22-messing-with-web/">Messing With Web Design - Again &raquo;&raquo;</a>
+        <a href = "/posts/2017-10-22-messing-with-web/">Next Post &raquo;&raquo;</a>
     </span>
     
 </div>
-<br>
-
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'wsl-programming-blog';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<br/><br/>
+<a id="comments"></a>
+<div id="disqus_thread"></div>
+<script>
 
 
+
+var disqus_config = function () {
+    this.page.url =  null ;  
+    this.page.identifier =  null ; 
+};
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://wsl-blog-1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//wsl-blog-1.disqus.com/count.js" async></script>
+
+<br/><br/>
   <footer>
   
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-121310852-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
 
   
   <hr/>
-  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  © <a href="/about/">Z Wilder</a> 2016-2023 | <a href="https://github.com/zwilder/">Github</a>
   
   </footer>
+  <div id="ltbox">
+    <p>[Click Anywhere To Close]</p>
+    <div id="content">
+        <img src="#">
+    </div>
+</div>
+
   </body>
 </html>
 

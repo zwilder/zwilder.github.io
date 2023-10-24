@@ -3,372 +3,417 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fun With Dijkstra Mapping | WSL Programming Blog</title>
+    <title>Fun With Dijkstra Mapping | Wsl Blog</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Raleway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Belgrano|Lato&display=swap" rel="stylesheet">
 
-      
 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+    
+        
+    
+    $('.ltbox-trigger').click(function(e) {
+    	
+        
+		e.preventDefault();
+		
+		
+		var image_href = $(this).attr("href");
+		
+		
+
+		
+		if ($('#ltbox').length > 0) { 
+			
+			
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			
+			
+            
+            $('#ltbox').toggle();
+		}
+		
+        return false;
+    });
+    $('body').on('click', '#ltbox', function() { 
+        
+        $('#ltbox').toggle();
+    });
+});
+</script>
 
   </head>
 
   <body>
+      <div class="site-title">
+          <img class="wsl-logo" src="/wsl.svg" />
+          <span class="wsl-title">
+             Wsl Blog
+          </span>
+      </div>
     <nav>
-    <ul class="menu">
-      
-      <li><a href="/">home</a></li>
-      
-      <li><a href="/about/">about</a></li>
-      
-      <li><a href="/tags/">tags</a></li>
-      
-      <li><a href="/index.xml">rss</a></li>
-      
-    </ul>
+    <p class="sub-title">Adventures in making, arting, exploring, and other things.</p>
+    <div class="menu">
+        <ul>
+          
+              <li><a href="/">Home</a></li>
+          
+              <li><a href="/posts/">Archive</a></li>
+          
+              <li><a href="/categories/">Categories</a></li>
+          
+              <li><a href="/tags/">Tags</a></li>
+          
+              <li><a href="/subscribe/">Subscribe</a></li>
+          
+        </ul>
+    </div>
     <hr/>
     </nav>
 
 <div class="article-meta">
-<h1><span class="title">Fun With Dijkstra Mapping</span></h1>
+    <div class="title"><span>Fun With Dijkstra Mapping</span></div>
 
-<h2 class="date">15 July 2016</h2>
-
-<span style="font-size: 0.9em; font-family: 'Source Code Pro', monospace;text-align:center;">
-    
-    <a href="/tags/c&#43;&#43;">C&#43;&#43;</a> 
-    
-    <a href="/tags/roguelike">Roguelike</a> 
-    
-    <a href="/tags/ai">AI</a> 
-    
-</span>
-
+    <div>
+        
+          <span class="author">By Zach Wilder
+          </span>
+        
+        
+            <span class="date"> : Friday, July 15 2016</span>
+        
+    </div>
 </div>
-<hr>
+
+<hr/>
+
 <main>
 <p>Continuing in my never-ending project to make a &ldquo;simple&rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&rsquo;t going to work.</p>
-
 <p>After browsing <a href="http://www.reddit.com/r/roguelikedev">/r/roguelikedev</a> and <a href="http://www.roguebasin.com/">RogueBasin</a> I came across a few articles on &ldquo;need driven AI&rdquo; - an absurdly cool concept, and so (seemingly) simple to implement I wasn&rsquo;t sure how I didn&rsquo;t stumble across this earlier. Basically, creatures in the game assign a value to things they know about (treasure, the player, exits, other monsters they are friendly with, other monsters they are terrified of, etc. etc.) and make an &lsquo;informed&rsquo; decision about where to move next. A monster could desire killing the player over treasure, and would &ldquo;decide&rdquo; to move towards the player instead of a closer pile of gold. Maybe that monster is a pack hunter, and also strongly desires to be near it&rsquo;s pack - so when singled out it moves away to regroup with others. Cats could hunt mice, the undead could wander aimlessly attacking anything, golems could guard exits, archers could stay a safe distance away, and</p>
-
 <p>&hellip;</p>
-
-<p>Clearly, this idea has so many uses that I absolutely <strong>had</strong> to attempt an implementation in my game. The best <a href="http://www.roguebasin.com/index.php?title=The_Incredible_Power_of_Dijkstra_Maps">article</a> I found describing what I hope to accomplish was written by the creator of the awesome Brogue, and talked about something called &ldquo;Dijkstra mapping.&rdquo; A number on a Dijkstra map is the shortest distance from that tile to the goal. Moving from any numbered tile to any lower numbered tile adjacent will take you on the shortest path to the goal. Using this technique I could also accomplish intelligent pathfinding (another thing I&rsquo;ve never been quite able to do on my own). So,  the first step was to write up something to generate these maps.</p>
-
+<p>Clearly, this idea has so many uses that I absolutely <strong>had</strong> to attempt an implementation in my game. The best <a href="http://www.roguebasin.com/index.php?title=The_Incredible_Power_of_Dijkstra_Maps">article</a> I found describing what I hope to accomplish was written by the creator of the awesome Brogue, and talked about something called &ldquo;Dijkstra mapping.&rdquo; A number on a Dijkstra map is the shortest distance from that tile to the goal. Moving from any numbered tile to any lower numbered tile adjacent will take you on the shortest path to the goal. Using this technique I could also accomplish intelligent pathfinding (another thing I&rsquo;ve never been quite able to do on my own). So,	the first step was to write up something to generate these maps.</p>
 <p>After much confusion (I&rsquo;m still not much of a C++ programmer), I ended up with a fairly simple and straightforward set of code to generate a vector of integers representing a Dijkstra map from the vector of integers representing a normal dungeon map.</p>
-
-<p><em>As an aside, I previously determined that a vector of integers is my favorite way of representing a 2 dimensional map. The x,y coordinates can be mathematically used to determine the index of the vector if the width or height of the map is known. A simple enumeration in my map generator class assigns each number to a tile type, making it easy to say &ldquo;There is a wall at (32,16), and a floor at (5,5).&rdquo;</em></p>
-
+<p><em>As an aside, I previously determined that a vector of integers is my favorite way of representing a 2 dimensional map. The x,y coordinates can be mathematically used to determine the index of the vector if the width or height of the map is known. A simple enumeration in my map generator class assigns each number to a tile type, making it easy to say &ldquo;There is a wall at (32,16), and a floor at (5,5).&quot;</em></p>
 <p>The result (displayed on a Cartesian grid with the goal marked in red) looked like this:</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">                                                                                                                                                                                                                                                
-                                                                              <span style="color:#00afaf">28</span> <span style="color:#00afaf">27</span> <span style="color:#00afaf">26</span> <span style="color:#00afaf">25</span>    <span style="color:#00afaf">23</span> <span style="color:#00afaf">22</span> <span style="color:#00afaf">21</span> <span style="color:#00afaf">20</span> <span style="color:#00afaf">19</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">19</span> <span style="color:#00afaf">20</span> <span style="color:#00afaf">21</span> <span style="color:#00afaf">22</span>                                                                                                                      
-                                                                              <span style="color:#00afaf">27</span> <span style="color:#00afaf">26</span> <span style="color:#00afaf">25</span> <span style="color:#00afaf">24</span>    <span style="color:#00afaf">22</span> <span style="color:#00afaf">21</span> <span style="color:#00afaf">20</span> <span style="color:#00afaf">19</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">19</span> <span style="color:#00afaf">20</span> <span style="color:#00afaf">21</span>             <span style="color:#00afaf">38</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">33</span> <span style="color:#00afaf">32</span> <span style="color:#00afaf">31</span>          <span style="color:#00afaf">33</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">39</span> <span style="color:#00afaf">40</span> <span style="color:#00afaf">41</span> <span style="color:#00afaf">42</span> <span style="color:#00afaf">43</span> <span style="color:#00afaf">44</span> <span style="color:#00afaf">45</span> <span style="color:#00afaf">46</span> <span style="color:#00afaf">47</span> <span style="color:#00afaf">48</span>
-                                                                              <span style="color:#00afaf">26</span> <span style="color:#00afaf">25</span> <span style="color:#00afaf">24</span> <span style="color:#00afaf">23</span> <span style="color:#00afaf">22</span> <span style="color:#00afaf">21</span> <span style="color:#00afaf">20</span> <span style="color:#00afaf">19</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">16</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">19</span> <span style="color:#00afaf">20</span>                                  <span style="color:#00afaf">30</span>          <span style="color:#00afaf">32</span> <span style="color:#00afaf">33</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">39</span> <span style="color:#00afaf">40</span> <span style="color:#00afaf">41</span>             <span style="color:#00afaf">48</span>
-                                                                              <span style="color:#00afaf">27</span> <span style="color:#00afaf">26</span> <span style="color:#00afaf">25</span> <span style="color:#00afaf">24</span>    <span style="color:#00afaf">20</span> <span style="color:#00afaf">19</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">16</span> <span style="color:#00afaf">15</span> <span style="color:#00afaf">16</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">19</span>             <span style="color:#00afaf">36</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">33</span> <span style="color:#00afaf">32</span> <span style="color:#00afaf">31</span> <span style="color:#00afaf">30</span> <span style="color:#00afaf">29</span> <span style="color:#00afaf">28</span> <span style="color:#00afaf">29</span> <span style="color:#00afaf">30</span> <span style="color:#00afaf">31</span> <span style="color:#00afaf">32</span> <span style="color:#00afaf">33</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">39</span> <span style="color:#00afaf">40</span>       <span style="color:#00afaf">51</span> <span style="color:#00afaf">50</span> <span style="color:#00afaf">49</span> <span style="color:#00afaf">50</span>
-                                                      <span style="color:#00afaf">42</span> <span style="color:#00afaf">41</span> <span style="color:#00afaf">40</span> <span style="color:#00afaf">39</span> <span style="color:#00afaf">38</span>          <span style="color:#00afaf">28</span>             <span style="color:#00afaf">19</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">16</span> <span style="color:#00afaf">15</span> <span style="color:#00afaf">14</span> <span style="color:#00afaf">15</span> <span style="color:#00afaf">16</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">18</span>                                  <span style="color:#00afaf">28</span> <span style="color:#00afaf">27</span> <span style="color:#00afaf">28</span>    <span style="color:#00afaf">32</span> <span style="color:#00afaf">33</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">39</span> <span style="color:#00afaf">40</span> <span style="color:#00afaf">41</span>       <span style="color:#00afaf">52</span> <span style="color:#00afaf">51</span> <span style="color:#00afaf">50</span> <span style="color:#00afaf">51</span>
-                                                      <span style="color:#00afaf">41</span> <span style="color:#00afaf">40</span> <span style="color:#00afaf">39</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">37</span>    <span style="color:#00afaf">31</span> <span style="color:#00afaf">30</span> <span style="color:#00afaf">29</span> <span style="color:#00afaf">30</span>                         <span style="color:#00afaf">13</span>                                              <span style="color:#00afaf">27</span> <span style="color:#00afaf">26</span> <span style="color:#00afaf">27</span>    <span style="color:#00afaf">33</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">39</span> <span style="color:#00afaf">40</span> <span style="color:#00afaf">41</span> <span style="color:#00afaf">42</span>       <span style="color:#00afaf">53</span> <span style="color:#00afaf">52</span> <span style="color:#00afaf">51</span> <span style="color:#00afaf">52</span>
-                                                      <span style="color:#00afaf">40</span> <span style="color:#00afaf">39</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">36</span>    <span style="color:#00afaf">32</span> <span style="color:#00afaf">31</span> <span style="color:#00afaf">30</span> <span style="color:#00afaf">31</span> <span style="color:#00afaf">32</span> <span style="color:#00afaf">33</span>                <span style="color:#00afaf">13</span> <span style="color:#00afaf">12</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">10</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">12</span>                                  <span style="color:#00afaf">26</span> <span style="color:#00afaf">25</span> <span style="color:#00afaf">26</span>
-                                                      <span style="color:#00afaf">39</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">33</span> <span style="color:#00afaf">32</span> <span style="color:#00afaf">31</span> <span style="color:#00afaf">32</span>    <span style="color:#00afaf">34</span>    <span style="color:#00afaf">16</span> <span style="color:#00afaf">15</span> <span style="color:#00afaf">14</span> <span style="color:#00afaf">13</span> <span style="color:#00afaf">12</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">10</span>  <span style="color:#00afaf">9</span> <span style="color:#00afaf">10</span> <span style="color:#00afaf">11</span>                                  <span style="color:#00afaf">25</span> <span style="color:#00afaf">24</span> <span style="color:#00afaf">25</span>          <span style="color:#00afaf">29</span> <span style="color:#00afaf">30</span> <span style="color:#00afaf">31</span> <span style="color:#00afaf">32</span>    <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">39</span> <span style="color:#00afaf">40</span>
-                                                      <span style="color:#00afaf">40</span> <span style="color:#00afaf">39</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">36</span>                   <span style="color:#00afaf">35</span>                <span style="color:#00afaf">11</span> <span style="color:#00afaf">10</span>  <span style="color:#00afaf">9</span>  <span style="color:#00afaf">8</span>  <span style="color:#00afaf">9</span> <span style="color:#00afaf">10</span>                                     <span style="color:#00afaf">23</span>             <span style="color:#00afaf">28</span> <span style="color:#00afaf">29</span> <span style="color:#00afaf">30</span> <span style="color:#00afaf">31</span>    <span style="color:#00afaf">33</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">39</span> 
-                                                      <span style="color:#00afaf">41</span> <span style="color:#00afaf">40</span> <span style="color:#00afaf">39</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">37</span>                   <span style="color:#00afaf">36</span>                <span style="color:#00afaf">10</span>  <span style="color:#00afaf">9</span>  <span style="color:#00afaf">8</span>  <span style="color:#00afaf">7</span>  <span style="color:#00afaf">8</span>  <span style="color:#00afaf">9</span> <span style="color:#00afaf">10</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">12</span> <span style="color:#00afaf">13</span> <span style="color:#00afaf">14</span>       <span style="color:#00afaf">17</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">19</span> <span style="color:#00afaf">20</span> <span style="color:#00afaf">21</span> <span style="color:#00afaf">22</span> <span style="color:#00afaf">23</span> <span style="color:#00afaf">24</span> <span style="color:#00afaf">25</span> <span style="color:#00afaf">26</span> <span style="color:#00afaf">27</span> <span style="color:#00afaf">28</span> <span style="color:#00afaf">29</span> <span style="color:#00afaf">30</span> <span style="color:#00afaf">31</span> <span style="color:#00afaf">32</span> <span style="color:#00afaf">33</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span>
-                                                         <span style="color:#00afaf">41</span>                                                        <span style="color:#00afaf">6</span>                            <span style="color:#00afaf">16</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">19</span> <span style="color:#00afaf">20</span> <span style="color:#00afaf">21</span> <span style="color:#00afaf">22</span> <span style="color:#00afaf">23</span> <span style="color:#00afaf">24</span>    <span style="color:#00afaf">28</span> <span style="color:#00afaf">29</span> <span style="color:#00afaf">30</span> <span style="color:#00afaf">31</span>    <span style="color:#00afaf">33</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">39</span>
-                                                <span style="color:#00afaf">45</span> <span style="color:#00afaf">44</span> <span style="color:#00afaf">43</span> <span style="color:#00afaf">42</span> <span style="color:#00afaf">43</span> <span style="color:#00afaf">44</span>             <span style="color:#00afaf">63</span>                 <span style="color:#00afaf">5</span>  <span style="color:#00afaf">4</span>  <span style="color:#00afaf">3</span>  <span style="color:#00afaf">2</span>  <span style="color:#00afaf">3</span>  <span style="color:#00afaf">4</span>  <span style="color:#00afaf">5</span>  <span style="color:#00afaf">6</span>     <span style="color:#00afaf">8</span>  <span style="color:#00afaf">9</span> <span style="color:#00afaf">10</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">12</span> <span style="color:#00afaf">13</span> <span style="color:#00afaf">14</span> <span style="color:#00afaf">15</span> <span style="color:#00afaf">16</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">19</span> <span style="color:#00afaf">20</span> <span style="color:#00afaf">21</span> <span style="color:#00afaf">22</span> <span style="color:#00afaf">23</span>    <span style="color:#00afaf">29</span> <span style="color:#00afaf">30</span> <span style="color:#00afaf">31</span> <span style="color:#00afaf">32</span> 
-                                                <span style="color:#00afaf">46</span> <span style="color:#00afaf">45</span> <span style="color:#00afaf">44</span> <span style="color:#00afaf">43</span> <span style="color:#00afaf">44</span> <span style="color:#00afaf">45</span>             <span style="color:#00afaf">62</span>                 <span style="color:#00afaf">4</span>  <span style="color:#00afaf">3</span>  <span style="color:#00afaf">2</span>  <span style="color:#00afaf">1</span>  <span style="color:#00afaf">2</span>  <span style="color:#00afaf">3</span>  <span style="color:#00afaf">4</span>  <span style="color:#00afaf">5</span>     <span style="color:#00afaf">7</span>  <span style="color:#00afaf">8</span>  <span style="color:#00afaf">9</span> <span style="color:#00afaf">10</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">12</span>    <span style="color:#00afaf">16</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">19</span> <span style="color:#00afaf">20</span> <span style="color:#00afaf">21</span> <span style="color:#00afaf">22</span> <span style="color:#00afaf">23</span> <span style="color:#00afaf">24</span> 
-                                                <span style="color:#00afaf">47</span> <span style="color:#00afaf">46</span> <span style="color:#00afaf">45</span> <span style="color:#00afaf">44</span> <span style="color:#00afaf">45</span> <span style="color:#00afaf">46</span>             <span style="color:#00afaf">61</span>                 <span style="color:#00afaf">3</span>  <span style="color:#00afaf">2</span>  <span style="color:#00afaf">1</span> _@_ <span style="color:#00afaf">1</span>  <span style="color:#00afaf">2</span>  <span style="color:#00afaf">3</span>  <span style="color:#00afaf">4</span>  <span style="color:#00afaf">5</span>  <span style="color:#00afaf">6</span>  <span style="color:#00afaf">7</span>  <span style="color:#00afaf">8</span>  <span style="color:#00afaf">9</span> <span style="color:#00afaf">10</span> <span style="color:#00afaf">11</span>             <span style="color:#00afaf">20</span>
-               <span style="color:#00afaf">59</span> <span style="color:#00afaf">58</span> <span style="color:#00afaf">57</span> <span style="color:#00afaf">56</span> <span style="color:#00afaf">55</span> <span style="color:#00afaf">54</span> <span style="color:#00afaf">53</span> <span style="color:#00afaf">52</span> <span style="color:#00afaf">51</span> <span style="color:#00afaf">50</span> <span style="color:#00afaf">49</span> <span style="color:#00afaf">48</span> <span style="color:#00afaf">47</span> <span style="color:#00afaf">46</span> <span style="color:#00afaf">45</span> <span style="color:#00afaf">46</span> <span style="color:#00afaf">47</span>             <span style="color:#00afaf">60</span>                 <span style="color:#00afaf">4</span>  <span style="color:#00afaf">3</span>  <span style="color:#00afaf">2</span>  <span style="color:#00afaf">1</span>  <span style="color:#00afaf">2</span>  <span style="color:#00afaf">3</span>  <span style="color:#00afaf">4</span>  <span style="color:#00afaf">5</span>     <span style="color:#00afaf">7</span>  <span style="color:#00afaf">8</span>  <span style="color:#00afaf">9</span> <span style="color:#00afaf">10</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">12</span>          <span style="color:#00afaf">22</span> <span style="color:#00afaf">21</span> <span style="color:#00afaf">22</span>
-                  <span style="color:#00afaf">59</span>                            <span style="color:#00afaf">49</span> <span style="color:#00afaf">48</span> <span style="color:#00afaf">47</span> <span style="color:#00afaf">46</span> <span style="color:#00afaf">47</span> <span style="color:#00afaf">48</span>             <span style="color:#00afaf">59</span>                 <span style="color:#00afaf">5</span>  <span style="color:#00afaf">4</span>  <span style="color:#00afaf">3</span>  <span style="color:#00afaf">2</span>  <span style="color:#00afaf">3</span>  <span style="color:#00afaf">4</span>  <span style="color:#00afaf">5</span>  <span style="color:#00afaf">6</span>                               <span style="color:#00afaf">23</span> <span style="color:#00afaf">22</span> <span style="color:#00afaf">23</span>
-               <span style="color:#00afaf">61</span> <span style="color:#00afaf">60</span> <span style="color:#00afaf">61</span>                                     <span style="color:#00afaf">48</span>                <span style="color:#00afaf">58</span>                 <span style="color:#00afaf">6</span>                                                    <span style="color:#00afaf">24</span> <span style="color:#00afaf">23</span> <span style="color:#00afaf">24</span>
-               <span style="color:#00afaf">62</span> <span style="color:#00afaf">61</span> <span style="color:#00afaf">62</span>                <span style="color:#00afaf">56</span> <span style="color:#00afaf">55</span> <span style="color:#00afaf">54</span> <span style="color:#00afaf">53</span> <span style="color:#00afaf">52</span> <span style="color:#00afaf">51</span> <span style="color:#00afaf">50</span> <span style="color:#00afaf">49</span> <span style="color:#00afaf">50</span> <span style="color:#00afaf">51</span> <span style="color:#00afaf">52</span> <span style="color:#00afaf">53</span>    <span style="color:#00afaf">57</span>    <span style="color:#00afaf">11</span> <span style="color:#00afaf">10</span>  <span style="color:#00afaf">9</span>  <span style="color:#00afaf">8</span>  <span style="color:#00afaf">7</span>  <span style="color:#00afaf">8</span>  <span style="color:#00afaf">9</span> <span style="color:#00afaf">10</span>                                           <span style="color:#00afaf">25</span> <span style="color:#00afaf">24</span> <span style="color:#00afaf">25</span>
-               <span style="color:#00afaf">63</span> <span style="color:#00afaf">62</span> <span style="color:#00afaf">63</span>                <span style="color:#00afaf">57</span>    <span style="color:#00afaf">55</span> <span style="color:#00afaf">54</span> <span style="color:#00afaf">53</span> <span style="color:#00afaf">52</span> <span style="color:#00afaf">51</span> <span style="color:#00afaf">50</span> <span style="color:#00afaf">51</span> <span style="color:#00afaf">52</span> <span style="color:#00afaf">53</span> <span style="color:#00afaf">54</span> <span style="color:#00afaf">55</span> <span style="color:#00afaf">56</span>    <span style="color:#00afaf">12</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">10</span>  <span style="color:#00afaf">9</span>  <span style="color:#00afaf">8</span>  <span style="color:#00afaf">9</span> <span style="color:#00afaf">10</span> <span style="color:#00afaf">11</span>                                           <span style="color:#00afaf">26</span> <span style="color:#00afaf">25</span> <span style="color:#00afaf">26</span>    <span style="color:#00afaf">30</span> <span style="color:#00afaf">31</span> <span style="color:#00afaf">32</span> <span style="color:#00afaf">33</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">39</span> 
-               <span style="color:#00afaf">64</span> <span style="color:#00afaf">63</span> <span style="color:#00afaf">64</span>                <span style="color:#00afaf">58</span>    <span style="color:#00afaf">56</span> <span style="color:#00afaf">55</span> <span style="color:#00afaf">54</span> <span style="color:#00afaf">53</span> <span style="color:#00afaf">52</span> <span style="color:#00afaf">51</span> <span style="color:#00afaf">52</span> <span style="color:#00afaf">53</span> <span style="color:#00afaf">54</span> <span style="color:#00afaf">55</span>          <span style="color:#00afaf">13</span> <span style="color:#00afaf">12</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">10</span>  <span style="color:#00afaf">9</span> <span style="color:#00afaf">10</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">12</span>                                     <span style="color:#00afaf">29</span> <span style="color:#00afaf">28</span> <span style="color:#00afaf">27</span> <span style="color:#00afaf">26</span> <span style="color:#00afaf">27</span> <span style="color:#00afaf">28</span> <span style="color:#00afaf">29</span> <span style="color:#00afaf">30</span> <span style="color:#00afaf">31</span> <span style="color:#00afaf">32</span> <span style="color:#00afaf">33</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span>
-               <span style="color:#00afaf">65</span> <span style="color:#00afaf">64</span> <span style="color:#00afaf">65</span>                <span style="color:#00afaf">59</span>                                           <span style="color:#00afaf">14</span> <span style="color:#00afaf">13</span> <span style="color:#00afaf">12</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">10</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">12</span> <span style="color:#00afaf">13</span>                                     <span style="color:#00afaf">30</span>    <span style="color:#00afaf">28</span> <span style="color:#00afaf">27</span> <span style="color:#00afaf">28</span>    <span style="color:#00afaf">30</span> <span style="color:#00afaf">31</span> <span style="color:#00afaf">32</span> <span style="color:#00afaf">33</span> <span style="color:#00afaf">34</span> <span style="color:#00afaf">35</span> <span style="color:#00afaf">36</span> <span style="color:#00afaf">37</span> <span style="color:#00afaf">38</span> <span style="color:#00afaf">39</span> 
-                     <span style="color:#00afaf">66</span>                <span style="color:#00afaf">60</span>                                           <span style="color:#00afaf">15</span> <span style="color:#00afaf">14</span> <span style="color:#00afaf">13</span> <span style="color:#00afaf">12</span> <span style="color:#00afaf">11</span> <span style="color:#00afaf">12</span> <span style="color:#00afaf">13</span> <span style="color:#00afaf">14</span>                                     <span style="color:#00afaf">31</span> 
-            <span style="color:#00afaf">70</span> <span style="color:#00afaf">69</span> <span style="color:#00afaf">68</span> <span style="color:#00afaf">67</span> <span style="color:#00afaf">68</span> <span style="color:#00afaf">69</span> <span style="color:#00afaf">70</span>       <span style="color:#00afaf">61</span>                                           <span style="color:#00afaf">16</span> <span style="color:#00afaf">15</span> <span style="color:#00afaf">14</span> <span style="color:#00afaf">13</span> <span style="color:#00afaf">12</span> <span style="color:#00afaf">13</span> <span style="color:#00afaf">14</span> <span style="color:#00afaf">15</span>
-            <span style="color:#00afaf">71</span> <span style="color:#00afaf">70</span> <span style="color:#00afaf">69</span> <span style="color:#00afaf">68</span> <span style="color:#00afaf">69</span> <span style="color:#00afaf">70</span> <span style="color:#00afaf">71</span>       <span style="color:#00afaf">62</span>                                           <span style="color:#00afaf">17</span> <span style="color:#00afaf">16</span> <span style="color:#00afaf">15</span> <span style="color:#00afaf">14</span> <span style="color:#00afaf">13</span> <span style="color:#00afaf">14</span> <span style="color:#00afaf">15</span> <span style="color:#00afaf">16</span>
-            <span style="color:#00afaf">72</span> <span style="color:#00afaf">71</span> <span style="color:#00afaf">70</span> <span style="color:#00afaf">69</span> <span style="color:#00afaf">70</span> <span style="color:#00afaf">71</span> <span style="color:#00afaf">72</span>       <span style="color:#00afaf">63</span>                                           <span style="color:#00afaf">18</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">16</span> <span style="color:#00afaf">15</span> <span style="color:#00afaf">14</span> <span style="color:#00afaf">15</span> <span style="color:#00afaf">16</span> <span style="color:#00afaf">17</span>
-                                       <span style="color:#00afaf">64</span>                                           <span style="color:#00afaf">19</span> <span style="color:#00afaf">18</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">16</span> <span style="color:#00afaf">15</span> <span style="color:#00afaf">16</span> <span style="color:#00afaf">17</span> <span style="color:#00afaf">18</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">                                                                                                                                                                                                                                                
+                                                                              <span style="color:#ae81ff">28</span> <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">26</span> <span style="color:#ae81ff">25</span>    <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">22</span>                                                                                                                      
+                                                                              <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">26</span> <span style="color:#ae81ff">25</span> <span style="color:#ae81ff">24</span>    <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">21</span>             <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">31</span>          <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">41</span> <span style="color:#ae81ff">42</span> <span style="color:#ae81ff">43</span> <span style="color:#ae81ff">44</span> <span style="color:#ae81ff">45</span> <span style="color:#ae81ff">46</span> <span style="color:#ae81ff">47</span> <span style="color:#ae81ff">48</span>
+                                                                              <span style="color:#ae81ff">26</span> <span style="color:#ae81ff">25</span> <span style="color:#ae81ff">24</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">20</span>                                  <span style="color:#ae81ff">30</span>          <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">41</span>             <span style="color:#ae81ff">48</span>
+                                                                              <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">26</span> <span style="color:#ae81ff">25</span> <span style="color:#ae81ff">24</span>    <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">19</span>             <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">28</span> <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">40</span>       <span style="color:#ae81ff">51</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">49</span> <span style="color:#ae81ff">50</span>
+                                                      <span style="color:#ae81ff">42</span> <span style="color:#ae81ff">41</span> <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">38</span>          <span style="color:#ae81ff">28</span>             <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">18</span>                                  <span style="color:#ae81ff">28</span> <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">28</span>    <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">41</span>       <span style="color:#ae81ff">52</span> <span style="color:#ae81ff">51</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">51</span>
+                                                      <span style="color:#ae81ff">41</span> <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">37</span>    <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">30</span>                         <span style="color:#ae81ff">13</span>                                              <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">26</span> <span style="color:#ae81ff">27</span>    <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">41</span> <span style="color:#ae81ff">42</span>       <span style="color:#ae81ff">53</span> <span style="color:#ae81ff">52</span> <span style="color:#ae81ff">51</span> <span style="color:#ae81ff">52</span>
+                                                      <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">36</span>    <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">33</span>                <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span>                                  <span style="color:#ae81ff">26</span> <span style="color:#ae81ff">25</span> <span style="color:#ae81ff">26</span>
+                                                      <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">32</span>    <span style="color:#ae81ff">34</span>    <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">10</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span>                                  <span style="color:#ae81ff">25</span> <span style="color:#ae81ff">24</span> <span style="color:#ae81ff">25</span>          <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">32</span>    <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">40</span>
+                                                      <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">36</span>                   <span style="color:#ae81ff">35</span>                <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">10</span>  <span style="color:#ae81ff">9</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span>                                     <span style="color:#ae81ff">23</span>             <span style="color:#ae81ff">28</span> <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">31</span>    <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">39</span> 
+                                                      <span style="color:#ae81ff">41</span> <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">39</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">37</span>                   <span style="color:#ae81ff">36</span>                <span style="color:#ae81ff">10</span>  <span style="color:#ae81ff">9</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">14</span>       <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">24</span> <span style="color:#ae81ff">25</span> <span style="color:#ae81ff">26</span> <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">28</span> <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span>
+                                                         <span style="color:#ae81ff">41</span>                                                        <span style="color:#ae81ff">6</span>                            <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">24</span>    <span style="color:#ae81ff">28</span> <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">31</span>    <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">39</span>
+                                                <span style="color:#ae81ff">45</span> <span style="color:#ae81ff">44</span> <span style="color:#ae81ff">43</span> <span style="color:#ae81ff">42</span> <span style="color:#ae81ff">43</span> <span style="color:#ae81ff">44</span>             <span style="color:#ae81ff">63</span>                 <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">6</span>     <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">23</span>    <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">32</span> 
+                                                <span style="color:#ae81ff">46</span> <span style="color:#ae81ff">45</span> <span style="color:#ae81ff">44</span> <span style="color:#ae81ff">43</span> <span style="color:#ae81ff">44</span> <span style="color:#ae81ff">45</span>             <span style="color:#ae81ff">62</span>                 <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>     <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span>    <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">24</span> 
+                                                <span style="color:#ae81ff">47</span> <span style="color:#ae81ff">46</span> <span style="color:#ae81ff">45</span> <span style="color:#ae81ff">44</span> <span style="color:#ae81ff">45</span> <span style="color:#ae81ff">46</span>             <span style="color:#ae81ff">61</span>                 <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">1</span> _<span style="color:#960050;background-color:#1e0010">@</span>_ <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span>             <span style="color:#ae81ff">20</span>
+               <span style="color:#ae81ff">59</span> <span style="color:#ae81ff">58</span> <span style="color:#ae81ff">57</span> <span style="color:#ae81ff">56</span> <span style="color:#ae81ff">55</span> <span style="color:#ae81ff">54</span> <span style="color:#ae81ff">53</span> <span style="color:#ae81ff">52</span> <span style="color:#ae81ff">51</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">49</span> <span style="color:#ae81ff">48</span> <span style="color:#ae81ff">47</span> <span style="color:#ae81ff">46</span> <span style="color:#ae81ff">45</span> <span style="color:#ae81ff">46</span> <span style="color:#ae81ff">47</span>             <span style="color:#ae81ff">60</span>                 <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>     <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span>          <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">22</span>
+                  <span style="color:#ae81ff">59</span>                            <span style="color:#ae81ff">49</span> <span style="color:#ae81ff">48</span> <span style="color:#ae81ff">47</span> <span style="color:#ae81ff">46</span> <span style="color:#ae81ff">47</span> <span style="color:#ae81ff">48</span>             <span style="color:#ae81ff">59</span>                 <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">6</span>                               <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">23</span>
+               <span style="color:#ae81ff">61</span> <span style="color:#ae81ff">60</span> <span style="color:#ae81ff">61</span>                                     <span style="color:#ae81ff">48</span>                <span style="color:#ae81ff">58</span>                 <span style="color:#ae81ff">6</span>                                                    <span style="color:#ae81ff">24</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">24</span>
+               <span style="color:#ae81ff">62</span> <span style="color:#ae81ff">61</span> <span style="color:#ae81ff">62</span>                <span style="color:#ae81ff">56</span> <span style="color:#ae81ff">55</span> <span style="color:#ae81ff">54</span> <span style="color:#ae81ff">53</span> <span style="color:#ae81ff">52</span> <span style="color:#ae81ff">51</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">49</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">51</span> <span style="color:#ae81ff">52</span> <span style="color:#ae81ff">53</span>    <span style="color:#ae81ff">57</span>    <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">10</span>  <span style="color:#ae81ff">9</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span>                                           <span style="color:#ae81ff">25</span> <span style="color:#ae81ff">24</span> <span style="color:#ae81ff">25</span>
+               <span style="color:#ae81ff">63</span> <span style="color:#ae81ff">62</span> <span style="color:#ae81ff">63</span>                <span style="color:#ae81ff">57</span>    <span style="color:#ae81ff">55</span> <span style="color:#ae81ff">54</span> <span style="color:#ae81ff">53</span> <span style="color:#ae81ff">52</span> <span style="color:#ae81ff">51</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">51</span> <span style="color:#ae81ff">52</span> <span style="color:#ae81ff">53</span> <span style="color:#ae81ff">54</span> <span style="color:#ae81ff">55</span> <span style="color:#ae81ff">56</span>    <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">10</span>  <span style="color:#ae81ff">9</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span>                                           <span style="color:#ae81ff">26</span> <span style="color:#ae81ff">25</span> <span style="color:#ae81ff">26</span>    <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">39</span> 
+               <span style="color:#ae81ff">64</span> <span style="color:#ae81ff">63</span> <span style="color:#ae81ff">64</span>                <span style="color:#ae81ff">58</span>    <span style="color:#ae81ff">56</span> <span style="color:#ae81ff">55</span> <span style="color:#ae81ff">54</span> <span style="color:#ae81ff">53</span> <span style="color:#ae81ff">52</span> <span style="color:#ae81ff">51</span> <span style="color:#ae81ff">52</span> <span style="color:#ae81ff">53</span> <span style="color:#ae81ff">54</span> <span style="color:#ae81ff">55</span>          <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">10</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span>                                     <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">28</span> <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">26</span> <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">28</span> <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span>
+               <span style="color:#ae81ff">65</span> <span style="color:#ae81ff">64</span> <span style="color:#ae81ff">65</span>                <span style="color:#ae81ff">59</span>                                           <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">13</span>                                     <span style="color:#ae81ff">30</span>    <span style="color:#ae81ff">28</span> <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">28</span>    <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">31</span> <span style="color:#ae81ff">32</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">35</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">37</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">39</span> 
+                     <span style="color:#ae81ff">66</span>                <span style="color:#ae81ff">60</span>                                           <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">14</span>                                     <span style="color:#ae81ff">31</span> 
+            <span style="color:#ae81ff">70</span> <span style="color:#ae81ff">69</span> <span style="color:#ae81ff">68</span> <span style="color:#ae81ff">67</span> <span style="color:#ae81ff">68</span> <span style="color:#ae81ff">69</span> <span style="color:#ae81ff">70</span>       <span style="color:#ae81ff">61</span>                                           <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">15</span>
+            <span style="color:#ae81ff">71</span> <span style="color:#ae81ff">70</span> <span style="color:#ae81ff">69</span> <span style="color:#ae81ff">68</span> <span style="color:#ae81ff">69</span> <span style="color:#ae81ff">70</span> <span style="color:#ae81ff">71</span>       <span style="color:#ae81ff">62</span>                                           <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">16</span>
+            <span style="color:#ae81ff">72</span> <span style="color:#ae81ff">71</span> <span style="color:#ae81ff">70</span> <span style="color:#ae81ff">69</span> <span style="color:#ae81ff">70</span> <span style="color:#ae81ff">71</span> <span style="color:#ae81ff">72</span>       <span style="color:#ae81ff">63</span>                                           <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">17</span>
+                                       <span style="color:#ae81ff">64</span>                                           <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">18</span>
 </code></pre></div>
-
 <p>Neat right?? Here&rsquo;s the code.</p>
-
-<p><div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">#pragma once
-</span><span style="color:#5f8700">#ifndef WSL_DIJKSTRA_HPP
-</span><span style="color:#5f8700">#define WSL_DIJKSTRA_HPP
-</span><span style="color:#5f8700"></span>
-<span style="color:#5f8700">#include</span> <span style="color:#5f8700">&lt;vector&gt;</span><span style="color:#5f8700">
-</span><span style="color:#5f8700">#include</span> <span style="color:#5f8700">&lt;algorithm&gt; // std::min_element</span><span style="color:#5f8700">
-</span><span style="color:#5f8700">#include</span> <span style="color:#5f8700">&lt;iterator&gt;  // std::begin, std::end</span><span style="color:#5f8700">
-</span><span style="color:#5f8700">#include</span> <span style="color:#5f8700">&#34;wsl_wvec.hpp&#34;</span><span style="color:#5f8700">
-</span><span style="color:#5f8700"></span>
-<span style="color:#5f8700">namespace</span> wsl
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#pragma once
+</span><span style="color:#75715e">#ifndef WSL_DIJKSTRA_HPP
+</span><span style="color:#75715e">#define WSL_DIJKSTRA_HPP
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt; // std::min_element</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iterator&gt;  // std::begin, std::end</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;wsl_wvec.hpp&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> wsl
 {
-<span style="color:#5f8700">struct</span> DijkstraMap
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">DijkstraMap</span>
 {
-	std::vector&lt;<span style="color:#af0000">int</span>&gt; map;
-	<span style="color:#af0000">int</span> mapWidth;
-	<span style="color:#af0000">int</span> mapHeight;
+	std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> map;
+	<span style="color:#66d9ef">int</span> mapWidth;
+	<span style="color:#66d9ef">int</span> mapHeight;
 	DijkstraMap() { }
 };
 
-DijkstraMap <span style="color:#0087ff">generateDijkstra</span>(std::vector&lt;<span style="color:#af0000">int</span>&gt; inputMap, <span style="color:#af0000">int</span> w, <span style="color:#af0000">int</span> h, std::vector&lt; WVec2&lt;<span style="color:#af0000">int</span>&gt; &gt; goals);
-DijkstraMap <span style="color:#0087ff">generateDijkstra</span>(std::vector&lt;<span style="color:#af0000">int</span>&gt; inputMap, <span style="color:#af0000">int</span> w, <span style="color:#af0000">int</span> h, WVec2&lt;<span style="color:#af0000">int</span>&gt; goal);
+DijkstraMap <span style="color:#a6e22e">generateDijkstra</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> inputMap, <span style="color:#66d9ef">int</span> w, <span style="color:#66d9ef">int</span> h, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span> WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> goals);
+DijkstraMap <span style="color:#a6e22e">generateDijkstra</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> inputMap, <span style="color:#66d9ef">int</span> w, <span style="color:#66d9ef">int</span> h, WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> goal);
 
-DijkstraMap <span style="color:#0087ff">generateDijkstraSafety</span>(std::vector&lt;<span style="color:#af0000">int</span>&gt; inputMap, <span style="color:#af0000">int</span> w, <span style="color:#af0000">int</span> h, std::vector&lt; WVec2&lt;<span style="color:#af0000">int</span>&gt; &gt; goals);
-DijkstraMap <span style="color:#0087ff">generateDijkstraSafety</span>(std::vector&lt;<span style="color:#af0000">int</span>&gt; inputMap, <span style="color:#af0000">int</span> w, <span style="color:#af0000">int</span> h, WVec2&lt;<span style="color:#af0000">int</span>&gt; goal);
+DijkstraMap <span style="color:#a6e22e">generateDijkstraSafety</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> inputMap, <span style="color:#66d9ef">int</span> w, <span style="color:#66d9ef">int</span> h, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span> WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> goals);
+DijkstraMap <span style="color:#a6e22e">generateDijkstraSafety</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> inputMap, <span style="color:#66d9ef">int</span> w, <span style="color:#66d9ef">int</span> h, WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> goal);
 
-<span style="color:#af0000">void</span> <span style="color:#0087ff">scanDijkstra</span>(DijkstraMap &amp; inputMap);
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">scanDijkstra</span>(DijkstraMap <span style="color:#f92672">&amp;</span> inputMap);
 
-<span style="color:#af0000">int</span> <span style="color:#0087ff">getDijkstraIndex</span>(<span style="color:#af0000">int</span> w, <span style="color:#af0000">int</span> x, <span style="color:#af0000">int</span> y);
-<span style="color:#af0000">int</span> <span style="color:#0087ff">getDijkstraIndex</span>(DijkstraMap &amp; inputMap, <span style="color:#af0000">int</span> x, <span style="color:#af0000">int</span> y);
-<span style="color:#af0000">int</span> <span style="color:#0087ff">getDijkstraIndex</span>(DijkstraMap &amp; inputMap, WVec2&lt;<span style="color:#af0000">int</span>&gt; pos);
-<span style="color:#af0000">int</span> <span style="color:#0087ff">getDijkstraIndex</span>(WVec2&lt;<span style="color:#af0000">int</span>&gt; dim, <span style="color:#af0000">int</span> x, <span style="color:#af0000">int</span> y);
-<span style="color:#af0000">int</span> <span style="color:#0087ff">getDijkstraIndex</span>(WVec2&lt;<span style="color:#af0000">int</span>&gt; dim, WVec2&lt;<span style="color:#af0000">int</span>&gt; pos);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDijkstraIndex</span>(<span style="color:#66d9ef">int</span> w, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDijkstraIndex</span>(DijkstraMap <span style="color:#f92672">&amp;</span> inputMap, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDijkstraIndex</span>(DijkstraMap <span style="color:#f92672">&amp;</span> inputMap, WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> pos);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDijkstraIndex</span>(WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dim, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDijkstraIndex</span>(WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dim, WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> pos);
 
-} <span style="color:#4e4e4e">// namespace wsl
-</span><span style="color:#4e4e4e"></span>
-<span style="color:#5f8700">#endif </span><span style="color:#4e4e4e">// WSL_DIJKSTRA
-</span><span style="color:#4e4e4e"></span></code></pre></div></p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">#include</span> <span style="color:#5f8700">&#34;wsl_dijkstra.hpp&#34;</span><span style="color:#5f8700">
-</span><span style="color:#5f8700">#include</span> <span style="color:#5f8700">&lt;iostream&gt;</span><span style="color:#5f8700">
-</span><span style="color:#5f8700"></span>
-<span style="color:#5f8700">namespace</span> wsl
+} <span style="color:#75715e">// namespace wsl
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#endif </span><span style="color:#75715e">// WSL_DIJKSTRA
+</span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;wsl_dijkstra.hpp&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> wsl
 {
 
-<span style="color:#4e4e4e">/*
-</span><span style="color:#4e4e4e"> * These two functions take an input, generally generated by one of the map functions (IE: wsl::RLDungeon) with passable tiles set to a high number,
-</span><span style="color:#4e4e4e"> * and not passable tiles (IE: walls, pits, etc) set to exactly 999. The width and height of the map are also passed, and another function could be
-</span><span style="color:#4e4e4e"> * added to pass in a specific dungeon type... but I felt it was unnecessary. The goal/goals are passed as 2 dimensional vectors (WVec2).
-</span><span style="color:#4e4e4e"> *
-</span><span style="color:#4e4e4e"> */</span>
-DijkstraMap generateDijkstra(std::vector&lt;<span style="color:#af0000">int</span>&gt; inputMap, <span style="color:#af0000">int</span> w, <span style="color:#af0000">int</span> h, std::vector&lt; WVec2&lt;<span style="color:#af0000">int</span>&gt; &gt; goals)
+<span style="color:#75715e">/*
+</span><span style="color:#75715e"> * These two functions take an input, generally generated by one of the map functions (IE: wsl::RLDungeon) with passable tiles set to a high number,
+</span><span style="color:#75715e"> * and not passable tiles (IE: walls, pits, etc) set to exactly 999. The width and height of the map are also passed, and another function could be
+</span><span style="color:#75715e"> * added to pass in a specific dungeon type... but I felt it was unnecessary. The goal/goals are passed as 2 dimensional vectors (WVec2).
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> */</span>
+DijkstraMap <span style="color:#a6e22e">generateDijkstra</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> inputMap, <span style="color:#66d9ef">int</span> w, <span style="color:#66d9ef">int</span> h, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span> WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> goals)
 {
 	DijkstraMap resultMap;
-	resultMap.map = inputMap;
-	resultMap.mapWidth = w;
-	resultMap.mapHeight = h;
-	<span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i = <span style="color:#00afaf">0</span>; i &lt; goals.size(); ++i)
+	resultMap.map <span style="color:#f92672">=</span> inputMap;
+	resultMap.mapWidth <span style="color:#f92672">=</span> w;
+	resultMap.mapHeight <span style="color:#f92672">=</span> h;
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> goals.size(); <span style="color:#f92672">++</span>i)
 	{
-		resultMap.map[getDijkstraIndex(resultMap, goals[i])] = <span style="color:#00afaf">0</span>;
+		resultMap.map[getDijkstraIndex(resultMap, goals[i])] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 	}
 	scanDijkstra(resultMap);
-	<span style="color:#5f8700">return</span> resultMap;
+	<span style="color:#66d9ef">return</span> resultMap;
 }
 
-DijkstraMap generateDijkstra(std::vector&lt;<span style="color:#af0000">int</span>&gt; inputMap, <span style="color:#af0000">int</span> w, <span style="color:#af0000">int</span> h, WVec2&lt;<span style="color:#af0000">int</span>&gt; goal)
+DijkstraMap <span style="color:#a6e22e">generateDijkstra</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> inputMap, <span style="color:#66d9ef">int</span> w, <span style="color:#66d9ef">int</span> h, WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> goal)
 {
-	std::vector&lt; WVec2&lt;<span style="color:#af0000">int</span>&gt; &gt; goals;
+	std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span> WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> goals;
 	goals.push_back(goal);
-	<span style="color:#5f8700">return</span> <span style="color:#0087ff">generateDijkstra</span>(inputMap, w, h, goals);
+	<span style="color:#66d9ef">return</span> generateDijkstra(inputMap, w, h, goals);
 }
 
-<span style="color:#4e4e4e">/*
-</span><span style="color:#4e4e4e"> * Safety maps are a neat way to invert the Dijkstra maps, so that moving to lower numbers on the map will take you AWAY from the goal.
-</span><span style="color:#4e4e4e"> */</span>
+<span style="color:#75715e">/*
+</span><span style="color:#75715e"> * Safety maps are a neat way to invert the Dijkstra maps, so that moving to lower numbers on the map will take you AWAY from the goal.
+</span><span style="color:#75715e"> */</span>
 
-DijkstraMap generateDijkstraSafety(std::vector&lt;<span style="color:#af0000">int</span>&gt; inputMap, <span style="color:#af0000">int</span> w, <span style="color:#af0000">int</span> h, std::vector&lt; WVec2&lt;<span style="color:#af0000">int</span>&gt; &gt; goals)
+DijkstraMap <span style="color:#a6e22e">generateDijkstraSafety</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> inputMap, <span style="color:#66d9ef">int</span> w, <span style="color:#66d9ef">int</span> h, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span> WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> goals)
 {
-	DijkstraMap resultMap = generateDijkstra(inputMap, w, h, goals);
-	<span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i = <span style="color:#00afaf">0</span>; i &lt; resultMap.map.size(); ++i)
+	DijkstraMap resultMap <span style="color:#f92672">=</span> generateDijkstra(inputMap, w, h, goals);
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> resultMap.map.size(); <span style="color:#f92672">++</span>i)
 	{
-		<span style="color:#5f8700">if</span>(resultMap.map[i] == <span style="color:#00afaf">999</span>)
+		<span style="color:#66d9ef">if</span>(resultMap.map[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">999</span>)
 		{
-			<span style="color:#5f8700">continue</span>;
+			<span style="color:#66d9ef">continue</span>;
 		}
-		resultMap.map[i] *= -<span style="color:#00afaf">7</span>;
-		resultMap.map[i] /= <span style="color:#00afaf">5</span>;
+		resultMap.map[i] <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">7</span>;
+		resultMap.map[i] <span style="color:#f92672">/=</span> <span style="color:#ae81ff">5</span>;
 	}
 	scanDijkstra(resultMap);
-	<span style="color:#5f8700">return</span> resultMap;
+	<span style="color:#66d9ef">return</span> resultMap;
 }
 
-DijkstraMap generateDijkstraSafety(std::vector&lt;<span style="color:#af0000">int</span>&gt; inputMap, <span style="color:#af0000">int</span> w, <span style="color:#af0000">int</span> h, WVec2&lt;<span style="color:#af0000">int</span>&gt; goal)
+DijkstraMap <span style="color:#a6e22e">generateDijkstraSafety</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> inputMap, <span style="color:#66d9ef">int</span> w, <span style="color:#66d9ef">int</span> h, WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> goal)
 {
-	std::vector&lt; WVec2&lt;<span style="color:#af0000">int</span>&gt; &gt; goals;
+	std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span> WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> goals;
 	goals.push_back(goal);
-	<span style="color:#5f8700">return</span> <span style="color:#0087ff">generateDijkstraSafety</span>(inputMap, w, h, goals);
+	<span style="color:#66d9ef">return</span> generateDijkstraSafety(inputMap, w, h, goals);
 }
 
-<span style="color:#4e4e4e">/*
-</span><span style="color:#4e4e4e"> * The scanning function, the iteration through the map tiles could most likely be improved/sped up, but this was the simplest way to do it.
-</span><span style="color:#4e4e4e"> * The function takes a reference to a DijkstraMap, and modifies it directly.
-</span><span style="color:#4e4e4e"> */</span>
-<span style="color:#af0000">void</span> scanDijkstra(DijkstraMap &amp; inputMap)
+<span style="color:#75715e">/*
+</span><span style="color:#75715e"> * The scanning function, the iteration through the map tiles could most likely be improved/sped up, but this was the simplest way to do it.
+</span><span style="color:#75715e"> * The function takes a reference to a DijkstraMap, and modifies it directly.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">scanDijkstra</span>(DijkstraMap <span style="color:#f92672">&amp;</span> inputMap)
 {
-	<span style="color:#af0000">int</span> impassable = <span style="color:#00afaf">0</span>;
-	<span style="color:#af0000">int</span> passable = <span style="color:#00afaf">0</span>;
-	<span style="color:#af0000">int</span> changes = <span style="color:#00afaf">0</span>;
-	std::vector&lt; wsl::WVec2&lt;<span style="color:#af0000">int</span>&gt; &gt; passableCoords;
-	<span style="color:#5f8700">for</span> (<span style="color:#af0000">int</span> y = <span style="color:#00afaf">0</span>; y &lt; inputMap.mapHeight; ++y)
+	<span style="color:#66d9ef">int</span> impassable <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">int</span> passable <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">int</span> changes <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span> wsl<span style="color:#f92672">::</span>WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> passableCoords;
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; y <span style="color:#f92672">&lt;</span> inputMap.mapHeight; <span style="color:#f92672">++</span>y)
 	{
-		<span style="color:#5f8700">for</span> (<span style="color:#af0000">int</span> x = <span style="color:#00afaf">0</span>; x &lt; inputMap.mapWidth; ++x)
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; x <span style="color:#f92672">&lt;</span> inputMap.mapWidth; <span style="color:#f92672">++</span>x)
 		{
-			<span style="color:#af0000">int</span> index = getDijkstraIndex(inputMap, x, y);
-			<span style="color:#5f8700">if</span>(inputMap.map[index] == <span style="color:#00afaf">999</span>)
+			<span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> getDijkstraIndex(inputMap, x, y);
+			<span style="color:#66d9ef">if</span>(inputMap.map[index] <span style="color:#f92672">==</span> <span style="color:#ae81ff">999</span>)
 			{
-				impassable++;
-				<span style="color:#5f8700">continue</span>;
+				impassable<span style="color:#f92672">++</span>;
+				<span style="color:#66d9ef">continue</span>;
 			}
-			<span style="color:#5f8700">else</span>
+			<span style="color:#66d9ef">else</span>
 			{
-				passable++;
-				passableCoords.push_back(wsl::WVec2&lt;<span style="color:#af0000">int</span>&gt;(x, y));
+				passable<span style="color:#f92672">++</span>;
+				passableCoords.push_back(wsl<span style="color:#f92672">::</span>WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(x, y));
 			}
 		}
 	}
-	std::vector&lt;<span style="color:#af0000">bool</span>&gt; visited;
-	<span style="color:#af0000">int</span> target = passableCoords.size();
-	visited.assign(passableCoords.size(), <span style="color:#0087ff">false</span>);
-	<span style="color:#af0000">bool</span> madeChange = <span style="color:#0087ff">true</span>;
-	<span style="color:#5f8700">while</span>(madeChange)
+	std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> visited;
+	<span style="color:#66d9ef">int</span> target <span style="color:#f92672">=</span> passableCoords.size();
+	visited.assign(passableCoords.size(), false);
+	<span style="color:#66d9ef">bool</span> madeChange <span style="color:#f92672">=</span> true;
+	<span style="color:#66d9ef">while</span>(madeChange)
 	{
-		madeChange = <span style="color:#0087ff">false</span>;
-		<span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> j = <span style="color:#00afaf">0</span>; j &lt; passableCoords.size(); ++j)
+		madeChange <span style="color:#f92672">=</span> false;
+		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> passableCoords.size(); <span style="color:#f92672">++</span>j)
 		{
-			<span style="color:#5f8700">if</span>(visited[j])
+			<span style="color:#66d9ef">if</span>(visited[j])
 			{
-				<span style="color:#5f8700">continue</span>;
+				<span style="color:#66d9ef">continue</span>;
 			}
-			<span style="color:#af0000">int</span> x = passableCoords[j].x;
-			<span style="color:#af0000">int</span> y = passableCoords[j].y;
-			std::vector&lt;<span style="color:#af0000">int</span>&gt; minMaxVector;
+			<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> passableCoords[j].x;
+			<span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> passableCoords[j].y;
+			std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> minMaxVector;
 
-			<span style="color:#5f8700">if</span>(getDijkstraIndex(inputMap, x, y-<span style="color:#00afaf">1</span>) &gt; <span style="color:#00afaf">0</span>)
+			<span style="color:#66d9ef">if</span>(getDijkstraIndex(inputMap, x, y<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
 			{
-				minMaxVector.push_back(inputMap.map[getDijkstraIndex(inputMap, x, y-<span style="color:#00afaf">1</span>)]);
+				minMaxVector.push_back(inputMap.map[getDijkstraIndex(inputMap, x, y<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)]);
 			}
-			<span style="color:#5f8700">if</span>(getDijkstraIndex(inputMap, x, y+<span style="color:#00afaf">1</span>) &gt; <span style="color:#00afaf">0</span>)
+			<span style="color:#66d9ef">if</span>(getDijkstraIndex(inputMap, x, y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
 			{
-				minMaxVector.push_back(inputMap.map[getDijkstraIndex(inputMap, x, y+<span style="color:#00afaf">1</span>)]);
+				minMaxVector.push_back(inputMap.map[getDijkstraIndex(inputMap, x, y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)]);
 			}
-			<span style="color:#5f8700">if</span>(getDijkstraIndex(inputMap, x-<span style="color:#00afaf">1</span>, y) &gt; <span style="color:#00afaf">0</span>);
+			<span style="color:#66d9ef">if</span>(getDijkstraIndex(inputMap, x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, y) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
 			{
-				minMaxVector.push_back(inputMap.map[getDijkstraIndex(inputMap, x-<span style="color:#00afaf">1</span>, y)]);
+				minMaxVector.push_back(inputMap.map[getDijkstraIndex(inputMap, x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, y)]);
 			}
-			<span style="color:#5f8700">if</span>(getDijkstraIndex(inputMap, x+<span style="color:#00afaf">1</span>, y) &gt; <span style="color:#00afaf">0</span>)
+			<span style="color:#66d9ef">if</span>(getDijkstraIndex(inputMap, x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, y) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
 			{
-				minMaxVector.push_back(inputMap.map[getDijkstraIndex(inputMap, x+<span style="color:#00afaf">1</span>, y)]);
+				minMaxVector.push_back(inputMap.map[getDijkstraIndex(inputMap, x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, y)]);
 			} 
-			<span style="color:#af0000">int</span> minimum = *(std::min_element(std::begin(minMaxVector), std::end(minMaxVector)));
-			<span style="color:#af0000">int</span> index = getDijkstraIndex(inputMap, x, y);
-			<span style="color:#5f8700">if</span>((inputMap.map[index]) &gt; (<span style="color:#00afaf">2</span> * minimum))
+			<span style="color:#66d9ef">int</span> minimum <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(std<span style="color:#f92672">::</span>min_element(std<span style="color:#f92672">::</span>begin(minMaxVector), std<span style="color:#f92672">::</span>end(minMaxVector)));
+			<span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> getDijkstraIndex(inputMap, x, y);
+			<span style="color:#66d9ef">if</span>((inputMap.map[index]) <span style="color:#f92672">&gt;</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> minimum))
     		{
 
-    				inputMap.map[index] = <span style="color:#00afaf">1</span> + minimum;
-    				changes++;
-    				madeChange = <span style="color:#0087ff">true</span>;
-    				visited[j] = <span style="color:#0087ff">true</span>;
+    				inputMap.map[index] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> minimum;
+    				changes<span style="color:#f92672">++</span>;
+    				madeChange <span style="color:#f92672">=</span> true;
+    				visited[j] <span style="color:#f92672">=</span> true;
     		}
 		}
 	}
-	<span style="color:#4e4e4e">//if(changes != passableCoords.size())
-</span><span style="color:#4e4e4e"></span>	<span style="color:#4e4e4e">//{
-</span><span style="color:#4e4e4e"></span>	<span style="color:#4e4e4e">//	std::cout &lt;&lt; &#34;Changes do not equal passableCoords.size(): &#34; &lt;&lt; changes &lt;&lt; &#34; vs &#34; &lt;&lt; passableCoords.size() &lt;&lt; std::endl;
-</span><span style="color:#4e4e4e"></span>	<span style="color:#4e4e4e">//}
-</span><span style="color:#4e4e4e"></span>
+	<span style="color:#75715e">//if(changes != passableCoords.size())
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//{
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//	std::cout &lt;&lt; &#34;Changes do not equal passableCoords.size(): &#34; &lt;&lt; changes &lt;&lt; &#34; vs &#34; &lt;&lt; passableCoords.size() &lt;&lt; std::endl;
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//}
+</span><span style="color:#75715e"></span>
 }
 
-<span style="color:#4e4e4e">/*
-</span><span style="color:#4e4e4e"> * The getIndex functions will tell you the index of the DijkstraMap.map vector given an x,y coordinate.
-</span><span style="color:#4e4e4e"> */</span>
+<span style="color:#75715e">/*
+</span><span style="color:#75715e"> * The getIndex functions will tell you the index of the DijkstraMap.map vector given an x,y coordinate.
+</span><span style="color:#75715e"> */</span>
  
-<span style="color:#af0000">int</span> getDijkstraIndex(<span style="color:#af0000">int</span> w, <span style="color:#af0000">int</span> x, <span style="color:#af0000">int</span> y)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDijkstraIndex</span>(<span style="color:#66d9ef">int</span> w, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
 {
-	<span style="color:#af0000">int</span> index = (x + (w * y));
-    <span style="color:#5f8700">if</span> (index &lt; <span style="color:#00afaf">0</span>)
+	<span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> (x <span style="color:#f92672">+</span> (w <span style="color:#f92672">*</span> y));
+    <span style="color:#66d9ef">if</span> (index <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
     {
-        <span style="color:#5f8700">return</span> -<span style="color:#00afaf">1</span>; <span style="color:#4e4e4e">//Error, no tile found (necessary otherwise it could point to an item in the vector from the end)
-</span><span style="color:#4e4e4e"></span>    }
-    <span style="color:#5f8700">return</span> index;
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; <span style="color:#75715e">//Error, no tile found (necessary otherwise it could point to an item in the vector from the end)
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#66d9ef">return</span> index;
 }
 
-<span style="color:#af0000">int</span> getDijkstraIndex(DijkstraMap &amp; inputMap, <span style="color:#af0000">int</span> x, <span style="color:#af0000">int</span> y)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDijkstraIndex</span>(DijkstraMap <span style="color:#f92672">&amp;</span> inputMap, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
 {
-	<span style="color:#5f8700">return</span> getDijkstraIndex(inputMap.mapWidth, x, y);
+	<span style="color:#66d9ef">return</span> getDijkstraIndex(inputMap.mapWidth, x, y);
 }
 
-<span style="color:#af0000">int</span> getDijkstraIndex(DijkstraMap &amp; inputMap, WVec2&lt;<span style="color:#af0000">int</span>&gt; pos)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDijkstraIndex</span>(DijkstraMap <span style="color:#f92672">&amp;</span> inputMap, WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> pos)
 {
-	<span style="color:#5f8700">return</span> getDijkstraIndex(inputMap.mapWidth, pos.x, pos.y);
+	<span style="color:#66d9ef">return</span> getDijkstraIndex(inputMap.mapWidth, pos.x, pos.y);
 }
 
 
-<span style="color:#af0000">int</span> getDijkstraIndex(WVec2&lt;<span style="color:#af0000">int</span>&gt; dim, <span style="color:#af0000">int</span> x, <span style="color:#af0000">int</span> y)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDijkstraIndex</span>(WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dim, <span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
 {
-	<span style="color:#5f8700">return</span> getDijkstraIndex(dim.x, x, y);
+	<span style="color:#66d9ef">return</span> getDijkstraIndex(dim.x, x, y);
 }
 
-<span style="color:#af0000">int</span> getDijkstraIndex(WVec2&lt;<span style="color:#af0000">int</span>&gt; dim, WVec2&lt;<span style="color:#af0000">int</span>&gt; pos)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDijkstraIndex</span>(WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dim, WVec2<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> pos)
 {
-	<span style="color:#5f8700">return</span> getDijkstraIndex(dim.x, pos.x, pos.y);
+	<span style="color:#66d9ef">return</span> getDijkstraIndex(dim.x, pos.x, pos.y);
 }
 
-} <span style="color:#4e4e4e">// namespace wsl
-</span><span style="color:#4e4e4e"></span></code></pre></div>
-
+} <span style="color:#75715e">// namespace wsl
+</span></code></pre></div>
 <p>So it isn&rsquo;t perfect - I&rsquo;m sure the iteration through the map cells could be optimized to run differently, and I&rsquo;m not sure about making DijkstraMap a struct instead of a class. I originally tried this with a class, but the class seemed bulky and awkward to shove in to my game logic. Really, all the map should be is a vector of integers, and the only thing it needs to know about itself is the width/height of the map. Keeping the Dijkstra functions open and accessible means that they can be used anywhere, for really any reason.</p>
-
 <p>From here, I decided to see just how &lsquo;easily&rsquo; the maps could be used to implement things like auto-exploration of the map - turns out, it was INCREDIBLY easy. Instead of setting just one goal before generating the map, setting the goal to any unexplored area will cause the player to take the shortest possible route across the map to explore every single tile. Once all the tiles are explored, the goal is changed to the downward staircase, and the player paths quickly there.</p>
-
-<p>And here&rsquo;s a video of the auto-explore in action (I accidently forgot about the cursor when I started recording the screen&hellip;):
-<div style="margin: auto; text-align: center; position: relative; width: 100%; font-family: 'Roboto Mono', monospace; overflow: auto;">
-<video style="margin: auto; padding: 1px;" controls src="{{ site.baseurl }}/assets/AutoExplore.mp4" type="video/mp4">Your browser does not support embedded videos!</video>
-</div></p>
+<p>And here&rsquo;s a video of the auto-explore in action (I accidently forgot about the cursor when I started recording the screen&hellip;):</p>
+<div id="ltbox-div">
+    <a data-fancybox href="/images//AutoExplore.mp4">
+        <video controls id=" id "
+            style="max-width:33%;display: block;margin-left: auto;margin-right:auto;">
+            <source src="/images//AutoExplore.mp4" type="video/mp4">
+            Auto Explore Video
+        </video>
+    </a>
+</div>
 
 <p>The next project will be actually using this in the game AI, and adding a &lsquo;desire&rsquo; component for each monster. Of course, this might also be a good time to implement a time/turn tracking system&hellip; Or a health system&hellip;</p>
 
 </main>
-<div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">
+<hr/>
+<div style="width:100%;text-align:center;">
     
     
     <span>
         |
         
-        <a href = "/posts/2016-11-12-partying-with-jekyll/">Partying With Jekyll &raquo;&raquo;</a>
+        <a href = "/posts/2016-11-12-partying-with-jekyll/">Next Post &raquo;&raquo;</a>
     </span>
     
 </div>
-<br>
-
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'wsl-programming-blog';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<br/><br/>
+<a id="comments"></a>
+<div id="disqus_thread"></div>
+<script>
 
 
+
+var disqus_config = function () {
+    this.page.url =  null ;  
+    this.page.identifier =  null ; 
+};
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://wsl-blog-1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//wsl-blog-1.disqus.com/count.js" async></script>
+
+<br/><br/>
   <footer>
   
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-121310852-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
 
   
   <hr/>
-  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  © <a href="/about/">Z Wilder</a> 2016-2023 | <a href="https://github.com/zwilder/">Github</a>
   
   </footer>
+  <div id="ltbox">
+    <p>[Click Anywhere To Close]</p>
+    <div id="content">
+        <img src="#">
+    </div>
+</div>
+
   </body>
 </html>
 

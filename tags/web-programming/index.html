@@ -3,121 +3,201 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Web Programming | WSL Programming Blog</title>
+    <title>Web Programming | Wsl Blog</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Raleway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Belgrano|Lato&display=swap" rel="stylesheet">
 
-      
 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+    
+        
+    
+    $('.ltbox-trigger').click(function(e) {
+    	
+        
+		e.preventDefault();
+		
+		
+		var image_href = $(this).attr("href");
+		
+		
+
+		
+		if ($('#ltbox').length > 0) { 
+			
+			
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			
+			
+            
+            $('#ltbox').toggle();
+		}
+		
+        return false;
+    });
+    $('body').on('click', '#ltbox', function() { 
+        
+        $('#ltbox').toggle();
+    });
+});
+</script>
 
   </head>
 
   <body>
+      <div class="site-title">
+          <img class="wsl-logo" src="/wsl.svg" />
+          <span class="wsl-title">
+             Wsl Blog
+          </span>
+      </div>
     <nav>
-    <ul class="menu">
-      
-      <li><a href="/">home</a></li>
-      
-      <li><a href="/about/">about</a></li>
-      
-      <li><a href="/tags/">tags</a></li>
-      
-      <li><a href="/index.xml">rss</a></li>
-      
-    </ul>
+    <p class="sub-title">Adventures in making, arting, exploring, and other things.</p>
+    <div class="menu">
+        <ul>
+          
+              <li><a href="/">Home</a></li>
+          
+              <li><a href="/posts/">Archive</a></li>
+          
+              <li><a href="/categories/">Categories</a></li>
+          
+              <li><a href="/tags/">Tags</a></li>
+          
+              <li><a href="/subscribe/">Subscribe</a></li>
+          
+        </ul>
+    </div>
     <hr/>
     </nav>
 
 
+<div class="article-meta">
+    <div class="title"><span>Web Programming</span></div>
+</div>
+    <hr/>
+<main>
+    
 
-<h1 class="article-meta"> Stuff I Wrote About: Web Programming</h1>
-
-
-
-
-<hr />
-
-
-    <h4><a href="/posts/2017-10-22-messing-with-web/">Messing With Web Design - Again</a> - 22 October 2017</h4>
-    <div>
-        <p style="margin: 5px;">
-        Ok, so it turns out I still can&rsquo;t stand using a premade theme. I decided to look again at Hugo themes, and found XMin. Clean, simple, and a good basic idea of what I wanted this blog to look like. Cracked open the source code and was playing around&hellip; one thing led to another and this is what I ended up with.
+    
+        <div class="list-article">
+            
+            
+            <div class="list-title"><a href="/posts/2017-10-22-messing-with-web/">Messing With Web Design - Again</a></div>
+            
+                <span class="list-author">Zach Wilder</span>
+            
+            
+                <span class="list-date"> - 10/22/2017</span>
+            
+            <p class="list-summary">
+            Ok, so it turns out I still can&rsquo;t stand using a premade theme. I decided to look again at Hugo themes, and found XMin. Clean, simple, and a good basic idea of what I wanted this blog to look like. Cracked open the source code and was playing around&hellip; one thing led to another and this is what I ended up with.
 Really enjoying working with Hugo - haven&rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things.
+                
+                  <br/>
+                  <a href="/posts/2017-10-22-messing-with-web/">
+                    [Read more]
+                  </a>
+                
+            </p>
+        </div>
+    
+        <div class="list-article">
+            <hr class="list-break" \>
             
-            <a href="/posts/2017-10-22-messing-with-web/" style="height:28px; font-family: 'Source Code Pro', monospace;text-align:center;">
-                [Read more]
-              </a>
+            <div class="list-title"><a href="/posts/2017-10-15-yet-another-blog-attempt/">Yet Another Blog Attempt</a></div>
             
-        </p>
-        <br />
-    </div>
-
-    <h4><a href="/posts/2017-10-15-yet-another-blog-attempt/">Yet Another Blog Attempt</a> - 16 October 2017</h4>
-    <div>
-        <p style="margin: 5px;">
-        Man, I really don&rsquo;t do a lot of work on this blog - maybe because I am not a web programmer but I can see when this blog does not look very good.
+                <span class="list-author">Zach Wilder</span>
+            
+            
+                <span class="list-date"> - 10/16/2017</span>
+            
+            <p class="list-summary">
+            Man, I really don&rsquo;t do a lot of work on this blog - maybe because I am not a web programmer but I can see when this blog does not look very good.
 Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore.
+                
+                  <br/>
+                  <a href="/posts/2017-10-15-yet-another-blog-attempt/">
+                    [Read more]
+                  </a>
+                
+            </p>
+        </div>
+    
+        <div class="list-article">
+            <hr class="list-break" \>
             
-            <a href="/posts/2017-10-15-yet-another-blog-attempt/" style="height:28px; font-family: 'Source Code Pro', monospace;text-align:center;">
-                [Read more]
-              </a>
+            <div class="list-title"><a href="/posts/2016-11-15-commenting-system/">Commenting System with Staticman!</a></div>
             
-        </p>
-        <br />
-    </div>
-
-    <h4><a href="/posts/2016-11-15-commenting-system/">Commenting System with Staticman!</a> - 15 November 2016</h4>
-    <div>
-        <p style="margin: 5px;">
-        The one bad thing about hosting a static blog is that implementing comments means you:
+                <span class="list-author">Zach Wilder</span>
+            
+            
+                <span class="list-date"> - 11/15/2016</span>
+            
+            <p class="list-summary">
+            The one bad thing about hosting a static blog is that implementing comments means you:
  Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&rsquo;t an option - Disqus looks nice and all, and I&rsquo;m sure it would be fine for a lot of people, but it just wasn&rsquo;t what I wanted.
+                
+                  <br/>
+                  <a href="/posts/2016-11-15-commenting-system/">
+                    [Read more]
+                  </a>
+                
+            </p>
+        </div>
+    
+        <div class="list-article">
+            <hr class="list-break" \>
             
-            <a href="/posts/2016-11-15-commenting-system/" style="height:28px; font-family: 'Source Code Pro', monospace;text-align:center;">
-                [Read more]
-              </a>
+            <div class="list-title"><a href="/posts/2016-11-12-partying-with-jekyll/">Partying With Jekyll</a></div>
             
-        </p>
-        <br />
-    </div>
-
-    <h4><a href="/posts/2016-11-12-partying-with-jekyll/">Partying With Jekyll</a> - 12 November 2016</h4>
-    <div>
-        <p style="margin: 5px;">
-        I&rsquo;ve been wanting to fix this blog for a while now, and I decided in the process that I am awful at web design/programming. Haha, well, the first step to being kinda good at something is kinda sucking at something, right?
+                <span class="list-author">Zach Wilder</span>
+            
+            
+                <span class="list-date"> - 11/12/2016</span>
+            
+            <p class="list-summary">
+            I&rsquo;ve been wanting to fix this blog for a while now, and I decided in the process that I am awful at web design/programming. Haha, well, the first step to being kinda good at something is kinda sucking at something, right?
 In my scouring of the internet I discovered that a lot of static blog sites used Jekyll to generate their site. At first, I figured it was nothing more than another insta-blog program where you just dump some content into a folder and it spits out a blog - but holy cow it is so much more than (and can be exactly) that.
-            
-            <a href="/posts/2016-11-12-partying-with-jekyll/" style="height:28px; font-family: 'Source Code Pro', monospace;text-align:center;">
-                [Read more]
-              </a>
-            
-        </p>
-        <br />
-    </div>
-
+                
+                  <br/>
+                  <a href="/posts/2016-11-12-partying-with-jekyll/">
+                    [Read more]
+                  </a>
+                
+            </p>
+        </div>
+    
+</main>
 
   <footer>
   
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-121310852-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
 
   
   <hr/>
-  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  © <a href="/about/">Z Wilder</a> 2016-2023 | <a href="https://github.com/zwilder/">Github</a>
   
   </footer>
+  <div id="ltbox">
+    <p>[Click Anywhere To Close]</p>
+    <div id="content">
+        <img src="#">
+    </div>
+</div>
+
   </body>
 </html>
 

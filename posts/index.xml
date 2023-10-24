@@ -1,15 +1,81 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on WSL Programming Blog</title>
+    <title>Posts on Wsl Blog</title>
     <link>/posts/</link>
-    <description>Recent content in Posts on WSL Programming Blog</description>
+    <description>Recent content in Posts on Wsl Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Sep 2018 14:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 23 Oct 2023 14:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Techno-Necromancy</title>
+      <link>/posts/2023-10-23-necromancy/</link>
+      <pubDate>Mon, 23 Oct 2023 14:00:00 -0700</pubDate>
+      
+      <guid>/posts/2023-10-23-necromancy/</guid>
+      <description>Well, my ambition to change the blog to a collection of posts about what I&amp;rsquo;m currently doing apparently didn&amp;rsquo;t pan out for me posting more often. Time to bring the blog back from the dead - some techno-necromancy.
+What&amp;rsquo;s happened in the three years and change since the last post? A lot, actually. Ignoring the political landscape and all the nonsense from the COVID times is hard, and probably why I didn&amp;rsquo;t feel motivated to write anything about what I was doing with my personal life.</description>
+    </item>
+    
+    <item>
+      <title>Building a Daypack Ramblings</title>
+      <link>/posts/2020-09-12-18lpack/</link>
+      <pubDate>Sat, 12 Sep 2020 07:00:00 -0700</pubDate>
+      
+      <guid>/posts/2020-09-12-18lpack/</guid>
+      <description>Occasionally, I get ideas that creep into my brain and won&amp;rsquo;t leave until I fully explore them. Back in February, while still enjoying the nice Arizona winters, I was hiking with my trusty old camelback. I&amp;rsquo;m fond of that pack, despite it&amp;rsquo;s many shortcomings. It has lots of fun places to attach things, and carries around 2L of water. It has zero storage capacity, although you can shove like maybe a protein bar in with the bladder&amp;hellip; but that&amp;rsquo;s it.</description>
+    </item>
+    
+    <item>
+      <title>Reviving the Blog</title>
+      <link>/posts/2020-06-06-revivingtheblog/</link>
+      <pubDate>Sat, 06 Jun 2020 07:00:00 -0700</pubDate>
+      
+      <guid>/posts/2020-06-06-revivingtheblog/</guid>
+      <description>At the time of writing this, I&amp;rsquo;m sitting in a small camper trailer just off the Pacific ocean in Oregon. Rain is drizzling down in intermittent bursts, pounding on the metal roof, and when the rain stops a jay outside starts &amp;ldquo;singing&amp;rdquo; his boisterous song.
+I&amp;rsquo;ve recently relocated to the Pacific Northwest - my job had a position that needed filling on the Oregon Coast, how could I turn down that opportunity?</description>
+    </item>
+    
+    <item>
+      <title>*Sersia lancea* African Sumac</title>
+      <link>/posts/2019-08-02-africansumac/</link>
+      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
+      
+      <guid>/posts/2019-08-02-africansumac/</guid>
+      <description>Background Sersia lancea, the African sumac, is a common tree around the valley - the strong fragrance of its diminuitive flowers remind me strongly of spring time as a kid growing up in Phoenix. The tree is relatively unassuming, no showy flowers in the spring and no vibrant colours in the fall. Like most invading trees, it was originally brought to the valley in the 60s as a landscape tree.</description>
+    </item>
+    
+    <item>
+      <title>The Shed</title>
+      <link>/posts/2019-07-26-theshed/</link>
+      <pubDate>Fri, 26 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/posts/2019-07-26-theshed/</guid>
+      <description>Since this blog now exists I thought I would share one of my favorite old stories, and possibly one of the stranger encounters I&amp;rsquo;ve had. A good alternative title for this story would be &amp;ldquo;Out of the hole and facing rebirth&amp;rdquo;&amp;hellip;
+One of my favorite things about this job is completing service requests - these are generally requests from people who actually want to see us. A nice change of pace from being the bearer of usually unpleasant news.</description>
+    </item>
+    
+    <item>
+      <title>*Ailanthus altissima* tree of heaven</title>
+      <link>/posts/2019-07-21-ailanthus/</link>
+      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/posts/2019-07-21-ailanthus/</guid>
+      <description>Background Ailanthus, tree of heaven, paradise tree, or tree of hell (as many like to call it) is an invasive tree across the United States, Canada, and Mexico. First introduced as an ornamental in the Eastern US and brought to California during the gold rush. This tree is common in urban areas and very tolerant of pollution and poor soil conditions. You can see tree of heaven in many mining towns in Arizona, some say it is holding up the old copper mining town of Jerome.</description>
+    </item>
+    
+    <item>
+      <title>*Leucaena leucocephala* Lead Tree</title>
+      <link>/posts/2019-07-19-leadtree/</link>
+      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/posts/2019-07-19-leadtree/</guid>
+      <description>Background Lead tree, river tamarind, faux mimosa - Travel through just about any alleyway in the Phoenix metro area and you are sure to come across this tree. It will usually be loaded with reddish, thin seedpods and likely have many small lead trees around it. Native to southern Mexico, it was originally planted as an ornamental here during the 1970s and 1980s. Supposedly, the tree was promoted as a &amp;ldquo;miracle tree&amp;rdquo; with many uses for the pods and wood.</description>
+    </item>
     
     <item>
       <title>Explosions in the Dungeon</title>

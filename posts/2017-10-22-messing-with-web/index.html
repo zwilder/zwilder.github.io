@@ -3,124 +3,178 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Messing With Web Design - Again | WSL Programming Blog</title>
+    <title>Messing With Web Design - Again | Wsl Blog</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Raleway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Belgrano|Lato&display=swap" rel="stylesheet">
 
-      
 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+    
+        
+    
+    $('.ltbox-trigger').click(function(e) {
+    	
+        
+		e.preventDefault();
+		
+		
+		var image_href = $(this).attr("href");
+		
+		
+
+		
+		if ($('#ltbox').length > 0) { 
+			
+			
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			
+			
+            
+            $('#ltbox').toggle();
+		}
+		
+        return false;
+    });
+    $('body').on('click', '#ltbox', function() { 
+        
+        $('#ltbox').toggle();
+    });
+});
+</script>
 
   </head>
 
   <body>
+      <div class="site-title">
+          <img class="wsl-logo" src="/wsl.svg" />
+          <span class="wsl-title">
+             Wsl Blog
+          </span>
+      </div>
     <nav>
-    <ul class="menu">
-      
-      <li><a href="/">home</a></li>
-      
-      <li><a href="/about/">about</a></li>
-      
-      <li><a href="/tags/">tags</a></li>
-      
-      <li><a href="/index.xml">rss</a></li>
-      
-    </ul>
+    <p class="sub-title">Adventures in making, arting, exploring, and other things.</p>
+    <div class="menu">
+        <ul>
+          
+              <li><a href="/">Home</a></li>
+          
+              <li><a href="/posts/">Archive</a></li>
+          
+              <li><a href="/categories/">Categories</a></li>
+          
+              <li><a href="/tags/">Tags</a></li>
+          
+              <li><a href="/subscribe/">Subscribe</a></li>
+          
+        </ul>
+    </div>
     <hr/>
     </nav>
 
 <div class="article-meta">
-<h1><span class="title">Messing With Web Design - Again</span></h1>
+    <div class="title"><span>Messing With Web Design - Again</span></div>
 
-<h2 class="date">22 October 2017</h2>
-
-<span style="font-size: 0.9em; font-family: 'Source Code Pro', monospace;text-align:center;">
-    
-    <a href="/tags/web-programming">Web Programming</a> 
-    
-    <a href="/tags/hugo">Hugo</a> 
-    
-</span>
-
+    <div>
+        
+          <span class="author">By Zach Wilder
+          </span>
+        
+        
+            <span class="date"> : Sunday, October 22 2017</span>
+        
+    </div>
 </div>
-<hr>
+
+<hr/>
+
 <main>
 <p>Ok, so it turns out I still can&rsquo;t stand using a premade theme. I decided to look again at Hugo themes, and found <a href="https://xmin.yihui.name/">XMin</a>. Clean, simple, and
 a good basic idea of what I wanted this blog to look like. Cracked open the source code and was playing around&hellip; one thing led to another and
 this is what I ended up with.</p>
-
 <p>Really enjoying working with Hugo - haven&rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is
 to modify and change things. Everything is laid out in a good, logical sense which makes it much easier to customize and play around with things.</p>
-
 <p>Things that still need work:</p>
-
 <ul>
-<li><p>I&rsquo;m not sure about the monospace font for the titles and headers - I like it, but that doesn&rsquo;t mean it looks good! Ha.</p></li>
-
-<li><p>The <a href="/tags">Tags</a> page looks off. Not sure what to do with that.</p></li>
-
-<li><p>Maybe write some sort of intro thing for the home page.</p></li>
+<li>
+<p>I&rsquo;m not sure about the monospace font for the titles and headers - I like it, but that doesn&rsquo;t mean it looks good! Ha.</p>
+</li>
+<li>
+<p>The <a href="/tags">Tags</a> page looks off. Not sure what to do with that.</p>
+</li>
+<li>
+<p>Maybe write some sort of intro thing for the home page.</p>
+</li>
 </ul>
-
 <p>Most likely I&rsquo;ll end up redoing this whole layout&hellip; But this was the first time I&rsquo;ve messed around with web design stuff and had a bit of success and didn&rsquo;t
 pull out too many hairs! Thanks Hugo!</p>
 
 </main>
-<div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">
+<hr/>
+<div style="width:100%;text-align:center;">
     
     <span>
         
-        <a href = "/posts/2017-10-15-yet-another-blog-attempt/">&laquo;&laquo; Yet Another Blog Attempt</a>
+        <a href = "/posts/2017-10-15-yet-another-blog-attempt/">&laquo;&laquo; Previous Post</a>
     </span>
     
     
     <span>
         |
         
-        <a href = "/posts/2018-06-20-the-roguelike-tutorial-week1/">The Roguelike Tutorial - Week 1 &raquo;&raquo;</a>
+        <a href = "/posts/2018-06-20-the-roguelike-tutorial-week1/">Next Post &raquo;&raquo;</a>
     </span>
     
 </div>
-<br>
-
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'wsl-programming-blog';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<br/><br/>
+<a id="comments"></a>
+<div id="disqus_thread"></div>
+<script>
 
 
+
+var disqus_config = function () {
+    this.page.url =  null ;  
+    this.page.identifier =  null ; 
+};
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://wsl-blog-1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//wsl-blog-1.disqus.com/count.js" async></script>
+
+<br/><br/>
   <footer>
   
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-121310852-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
 
   
   <hr/>
-  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  © <a href="/about/">Z Wilder</a> 2016-2023 | <a href="https://github.com/zwilder/">Github</a>
   
   </footer>
+  <div id="ltbox">
+    <p>[Click Anywhere To Close]</p>
+    <div id="content">
+        <img src="#">
+    </div>
+</div>
+
   </body>
 </html>
 

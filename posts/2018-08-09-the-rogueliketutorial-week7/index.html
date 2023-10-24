@@ -3,53 +3,104 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Roguelike Tutorial - Week 7 | WSL Programming Blog</title>
+    <title>The Roguelike Tutorial - Week 7 | Wsl Blog</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Raleway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Belgrano|Lato&display=swap" rel="stylesheet">
 
-      
 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+    
+        
+    
+    $('.ltbox-trigger').click(function(e) {
+    	
+        
+		e.preventDefault();
+		
+		
+		var image_href = $(this).attr("href");
+		
+		
+
+		
+		if ($('#ltbox').length > 0) { 
+			
+			
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			
+			
+            
+            $('#ltbox').toggle();
+		}
+		
+        return false;
+    });
+    $('body').on('click', '#ltbox', function() { 
+        
+        $('#ltbox').toggle();
+    });
+});
+</script>
 
   </head>
 
   <body>
+      <div class="site-title">
+          <img class="wsl-logo" src="/wsl.svg" />
+          <span class="wsl-title">
+             Wsl Blog
+          </span>
+      </div>
     <nav>
-    <ul class="menu">
-      
-      <li><a href="/">home</a></li>
-      
-      <li><a href="/about/">about</a></li>
-      
-      <li><a href="/tags/">tags</a></li>
-      
-      <li><a href="/index.xml">rss</a></li>
-      
-    </ul>
+    <p class="sub-title">Adventures in making, arting, exploring, and other things.</p>
+    <div class="menu">
+        <ul>
+          
+              <li><a href="/">Home</a></li>
+          
+              <li><a href="/posts/">Archive</a></li>
+          
+              <li><a href="/categories/">Categories</a></li>
+          
+              <li><a href="/tags/">Tags</a></li>
+          
+              <li><a href="/subscribe/">Subscribe</a></li>
+          
+        </ul>
+    </div>
     <hr/>
     </nav>
 
 <div class="article-meta">
-<h1><span class="title">The Roguelike Tutorial - Week 7</span></h1>
+    <div class="title"><span>The Roguelike Tutorial - Week 7</span></div>
 
-<h2 class="date">09 August 2018</h2>
-
-<span style="font-size: 0.9em; font-family: 'Source Code Pro', monospace;text-align:center;">
-    
-    <a href="/tags/c&#43;&#43;">C&#43;&#43;</a> 
-    
-    <a href="/tags/roguelike">Roguelike</a> 
-    
-    <a href="/tags/barbarian">Barbarian!</a> 
-    
-</span>
-
+    <div>
+        
+          <span class="author">By Zach Wilder
+          </span>
+        
+        
+            <span class="date"> : Thursday, August 9 2018</span>
+        
+    </div>
 </div>
-<hr>
+
+<hr/>
+
 <main>
-
-
 <p>I didn&rsquo;t do a lot of coding over the last week, but I did finish the
 challenge! Had a bit of a scare after finishing part 12, I found a
 horrible lurking bug in the program that caused a LOT of little errors
@@ -59,7 +110,6 @@ some entities weren&rsquo;t being copied correctly, or saved correctly. Turns
 out, the <a href="https://en.cppreference.com/w/cpp/language/rule_of_three">C++ Rule of
 3/5/0</a> is
 actually a rule and not just a suggestion/guideline.</p>
-
 <p>This project was the first time I attempted to use smart pointers and
 write more &ldquo;correct&rdquo; C++ code, and apparently even when using smart
 pointers to allocate memory you should write at least a copy constructor
@@ -67,7 +117,6 @@ and copy assignment function. I&rsquo;m still not sure what I would put in a
 custom destructor if all the memory that&rsquo;s allocated is done via smart
 pointers, and that might be something I need to clean up now the
 challenge is over.</p>
-
 <p>When the <code>Entity</code> class was created with the default copy constructor
 (or copy assignment), it wasn&rsquo;t allocating new memory for the new
 entity. So, when one entity was destroyed another entity would suddenly
@@ -82,9 +131,7 @@ thought I was going to have to scrap the project at this point, because
 I had no idea where to begin solving this problem. The answer eventually
 came to me at work, and getting everything smoothed out was pretty
 trivial.</p>
-
 <h2 id="part-12">Part 12</h2>
-
 <p>So the theme of part 12 was to start implementing more randomization
 functions. Up until this week I was using the built in STL version of
 mersenne twister, and I don&rsquo;t think the way I was using it was the most
@@ -96,60 +143,58 @@ generated are the result of a bunch of math that is way (way) over my
 head. There is a lot of number generators out there, and some of them
 seemed like they would be pretty simple to implement. So, I decided to
 write a quick simple implementation of an xorshift generator:</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">class</span> <span style="color:#0087ff">RNGState</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RNGState</span>
 {
-    <span style="color:#5f8700">public</span>:
-        <span style="color:#4e4e4e">// These are random numbers - Literally could use anything here. I&#39;ve been just seeding the first number with the system time
-</span><span style="color:#4e4e4e"></span>        RNGState(uint32_t a = <span style="color:#00afaf">123456789</span>, uint32_t b = <span style="color:#00afaf">362436069</span>, uint32_t c = <span style="color:#00afaf">521288629</span>, uint32_t d = <span style="color:#00afaf">88675123</span>) : x(a), y(b), z(c), w(d) { }
-        uint32_t x;
-        uint32_t y;
-        uint32_t z;
-        uint32_t w;
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+        <span style="color:#75715e">// These are random numbers - Literally could use anything here. I&#39;ve been just seeding the first number with the system time
+</span><span style="color:#75715e"></span>        RNGState(<span style="color:#66d9ef">uint32_t</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">123456789</span>, <span style="color:#66d9ef">uint32_t</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">362436069</span>, <span style="color:#66d9ef">uint32_t</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">521288629</span>, <span style="color:#66d9ef">uint32_t</span> d <span style="color:#f92672">=</span> <span style="color:#ae81ff">88675123</span>) <span style="color:#f92672">:</span> x(a), y(b), z(c), w(d) { }
+        <span style="color:#66d9ef">uint32_t</span> x;
+        <span style="color:#66d9ef">uint32_t</span> y;
+        <span style="color:#66d9ef">uint32_t</span> z;
+        <span style="color:#66d9ef">uint32_t</span> w;
 };
 
-uint32_t <span style="color:#0087ff">xor128</span>(RNGState * rng)
+<span style="color:#66d9ef">uint32_t</span> <span style="color:#a6e22e">xor128</span>(RNGState <span style="color:#f92672">*</span> rng)
 {
-    uint32_t s = rng-&gt;w;
-    uint32_t t = rng-&gt;w;
-    t ^= t &lt;&lt; <span style="color:#00afaf">11</span>;
-    t ^= t &gt;&gt; <span style="color:#00afaf">8</span>;
-    rng-&gt;w = rng-&gt;z;
-    rng-&gt;z = rng-&gt;y;
-    rng-&gt;y = rng-&gt;x;
-    s = rng-&gt;x;
-    t ^= s;
-    t ^= s &gt;&gt; <span style="color:#00afaf">19</span>;
-    rng-&gt;x = t;
-    <span style="color:#5f8700">return</span> t;
+    <span style="color:#66d9ef">uint32_t</span> s <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>w;
+    <span style="color:#66d9ef">uint32_t</span> t <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>w;
+    t <span style="color:#f92672">^=</span> t <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">11</span>;
+    t <span style="color:#f92672">^=</span> t <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>;
+    rng<span style="color:#f92672">-&gt;</span>w <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>z;
+    rng<span style="color:#f92672">-&gt;</span>z <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>y;
+    rng<span style="color:#f92672">-&gt;</span>y <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>x;
+    s <span style="color:#f92672">=</span> rng<span style="color:#f92672">-&gt;</span>x;
+    t <span style="color:#f92672">^=</span> s;
+    t <span style="color:#f92672">^=</span> s <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">19</span>;
+    rng<span style="color:#f92672">-&gt;</span>x <span style="color:#f92672">=</span> t;
+    <span style="color:#66d9ef">return</span> t;
 }
 
-<span style="color:#af0000">int</span> <span style="color:#0087ff">randomInt</span>(<span style="color:#af0000">int</span> max, RNGState * rng)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">randomInt</span>(<span style="color:#66d9ef">int</span> max, RNGState <span style="color:#f92672">*</span> rng)
 {
-    <span style="color:#af0000">int</span> result = xor128(rng) % max + <span style="color:#00afaf">1</span>;
-    <span style="color:#5f8700">return</span> result;
+    <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> xor128(rng) <span style="color:#f92672">%</span> max <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">return</span> result;
 }
 
-<span style="color:#af0000">int</span> <span style="color:#0087ff">randomInt</span>(<span style="color:#af0000">int</span> min, <span style="color:#af0000">int</span> max, RNGState * rng)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">randomInt</span>(<span style="color:#66d9ef">int</span> min, <span style="color:#66d9ef">int</span> max, RNGState <span style="color:#f92672">*</span> rng)
 {
-    <span style="color:#5f8700">if</span>(min &gt; max)
+    <span style="color:#66d9ef">if</span>(min <span style="color:#f92672">&gt;</span> max)
     {
-        <span style="color:#af0000">int</span> tmp = min;
-        min = max;
-        max = tmp;
+        <span style="color:#66d9ef">int</span> tmp <span style="color:#f92672">=</span> min;
+        min <span style="color:#f92672">=</span> max;
+        max <span style="color:#f92672">=</span> tmp;
     }
-    <span style="color:#5f8700">if</span>(min == max)
+    <span style="color:#66d9ef">if</span>(min <span style="color:#f92672">==</span> max)
     {
-        <span style="color:#5f8700">return</span> min;
+        <span style="color:#66d9ef">return</span> min;
     }
 
-    <span style="color:#4e4e4e">// Finding the random number this way is what allows the xorshift function to return &#39;0&#39;
-</span><span style="color:#4e4e4e"></span>    <span style="color:#af0000">int</span> range = max - min;
-    <span style="color:#af0000">int</span> result = randomInt(range + <span style="color:#00afaf">1</span>, rng) - <span style="color:#00afaf">1</span>;
-    <span style="color:#5f8700">return</span> (min + result);
+    <span style="color:#75715e">// Finding the random number this way is what allows the xorshift function to return &#39;0&#39;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> range <span style="color:#f92672">=</span> max <span style="color:#f92672">-</span> min;
+    <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> randomInt(range <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, rng) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">return</span> (min <span style="color:#f92672">+</span> result);
 }
 </code></pre></div>
-
 <p>The <code>xor128()</code> function uses some bitwise math and shifts the numbers
 around, returning a &lsquo;new&rsquo; 32 bit unsigned integer. The <code>randomInt()</code>
 function takes a random number generator, calls the xorshift function,
@@ -160,57 +205,51 @@ idea of how the random numbers are generated. The cool thing about using
 this generator is that the <code>RNGState</code> class is pretty trivial to
 archive, and I can have the <code>GameMap</code> class and <code>Engine</code> class use their
 own generators - which allows maps to be replayed!</p>
-
 <p>A long existing glitch with my pathfinding code was that if no path
 could be found - it would just enter an endless loop and freeze the
 game. Thanks to be able to set the seed and play the same scenario over
 and over, I was able to narrow down and squash that bug a lot easier
 than I could have before.</p>
-
 <p>The weighted list functions are pretty nifty too, I think. Basically
 it&rsquo;s just a template wrapper around the <code>DLList</code> class I&rsquo;ve been using
 everywhere.</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
-<span style="color:#5f8700">class</span> <span style="color:#0087ff">WeightedList</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WeightedList</span>
 {
-    <span style="color:#5f8700">public</span>:
-        <span style="color:#af0000">void</span> add(T obj, <span style="color:#af0000">int</span> wt);
-        T <span style="color:#0087ff">pick</span>(RNGState * rng);
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+        <span style="color:#66d9ef">void</span> add(T obj, <span style="color:#66d9ef">int</span> wt);
+        T <span style="color:#a6e22e">pick</span>(RNGState <span style="color:#f92672">*</span> rng);
 
-    <span style="color:#5f8700">private</span>:
-        DLList&lt;T&gt; list_;
+    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+        DLList<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> list_;
 };
 
-<span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
-<span style="color:#af0000">void</span> WeightedList&lt;T&gt;::add(T obj, <span style="color:#af0000">int</span> wt)
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">void</span> WeightedList<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;::</span>add(T obj, <span style="color:#66d9ef">int</span> wt)
 {
-    <span style="color:#5f8700">if</span>(wt &lt;=<span style="color:#00afaf">0</span>)
+    <span style="color:#66d9ef">if</span>(wt <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">0</span>)
     {
-        <span style="color:#5f8700">return</span>;
+        <span style="color:#66d9ef">return</span>;
     }
-    <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i = <span style="color:#00afaf">0</span>; i &lt; wt; ++i)
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> wt; <span style="color:#f92672">++</span>i)
     {
         list_.push(obj);
     }
 }
 
-<span style="color:#5f8700">template</span> &lt;<span style="color:#5f8700">typename</span> T&gt;
-T WeightedList&lt;T&gt;::pick(RNGState * rng)
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+T WeightedList<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;::</span>pick(RNGState <span style="color:#f92672">*</span> rng)
 {
-    <span style="color:#af0000">int</span> index = randomInt(<span style="color:#00afaf">0</span>, list_.size() - <span style="color:#00afaf">1</span>, rng);
-    <span style="color:#5f8700">return</span> list_.at(index)-&gt;data;
+    <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> randomInt(<span style="color:#ae81ff">0</span>, list_.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, rng);
+    <span style="color:#66d9ef">return</span> list_.at(index)<span style="color:#f92672">-&gt;</span>data;
 }
 </code></pre></div>
-
 <p>Eventually, when the enemies are loaded from an external file, a
 weighted list will be dynamically created with all enemies that can be
 found at or below a certain dungeon level. Items will be generated the
 same way. I moved the item/monster/player definitions to another source
 file, to begin planning for this eventual move.</p>
-
 <h2 id="part-13">Part 13</h2>
-
 <p>Part 13 was another big milestone and something I haven&rsquo;t ever
 successfully done - add equippable items. Fortunately, all the
 preparation and careful building of the framework so far made this part
@@ -226,139 +265,144 @@ equipment. Sometime in the future when I work on the UI, I&rsquo;ll allow the
 player to select what slot they want to equip items to - so they can use
 one handed weapons in each hand like a true barbarian. For now, small
 weapons like the dagger are automatically equipped to the off hand.</p>
-
-
-<figure>
-    
-        <img src="/assets/2018-08-09/EquippedItems.png" />
-    
-    
-</figure>
-
+<div id="ltbox-div">
+    <a data-fancybox data-buttons='["zoom","fullScreen","close"]' data-animation-effect="false" href="/images/2018-08-09/EquippedItems.png">
+        <img class="ltbox-thumb" src="/images/2018-08-09/EquippedItems.png">
+    </a>
+</div>
 
 <p>I also need to sort the inventory, displaying equipped items at the top.
 Actually, equipped items probably won&rsquo;t show up in the inventory at all,
 and just show up in the equipment screen of the future UI. Here&rsquo;s a
 quick gameplay video of what I ended up with after part 13:</p>
+<div id="ltbox-div">
+    <a data-fancybox href="/images/2018-08-09/Part13.mp4">
+        <video controls id=" id "
+            style="max-width:33%;display: block;margin-left: auto;margin-right:auto;">
+            <source src="/images/2018-08-09/Part13.mp4" type="video/mp4">
+            
+        </video>
+    </a>
+</div>
 
-<video class="video-js" width="640" height="385" controls>
- 
-    <source src="/assets/Various/Part13.mp4" type="video/mp4">
-    
-    
- 
-Your browser does not support the video tag.
-</video>
-
-
-<hr />
-
+<hr>
 <p>So what&rsquo;s next? Well, I&rsquo;m stoked to finally have a project make it this
 far, and be solid enough that I can build off. I&rsquo;ve got quite the list
 of &ldquo;to-do&rdquo; items to start tackling, and lots of ideas for fun future
 implementations for this project. Here&rsquo;s a truncated list, stripped of
 general housekeeping things, in no particular order.</p>
-
 <ul>
-<li><p>Move monster/item definitions to external text files, and write a
-parser to change those to game data.</p></li>
-
-<li><p>Clean up SDL texture and sprite classes - these are pretty much
+<li>
+<p>Move monster/item definitions to external text files, and write a
+parser to change those to game data.</p>
+</li>
+<li>
+<p>Clean up SDL texture and sprite classes - these are pretty much
 straight from the <a href="http://lazyfoo.net/tutorials/SDL/">LazyFoo SDL
 tutorials</a>, and I think I can spruce
-them up a bit/modernize them. Maybe.</p></li>
-
-<li><p>Better dungeon generators, with external text file definitions.</p></li>
-
-<li><p>Finish A-star/Dijkstra pathfinding functions - BFS works just fine,
-but I still want to try and implement these.</p></li>
-
-<li><p>Fix combat - maybe do a fancy percentile based system or something!</p></li>
-
-<li><p><strong>Animations!</strong> I’ve got a really good idea on how I want to do these,
-so it’ll probably be one of the first things I tackle next.</p></li>
-
-<li><p>Move all &ldquo;flavor&rdquo; text to an external file - would make it much easier
-to add things.</p></li>
-
-<li><p>Improve the UI - I’ve got some mockups made, but I’m kinda enjoying
-the basic no frills look this has right now.</p></li>
-
-<li><p>Character creation/naming screen.</p></li>
-
-<li><p>Get the project to build on other operating systems! This is also high
+them up a bit/modernize them. Maybe.</p>
+</li>
+<li>
+<p>Better dungeon generators, with external text file definitions.</p>
+</li>
+<li>
+<p>Finish A-star/Dijkstra pathfinding functions - BFS works just fine,
+but I still want to try and implement these.</p>
+</li>
+<li>
+<p>Fix combat - maybe do a fancy percentile based system or something!</p>
+</li>
+<li>
+<p><strong>Animations!</strong> I’ve got a really good idea on how I want to do these,
+so it’ll probably be one of the first things I tackle next.</p>
+</li>
+<li>
+<p>Move all &ldquo;flavor&rdquo; text to an external file - would make it much easier
+to add things.</p>
+</li>
+<li>
+<p>Improve the UI - I’ve got some mockups made, but I’m kinda enjoying
+the basic no frills look this has right now.</p>
+</li>
+<li>
+<p>Character creation/naming screen.</p>
+</li>
+<li>
+<p>Get the project to build on other operating systems! This is also high
 on my priorities, along with creating prebuilt binaries for people who
-don’t want to fuss with compiling.</p></li>
-
-<li><p>Re-add the timing/scheduling system.</p></li>
-
-<li><p>Properly comment and organize the core classes code. My comments are
+don’t want to fuss with compiling.</p>
+</li>
+<li>
+<p>Re-add the timing/scheduling system.</p>
+</li>
+<li>
+<p>Properly comment and organize the core classes code. My comments are
 pretty sparse, and it would probably be a good idea to do this before
 the project gets any bigger. Plus, it might help explain my logic and
-why I did something if anyone ever looked at my code.</p></li>
-
-<li><p>Split game display into multiple virtual consoles (log console, game
+why I did something if anyone ever looked at my code.</p>
+</li>
+<li>
+<p>Split game display into multiple virtual consoles (log console, game
 console, UI console, etc). It&rsquo;s all one console right now, which isn’t
-bad but sometimes the log or UI can obscure the map.</p></li>
+bad but sometimes the log or UI can obscure the map.</p>
+</li>
 </ul>
-
 <p>Here is the source code for <a href="https://github.com/zwilder/Barbarian/tree/Part_13">Part 13</a> and <a href="https://github.com/zwilder/Barbarian/tree/Part_12">Part 12</a>!</p>
 
 </main>
-<div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">
+<hr/>
+<div style="width:100%;text-align:center;">
     
     <span>
         
-        <a href = "/posts/2018-07-31-the-roguelike-tutorial-week5b6/">&laquo;&laquo; The Roguelike Tutorial - Week 5b/6</a>
+        <a href = "/posts/2018-07-31-the-roguelike-tutorial-week5b6/">&laquo;&laquo; Previous Post</a>
     </span>
     
     
     <span>
         |
         
-        <a href = "/posts/2018-08-26-lists/">Wonderful Lists &raquo;&raquo;</a>
+        <a href = "/posts/2018-08-26-lists/">Next Post &raquo;&raquo;</a>
     </span>
     
 </div>
-<br>
-
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'wsl-programming-blog';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<br/><br/>
+<a id="comments"></a>
+<div id="disqus_thread"></div>
+<script>
 
 
+
+var disqus_config = function () {
+    this.page.url =  null ;  
+    this.page.identifier =  null ; 
+};
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://wsl-blog-1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//wsl-blog-1.disqus.com/count.js" async></script>
+
+<br/><br/>
   <footer>
   
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-121310852-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
 
   
   <hr/>
-  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  © <a href="/about/">Z Wilder</a> 2016-2023 | <a href="https://github.com/zwilder/">Github</a>
   
   </footer>
+  <div id="ltbox">
+    <p>[Click Anywhere To Close]</p>
+    <div id="content">
+        <img src="#">
+    </div>
+</div>
+
   </body>
 </html>
 

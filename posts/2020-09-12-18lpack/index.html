@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Building a Daypack Ramblings | Wsl Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Raleway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Belgrano|Lato&display=swap" rel="stylesheet">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+    
+        
+    
+    $('.ltbox-trigger').click(function(e) {
+    	
+        
+		e.preventDefault();
+		
+		
+		var image_href = $(this).attr("href");
+		
+		
+
+		
+		if ($('#ltbox').length > 0) { 
+			
+			
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			
+			
+            
+            $('#ltbox').toggle();
+		}
+		
+        return false;
+    });
+    $('body').on('click', '#ltbox', function() { 
+        
+        $('#ltbox').toggle();
+    });
+});
+</script>
+
+  </head>
+
+  <body>
+      <div class="site-title">
+          <img class="wsl-logo" src="/wsl.svg" />
+          <span class="wsl-title">
+             Wsl Blog
+          </span>
+      </div>
+    <nav>
+    <p class="sub-title">Adventures in making, arting, exploring, and other things.</p>
+    <div class="menu">
+        <ul>
+          
+              <li><a href="/">Home</a></li>
+          
+              <li><a href="/posts/">Archive</a></li>
+          
+              <li><a href="/categories/">Categories</a></li>
+          
+              <li><a href="/tags/">Tags</a></li>
+          
+              <li><a href="/subscribe/">Subscribe</a></li>
+          
+        </ul>
+    </div>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+    <div class="title"><span>Building a Daypack Ramblings</span></div>
+
+    <div>
+        
+          <span class="author">By Zach Wilder
+          </span>
+        
+        
+            <span class="date"> : Saturday, September 12 2020</span>
+        
+    </div>
+</div>
+
+<hr/>
+
+<main>
+<p>Occasionally, I get ideas that creep into my brain and won&rsquo;t leave until
+I fully explore them. Back in February, while still enjoying the nice
+Arizona winters, I was hiking with my trusty old camelback. I&rsquo;m fond of
+that pack, despite it&rsquo;s many shortcomings. It has lots of fun places to
+attach things, and carries around 2L of water. It has zero storage
+capacity, although you can shove like maybe a protein bar in with the
+bladder&hellip; but that&rsquo;s it. So, if I want to bring my sketchbook, I
+usually shove the camelback in my larger Osprey daypack. The Osprey is a
+nice pack, lots of little pockets, but it&rsquo;s aesthetically pleasing
+curves really limit what I can easily pack in there. I also use the
+Osprey for carrying (awkwardly) all my plein air painting gear - which,
+shouldnt take up all that much space but really stretches the limit for
+how much the Osprey can hold. Which, again, leaves room for maybe a
+protein bar.</p>
+<div id="ltbox-div">
+    <div class="ltbox-gallery-row">
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Camelback.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Camelback.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Osprey.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Osprey.jpg">
+            </a>
+        </div>
+        
+        
+    </div>
+</div>
+
+<p>Snack capacity should be a very important part of backpack design
+considerations.</p>
+<p>So the idea was born, could I design a small daypack that could carry a
+few snacks, sketching stuff, and my hydration bladder <strong>or</strong> all of my
+plein air painting stuff, tripod, and lunch?</p>
+<p>One thing I noticed while making small practice packs for my daughter is
+that all the fun little pockets in commercial packs that are barely
+large enough for anything practical really eat into the total storage
+capacity - keeping a pack simple greatly increases it&rsquo;s storage
+capacity, even if it technically has the same volume designation.</p>
+<p>Also, while curves are pleasing, they really suck for packing things.
+With these ideas in mind I set out to make a prototype pack out of some
+cheap ripstop.</p>
+<div id="ltbox-div">
+    <div class="ltbox-gallery-row">
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-1"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Prototype_Notes.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Prototype_Notes.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-1"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Prototype1.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Prototype1.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-1"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-loop="true"
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Prototype2.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Prototype2.jpg">
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+<div id="ltbox-div">
+    <div class="ltbox-gallery-row">
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-1"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Prototype3.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Prototype3.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-1"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Prototype4.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Prototype4.jpg">
+            </a>
+        </div>
+        
+        
+    </div>
+</div>
+
+<p>Cool flap with zippered pocket, compression ties on the side to reduce
+size, daisy chains on back, drawstring collar&hellip;Fancy right? Yeah too
+fancy&hellip; but the size was right. The top flap was kinda wonky on the
+prototype, and honestly it was more of a hassle to deal with then it was
+worth. The hydration tube exits were cool on paper - hilariously
+ineffecient in real life. I was convinced the idea was solid though, and
+ordered some fancy 420D Ripstop to make the next version.</p>
+<p>Well, life got kinda crazy for everyone right around March this year,
+then we relocated from AZ to OR&hellip; Unfortunately a lot of my project
+ideas got put on the backburner until just recently. What&rsquo;s really nice
+is I now have a garage with a couple <a href="http://www.communitygroundworks.org/sites/default/files/workbench_plans_SA1.pdf">workbenches</a> I built - so my
+projects don&rsquo;t take over the dining room table!</p>
+<div id="ltbox-div">
+    <a data-fancybox data-buttons='["zoom","fullScreen","close"]' data-animation-effect="false" href="/images/2020-09-12-18LPack/Version2_Notes.jpg">
+        <img class="ltbox-thumb" src="/images/2020-09-12-18LPack/Version2_Notes.jpg">
+    </a>
+</div>
+
+<p>While at work I doodled this idea for version 2 of this ~18L pack. I got
+rid of the flap from the prototype, and decided to just go with either a
+drawstring top or a rolltop dry-bag style closure. I made room on one
+side for a little pocket with an elastic band, and the other side has
+the compression ties. Funny thing I noticed with the prototype - for a
+small pack you really only need to cinch down one side to reduce the
+volume! I also tried to plan out the build process a bit more, since the
+prototype was a pain to get everything together.</p>
+<hr>
+<h2 id="derailing-the-narrative-briefly">Derailing the Narrative Briefly&hellip;</h2>
+<p>I have a pretty sweet setup going on in the garage now - my one bench
+works great for sprawling out stuff and notes, the <a href="https://jayscustomcreations.com/2013/04/saw-horses/">sawhorses</a> I built
+support a scrap piece of plywood to use as a cutting table, and then I
+found this excellent old Singer cabinet at a Goodwill&hellip;. it came with a
+beat up 401a, a vintage Husqavarna foot controller, and a box of
+assorted slant shank presser feet. The whole setup was an unbelievable
+15 bucks - the table had a bunch of water stains, marker/pencil marks,
+gouges, and stickers. A bit of elbow grease, sandpaper, and stain/poly
+and it&rsquo;s better than new! I took the beat up 401a out and put my
+beautiful 403a in.</p>
+<div id="ltbox-div">
+    <div class="ltbox-gallery-row">
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-3"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Table1.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Table1.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-3"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Table2.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Table2.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-3"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-loop="true"
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Table3.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Table3.jpg">
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+<p>I should have taken before pictures - I&rsquo;m pretty bad at remembering to
+do that. Believe me, the table was <strong>rough</strong>. Please excuse the random
+mess in the background - Mrs. Wilder kept asking me to clean up the
+garage but I kept getting distracted with projects! (I swear it&rsquo;s clean
+now though)</p>
+<p>The 401a I took out will have to be a post for another time - but the
+short version is I took her apart, cleaned and tuned her up, and she&rsquo;s
+running/stitching beautifully now.</p>
+<hr>
+<h2 id="back-to-the-build">Back to the Build!</h2>
+<p>When I started the build I wasn&rsquo;t sure how I was going to do the top -
+and it did not really matter since that would be the very last thing to
+sew on!</p>
+<div id="ltbox-div">
+    <div class="ltbox-gallery-row">
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-4"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/MessyBench.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/MessyBench.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-4"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/SewingTable.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/SewingTable.jpg">
+            </a>
+        </div>
+        
+        
+    </div>
+</div>
+
+<p>I started by assembling the sides and attaching the daisy chain to the
+back. one side has grosgrain loops for the cordage to go through, the
+other has the elastic pocket  and a covered zipper on top for quick
+access and an easy hydration tube exit. The daisy chain has a loop at
+the top and bottom for clipping things on easily, and the straps are
+anchored into the side of the pack with these cool triangle pieces.
+After attaching the sides to the body with a 1/2&rdquo; seam, I stitched an
+additional line at 1/4&rdquo; and then covered the seam with 1/2&rdquo; grosgrain
+stitched at 3/8&rdquo;&hellip; overkill maybe, but I&rsquo;m stoked with how sturdy it
+feels and nice it looks. The strap anchors got a couple of bar tacks as
+well where they tuck into the seam.</p>
+<div id="ltbox-div">
+    <div class="ltbox-gallery-row">
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-5"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Pieces.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Pieces.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-5"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/StrapAnchor.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/StrapAnchor.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-5"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-loop="true"
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/Grosgrain.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/Grosgrain.jpg">
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+<p>One of my biggest annoyances with commercial packs is the cheesegrater
+shoulder strap padding on every pack - and that the bulky padding goes
+the entire length of the strap!  The prototype did away with all padding
+and just had the 1&rdquo; poly shoulder strap&hellip; which was uncomfortable under
+load. So, I decided for this pack to make full straps, padded only for
+the first 8&rdquo; (the only part that contacts your body really) with 1/2&rdquo;
+closed cell foam padding (aka cheap blue sleeping pad from walmart).</p>
+<p>The shoulder straps are slightly curved, it comes off the pack straight
+across the shoulders and then in to the sides. I stitched the 1&rdquo; poly
+strap a few times up the top part of the strap for a place to attach
+things, and maybe add a sternum strap later. I then sandwiched the foam
+in the strap, stitched across top and bottom to hold it in place, and
+around the edges. 1/2&rdquo; grosgrain was used to clean up the raw edges, and
+makes the straps look pretty nice.</p>
+<p>I couldn&rsquo;t resist lacing up the side (550 paracord) and shoving a pillow
+in at this point to take a few pictures.</p>
+<div id="ltbox-div">
+    <div class="ltbox-gallery-row">
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-6"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/ToplessStrap.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/ToplessStrap.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-6"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/ToplessLeft.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/ToplessLeft.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-6"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-loop="true"
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/ToplessRight.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/ToplessRight.jpg">
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+<div id="ltbox-div">
+    <div class="ltbox-gallery-row">
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-6"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/ToplessBackDog.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/ToplessBackDog.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-6"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/ToplessFront.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/ToplessFront.jpg">
+            </a>
+        </div>
+        
+        
+    </div>
+</div>
+
+<p>All that was left was the top at this point - and for that I decided to
+go with a dry-bag style rolltop closure. I made the collar pretty long,
+which ends up being nice if you need just a bit more space (for snacks)
+on top of whatever you&rsquo;re carrying. The strap on the top for the rolltop
+action should be just a couple inches longer than I made it - but it
+still works great. I have these fun &ldquo;X&rdquo; buckles that I picked up on a
+whim, so the closure features those. The zipper for the quick
+access/hydration tube is a bit high on the side - might be better if
+it&rsquo;s moved down a bit. The tube slides nicely into the strap daisy chain
+to hold it in place, and the pack is extemely comfortable loaded up with
+stuff.</p>
+<div id="ltbox-div">
+    <div class="ltbox-gallery-row">
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-7"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/FinishClose.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/FinishClose.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-7"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/FinishOpen.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/FinishOpen.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-7"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-loop="true"
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/BuckleCloseup.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/BuckleCloseup.jpg">
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+<div id="ltbox-div">
+    <div class="ltbox-gallery-row">
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-7"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/HydrationTube.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/HydrationTube.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-7"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/PleinAirLoad.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/PleinAirLoad.jpg">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-7"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-loop="true"
+               data-animation-effect="false" href="/images/2020-09-12-18LPack/WearingThePack.jpg">
+                <img style="width:100%;" class=""
+                     src="/images/2020-09-12-18LPack/WearingThePack.jpg">
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+<p>I&rsquo;ll be field testing the pack over the next couple months before
+drafting version 3 - but this might be the first actually useable pack
+I&rsquo;ve made. Comfortable, durable, water resistant, and plenty of room -
+for snacks.</p>
+
+</main>
+<hr/>
+<div style="width:100%;text-align:center;">
+    
+    <span>
+        
+        <a href = "/posts/2020-06-06-revivingtheblog/">&laquo;&laquo; Previous Post</a>
+    </span>
+    
+    
+    <span>
+        |
+        
+        <a href = "/posts/2023-10-23-necromancy/">Next Post &raquo;&raquo;</a>
+    </span>
+    
+</div>
+<br/><br/>
+<a id="comments"></a>
+<div id="disqus_thread"></div>
+<script>
+
+
+
+var disqus_config = function () {
+    this.page.url =  null ;  
+    this.page.identifier =  null ; 
+};
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://wsl-blog-1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//wsl-blog-1.disqus.com/count.js" async></script>
+
+<br/><br/>
+  <footer>
+  
+
+  
+  <hr/>
+  © <a href="/about/">Z Wilder</a> 2016-2023 | <a href="https://github.com/zwilder/">Github</a>
+  
+  </footer>
+  <div id="ltbox">
+    <p>[Click Anywhere To Close]</p>
+    <div id="content">
+        <img src="#">
+    </div>
+</div>
+
+  </body>
+</html>
+

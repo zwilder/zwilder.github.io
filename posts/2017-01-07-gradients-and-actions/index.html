@@ -3,167 +3,220 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gradients for Colors, and Actions for Actors | WSL Programming Blog</title>
+    <title>Gradients for Colors, and Actions for Actors | Wsl Blog</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Raleway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Belgrano|Lato&display=swap" rel="stylesheet">
 
-      
 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+    
+        
+    
+    $('.ltbox-trigger').click(function(e) {
+    	
+        
+		e.preventDefault();
+		
+		
+		var image_href = $(this).attr("href");
+		
+		
+
+		
+		if ($('#ltbox').length > 0) { 
+			
+			
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			
+			
+            
+            $('#ltbox').toggle();
+		}
+		
+        return false;
+    });
+    $('body').on('click', '#ltbox', function() { 
+        
+        $('#ltbox').toggle();
+    });
+});
+</script>
 
   </head>
 
   <body>
+      <div class="site-title">
+          <img class="wsl-logo" src="/wsl.svg" />
+          <span class="wsl-title">
+             Wsl Blog
+          </span>
+      </div>
     <nav>
-    <ul class="menu">
-      
-      <li><a href="/">home</a></li>
-      
-      <li><a href="/about/">about</a></li>
-      
-      <li><a href="/tags/">tags</a></li>
-      
-      <li><a href="/index.xml">rss</a></li>
-      
-    </ul>
+    <p class="sub-title">Adventures in making, arting, exploring, and other things.</p>
+    <div class="menu">
+        <ul>
+          
+              <li><a href="/">Home</a></li>
+          
+              <li><a href="/posts/">Archive</a></li>
+          
+              <li><a href="/categories/">Categories</a></li>
+          
+              <li><a href="/tags/">Tags</a></li>
+          
+              <li><a href="/subscribe/">Subscribe</a></li>
+          
+        </ul>
+    </div>
     <hr/>
     </nav>
 
 <div class="article-meta">
-<h1><span class="title">Gradients for Colors, and Actions for Actors</span></h1>
+    <div class="title"><span>Gradients for Colors, and Actions for Actors</span></div>
 
-<h2 class="date">07 January 2017</h2>
-
-<span style="font-size: 0.9em; font-family: 'Source Code Pro', monospace;text-align:center;">
-    
-    <a href="/tags/c&#43;&#43;">C&#43;&#43;</a> 
-    
-    <a href="/tags/roguelike">Roguelike</a> 
-    
-</span>
-
+    <div>
+        
+          <span class="author">By Zach Wilder
+          </span>
+        
+        
+            <span class="date"> : Saturday, January 7 2017</span>
+        
+    </div>
 </div>
-<hr>
+
+<hr/>
+
 <main>
 <p>Over the past couple of weeks I&rsquo;ve been working on simplifying the code for my roguelike project - heavily inspired by one of my favorite books on my shelf,
 <a href="http://gameprogrammingpatterns.com">Game Programming Patterns</a>.</p>
-
 <p>I&rsquo;ve seriously read this book cover to cover, multiple times - and every time find a new use for one of the &lsquo;patterns&rsquo; in it. I just discovered that the
 author&rsquo;s <a href="http://journal.stuffwithstuff.com/">blog</a> has a bunch of good reads on it as well. One of the biggest problems I&rsquo;ve had with the roguelike project was a simple way to issue commands
 (which should have been a clue) from the player to the character, and from the computer AI to the enemies.</p>
-
 <p>The first chapter in the book, and <a href="http://journal.stuffwithstuff.com/2014/07/15/a-turn-based-game-loop/">this</a> blog post had the answer - the &lsquo;Command&rsquo; pattern. I have no idea how I didn&rsquo;t think of this sooner - basically,
 all the actions that an actor (player or enemy) can take are issued as &lsquo;commands&rsquo;. A command is just a subclass of an action, and each actor when updating
 gets to call it&rsquo;s most current action&rsquo;s <code>perform()</code> routine. What makes this super cool and useful is that the perform routine returns an <code>ActionResult</code>, which
 has a flag stating whether or not the current action was successful, and a suggested alternate action (for use if the action was unsuccessful).</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#5f8700">class</span> <span style="color:#0087ff">Action</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Action</span> 
 {
-<span style="color:#5f8700">public</span>:
-    <span style="color:#5f8700">virtual</span> ActionResult perform(Actor &amp; actor) = <span style="color:#00afaf">0</span>;
-<span style="color:#5f8700">protected</span>:
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">virtual</span> ActionResult perform(Actor <span style="color:#f92672">&amp;</span> actor) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
     Action() { }
 };
 
-<span style="color:#5f8700">class</span> <span style="color:#0087ff">ActionResult</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ActionResult</span>
 {
-<span style="color:#5f8700">public</span>:
-    ActionResult() { status_ = <span style="color:#0087ff">true</span>; }
-    <span style="color:#af0000">bool</span> success() { <span style="color:#5f8700">return</span> status_; }
-    <span style="color:#af0000">void</span> setFalse() { status_ = <span style="color:#0087ff">false</span>; }
-    <span style="color:#af0000">void</span> setTrue() { status_ = <span style="color:#0087ff">true</span>; }
-    Action * getAlternate() { <span style="color:#5f8700">return</span> alternative_; }
-    <span style="color:#af0000">void</span> setAlternate(Action * alternate) { alternative_ = alternate; }
-<span style="color:#5f8700">private</span>:
-    Action * alternative_;
-    <span style="color:#af0000">bool</span> status_;
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    ActionResult() { status_ <span style="color:#f92672">=</span> true; }
+    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">success</span>() { <span style="color:#66d9ef">return</span> status_; }
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setFalse</span>() { status_ <span style="color:#f92672">=</span> false; }
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTrue</span>() { status_ <span style="color:#f92672">=</span> true; }
+    Action <span style="color:#f92672">*</span> <span style="color:#a6e22e">getAlternate</span>() { <span style="color:#66d9ef">return</span> alternative_; }
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setAlternate</span>(Action <span style="color:#f92672">*</span> alternate) { alternative_ <span style="color:#f92672">=</span> alternate; }
+<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+    Action <span style="color:#f92672">*</span> alternative_;
+    <span style="color:#66d9ef">bool</span> status_;
 };
 </code></pre></div>
-
 <p>Now, if the player moves into a square - instead of the keypress moving the player, the keypress just sets the player&rsquo;s next action to attack in the direction of that tile.
 During the players update, the <code>perform()</code> for the attack action checks to see if there is another actor there - and if there isn&rsquo;t returns a move action as an alternate. If
 the move action fails (because the tile is blocked or whatever), an open door action is returned. If there isn&rsquo;t a door at the tile (or the door is locked and the player doesn&rsquo;t have the key),
 the action returns null and the player doesn&rsquo;t &lsquo;lose&rsquo; their turn.</p>
-
 <p>This makes logic for AI so much easier, and the game easier to play. If I press &lsquo;o&rsquo; (open door), but there&rsquo;s only open doors around - I probably wanted to close that door. AI when pathfinding can just ignore things like doors,
 since moving into them will just use their turn to open the door - if they are capable.</p>
-
 <p>Another fun thing I wrote recently is some code to dynamically create color gradients. It turns out, you can just do a simple line (y=mx+b) for component (r,g,b) of a color: <code>m</code> being equal to the change in color (finish - start) divided by the number
 of steps, and <code>b</code> as the start color.</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">int</span> <span style="color:#0087ff">getDeltaColor</span>(<span style="color:#af0000">int</span> sC, <span style="color:#af0000">int</span> fC, <span style="color:#af0000">int</span> steps)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDeltaColor</span>(<span style="color:#66d9ef">int</span> sC, <span style="color:#66d9ef">int</span> fC, <span style="color:#66d9ef">int</span> steps)
 {
-    <span style="color:#4e4e4e">// This is the slope equation for &#39;m&#39; : (finishColor - startColor) / NumberOfSteps
-</span><span style="color:#4e4e4e"></span>	<span style="color:#5f8700">if</span>(steps == <span style="color:#00afaf">0</span>)
+    <span style="color:#75715e">// This is the slope equation for &#39;m&#39; : (finishColor - startColor) / NumberOfSteps
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(steps <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
 	{
-		<span style="color:#5f8700">return</span> <span style="color:#00afaf">0</span>;
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 	} 
-	<span style="color:#5f8700">return</span> <span style="color:#af0000">int</span>((fC - sC) / steps);
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">int</span>((fC <span style="color:#f92672">-</span> sC) <span style="color:#f92672">/</span> steps);
 }
 
-std::vector&lt;WColor&gt; getColorGradient(WColor startColor, WColor finishColor, <span style="color:#af0000">int</span> steps)
+std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>WColor<span style="color:#f92672">&gt;</span> getColorGradient(WColor startColor, WColor finishColor, <span style="color:#66d9ef">int</span> steps)
 {
-	std::vector&lt;WColor&gt; result;
+	std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>WColor<span style="color:#f92672">&gt;</span> result;
 
-    <span style="color:#4e4e4e">// First, we get the slopes for each color component
-</span><span style="color:#4e4e4e"></span>	<span style="color:#af0000">int</span> redDelta = getDeltaColor(startColor.r, finishColor.r, steps);
-	<span style="color:#af0000">int</span> greenDelta = getDeltaColor(startColor.g, finishColor.g, steps);
-	<span style="color:#af0000">int</span> blueDelta = getDeltaColor(startColor.b, finishColor.b, steps);
-	<span style="color:#af0000">int</span> alphaDelta = getDeltaColor(startColor.a, finishColor.a, steps);
+    <span style="color:#75715e">// First, we get the slopes for each color component
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> redDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.r, finishColor.r, steps);
+	<span style="color:#66d9ef">int</span> greenDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.g, finishColor.g, steps);
+	<span style="color:#66d9ef">int</span> blueDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.b, finishColor.b, steps);
+	<span style="color:#66d9ef">int</span> alphaDelta <span style="color:#f92672">=</span> getDeltaColor(startColor.a, finishColor.a, steps);
 
 	result.push_back(startColor);
-	<span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i = <span style="color:#00afaf">0</span>; i &lt; steps; ++i)
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> steps; <span style="color:#f92672">++</span>i)
 	{
 		WColor stepColor;
-        <span style="color:#4e4e4e">//Then at each step: stepColor = slope * stepNumber + startColor
-</span><span style="color:#4e4e4e"></span>		stepColor.r = (redDelta * i) + startColor.r;
-		stepColor.g = (greenDelta * i) + startColor.g;
-		stepColor.b = (blueDelta * i) + startColor.b;
-		stepColor.a = (alphaDelta * i) + startColor.a;
+        <span style="color:#75715e">//Then at each step: stepColor = slope * stepNumber + startColor
+</span><span style="color:#75715e"></span>		stepColor.r <span style="color:#f92672">=</span> (redDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.r;
+		stepColor.g <span style="color:#f92672">=</span> (greenDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.g;
+		stepColor.b <span style="color:#f92672">=</span> (blueDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.b;
+		stepColor.a <span style="color:#f92672">=</span> (alphaDelta <span style="color:#f92672">*</span> i) <span style="color:#f92672">+</span> startColor.a;
 		result.push_back(stepColor);
 	}
 	result.push_back(finishColor);
 
-	<span style="color:#5f8700">return</span> result;
+	<span style="color:#66d9ef">return</span> result;
 }
 </code></pre></div>
-
 <p>Finally, another cool thing I&rsquo;ve been working on is playing around with Perlin noise. Inspired by <a href="http://www.redblobgames.com/maps/terrain-from-noise/">Red Blob Games&rsquo;s post</a> on using Perlin noise to generate 2D maps I decided that I had to do something similar for my roguelike.
 The code for the noise generating function is just a straight translation of Ken Perlin&rsquo;s <a href="http://mrl.nyu.edu/~perlin/noise">improved noise function</a> which was written in Java. I have no idea the math behind most of this - but
 man is it cool.</p>
-
 <p>Here&rsquo;s what I ended up with, starting with just a picture of the noise (check out the sweet dynamically created gradient from white to red!) and then a picture of the resulting map after the terrain is applied:</p>
-
-
-<figure>
-    
-        <img src="/assets/2017-01-07-gradients-and-actions/heatmap.png" />
-    
-    
-</figure>
-
-
-
-<figure>
-    
-        <img src="/assets/2017-01-07-gradients-and-actions/terrain.png" />
-    
-    
-</figure>
-
+<div id="ltbox-div">
+    <div class="ltbox-gallery-row">
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-1"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2017-01-07-gradients-and-actions/heatmap.png">
+                <img style="width:100%;" class=""
+                     src="/images/2017-01-07-gradients-and-actions/heatmap.png">
+            </a>
+        </div>
+        
+        
+        <div class="ltbox-gallery-col">
+            <a data-fancybox="gallery-1"
+               data-loop="true"
+               data-buttons='["zoom","fullScreen","close"]'
+               data-animation-effect="false" href="/images/2017-01-07-gradients-and-actions/terrain.png">
+                <img style="width:100%;" class=""
+                     src="/images/2017-01-07-gradients-and-actions/terrain.png">
+            </a>
+        </div>
+        
+        
+    </div>
+</div>
 
 <p>Neat right? I&rsquo;m not entirely happy with it yet, but it&rsquo;s a heck of a start! Applying the terrain to the heatmap was the tricky part. The perlin noise function returns numbers from -1 to 1, which I normalized (by dividing by two
 and adding 0.5) to numbers from 0 to 1. I then took those numbers, multiplied them by 255, and forced the numbers to an integer. I then took the maximum number (highest &lsquo;elevation&rsquo;) and stored that, then multiplied the max elevation by 0.6 to find the waterline (so 60% of the map is underwater).
 The difference between the max elevation and the waterline is divided by the number of land &lsquo;biomes&rsquo; I have (six) and the terrain is divided by elevation that way. It&rsquo;s not great, but it works for now. I need to look at how
 Dwarf Fortress&rsquo;s maps look again - but I can&rsquo;t open that game without being sucked into it for days at a time. I&rsquo;d like to add rivers to the map, which I could do by just finding a mountain tile and &lsquo;rolling downhill&rsquo; to get to
 a water tile (dijkstra mapping!). I also need to work on placing locations, like dungeons and a town.</p>
-
 <p>I also tried to use characters to represent the increase in elevation, but couldn&rsquo;t settle on ones I liked - and ended up just using the ones from Dwarf Fortress. Even worse than not being able to decide on characters was
 deciding on colors. My first attempt (like most of my attempts with colors) failed miserably - I just used whatever approximations I could think of for what colors things should be (green trees and grass,
- grey mountains, blue water - etc). I decided that I need to find a &lsquo;color palette&rsquo; and use that exclusively in my roguelike. For lack of being able to come up with a better idea, I chose the ever popular <a href="http://pixeljoint.com/forum/forum_posts.asp?TID=12795">DawnBringer 16 color
+grey mountains, blue water - etc). I decided that I need to find a &lsquo;color palette&rsquo; and use that exclusively in my roguelike. For lack of being able to come up with a better idea, I chose the ever popular <a href="http://pixeljoint.com/forum/forum_posts.asp?TID=12795">DawnBringer 16 color
 palette</a>.</p>
-
 <p>So, my basic idea for this game project is as follows: The player finds themselves in a small settlement on the coast of an island and is tasked with investigating various threats and ruins around the island. Every tile on the world
 map will be able to be visited (ADOM style) and locations dynamically generated. Dungeons will also be dynamically generated, and each will have a &lsquo;theme&rsquo;. The theme will determine what types of enemies the player encounters at a
 location, along with the types of treasure and dungeon layout. The difficulty of the dungeons will be based on how far from the settlement town they are (dijkstra mapping to the rescue, again!). I&rsquo;m not sure how quests will
@@ -171,60 +224,59 @@ fit into all this - I want the game to have a light sort of feel to it, where th
 vanquishing a Goblin Commander in a goblin themed cave, or finding a certain relic at the bottom of some ancient ruins populated by the undead.</p>
 
 </main>
-<div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">
+<hr/>
+<div style="width:100%;text-align:center;">
     
     <span>
         
-        <a href = "/posts/2016-12-20-automata-caves/">&laquo;&laquo; Randomly Generated Caves with Cellular Automata</a>
+        <a href = "/posts/2016-12-20-automata-caves/">&laquo;&laquo; Previous Post</a>
     </span>
     
     
     <span>
         |
         
-        <a href = "/posts/2017-10-15-yet-another-blog-attempt/">Yet Another Blog Attempt &raquo;&raquo;</a>
+        <a href = "/posts/2017-10-15-yet-another-blog-attempt/">Next Post &raquo;&raquo;</a>
     </span>
     
 </div>
-<br>
-
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'wsl-programming-blog';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<br/><br/>
+<a id="comments"></a>
+<div id="disqus_thread"></div>
+<script>
 
 
+
+var disqus_config = function () {
+    this.page.url =  null ;  
+    this.page.identifier =  null ; 
+};
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://wsl-blog-1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//wsl-blog-1.disqus.com/count.js" async></script>
+
+<br/><br/>
   <footer>
   
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-121310852-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
 
   
   <hr/>
-  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  © <a href="/about/">Z Wilder</a> 2016-2023 | <a href="https://github.com/zwilder/">Github</a>
   
   </footer>
+  <div id="ltbox">
+    <p>[Click Anywhere To Close]</p>
+    <div id="content">
+        <img src="#">
+    </div>
+</div>
+
   </body>
 </html>
 

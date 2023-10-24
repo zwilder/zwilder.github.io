@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Invasive on Wsl Blog</title>
+    <link>/tags/invasive/</link>
+    <description>Recent content in Invasive on Wsl Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Aug 2019 07:00:00 -0700</lastBuildDate>
+    
+	<atom:link href="/tags/invasive/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>*Sersia lancea* African Sumac</title>
+      <link>/posts/2019-08-02-africansumac/</link>
+      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
+      
+      <guid>/posts/2019-08-02-africansumac/</guid>
+      <description>Background Sersia lancea, the African sumac, is a common tree around the valley - the strong fragrance of its diminuitive flowers remind me strongly of spring time as a kid growing up in Phoenix. The tree is relatively unassuming, no showy flowers in the spring and no vibrant colours in the fall. Like most invading trees, it was originally brought to the valley in the 60s as a landscape tree.</description>
+    </item>
+    
+    <item>
+      <title>*Ailanthus altissima* tree of heaven</title>
+      <link>/posts/2019-07-21-ailanthus/</link>
+      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/posts/2019-07-21-ailanthus/</guid>
+      <description>Background Ailanthus, tree of heaven, paradise tree, or tree of hell (as many like to call it) is an invasive tree across the United States, Canada, and Mexico. First introduced as an ornamental in the Eastern US and brought to California during the gold rush. This tree is common in urban areas and very tolerant of pollution and poor soil conditions. You can see tree of heaven in many mining towns in Arizona, some say it is holding up the old copper mining town of Jerome.</description>
+    </item>
+    
+    <item>
+      <title>*Leucaena leucocephala* Lead Tree</title>
+      <link>/posts/2019-07-19-leadtree/</link>
+      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/posts/2019-07-19-leadtree/</guid>
+      <description>Background Lead tree, river tamarind, faux mimosa - Travel through just about any alleyway in the Phoenix metro area and you are sure to come across this tree. It will usually be loaded with reddish, thin seedpods and likely have many small lead trees around it. Native to southern Mexico, it was originally planted as an ornamental here during the 1970s and 1980s. Supposedly, the tree was promoted as a &amp;ldquo;miracle tree&amp;rdquo; with many uses for the pods and wood.</description>
+    </item>
+    
+  </channel>
+</rss>

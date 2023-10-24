@@ -3,188 +3,218 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Roguelike Tutorial - Week 1 | WSL Programming Blog</title>
+    <title>The Roguelike Tutorial - Week 1 | Wsl Blog</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Raleway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Belgrano|Lato&display=swap" rel="stylesheet">
 
-      
 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+    
+        
+    
+    $('.ltbox-trigger').click(function(e) {
+    	
+        
+		e.preventDefault();
+		
+		
+		var image_href = $(this).attr("href");
+		
+		
+
+		
+		if ($('#ltbox').length > 0) { 
+			
+			
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			
+			
+            
+            $('#ltbox').toggle();
+		}
+		
+        return false;
+    });
+    $('body').on('click', '#ltbox', function() { 
+        
+        $('#ltbox').toggle();
+    });
+});
+</script>
 
   </head>
 
   <body>
+      <div class="site-title">
+          <img class="wsl-logo" src="/wsl.svg" />
+          <span class="wsl-title">
+             Wsl Blog
+          </span>
+      </div>
     <nav>
-    <ul class="menu">
-      
-      <li><a href="/">home</a></li>
-      
-      <li><a href="/about/">about</a></li>
-      
-      <li><a href="/tags/">tags</a></li>
-      
-      <li><a href="/index.xml">rss</a></li>
-      
-    </ul>
+    <p class="sub-title">Adventures in making, arting, exploring, and other things.</p>
+    <div class="menu">
+        <ul>
+          
+              <li><a href="/">Home</a></li>
+          
+              <li><a href="/posts/">Archive</a></li>
+          
+              <li><a href="/categories/">Categories</a></li>
+          
+              <li><a href="/tags/">Tags</a></li>
+          
+              <li><a href="/subscribe/">Subscribe</a></li>
+          
+        </ul>
+    </div>
     <hr/>
     </nav>
 
 <div class="article-meta">
-<h1><span class="title">The Roguelike Tutorial - Week 1</span></h1>
+    <div class="title"><span>The Roguelike Tutorial - Week 1</span></div>
 
-<h2 class="date">20 June 2018</h2>
-
-<span style="font-size: 0.9em; font-family: 'Source Code Pro', monospace;text-align:center;">
-    
-    <a href="/tags/c&#43;&#43;">C&#43;&#43;</a> 
-    
-    <a href="/tags/roguelike">Roguelike</a> 
-    
-    <a href="/tags/barbarian">Barbarian!</a> 
-    
-</span>
-
+    <div>
+        
+          <span class="author">By Zach Wilder
+          </span>
+        
+        
+            <span class="date"> : Wednesday, June 20 2018</span>
+        
+    </div>
 </div>
-<hr>
+
+<hr/>
+
 <main>
-
-
 <p>Last year r/roguelikedev did a really cool thing with a weekly post where everyone followed along with a tutorial, shared ideas and problems, and motivated each other
 to actually finish a project. Well <a href="https://old.reddit.com/r/roguelikedev/comments/8s5x5n/roguelikedev_does_the_complete_roguelike_tutorial/">they&rsquo;re doing it again</a>
 this year, and with the announcement last week I decided to take a look at the new and improved, <a href="rogueliketutorials.com/libtcod1">Python3 version of the tutorial</a>.</p>
-
 <p>For those not familiar with this famous tutorial - each part covers a small chunk of building a roguelike using simple language and easy to follow code. In just 13
 parts you have a working roguelike to build off of and branch out from. A really, really cool idea. I did the old Python2 version a couple years back, and it blew
 my mind. After completing the last part I finally had made a game, and was pretty proud of the results. I didn&rsquo;t know Python when I started, and hadn&rsquo;t done any
 coding before beginning, but was able to follow along and even add my own stuff along the way. Eventually, my lack of knowledge caught up with me and my bloated
 single file Python program started to become difficult to modify and maintain. I took a step back, and decided to start relearning C and then ventured into C++.</p>
-
 <p>I quickly found that I actually really enjoy more of the building of the game than the designing of the game. Which, is cool because the amount of things to build
 and the resources available for building things from scratch are darn near infinite - especially with the knowledge of the internet at my fingertips. It is not, however,
 conducive to finishing a project or making something playable.</p>
-
 <p>As I read through the new and improved tutorial, I realized something pretty amazing: I could build this in C++. Reading each part I could think of ways (plural!)
 that I could accomplish the same thing, but with my own code. So, I decided to play along with the tutorial, and force myself to follow the deadlines - a week for
 each part.</p>
-
 <p>I decided to start posting this to the blog <strong>after</strong> I had finished Parts 0 - 3, which covers weeks one and two - so I&rsquo;ve written a brief summary
 of what I&rsquo;ve done in parts 1 and 2 of the tutorial so far.</p>
-
 <h2 id="part-1">Part 1</h2>
-
 <p>So I started this project using SFML - which is a fantastic and easy to use library, with tons of features. The goal of Part 0 was to get a console screen up,
 and an &lsquo;@&rsquo; moving around. I thought about the idea of using SFML sprites directly on a simulated grid - but decided that although this was the easiest way
 to accomplish the &lsquo;@&rsquo; moving around, it would be beneficial to try and emulate a console much like libtcod does.</p>
-
 <p>A console (defined in <a href="https://github.com/zwilder/Barbarian/blob/master/include/console.hpp">console.hpp</a>) is a square grid of defined width and height, where each x,y coordinate pair is the location of a glyph. A glyph is an
 integer representing a character and a foreground/background color. Color (for now) is just a simple class (defined in <a href="https://github.com/zwilder/Barbarian/blob/master/include/color.hpp">color.hpp</a> with an integer representing
 the r,g,b and alpha of a color.</p>
-
 <p>Okay, with the console out of the way, it was time to make the &lsquo;engine&rsquo; (defined in <a href="https://github.com/zwilder/Barbarian/blob/master/include/engine.hpp">engine.hpp</a>). So engine does three things primarily - handle input, update the
 game, and draw it to the window (<a href="http://gameprogrammingpatterns.com/game-loop.html">the game loop</a>).</p>
-
 <p>Handling input is easy&hellip; oh wait, the tutorial does some crazy magic with dictionaries. So, basically the idea of the dictionary is that it has a command
 and a value associated with that command. Sounds to me like a job for some bit flags, which would allow me to easily test if a command has a flag turned
 on and then check a value with it (The Action class - defined in <a href="https://github.com/zwilder/Barbarian/blob/master/include/input_handlers.hpp">input_handlers.hpp</a>). Now, when checking keyboard input, I can just have a function
 return an Action, test the flags, and do whatever with the result. If needed, this allows multiple commands to be returned with one action - which is kinda cool.</p>
-
 <p>Update! Well, update doesn&rsquo;t do anything yet. A good chunk of the game logic will eventually go here.</p>
-
 <p>Draw is where some cool stuff happens. First, I have an array of rectangles, where each rectangle is a position on the font image of a character. What&rsquo;s
 neat here is that the array contains 256 elements - the number of glyphs represented by a CP437 font image. This means that if an entity has a symbol represented
 by an &lsquo;@&rsquo; symbol, I can reference the position on the font image by passing &lsquo;@&rsquo; as the index of the array! So the draw routine basically draws everything in the
 game to the console, and then reads the console and translates that to the window using the window size and sprite size to position glyphs.</p>
-
 <p>With all that done, there is now an &lsquo;@&rsquo; symbol moving around the screen.</p>
-
 <h2 id="part-2">Part 2</h2>
-
 <p>The big things in part are creating the Entity class and the GameMap class. The entity class is pretty simple so far - an entity has a glyph and a position. Nice and
 easy. The GameMap is where things get fun - so I spent a bit more time on it. The tutorial uses simple booleans to check for tile values, again I decided that this
 would be a good fit for bit flags - instead of checking if something blocksMovement and blocksLight and isDoor (or whatever) I could just do something simple like</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">int</span> flag = blocksMovement | blocksLight | isDoor;
-<span style="color:#5f8700">if</span>(tile-&gt;checkFlag(flag))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> flag <span style="color:#f92672">=</span> blocksMovement <span style="color:#f92672">|</span> blocksLight <span style="color:#f92672">|</span> isDoor;
+<span style="color:#66d9ef">if</span>(tile<span style="color:#f92672">-&gt;</span>checkFlag(flag))
 {
-    <span style="color:#4e4e4e">// Do something cool here!
-</span><span style="color:#4e4e4e"></span>}
+    <span style="color:#75715e">// Do something cool here!
+</span><span style="color:#75715e"></span>}
 ...
-<span style="color:#af0000">bool</span> checkFlag(<span style="color:#af0000">int</span> flag)
+<span style="color:#66d9ef">bool</span> checkFlag(<span style="color:#66d9ef">int</span> flag)
 {
-    <span style="color:#5f8700">return</span> ((tileMask_ &amp; flag) == flag);
+    <span style="color:#66d9ef">return</span> ((tileMask_ <span style="color:#f92672">&amp;</span> flag) <span style="color:#f92672">==</span> flag);
 }
 </code></pre></div>
-
 <p>GameMap (defined in <a href="https://github.com/zwilder/Barbarian/blob/master/include/game_map.hpp">game_map.hpp</a>) is a grid of Tiles (defined in <a href="https://github.com/zwilder/Barbarian/blob/master/include/tile.hpp">tile.hpp</a>). Easy enough. For part 2, the GameMap class generates a nice hard-coded wall for testing
 Tiles and player movement.</p>
-
-<hr />
-
+<hr>
 <p>Next week I&rsquo;ll write up a bit about my struggles with the dungeon generator - the algorithm from the tutorial worked great, but of course this is the first
 of many opportunities to branch out from the tutorial and do your own thing. I&rsquo;ll also touch on why I ditched SFML for SDL, and some of the fun stuff I wrote
 for that.</p>
-
-<p>I&rsquo;ve nicknamed this project &lsquo;Barbarian!&rsquo;, since the player character in this type of roguelike does very little that is like a rogue and a lot that is like a
+<p>I&rsquo;ve nicknamed this project &lsquo;Barbarian!', since the player character in this type of roguelike does very little that is like a rogue and a lot that is like a
 loin-cloth wearing, great sword wielding burly barbarian. I even have some fun ideas for flavoring the project with more brute force and shiny muscles!</p>
-
 <p>Here is the source code for <a href="https://github.com/zwilder/Barbarian/tree/Part_0-2">Parts 0-2</a></p>
 
 </main>
-<div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">
+<hr/>
+<div style="width:100%;text-align:center;">
     
     <span>
         
-        <a href = "/posts/2017-10-22-messing-with-web/">&laquo;&laquo; Messing With Web Design - Again</a>
+        <a href = "/posts/2017-10-22-messing-with-web/">&laquo;&laquo; Previous Post</a>
     </span>
     
     
     <span>
         |
         
-        <a href = "/posts/2018-06-25-the-roguelike-tutorial-week2/">The Roguelike Tutorial - Week 2 &raquo;&raquo;</a>
+        <a href = "/posts/2018-06-25-the-roguelike-tutorial-week2/">Next Post &raquo;&raquo;</a>
     </span>
     
 </div>
-<br>
-
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'wsl-programming-blog';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<br/><br/>
+<a id="comments"></a>
+<div id="disqus_thread"></div>
+<script>
 
 
+
+var disqus_config = function () {
+    this.page.url =  null ;  
+    this.page.identifier =  null ; 
+};
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://wsl-blog-1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//wsl-blog-1.disqus.com/count.js" async></script>
+
+<br/><br/>
   <footer>
   
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-121310852-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
 
   
   <hr/>
-  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  © <a href="/about/">Z Wilder</a> 2016-2023 | <a href="https://github.com/zwilder/">Github</a>
   
   </footer>
+  <div id="ltbox">
+    <p>[Click Anywhere To Close]</p>
+    <div id="content">
+        <img src="#">
+    </div>
+</div>
+
   </body>
 </html>
 

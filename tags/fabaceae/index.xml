@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fabaceae on Wsl Blog</title>
+    <link>/tags/fabaceae/</link>
+    <description>Recent content in Fabaceae on Wsl Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 19 Jul 2019 08:00:00 -0700</lastBuildDate>
+    
+	<atom:link href="/tags/fabaceae/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>*Leucaena leucocephala* Lead Tree</title>
+      <link>/posts/2019-07-19-leadtree/</link>
+      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/posts/2019-07-19-leadtree/</guid>
+      <description>Background Lead tree, river tamarind, faux mimosa - Travel through just about any alleyway in the Phoenix metro area and you are sure to come across this tree. It will usually be loaded with reddish, thin seedpods and likely have many small lead trees around it. Native to southern Mexico, it was originally planted as an ornamental here during the 1970s and 1980s. Supposedly, the tree was promoted as a &amp;ldquo;miracle tree&amp;rdquo; with many uses for the pods and wood.</description>
+    </item>
+    
+  </channel>
+</rss>

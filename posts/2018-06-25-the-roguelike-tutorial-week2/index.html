@@ -3,114 +3,149 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Roguelike Tutorial - Week 2 | WSL Programming Blog</title>
+    <title>The Roguelike Tutorial - Week 2 | Wsl Blog</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Raleway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Belgrano|Lato&display=swap" rel="stylesheet">
 
-      
 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+    
+        
+    
+    $('.ltbox-trigger').click(function(e) {
+    	
+        
+		e.preventDefault();
+		
+		
+		var image_href = $(this).attr("href");
+		
+		
+
+		
+		if ($('#ltbox').length > 0) { 
+			
+			
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			
+			
+            
+            $('#ltbox').toggle();
+		}
+		
+        return false;
+    });
+    $('body').on('click', '#ltbox', function() { 
+        
+        $('#ltbox').toggle();
+    });
+});
+</script>
 
   </head>
 
   <body>
+      <div class="site-title">
+          <img class="wsl-logo" src="/wsl.svg" />
+          <span class="wsl-title">
+             Wsl Blog
+          </span>
+      </div>
     <nav>
-    <ul class="menu">
-      
-      <li><a href="/">home</a></li>
-      
-      <li><a href="/about/">about</a></li>
-      
-      <li><a href="/tags/">tags</a></li>
-      
-      <li><a href="/index.xml">rss</a></li>
-      
-    </ul>
+    <p class="sub-title">Adventures in making, arting, exploring, and other things.</p>
+    <div class="menu">
+        <ul>
+          
+              <li><a href="/">Home</a></li>
+          
+              <li><a href="/posts/">Archive</a></li>
+          
+              <li><a href="/categories/">Categories</a></li>
+          
+              <li><a href="/tags/">Tags</a></li>
+          
+              <li><a href="/subscribe/">Subscribe</a></li>
+          
+        </ul>
+    </div>
     <hr/>
     </nav>
 
 <div class="article-meta">
-<h1><span class="title">The Roguelike Tutorial - Week 2</span></h1>
+    <div class="title"><span>The Roguelike Tutorial - Week 2</span></div>
 
-<h2 class="date">25 June 2018</h2>
-
-<span style="font-size: 0.9em; font-family: 'Source Code Pro', monospace;text-align:center;">
-    
-    <a href="/tags/c&#43;&#43;">C&#43;&#43;</a> 
-    
-    <a href="/tags/roguelike">Roguelike</a> 
-    
-    <a href="/tags/barbarian">Barbarian!</a> 
-    
-</span>
-
+    <div>
+        
+          <span class="author">By Zach Wilder
+          </span>
+        
+        
+            <span class="date"> : Monday, June 25 2018</span>
+        
+    </div>
 </div>
-<hr>
+
+<hr/>
+
 <main>
-
-
 <p>So this week&rsquo;s goal is to finish <a href="http://rogueliketutorials.com/libtcod/2">part 2</a> and <a href="http://rogueliketutorials.com/libtcod/3">part 3</a> of the tutorial - I
 worked ahead because I was excited to get this project going, which worked out well since shortly after finishing part 2 I switched to SDL from SFML and it gave
 me some time to work on this blog.</p>
-
 <h2 id="the-switch-to-sdl">The Switch to SDL</h2>
-
 <p>So the game logic is completely divorced from the rendering system - I don&rsquo;t want to be tied into using a set framework if I want to change later, and I know for a
 fact from previous projects this will make save files <strong>much</strong> easier to generate. I briefly described last week that the game has a virtual console that is written
 to, and is read/translated into graphics to be
 displayed by SFML. Well, the console is a grid of say, 80x50 (960px x 600px). Each cell in the grid has a glyph that needs to be translated and rendered. During
 engine initialization, it loads one texture (image) as the spritesheet - in this case it&rsquo;s a .png image of the CP437 font.</p>
-
-
-<figure>
-    
-        <img src="/assets/2018-06-25/cp437_12x12.png" />
-    
-    
-</figure>
-
+<div id="ltbox-div">
+    <a data-fancybox data-buttons='["zoom","fullScreen","close"]' data-animation-effect="false" href="/images/2018-06-25/cp437_12x12.png">
+        <img class="ltbox-thumb" src="/images/2018-06-25/cp437_12x12.png">
+    </a>
+</div>
 
 <p>Now what Engine::Draw() did originally was make a new SFML sprite for each cell, with the position set to the font size multiplied by the cell x,y coordinates.
 Seemed simple enough, and it worked - but that&rsquo;s 4000 sprites created and destroyed EVERY time Draw() is called. The next iteration created two arrays of sprites
 in Engine::Init() that were persistent and lived throughout the life of the program - one sprite for each cell in an array, and one for each glyph. Then, in draw,
 each cell&rsquo;s sprite was just changed to be the same value as the sprite representing the glyph on the console. Yep, that worked too, but it still seemed there had
 to be a cleaner, better way of doing this.</p>
-
 <p>I realized something shortly after finishing that, I don&rsquo;t need all those sprites. I could just create an array of rectangles representing the sprite location on
 the texture and then change each cell&rsquo;s sprite location in that array! Further, doing this I didn&rsquo;t really need 4000 sprites (one for each cell) - couldn&rsquo;t I just
 use one sprite, updating it&rsquo;s position and rectangle before drawing it, since I only clear the render surface before drawing the first time? Well, SFML just did
 not like this - but that was okay, since things were working for now.</p>
-
 <p>I finished part 3 of the tutorial, which created a fairly simple dungeon generator, which looked like this:</p>
-
-
-<figure>
-    
-        <img src="/assets/2018-06-25/Screenshot1.png" />
-    
-    
-</figure>
-
+<div id="ltbox-div">
+    <a data-fancybox data-buttons='["zoom","fullScreen","close"]' data-animation-effect="false" href="/images/2018-06-25/Screenshot1.png">
+        <img class="ltbox-thumb" src="/images/2018-06-25/Screenshot1.png">
+    </a>
+</div>
 
 <p>Pretty neat! However, one of the main design considerations for this game is <strong>completely</strong> divorcing from the rendering - and in order to do so during this part
 I created two new classes <a href="https://github.com/zwilder/Barbarian/blob/master/include/rect.hpp">wsl::Rect</a> and <a href="https://github.com/zwilder/Barbarian/blob/master/include/vector.hpp">wsl::Vector</a>. Rect is a rectangle, defined by passing an x,y coordinate and a width/height, a pretty simple class.
 Vector, on the other hand, I went a tad overboard with. I like multi-use classes, because I can use them in other projects - so for Vector I brushed up on my C++
 Template skills and made vector a fancy template class. Honestly, it is a <strong>lot</strong> of code for a simple class that&rsquo;s basically a glorified holder for an x,y
-coordinate pair! For ease of use I liked how SFML defined Vector2<int> as Vector2i, Vector2<float> as Vector2f etc - so I
+coordinate pair! For ease of use I liked how SFML defined Vector2<!-- raw HTML omitted --> as Vector2i, Vector2<!-- raw HTML omitted --> as Vector2f etc - so I
 borrowed that. I&rsquo;ll probably make Rect into a fancy template class too - because it&rsquo;s fun and useful.</p>
-
 <p>I realized at this point that SFML is just a little too full featured for what I have planned for this game. I had previously gone through the <a href="/">LazyFoo SDL2</a>
 tutorials and really liked playing with SDL2. I decided to look at some of my older SDL2 code and see if I could modify and adapt the LazyFoo texture handling
 tutorial. This resulted in two more classes, <a href="https://github.com/zwilder/Barbarian/blob/master/include/texture.hpp">wsl::Texture</a> and <a href="https://github.com/zwilder/Barbarian/blob/master/include/sprite.hpp">wsl::Sprite</a> - I won&rsquo;t go into detail on those, since they are pretty straightforward
 adaptations of the LazyFoo tutorials.</p>
-
 <p>This brought me back to my problem with rendering, and wanting to just use one sprite as a sort of cursor to translate the console to the screen - heck, if I&rsquo;m
 writing the code then I&rsquo;ll make it work. Turns out, I didn&rsquo;t even need to do anything special! Everything renders quickly, cleanly, and I have the satisfaction of
 having written some new code.</p>
-
 <h2 id="bsp-dungeon-algorithm">BSP Dungeon Algorithm</h2>
-
 <p>Using binary space partitions to generate a dungeon is a pretty well documented process, but the amount of understandable or legible C++ code out there is pretty
 sparse. I found a few tutorials on making a BSP dungeon in a few other languages - and put this together, following along as usual with a <a href="http://www.roguebasin.com/index.php?title=Basic_BSP_Dungeon_generation">roguebasin article</a>.
 Basically, a binary tree is a collection of nodes, and each node can have exactly zero or two daughters. We then work our way down, splitting nodes into daughter
@@ -118,206 +153,184 @@ nodes, until a minimum node size (width/height of a rectangle) is reached. The v
 the &lsquo;leaves&rsquo; of the tree. To make this, I needed two classes, <a href="https://github.com/zwilder/Barbarian/blob/master/include/BSP.hpp">Node and Tree</a>.
 Each Node has a few things to keep track of: it&rsquo;s parent, it&rsquo;s children, and it&rsquo;s siblings. The Tree needs to keep track of it&rsquo;s root, it&rsquo;s leaves, and the
 rooms/corridors. The Node class contains the logic for splitting itself into children, and the Tree contains the logic for populating itself.</p>
-
 <p>Now, granted, this is all pretty abstract - so let&rsquo;s break down the code for splitting the Node first.</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Node::Node(wsl::Rect rect, Node * parent)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Node<span style="color:#f92672">::</span>Node(wsl<span style="color:#f92672">::</span>Rect rect, Node <span style="color:#f92672">*</span> parent)
 </code></pre></div>
-
 <p>A Node is created by passing it a rectangle representing it&rsquo;s area, and a reference to it&rsquo;s parent. Parent can be <code>NULL</code> - since the root has no parent.</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">bool</span> Node::split()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">bool</span> Node<span style="color:#f92672">::</span>split()
 {
-    <span style="color:#af0000">bool</span> success = <span style="color:#0087ff">false</span>;
-    <span style="color:#5f8700">if</span>(!hasSplit())
+    <span style="color:#66d9ef">bool</span> success <span style="color:#f92672">=</span> false;
+    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>hasSplit())
     {
-        <span style="color:#af0000">bool</span> horizontalSplit = wsl::randomBool();
-        <span style="color:#af0000">int</span> width = nodeRect.w;
-        <span style="color:#af0000">int</span> height = nodeRect.h;
+        <span style="color:#66d9ef">bool</span> horizontalSplit <span style="color:#f92672">=</span> wsl<span style="color:#f92672">::</span>randomBool();
+        <span style="color:#66d9ef">int</span> width <span style="color:#f92672">=</span> nodeRect.w;
+        <span style="color:#66d9ef">int</span> height <span style="color:#f92672">=</span> nodeRect.h;
 
-        <span style="color:#5f8700">if</span>((width &gt; height) &amp;&amp; (<span style="color:#00afaf">100</span> * (width / height) &gt; <span style="color:#00afaf">125</span>))
+        <span style="color:#66d9ef">if</span>((width <span style="color:#f92672">&gt;</span> height) <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> (width <span style="color:#f92672">/</span> height) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">125</span>))
         {
-            horizontalSplit = <span style="color:#0087ff">false</span>;
+            horizontalSplit <span style="color:#f92672">=</span> false;
         }
-        <span style="color:#5f8700">else</span> <span style="color:#5f8700">if</span>((height &gt; width) &amp;&amp; (<span style="color:#00afaf">100</span> * (height / width) &gt; <span style="color:#00afaf">125</span>))
+        <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">if</span>((height <span style="color:#f92672">&gt;</span> width) <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> (height <span style="color:#f92672">/</span> width) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">125</span>))
         {
-            horizontalSplit = <span style="color:#0087ff">true</span>;
+            horizontalSplit <span style="color:#f92672">=</span> true;
         }
 </code></pre></div>
-
 <p>First step is seeing if the node has already split, because if it has we don&rsquo;t want to split it again. Now, theoretically this will NEVER happen, but it never
 hurts to have a bit of backup in your code just to make sure. Then, we have to decide whether the Node will be split horizontally or vertically. Simple enough to
 select a random boolean - but what if splitting it horizontally makes the children nodes weirdly small? The next few lines cover that by making sure that if
 the width is greater than the height and the ratio of width to height is greater than 1.25 then horizontalSplit will always be false. Note that since width
 and height are integers, I normalized both sides by multiplying by 100.</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">        <span style="color:#af0000">int</span> max = (horizontalSplit ? height : width) - MIN_NODE_SIZE;
-        <span style="color:#5f8700">if</span>(max &lt;= MIN_NODE_SIZE) 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">        <span style="color:#66d9ef">int</span> max <span style="color:#f92672">=</span> (horizontalSplit <span style="color:#f92672">?</span> height : width) <span style="color:#f92672">-</span> MIN_NODE_SIZE;
+        <span style="color:#66d9ef">if</span>(max <span style="color:#f92672">&lt;=</span> MIN_NODE_SIZE) 
         {
-            <span style="color:#4e4e4e">// Too small to split further
-</span><span style="color:#4e4e4e"></span>            success = <span style="color:#0087ff">false</span>;
+            <span style="color:#75715e">// Too small to split further
+</span><span style="color:#75715e"></span>            success <span style="color:#f92672">=</span> false;
         }
-        <span style="color:#5f8700">else</span> <span style="color:#4e4e4e">// max &gt; MIN_NODE_SIZE
-</span><span style="color:#4e4e4e"></span>        {
-            <span style="color:#af0000">int</span> split = wsl::randomInt(MIN_NODE_SIZE, max);
+        <span style="color:#66d9ef">else</span> <span style="color:#75715e">// max &gt; MIN_NODE_SIZE
+</span><span style="color:#75715e"></span>        {
+            <span style="color:#66d9ef">int</span> split <span style="color:#f92672">=</span> wsl<span style="color:#f92672">::</span>randomInt(MIN_NODE_SIZE, max);
 
-            <span style="color:#5f8700">if</span>(horizontalSplit)
+            <span style="color:#66d9ef">if</span>(horizontalSplit)
             {
-                splitPos_.y = split;
-                splitPos_.x = nodeRect.x1;
-                leftChild_ = <span style="color:#5f8700">new</span> Node(wsl::Rect(nodeRect.x1, nodeRect.y1, width, split), <span style="color:#5f8700">this</span>);
-                rightChild_ = <span style="color:#5f8700">new</span> Node(wsl::Rect(nodeRect.x1, nodeRect.y1 + split, width, height - split), <span style="color:#5f8700">this</span>);
+                splitPos_.y <span style="color:#f92672">=</span> split;
+                splitPos_.x <span style="color:#f92672">=</span> nodeRect.x1;
+                leftChild_ <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Node(wsl<span style="color:#f92672">::</span>Rect(nodeRect.x1, nodeRect.y1, width, split), <span style="color:#66d9ef">this</span>);
+                rightChild_ <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Node(wsl<span style="color:#f92672">::</span>Rect(nodeRect.x1, nodeRect.y1 <span style="color:#f92672">+</span> split, width, height <span style="color:#f92672">-</span> split), <span style="color:#66d9ef">this</span>);
             }
-            <span style="color:#5f8700">else</span>
+            <span style="color:#66d9ef">else</span>
             {
-                splitPos_.x = split;
-                splitPos_.y = nodeRect.y1;
-                leftChild_ = <span style="color:#5f8700">new</span> Node(wsl::Rect(nodeRect.x1, nodeRect.y1, split, height), <span style="color:#5f8700">this</span>); 
-                rightChild_ = <span style="color:#5f8700">new</span> Node(wsl::Rect(nodeRect.x1 + split, nodeRect.y1, width - split, height), <span style="color:#5f8700">this</span>);
+                splitPos_.x <span style="color:#f92672">=</span> split;
+                splitPos_.y <span style="color:#f92672">=</span> nodeRect.y1;
+                leftChild_ <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Node(wsl<span style="color:#f92672">::</span>Rect(nodeRect.x1, nodeRect.y1, split, height), <span style="color:#66d9ef">this</span>); 
+                rightChild_ <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Node(wsl<span style="color:#f92672">::</span>Rect(nodeRect.x1 <span style="color:#f92672">+</span> split, nodeRect.y1, width <span style="color:#f92672">-</span> split, height), <span style="color:#66d9ef">this</span>);
             }
-            leftChild_-&gt;sibling_ = rightChild_;
-            rightChild_-&gt;sibling_ = leftChild_;
-            horizontal_ = horizontalSplit;
-            success = <span style="color:#0087ff">true</span>;
-            split_ = <span style="color:#0087ff">true</span>;
+            leftChild_<span style="color:#f92672">-&gt;</span>sibling_ <span style="color:#f92672">=</span> rightChild_;
+            rightChild_<span style="color:#f92672">-&gt;</span>sibling_ <span style="color:#f92672">=</span> leftChild_;
+            horizontal_ <span style="color:#f92672">=</span> horizontalSplit;
+            success <span style="color:#f92672">=</span> true;
+            split_ <span style="color:#f92672">=</span> true;
         }
        
     }
 
-    <span style="color:#5f8700">return</span> success;
+    <span style="color:#66d9ef">return</span> success;
 }
 </code></pre></div>
-
 <p>So most of the rest of the split function is self explanatory. The first check is to make sure that the large side of the node is greater than a constant
 <code>MINIMUM_NODE_SIZE</code>. <code>splitPos_</code> is a <code>wsl::Vector2i</code> that keeps track of the position of the split (which will come in handy when I add the corridors).
 <code>leftChild_</code> and <code>rightChild_</code> are named for position on the tree, not so much position in the context of the game - so if we split
 horizontally the left/right child are on the left and right of the node. If it&rsquo;s split vertically, the left/right child become the top/bottom child.</p>
-
 <p>All that is left now is to populate the tree!</p>
-
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#af0000">void</span> Tree::populate(wsl::Rect rootRect)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> Tree<span style="color:#f92672">::</span>populate(wsl<span style="color:#f92672">::</span>Rect rootRect)
 {
-    root_ = Node(rootRect);
+    root_ <span style="color:#f92672">=</span> Node(rootRect);
 
-    std::vector&lt;Node *&gt; growth;
-    growth.push_back(&amp;root_);
+    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>Node <span style="color:#f92672">*&gt;</span> growth;
+    growth.push_back(<span style="color:#f92672">&amp;</span>root_);
     
-    <span style="color:#5f8700">while</span>(!growth.empty())
+    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>growth.empty())
     {
-        Node * currentNode = growth.back();
-        <span style="color:#5f8700">if</span>(!currentNode-&gt;hasSplit())
+        Node <span style="color:#f92672">*</span> currentNode <span style="color:#f92672">=</span> growth.back();
+        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>currentNode<span style="color:#f92672">-&gt;</span>hasSplit())
         {
-            <span style="color:#4e4e4e">// Check if node can split, if so split it and add children to growth
-</span><span style="color:#4e4e4e"></span>            <span style="color:#5f8700">if</span>(currentNode-&gt;split())
+            <span style="color:#75715e">// Check if node can split, if so split it and add children to growth
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(currentNode<span style="color:#f92672">-&gt;</span>split())
             {
-                growth.push_back(currentNode-&gt;leftChild());
-                growth.push_back(currentNode-&gt;rightChild());
+                growth.push_back(currentNode<span style="color:#f92672">-&gt;</span>leftChild());
+                growth.push_back(currentNode<span style="color:#f92672">-&gt;</span>rightChild());
             }
-            <span style="color:#5f8700">else</span> <span style="color:#4e4e4e">// if it can&#39;t split, add it to leaves
-</span><span style="color:#4e4e4e"></span>            {
+            <span style="color:#66d9ef">else</span> <span style="color:#75715e">// if it can&#39;t split, add it to leaves
+</span><span style="color:#75715e"></span>            {
                 leaves_.push_back(currentNode);
                 growth.pop_back();
             }
         }
-        <span style="color:#5f8700">else</span> <span style="color:#4e4e4e">// currentNode.hasSplit() == true
-</span><span style="color:#4e4e4e"></span>        {
+        <span style="color:#66d9ef">else</span> <span style="color:#75715e">// currentNode.hasSplit() == true
+</span><span style="color:#75715e"></span>        {
             growth.pop_back();
         }
     }
 }
 </code></pre></div>
-
 <p>To populate the tree is pretty simple after having the split function taken care of. We start by creating a root node of a defined size (passed into the function).
 We need to check every node as we create it, so a vector containing the current nodes <code>growth</code> is created and root is added to it. Then, while the growth vector has
 Nodes in it, we check a Node, split it if possible, and if not add it to the leaves and remove it from the growth vector. This leaves us with a vector of leaves
 ready to put some rooms in! Here&rsquo;s a picture of what a result can look like with the minimum node size set to &lsquo;8&rsquo; on an 80x50 console.</p>
-
-
-<figure>
-    
-        <img src="/assets/2018-06-25/Screenshot2.png" />
-    
-    
-</figure>
-
+<div id="ltbox-div">
+    <a data-fancybox data-buttons='["zoom","fullScreen","close"]' data-animation-effect="false" href="/images/2018-06-25/Screenshot2.png">
+        <img class="ltbox-thumb" src="/images/2018-06-25/Screenshot2.png">
+    </a>
+</div>
 
 <p>In each of those rectangles a smaller rectangle is then randomly placed, which gives something like this:</p>
-
-
-<figure>
-    
-        <img src="/assets/2018-06-25/Screenshot3.png" />
-    
-    
-</figure>
-
+<div id="ltbox-div">
+    <a data-fancybox data-buttons='["zoom","fullScreen","close"]' data-animation-effect="false" href="/images/2018-06-25/Screenshot3.png">
+        <img class="ltbox-thumb" src="/images/2018-06-25/Screenshot3.png">
+    </a>
+</div>
 
 <p>Unfortunately&hellip; After all this fun work, if each room is connected to the room in the sibling node working our way up the tree, it ends up with a single
 path connecting the dungeon! If instead the rooms are connected Rogue style (choosing a random x,y point on each room to connect) or tutorial style (connecting
 the center of the rooms) this ends up looking darn near identical to the tutorial dungeon algorithm! Shoot.</p>
-
-<!-- <iframe src="https://giphy.com/embed/hwIhyQDzVhn56" width="480" height="265" frameBorder="0"></iframe> -->
-
+<!-- raw HTML omitted -->
 <p>Well, they can&rsquo;t all be winners. Fortunately, roguebasin has some other awesome dungeon generation articles - I&rsquo;ve already modified one of them for use in
 another project, and will most likely modify that same one again for this project.</p>
-
 <p>Here is the source code for <a href="https://github.com/zwilder/Barbarian/tree/Part_3">Part 3</a>!</p>
 
 </main>
-<div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">
+<hr/>
+<div style="width:100%;text-align:center;">
     
     <span>
         
-        <a href = "/posts/2018-06-20-the-roguelike-tutorial-week1/">&laquo;&laquo; The Roguelike Tutorial - Week 1</a>
+        <a href = "/posts/2018-06-20-the-roguelike-tutorial-week1/">&laquo;&laquo; Previous Post</a>
     </span>
     
     
     <span>
         |
         
-        <a href = "/posts/2018-07-02-the-roguelike-tutorial-week3/">The Roguelike Tutorial - Week 3a &raquo;&raquo;</a>
+        <a href = "/posts/2018-07-02-the-roguelike-tutorial-week3/">Next Post &raquo;&raquo;</a>
     </span>
     
 </div>
-<br>
-
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'wsl-programming-blog';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<br/><br/>
+<a id="comments"></a>
+<div id="disqus_thread"></div>
+<script>
 
 
+
+var disqus_config = function () {
+    this.page.url =  null ;  
+    this.page.identifier =  null ; 
+};
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://wsl-blog-1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//wsl-blog-1.disqus.com/count.js" async></script>
+
+<br/><br/>
   <footer>
   
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-121310852-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
 
   
   <hr/>
-  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  © <a href="/about/">Z Wilder</a> 2016-2023 | <a href="https://github.com/zwilder/">Github</a>
   
   </footer>
+  <div id="ltbox">
+    <p>[Click Anywhere To Close]</p>
+    <div id="content">
+        <img src="#">
+    </div>
+</div>
+
   </body>
 </html>
 

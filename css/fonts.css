@@ -1,10 +1,11 @@
 body {
   /* font-family: Optima, Candara, Calibri, Arial, sans-serif; */
-  /* font-family: 'Source Sans Pro',sans-serif; */
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 code {
-  /* font-family: "Lucida Console", Monaco, monospace; */
-  font-family: 'Source Code Pro',monospace; 
+  font-family: "Lucida Console", Monaco, monospace;
   font-size: 85%;
+}
+h1, h2, .title, .site-title, .sub-title { 
+  font-family: 'Belgrano', serif;
 }

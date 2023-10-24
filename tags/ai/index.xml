@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>AI on WSL Programming Blog</title>
+    <title>AI on Wsl Blog</title>
     <link>/tags/ai/</link>
-    <description>Recent content in AI on WSL Programming Blog</description>
+    <description>Recent content in AI on Wsl Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Jul 2016 08:29:06 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jul 2019 08:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/tags/ai/index.xml" rel="self" type="application/rss+xml" />
     

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tree of heaven on Wsl Blog</title>
+    <link>/tags/tree-of-heaven/</link>
+    <description>Recent content in tree of heaven on Wsl Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 Jul 2019 08:00:00 -0700</lastBuildDate>
+    
+	<atom:link href="/tags/tree-of-heaven/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>*Ailanthus altissima* tree of heaven</title>
+      <link>/posts/2019-07-21-ailanthus/</link>
+      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/posts/2019-07-21-ailanthus/</guid>
+      <description>Background Ailanthus, tree of heaven, paradise tree, or tree of hell (as many like to call it) is an invasive tree across the United States, Canada, and Mexico. First introduced as an ornamental in the Eastern US and brought to California during the gold rush. This tree is common in urban areas and very tolerant of pollution and poor soil conditions. You can see tree of heaven in many mining towns in Arizona, some say it is holding up the old copper mining town of Jerome.</description>
+    </item>
+    
+  </channel>
+</rss>

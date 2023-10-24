@@ -1,22 +1,247 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on WSL Programming Blog</title>
+    <title>Tags on Wsl Blog</title>
     <link>/tags/</link>
-    <description>Recent content in Tags on WSL Programming Blog</description>
+    <description>Recent content in Tags on Wsl Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Jul 2016 08:29:06 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 23 Oct 2023 14:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Life</title>
+      <link>/tags/life/</link>
+      <pubDate>Mon, 23 Oct 2023 14:00:00 -0700</pubDate>
+      
+      <guid>/tags/life/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MYOG</title>
+      <link>/tags/myog/</link>
+      <pubDate>Sat, 12 Sep 2020 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/myog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>/tags/projects/</link>
+      <pubDate>Sat, 12 Sep 2020 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/projects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sewing</title>
+      <link>/tags/sewing/</link>
+      <pubDate>Sat, 12 Sep 2020 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/sewing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vintage Machines</title>
+      <link>/tags/vintage-machines/</link>
+      <pubDate>Sat, 12 Sep 2020 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/vintage-machines/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Art</title>
+      <link>/tags/art/</link>
+      <pubDate>Sat, 06 Jun 2020 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/art/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pen and Ink</title>
+      <link>/tags/pen-and-ink/</link>
+      <pubDate>Sat, 06 Jun 2020 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/pen-and-ink/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>African Sumac</title>
+      <link>/tags/african-sumac/</link>
+      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/african-sumac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Alternate</title>
+      <link>/tags/alternate/</link>
+      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/alternate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Anacardiaceae</title>
+      <link>/tags/anacardiaceae/</link>
+      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/anacardiaceae/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Invasive</title>
+      <link>/tags/invasive/</link>
+      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/invasive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rhus lancea</title>
+      <link>/tags/rhus-lancea/</link>
+      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/rhus-lancea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sersia lancea</title>
+      <link>/tags/sersia-lancea/</link>
+      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/sersia-lancea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Trifoliate</title>
+      <link>/tags/trifoliate/</link>
+      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/trifoliate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>AI</title>
       <link>/tags/ai/</link>
-      <pubDate>Fri, 15 Jul 2016 08:29:06 -0700</pubDate>
+      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
       
       <guid>/tags/ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ailanthus altissima</title>
+      <link>/tags/ailanthus-altissima/</link>
+      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/tags/ailanthus-altissima/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deciduous</title>
+      <link>/tags/deciduous/</link>
+      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/tags/deciduous/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pinnately compound</title>
+      <link>/tags/pinnately-compound/</link>
+      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/tags/pinnately-compound/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Simaroubaceae</title>
+      <link>/tags/simaroubaceae/</link>
+      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/tags/simaroubaceae/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tree of heaven</title>
+      <link>/tags/tree-of-heaven/</link>
+      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/tags/tree-of-heaven/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bipinnate</title>
+      <link>/tags/bipinnate/</link>
+      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/tags/bipinnate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fabaceae</title>
+      <link>/tags/fabaceae/</link>
+      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/tags/fabaceae/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lead tree</title>
+      <link>/tags/lead-tree/</link>
+      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/tags/lead-tree/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Leucaena leucocephala</title>
+      <link>/tags/leucaena-leucocephala/</link>
+      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/tags/leucaena-leucocephala/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Seed pods</title>
+      <link>/tags/seed-pods/</link>
+      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/tags/seed-pods/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Twice pinnately compound</title>
+      <link>/tags/twice-pinnately-compound/</link>
+      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
+      
+      <guid>/tags/twice-pinnately-compound/</guid>
       <description></description>
     </item>
     
@@ -39,42 +264,6 @@
     </item>
     
     <item>
-      <title>Cellular Automata</title>
-      <link>/tags/cellular-automata/</link>
-      <pubDate>Thu, 22 Dec 2016 19:18:06 -0700</pubDate>
-      
-      <guid>/tags/cellular-automata/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hugo</title>
-      <link>/tags/hugo/</link>
-      <pubDate>Sun, 22 Oct 2017 07:00:00 -0700</pubDate>
-      
-      <guid>/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Jekyll</title>
-      <link>/tags/jekyll/</link>
-      <pubDate>Tue, 15 Nov 2016 19:18:06 -0700</pubDate>
-      
-      <guid>/tags/jekyll/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Makefile</title>
-      <link>/tags/makefile/</link>
-      <pubDate>Tue, 24 Jul 2018 16:00:00 -0700</pubDate>
-      
-      <guid>/tags/makefile/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Roguelike</title>
       <link>/tags/roguelike/</link>
       <pubDate>Tue, 18 Sep 2018 14:00:00 -0700</pubDate>
@@ -93,11 +282,47 @@
     </item>
     
     <item>
+      <title>Makefile</title>
+      <link>/tags/makefile/</link>
+      <pubDate>Tue, 24 Jul 2018 16:00:00 -0700</pubDate>
+      
+      <guid>/tags/makefile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>/tags/hugo/</link>
+      <pubDate>Sun, 22 Oct 2017 07:00:00 -0700</pubDate>
+      
+      <guid>/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Web Programming</title>
       <link>/tags/web-programming/</link>
       <pubDate>Sun, 22 Oct 2017 07:00:00 -0700</pubDate>
       
       <guid>/tags/web-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cellular Automata</title>
+      <link>/tags/cellular-automata/</link>
+      <pubDate>Thu, 22 Dec 2016 19:18:06 -0700</pubDate>
+      
+      <guid>/tags/cellular-automata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jekyll</title>
+      <link>/tags/jekyll/</link>
+      <pubDate>Tue, 15 Nov 2016 19:18:06 -0700</pubDate>
+      
+      <guid>/tags/jekyll/</guid>
       <description></description>
     </item>
     

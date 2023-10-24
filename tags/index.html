@@ -3,131 +3,498 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tags | WSL Programming Blog</title>
+    <title>Tags | Wsl Blog</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Raleway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Belgrano|Lato&display=swap" rel="stylesheet">
 
-      
 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+    
+        
+    
+    $('.ltbox-trigger').click(function(e) {
+    	
+        
+		e.preventDefault();
+		
+		
+		var image_href = $(this).attr("href");
+		
+		
+
+		
+		if ($('#ltbox').length > 0) { 
+			
+			
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			
+			
+            
+            $('#ltbox').toggle();
+		}
+		
+        return false;
+    });
+    $('body').on('click', '#ltbox', function() { 
+        
+        $('#ltbox').toggle();
+    });
+});
+</script>
 
   </head>
 
   <body>
+      <div class="site-title">
+          <img class="wsl-logo" src="/wsl.svg" />
+          <span class="wsl-title">
+             Wsl Blog
+          </span>
+      </div>
     <nav>
-    <ul class="menu">
-      
-      <li><a href="/">home</a></li>
-      
-      <li><a href="/about/">about</a></li>
-      
-      <li><a href="/tags/">tags</a></li>
-      
-      <li><a href="/index.xml">rss</a></li>
-      
-    </ul>
+    <p class="sub-title">Adventures in making, arting, exploring, and other things.</p>
+    <div class="menu">
+        <ul>
+          
+              <li><a href="/">Home</a></li>
+          
+              <li><a href="/posts/">Archive</a></li>
+          
+              <li><a href="/categories/">Categories</a></li>
+          
+              <li><a href="/tags/">Tags</a></li>
+          
+              <li><a href="/subscribe/">Subscribe</a></li>
+          
+        </ul>
+    </div>
     <hr/>
     </nav>
 
 
-<h1 class="article-meta">Tags</h1>
+<div class="article-meta">
+    <div class="title"><span>Tags</span></div>
+</div>
 
+<hr/>
 <ul class="terms">
   
   <li>
-    <a href="/tags/ai">
-      AI
+    <a href="/tags/african-sumac" class="circle">
+        <div>
+        1
+        </div>
     </a>
-    (1)
+    <a href="/tags/african-sumac" style="display:inline-block;">
+      african-sumac
+    </a>
   </li>
   
   <li>
-    <a href="/tags/barbarian">
-      Barbarian!
+    <a href="/tags/ai" class="circle">
+        <div>
+        1
+        </div>
     </a>
-    (10)
+    <a href="/tags/ai" style="display:inline-block;">
+      ai
+    </a>
   </li>
   
   <li>
-    <a href="/tags/c&#43;&#43;">
-      C&#43;&#43;
+    <a href="/tags/ailanthus-altissima" class="circle">
+        <div>
+        1
+        </div>
     </a>
-    (14)
+    <a href="/tags/ailanthus-altissima" style="display:inline-block;">
+      ailanthus-altissima
+    </a>
   </li>
   
   <li>
-    <a href="/tags/cellular-automata">
-      Cellular Automata
+    <a href="/tags/alternate" class="circle">
+        <div>
+        3
+        </div>
     </a>
-    (1)
+    <a href="/tags/alternate" style="display:inline-block;">
+      alternate
+    </a>
   </li>
   
   <li>
-    <a href="/tags/hugo">
-      Hugo
+    <a href="/tags/anacardiaceae" class="circle">
+        <div>
+        1
+        </div>
     </a>
-    (2)
+    <a href="/tags/anacardiaceae" style="display:inline-block;">
+      anacardiaceae
+    </a>
   </li>
   
   <li>
-    <a href="/tags/jekyll">
-      Jekyll
+    <a href="/tags/art" class="circle">
+        <div>
+        1
+        </div>
     </a>
-    (2)
+    <a href="/tags/art" style="display:inline-block;">
+      art
+    </a>
   </li>
   
   <li>
-    <a href="/tags/makefile">
-      Makefile
+    <a href="/tags/barbarian" class="circle">
+        <div>
+        10
+        </div>
     </a>
-    (1)
+    <a href="/tags/barbarian" style="display:inline-block;">
+      barbarian
+    </a>
   </li>
   
   <li>
-    <a href="/tags/roguelike">
-      Roguelike
+    <a href="/tags/bipinnate" class="circle">
+        <div>
+        1
+        </div>
     </a>
-    (14)
+    <a href="/tags/bipinnate" style="display:inline-block;">
+      bipinnate
+    </a>
   </li>
   
   <li>
-    <a href="/tags/tutorials">
-      Tutorials
+    <a href="/tags/c&#43;&#43;" class="circle">
+        <div>
+        14
+        </div>
     </a>
-    (1)
+    <a href="/tags/c&#43;&#43;" style="display:inline-block;">
+      c&#43;&#43;
+    </a>
   </li>
   
   <li>
-    <a href="/tags/web-programming">
-      Web Programming
+    <a href="/tags/cellular-automata" class="circle">
+        <div>
+        1
+        </div>
     </a>
-    (4)
+    <a href="/tags/cellular-automata" style="display:inline-block;">
+      cellular-automata
+    </a>
   </li>
   
+  <li>
+    <a href="/tags/deciduous" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/deciduous" style="display:inline-block;">
+      deciduous
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/fabaceae" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/fabaceae" style="display:inline-block;">
+      fabaceae
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/hugo" class="circle">
+        <div>
+        2
+        </div>
+    </a>
+    <a href="/tags/hugo" style="display:inline-block;">
+      hugo
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/invasive" class="circle">
+        <div>
+        3
+        </div>
+    </a>
+    <a href="/tags/invasive" style="display:inline-block;">
+      invasive
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/jekyll" class="circle">
+        <div>
+        2
+        </div>
+    </a>
+    <a href="/tags/jekyll" style="display:inline-block;">
+      jekyll
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/lead-tree" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/lead-tree" style="display:inline-block;">
+      lead-tree
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/leucaena-leucocephala" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/leucaena-leucocephala" style="display:inline-block;">
+      leucaena-leucocephala
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/life" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/life" style="display:inline-block;">
+      life
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/makefile" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/makefile" style="display:inline-block;">
+      makefile
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/myog" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/myog" style="display:inline-block;">
+      myog
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/pen-and-ink" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/pen-and-ink" style="display:inline-block;">
+      pen-and-ink
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/pinnately-compound" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/pinnately-compound" style="display:inline-block;">
+      pinnately-compound
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/projects" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/projects" style="display:inline-block;">
+      projects
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/rhus-lancea" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/rhus-lancea" style="display:inline-block;">
+      rhus-lancea
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/roguelike" class="circle">
+        <div>
+        14
+        </div>
+    </a>
+    <a href="/tags/roguelike" style="display:inline-block;">
+      roguelike
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/seed-pods" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/seed-pods" style="display:inline-block;">
+      seed-pods
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/sersia-lancea" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/sersia-lancea" style="display:inline-block;">
+      sersia-lancea
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/sewing" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/sewing" style="display:inline-block;">
+      sewing
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/simaroubaceae" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/simaroubaceae" style="display:inline-block;">
+      simaroubaceae
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/tree-of-heaven" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/tree-of-heaven" style="display:inline-block;">
+      tree-of-heaven
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/trifoliate" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/trifoliate" style="display:inline-block;">
+      trifoliate
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/tutorials" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/tutorials" style="display:inline-block;">
+      tutorials
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/twice-pinnately-compound" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/twice-pinnately-compound" style="display:inline-block;">
+      twice-pinnately-compound
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/vintage-machines" class="circle">
+        <div>
+        1
+        </div>
+    </a>
+    <a href="/tags/vintage-machines" style="display:inline-block;">
+      vintage-machines
+    </a>
+  </li>
+  
+  <li>
+    <a href="/tags/web-programming" class="circle">
+        <div>
+        4
+        </div>
+    </a>
+    <a href="/tags/web-programming" style="display:inline-block;">
+      web-programming
+    </a>
+  </li>
+  
+
 </ul>
 
   <footer>
   
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-121310852-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
 
   
   <hr/>
-  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  © <a href="/about/">Z Wilder</a> 2016-2023 | <a href="https://github.com/zwilder/">Github</a>
   
   </footer>
+  <div id="ltbox">
+    <p>[Click Anywhere To Close]</p>
+    <div id="content">
+        <img src="#">
+    </div>
+</div>
+
   </body>
 </html>
 

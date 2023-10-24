@@ -3,104 +3,175 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>About | WSL Programming Blog</title>
+    <title>About Wsl | Wsl Blog</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro|Montserrat" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Raleway&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Belgrano|Lato&display=swap" rel="stylesheet">
 
-      
 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+    
+        
+    
+    $('.ltbox-trigger').click(function(e) {
+    	
+        
+		e.preventDefault();
+		
+		
+		var image_href = $(this).attr("href");
+		
+		
+
+		
+		if ($('#ltbox').length > 0) { 
+			
+			
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			
+			
+            
+            $('#ltbox').toggle();
+		}
+		
+        return false;
+    });
+    $('body').on('click', '#ltbox', function() { 
+        
+        $('#ltbox').toggle();
+    });
+});
+</script>
 
   </head>
 
   <body>
+      <div class="site-title">
+          <img class="wsl-logo" src="/wsl.svg" />
+          <span class="wsl-title">
+             Wsl Blog
+          </span>
+      </div>
     <nav>
-    <ul class="menu">
-      
-      <li><a href="/">home</a></li>
-      
-      <li><a href="/about/">about</a></li>
-      
-      <li><a href="/tags/">tags</a></li>
-      
-      <li><a href="/index.xml">rss</a></li>
-      
-    </ul>
+    <p class="sub-title">Adventures in making, arting, exploring, and other things.</p>
+    <div class="menu">
+        <ul>
+          
+              <li><a href="/">Home</a></li>
+          
+              <li><a href="/posts/">Archive</a></li>
+          
+              <li><a href="/categories/">Categories</a></li>
+          
+              <li><a href="/tags/">Tags</a></li>
+          
+              <li><a href="/subscribe/">Subscribe</a></li>
+          
+        </ul>
+    </div>
     <hr/>
     </nav>
 
 <div class="article-meta">
-<h1><span class="title">About</span></h1>
+    <div class="title"><span>About Wsl</span></div>
 
-
-
+    <div>
+        
+        
+    </div>
 </div>
-<hr>
+
+<hr/>
+
 <main>
-
-
-<p>If you&rsquo;ve arrived on this page, you may be wondering: Who are you? What is WSL? Why am I reading this?</p>
-
-<p>I&rsquo;m a hobbyist programmer, and have been messing around with various little programming projects since I was a kid borrowing books on C programming from the local library. I think I originally started programming because as a kid I had no way of actually buying computer games, and figured &ldquo;heck, I could make something myself!&rdquo; Like most kids, my interest and enthusiasm (and patience) fluctuated way too often to ever have any real results, and I eventually stopped making things when I left high school.</p>
-
-<p>About ten years later, I was bored over a winter break in school and stumbled across the <a href="http://www.roguebasin.com/index.php?title=Complete_Roguelike_Tutorial,_using_python%2Blibtcod">Libtcod Python Roguelike Tutorial</a> and decided that I would pick up this old hobby and learn Python. A few weeks of furious coding after the tutorial I ended up with something I was actually pretty proud of, my first &ldquo;real&rdquo; game! It was pretty okay, and actually pretty fun. Most of all, it was a great learning experience and was extremely motivating to try something else.</p>
-
-<p>I have a weird obsession with making things from scratch - so naturally I decided to attempt to learn C++. This blog was created to document my struggles, successes, and failures attempting to mash C++ together into a cohesive program.</p>
-
-<p>I&rsquo;m currently working on a roguelike, written in C++. I do all of my code in <a href="http://www.vim.org/">VIM</a> on <a href="https://www.archlinux.org/">Arch Linux</a>.</p>
-
-<p>This website was created using <a href="gohugo.io">Hugo</a>, the <a href="https://github.com/yihui/hugo-xmin/">XMin</a> theme, and some borrowed ideas from the internet.</p>
-
-<h2 id="what-is-wsl">What is WSL?</h2>
-
-<p>It&rsquo;s short for &ldquo;weasel&rdquo;. Most of my ideas began as inspiration gained from watching too many cartoons, this one was from Cow and Chicken. I&rsquo;ve used it as
-an abbreviation in my code for years now, prefacing classes and objects with it. Also, hilariously, it&rsquo;s the abbreviation for the World Surf League - which I am 100% not affiliated with, unless they want to hook me up with a t-shirt featuring a surfing mustelid or something.</p>
+<h2 id="who-are-you">Who are you?</h2>
+<p>Well, I am just some guy with a computer and some free time - and I spend that
+free time making things, exploring places, and &ldquo;entertaining&rdquo; family and
+coworkers with stories.</p>
+<p>Professionally, I work as a senior consulting utility forester. I am an ISA
+Certified Arborist/Utility Specialist, with (the majority of) my degree in
+Ecology from the University of Arizona, and I am a veteran of the US Navy.</p>
+<h2 id="what-is-wsl">What is &ldquo;Wsl&rdquo;?</h2>
+<p>It&rsquo;s short for &ldquo;weasel&rdquo;. Most of my ideas began as inspiration gained from
+watching too many cartoons, this one was from Cow and Chicken. I&rsquo;ve used it as
+an abbreviation in my code for years now, prefacing classes and objects with it.
+Also, hilariously, it&rsquo;s the abbreviation for the World Surf League - which I am
+100% not affiliated with, unless they want to hook me up with a t-shirt
+featuring a surfing mustelid or something.</p>
+<h2 id="who-built-this-site-how">Who built this site? How?</h2>
+<p>I&rsquo;m a hobbyist programmer, and have been messing around with various little
+programming projects since I was a kid borrowing books on C programming from the
+local library. I think I originally started programming because as a kid I had
+no way of actually buying computer games, and figured &ldquo;heck, I could make
+something myself!&rdquo;</p>
+<p>I built this site, using <a href="https://gohugo.io">Hugo</a>, a fantastic static blog
+generator. The theme is a heavily modified version of
+<a href="https://github.com/yihui/hugo-xmin">XMin</a>. The lightbox code for the images is
+provided by <a href="https://github.com/fancyapps/fancybox">Fancybox</a>. The source for
+the site is posted on <a href="https://github.com/zwilder/WSL_Blog">GitHub</a>.  If
+anything is broken on the site and needs fixing please don&rsquo;t hesitate to <a href="mailto:z@wsl-blog.com">email
+me</a>!</p>
 
 </main>
-<div style="text-align: center;font-family: 'Source Code Pro', monospace; font-size: 0.9em;">
+<hr/>
+<div style="width:100%;text-align:center;">
+    
+    <span>
+        
+        <a href = "/subscribe/">&laquo;&laquo; Previous Post</a>
+    </span>
     
     
 </div>
-<br>
-
-<section class="section">
-  <div class="container">
-    <aside><div id="disqus_thread"></div></aside>
-    <script type="text/javascript">
-      var disqus_shortname = 'wsl-programming-blog';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+<br/><br/>
+<a id="comments"></a>
+<div id="disqus_thread"></div>
+<script>
 
 
+
+var disqus_config = function () {
+    this.page.url =  null ;  
+    this.page.identifier =  null ; 
+};
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://wsl-blog-1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//wsl-blog-1.disqus.com/count.js" async></script>
+
+<br/><br/>
   <footer>
   
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-121310852-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
 
   
   <hr/>
-  &copy; <a href="https://github.com/zwilder">Zach Wilder</a> 2018
+  © <a href="/about/">Z Wilder</a> 2016-2023 | <a href="https://github.com/zwilder/">Github</a>
   
   </footer>
+  <div id="ltbox">
+    <p>[Click Anywhere To Close]</p>
+    <div id="content">
+        <img src="#">
+    </div>
+</div>
+
   </body>
 </html>
 

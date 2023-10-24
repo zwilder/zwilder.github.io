@@ -1,187 +1,303 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>WSL Programming Blog</title>
-    <link>/</link>
-    <description>Recent content on WSL Programming Blog</description>
+    <title>Wsl Blog</title>
+    <link>https://www.wsl-blog.com/posts/</link>
+    <description>Adventures in making, arting, exploring, and other things.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Sep 2018 14:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 23 Oct 2023 14:00:00 -0700</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     
     
     <item>
+      <title>Techno-Necromancy</title>
+      <link>https://www.wsl-blog.com/posts/2023-10-23-necromancy/</link>
+      <pubDate>Mon, 23 Oct 2023 14:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
+      
+      <guid>/posts/2023-10-23-necromancy/</guid>
+      <description>Well, my ambition to change the blog to a collection of posts about what I&amp;rsquo;m currently doing apparently didn&amp;rsquo;t pan out for me posting more often. Time to bring the blog back from the dead - some techno-necromancy.
+What&amp;rsquo;s happened in the three years and change since the last post? A lot, actually. Ignoring the political landscape and all the nonsense from the COVID times is hard, and probably why I didn&amp;rsquo;t feel motivated to write anything about what I was doing with my personal life. - &lt;a href="https://www.wsl-blog.com/posts/2023-10-23-necromancy/"&gt;[Read more]&lt;/a&gt;</description>
+    </item>
+    
+    <item>
+      <title>Building a Daypack Ramblings</title>
+      <link>https://www.wsl-blog.com/posts/2020-09-12-18lpack/</link>
+      <pubDate>Sat, 12 Sep 2020 07:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
+      
+      <media:content url="https://www.wsl-blog.com/images/2020-09-12-18LPack/WearingThePack.jpg" medium="image" />
+      <image>
+          <url>https://www.wsl-blog.com/images/2020-09-12-18LPack/WearingThePack.jpg</url>
+          <title>Building a Daypack Ramblings Thumbnail</title>
+          <link>https://www.wsl-blog.com/</link>
+      </image>
+      
+      <guid>/posts/2020-09-12-18lpack/</guid>
+      <description>Occasionally, I get ideas that creep into my brain and won&amp;rsquo;t leave until I fully explore them. Back in February, while still enjoying the nice Arizona winters, I was hiking with my trusty old camelback. I&amp;rsquo;m fond of that pack, despite it&amp;rsquo;s many shortcomings. It has lots of fun places to attach things, and carries around 2L of water. It has zero storage capacity, although you can shove like maybe a protein bar in with the bladder&amp;hellip; but that&amp;rsquo;s it. - &lt;a href="https://www.wsl-blog.com/posts/2020-09-12-18lpack/"&gt;[Read more]&lt;/a&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reviving the Blog</title>
+      <link>https://www.wsl-blog.com/posts/2020-06-06-revivingtheblog/</link>
+      <pubDate>Sat, 06 Jun 2020 07:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
+      
+      <media:content url="https://www.wsl-blog.com/images/2020-06-06-RevivingTheBlog/TrailerSketching_w.jpg" medium="image" />
+      <image>
+          <url>https://www.wsl-blog.com/images/2020-06-06-RevivingTheBlog/TrailerSketching_w.jpg</url>
+          <title>Reviving the Blog Thumbnail</title>
+          <link>https://www.wsl-blog.com/</link>
+      </image>
+      
+      <guid>/posts/2020-06-06-revivingtheblog/</guid>
+      <description>At the time of writing this, I&amp;rsquo;m sitting in a small camper trailer just off the Pacific ocean in Oregon. Rain is drizzling down in intermittent bursts, pounding on the metal roof, and when the rain stops a jay outside starts &amp;ldquo;singing&amp;rdquo; his boisterous song.
+I&amp;rsquo;ve recently relocated to the Pacific Northwest - my job had a position that needed filling on the Oregon Coast, how could I turn down that opportunity? - &lt;a href="https://www.wsl-blog.com/posts/2020-06-06-revivingtheblog/"&gt;[Read more]&lt;/a&gt;</description>
+    </item>
+    
+    <item>
+      <title>*Sersia lancea* African Sumac</title>
+      <link>https://www.wsl-blog.com/posts/2019-08-02-africansumac/</link>
+      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
+      
+      <media:content url="https://www.wsl-blog.com/images/2019-08-02-AfricanSumac/GlamourShot6.jpg" medium="image" />
+      <image>
+          <url>https://www.wsl-blog.com/images/2019-08-02-AfricanSumac/GlamourShot6.jpg</url>
+          <title>*Sersia lancea* African Sumac Thumbnail</title>
+          <link>https://www.wsl-blog.com/</link>
+      </image>
+      
+      <guid>/posts/2019-08-02-africansumac/</guid>
+      <description>Background Sersia lancea, the African sumac, is a common tree around the valley - the strong fragrance of its diminuitive flowers remind me strongly of spring time as a kid growing up in Phoenix. The tree is relatively unassuming, no showy flowers in the spring and no vibrant colours in the fall. Like most invading trees, it was originally brought to the valley in the 60s as a landscape tree. - &lt;a href="https://www.wsl-blog.com/posts/2019-08-02-africansumac/"&gt;[Read more]&lt;/a&gt;</description>
+    </item>
+    
+    <item>
+      <title>The Shed</title>
+      <link>https://www.wsl-blog.com/posts/2019-07-26-theshed/</link>
+      <pubDate>Fri, 26 Jul 2019 08:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
+      
+      <guid>/posts/2019-07-26-theshed/</guid>
+      <description>Since this blog now exists I thought I would share one of my favorite old stories, and possibly one of the stranger encounters I&amp;rsquo;ve had. A good alternative title for this story would be &amp;ldquo;Out of the hole and facing rebirth&amp;rdquo;&amp;hellip;
+One of my favorite things about this job is completing service requests - these are generally requests from people who actually want to see us. A nice change of pace from being the bearer of usually unpleasant news. - &lt;a href="https://www.wsl-blog.com/posts/2019-07-26-theshed/"&gt;[Read more]&lt;/a&gt;</description>
+    </item>
+    
+    <item>
+      <title>*Ailanthus altissima* tree of heaven</title>
+      <link>https://www.wsl-blog.com/posts/2019-07-21-ailanthus/</link>
+      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
+      <author>Jennifer Brady</author>
+      
+      <media:content url="https://www.wsl-blog.com/images/2019-07-21-Ailanthus/GlamourShot1.jpg" medium="image" />
+      <image>
+          <url>https://www.wsl-blog.com/images/2019-07-21-Ailanthus/GlamourShot1.jpg</url>
+          <title>*Ailanthus altissima* tree of heaven Thumbnail</title>
+          <link>https://www.wsl-blog.com/</link>
+      </image>
+      
+      <guid>/posts/2019-07-21-ailanthus/</guid>
+      <description>Background Ailanthus, tree of heaven, paradise tree, or tree of hell (as many like to call it) is an invasive tree across the United States, Canada, and Mexico. First introduced as an ornamental in the Eastern US and brought to California during the gold rush. This tree is common in urban areas and very tolerant of pollution and poor soil conditions. You can see tree of heaven in many mining towns in Arizona, some say it is holding up the old copper mining town of Jerome. - &lt;a href="https://www.wsl-blog.com/posts/2019-07-21-ailanthus/"&gt;[Read more]&lt;/a&gt;</description>
+    </item>
+    
+    <item>
+      <title>*Leucaena leucocephala* Lead Tree</title>
+      <link>https://www.wsl-blog.com/posts/2019-07-19-leadtree/</link>
+      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
+      
+      <media:content url="https://www.wsl-blog.com/images/2019-07-19-LeadTree/GlamourShot2.jpg" medium="image" />
+      <image>
+          <url>https://www.wsl-blog.com/images/2019-07-19-LeadTree/GlamourShot2.jpg</url>
+          <title>*Leucaena leucocephala* Lead Tree Thumbnail</title>
+          <link>https://www.wsl-blog.com/</link>
+      </image>
+      
+      <guid>/posts/2019-07-19-leadtree/</guid>
+      <description>Background Lead tree, river tamarind, faux mimosa - Travel through just about any alleyway in the Phoenix metro area and you are sure to come across this tree. It will usually be loaded with reddish, thin seedpods and likely have many small lead trees around it. Native to southern Mexico, it was originally planted as an ornamental here during the 1970s and 1980s. Supposedly, the tree was promoted as a &amp;ldquo;miracle tree&amp;rdquo; with many uses for the pods and wood. - &lt;a href="https://www.wsl-blog.com/posts/2019-07-19-leadtree/"&gt;[Read more]&lt;/a&gt;</description>
+    </item>
+    
+    <item>
       <title>Explosions in the Dungeon</title>
-      <link>/posts/2018-09-18-explosions/</link>
+      <link>https://www.wsl-blog.com/posts/2018-09-18-explosions/</link>
       <pubDate>Tue, 18 Sep 2018 14:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2018-09-18-explosions/</guid>
       <description>One of the big goals for Barbarian and one of the coolest things on my to do list was to add animations into the game. How exciting is it to see an arrow flying toward your character, a firebolt explode in the face of an undead horde, blood splatter flying from the wounds inflicted by the mighty barbarian decorating the walls of the dungeon?
-Obviously, the excitement added by all these visual effects is well worth the time spent adding them in.</description>
+Obviously, the excitement added by all these visual effects is well worth the time spent adding them in. - &lt;a href="https://www.wsl-blog.com/posts/2018-09-18-explosions/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>Wonderful Lists</title>
-      <link>/posts/2018-08-26-lists/</link>
+      <link>https://www.wsl-blog.com/posts/2018-08-26-lists/</link>
       <pubDate>Sun, 26 Aug 2018 15:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2018-08-26-lists/</guid>
-      <description>Over the course of the 2018 r/roguelikedev Tutorial Tuesday Challenge I decided to invest some time learning some fundamental programming concepts that I probably should have learned years ago. The fun (and challenging) part of being a hobby programmer is that most of my learning comes from books, and then random tutorials on the internet. Somewhere in the course of my &amp;ldquo;education&amp;rdquo; I never learned about basic data structures and how they can be used.</description>
+      <description>Over the course of the 2018 r/roguelikedev Tutorial Tuesday Challenge I decided to invest some time learning some fundamental programming concepts that I probably should have learned years ago. The fun (and challenging) part of being a hobby programmer is that most of my learning comes from books, and then random tutorials on the internet. Somewhere in the course of my &amp;ldquo;education&amp;rdquo; I never learned about basic data structures and how they can be used. - &lt;a href="https://www.wsl-blog.com/posts/2018-08-26-lists/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 7</title>
-      <link>/posts/2018-08-09-the-rogueliketutorial-week7/</link>
+      <link>https://www.wsl-blog.com/posts/2018-08-09-the-rogueliketutorial-week7/</link>
       <pubDate>Thu, 09 Aug 2018 13:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2018-08-09-the-rogueliketutorial-week7/</guid>
-      <description>I didn&amp;rsquo;t do a lot of coding over the last week, but I did finish the challenge! Had a bit of a scare after finishing part 12, I found a horrible lurking bug in the program that caused a LOT of little errors and I wasn&amp;rsquo;t sure (at first) how to track it down. Basically, shortly after finishing adding in some cool randomization functions I found that some entities weren&amp;rsquo;t being copied correctly, or saved correctly.</description>
+      <description>I didn&amp;rsquo;t do a lot of coding over the last week, but I did finish the challenge! Had a bit of a scare after finishing part 12, I found a horrible lurking bug in the program that caused a LOT of little errors and I wasn&amp;rsquo;t sure (at first) how to track it down. Basically, shortly after finishing adding in some cool randomization functions I found that some entities weren&amp;rsquo;t being copied correctly, or saved correctly. - &lt;a href="https://www.wsl-blog.com/posts/2018-08-09-the-rogueliketutorial-week7/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 5b/6</title>
-      <link>/posts/2018-07-31-the-roguelike-tutorial-week5b6/</link>
+      <link>https://www.wsl-blog.com/posts/2018-07-31-the-roguelike-tutorial-week5b6/</link>
       <pubDate>Tue, 31 Jul 2018 13:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2018-07-31-the-roguelike-tutorial-week5b6/</guid>
-      <description>Oh man, this has been a super exciting and productive week - this project is starting to feel like a real game! Started off last week a bit behind schedule, having just finished part 8. After my rant last week about my source code files getting too long, I decided to spend a bit of time going back over my core classes and cleaning up the code. I also split Engine into multiple files - which ended up making a lot of things a lot easier.</description>
+      <description>Oh man, this has been a super exciting and productive week - this project is starting to feel like a real game! Started off last week a bit behind schedule, having just finished part 8. After my rant last week about my source code files getting too long, I decided to spend a bit of time going back over my core classes and cleaning up the code. I also split Engine into multiple files - which ended up making a lot of things a lot easier. - &lt;a href="https://www.wsl-blog.com/posts/2018-07-31-the-roguelike-tutorial-week5b6/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 5a</title>
-      <link>/posts/2018-07-24-the-roguelike-tutorial-week5a/</link>
+      <link>https://www.wsl-blog.com/posts/2018-07-24-the-roguelike-tutorial-week5a/</link>
       <pubDate>Tue, 24 Jul 2018 16:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2018-07-24-the-roguelike-tutorial-week5a/</guid>
       <description>Another very productive week for this project! Although I was unable to finish last weeks goals of getting Parts 8 and 9 completed by today, I still feel pretty darn good about what I did accomplish. Besides, Parts 10, 11, and 12 are all fairly simple - heck the code is already in place, just needs to actually be used!
-After finishing Part 7 last week I decided to try and fix/change a few things that have been bothering me.</description>
+After finishing Part 7 last week I decided to try and fix/change a few things that have been bothering me. - &lt;a href="https://www.wsl-blog.com/posts/2018-07-24-the-roguelike-tutorial-week5a/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 4</title>
-      <link>/posts/2018-07-18-the-roguelike-tutorial-week4/</link>
+      <link>https://www.wsl-blog.com/posts/2018-07-18-the-roguelike-tutorial-week4/</link>
       <pubDate>Wed, 18 Jul 2018 12:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2018-07-18-the-roguelike-tutorial-week4/</guid>
-      <description>The past week has been equal parts frustration and excitement with this project. I ran into a pretty common design problem: entity components need to know about the rest of the game. Well, since each entity is just a collection of components it shouldn&amp;rsquo;t be difficult to pass a pointer to the game engine. Then, the components would have a pointer to the entity that &amp;ldquo;owns&amp;rdquo; it. Simple and clean&amp;hellip; or so I thought.</description>
+      <description>The past week has been equal parts frustration and excitement with this project. I ran into a pretty common design problem: entity components need to know about the rest of the game. Well, since each entity is just a collection of components it shouldn&amp;rsquo;t be difficult to pass a pointer to the game engine. Then, the components would have a pointer to the entity that &amp;ldquo;owns&amp;rdquo; it. Simple and clean&amp;hellip; or so I thought. - &lt;a href="https://www.wsl-blog.com/posts/2018-07-18-the-roguelike-tutorial-week4/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 3b</title>
-      <link>/posts/2018-07-10-the-roguelike-tutorial-week3b/</link>
+      <link>https://www.wsl-blog.com/posts/2018-07-10-the-roguelike-tutorial-week3b/</link>
       <pubDate>Tue, 10 Jul 2018 22:31:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2018-07-10-the-roguelike-tutorial-week3b/</guid>
-      <description>I originally planned for this week&amp;rsquo;s blog post to cover my adaptation of part 5 of the Python RL tutorial - but after finishing part 5 in a matter of minutes I realized there wouldn&amp;rsquo;t be much to write here! Part 5 is basically making new entities and getting the collision logic in place before combat is added in part 6. However, before adding combat I thought it would be beneficial to start thinking about game time - it&amp;rsquo;s far more fun when some enemies are a lot quicker than the player, forcing the player to devise strategies for survival.</description>
+      <description>I originally planned for this week&amp;rsquo;s blog post to cover my adaptation of part 5 of the Python RL tutorial - but after finishing part 5 in a matter of minutes I realized there wouldn&amp;rsquo;t be much to write here! Part 5 is basically making new entities and getting the collision logic in place before combat is added in part 6. However, before adding combat I thought it would be beneficial to start thinking about game time - it&amp;rsquo;s far more fun when some enemies are a lot quicker than the player, forcing the player to devise strategies for survival. - &lt;a href="https://www.wsl-blog.com/posts/2018-07-10-the-roguelike-tutorial-week3b/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 3a</title>
-      <link>/posts/2018-07-02-the-roguelike-tutorial-week3/</link>
+      <link>https://www.wsl-blog.com/posts/2018-07-02-the-roguelike-tutorial-week3/</link>
       <pubDate>Mon, 02 Jul 2018 08:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2018-07-02-the-roguelike-tutorial-week3/</guid>
-      <description>I decided to split the third week into two separate posts so that I wouldn&amp;rsquo;t ramble on as long as last week. Over the past week I continued fighting the BSP dungeon generator I had attempted to write the week prior, and gave up again. I&amp;rsquo;ll probably revisit the dungeon generator later, and will definitely write something about whatever I end up doing. The artificial deadlines imposed by following along with the rest of r/roguelikedev really helps motivate me to call something &amp;ldquo;good enough&amp;rdquo; and move on&amp;hellip; Heck, I think I could be satisfied just tinkering with dungeon generators and never moving on to actually making this a playable game!</description>
+      <description>I decided to split the third week into two separate posts so that I wouldn&amp;rsquo;t ramble on as long as last week. Over the past week I continued fighting the BSP dungeon generator I had attempted to write the week prior, and gave up again. I&amp;rsquo;ll probably revisit the dungeon generator later, and will definitely write something about whatever I end up doing. The artificial deadlines imposed by following along with the rest of r/roguelikedev really helps motivate me to call something &amp;ldquo;good enough&amp;rdquo; and move on&amp;hellip; Heck, I think I could be satisfied just tinkering with dungeon generators and never moving on to actually making this a playable game! - &lt;a href="https://www.wsl-blog.com/posts/2018-07-02-the-roguelike-tutorial-week3/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 2</title>
-      <link>/posts/2018-06-25-the-roguelike-tutorial-week2/</link>
+      <link>https://www.wsl-blog.com/posts/2018-06-25-the-roguelike-tutorial-week2/</link>
       <pubDate>Mon, 25 Jun 2018 08:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2018-06-25-the-roguelike-tutorial-week2/</guid>
       <description>So this week&amp;rsquo;s goal is to finish part 2 and part 3 of the tutorial - I worked ahead because I was excited to get this project going, which worked out well since shortly after finishing part 2 I switched to SDL from SFML and it gave me some time to work on this blog.
-The Switch to SDL So the game logic is completely divorced from the rendering system - I don&amp;rsquo;t want to be tied into using a set framework if I want to change later, and I know for a fact from previous projects this will make save files much easier to generate.</description>
+The Switch to SDL So the game logic is completely divorced from the rendering system - I don&amp;rsquo;t want to be tied into using a set framework if I want to change later, and I know for a fact from previous projects this will make save files much easier to generate. - &lt;a href="https://www.wsl-blog.com/posts/2018-06-25-the-roguelike-tutorial-week2/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>The Roguelike Tutorial - Week 1</title>
-      <link>/posts/2018-06-20-the-roguelike-tutorial-week1/</link>
+      <link>https://www.wsl-blog.com/posts/2018-06-20-the-roguelike-tutorial-week1/</link>
       <pubDate>Wed, 20 Jun 2018 07:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2018-06-20-the-roguelike-tutorial-week1/</guid>
       <description>Last year r/roguelikedev did a really cool thing with a weekly post where everyone followed along with a tutorial, shared ideas and problems, and motivated each other to actually finish a project. Well they&amp;rsquo;re doing it again this year, and with the announcement last week I decided to take a look at the new and improved, Python3 version of the tutorial.
-For those not familiar with this famous tutorial - each part covers a small chunk of building a roguelike using simple language and easy to follow code.</description>
+For those not familiar with this famous tutorial - each part covers a small chunk of building a roguelike using simple language and easy to follow code. - &lt;a href="https://www.wsl-blog.com/posts/2018-06-20-the-roguelike-tutorial-week1/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>Messing With Web Design - Again</title>
-      <link>/posts/2017-10-22-messing-with-web/</link>
+      <link>https://www.wsl-blog.com/posts/2017-10-22-messing-with-web/</link>
       <pubDate>Sun, 22 Oct 2017 07:00:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2017-10-22-messing-with-web/</guid>
       <description>Ok, so it turns out I still can&amp;rsquo;t stand using a premade theme. I decided to look again at Hugo themes, and found XMin. Clean, simple, and a good basic idea of what I wanted this blog to look like. Cracked open the source code and was playing around&amp;hellip; one thing led to another and this is what I ended up with.
-Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things.</description>
+Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things. - &lt;a href="https://www.wsl-blog.com/posts/2017-10-22-messing-with-web/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>Yet Another Blog Attempt</title>
-      <link>/posts/2017-10-15-yet-another-blog-attempt/</link>
+      <link>https://www.wsl-blog.com/posts/2017-10-15-yet-another-blog-attempt/</link>
       <pubDate>Mon, 16 Oct 2017 20:55:23 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2017-10-15-yet-another-blog-attempt/</guid>
       <description>Man, I really don&amp;rsquo;t do a lot of work on this blog - maybe because I am not a web programmer but I can see when this blog does not look very good.
-Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore.</description>
+Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore. - &lt;a href="https://www.wsl-blog.com/posts/2017-10-15-yet-another-blog-attempt/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>Gradients for Colors, and Actions for Actors</title>
-      <link>/posts/2017-01-07-gradients-and-actions/</link>
+      <link>https://www.wsl-blog.com/posts/2017-01-07-gradients-and-actions/</link>
       <pubDate>Sat, 07 Jan 2017 11:45:00 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2017-01-07-gradients-and-actions/</guid>
       <description>Over the past couple of weeks I&amp;rsquo;ve been working on simplifying the code for my roguelike project - heavily inspired by one of my favorite books on my shelf, Game Programming Patterns.
-I&amp;rsquo;ve seriously read this book cover to cover, multiple times - and every time find a new use for one of the &amp;lsquo;patterns&amp;rsquo; in it. I just discovered that the author&amp;rsquo;s blog has a bunch of good reads on it as well.</description>
+I&amp;rsquo;ve seriously read this book cover to cover, multiple times - and every time find a new use for one of the &amp;lsquo;patterns&amp;rsquo; in it. I just discovered that the author&amp;rsquo;s blog has a bunch of good reads on it as well. - &lt;a href="https://www.wsl-blog.com/posts/2017-01-07-gradients-and-actions/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>Randomly Generated Caves with Cellular Automata</title>
-      <link>/posts/2016-12-20-automata-caves/</link>
+      <link>https://www.wsl-blog.com/posts/2016-12-20-automata-caves/</link>
       <pubDate>Thu, 22 Dec 2016 19:18:06 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2016-12-20-automata-caves/</guid>
       <description>So, every time I get the urge to write a blog post about whatever random bit of code I&amp;rsquo;m writing - I look at the blog and think: &amp;ldquo;Hm, this is kinda ugly.&amp;rdquo; Then, I have to rewrite it until I&amp;rsquo;m mostly satisfied with how it looks.
-Recently, I&amp;rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&amp;rsquo;t seem to find a satisfactory &amp;lsquo;look and feel&amp;rsquo; - I think I&amp;rsquo;ve got a good start though.</description>
+Recently, I&amp;rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&amp;rsquo;t seem to find a satisfactory &amp;lsquo;look and feel&amp;rsquo; - I think I&amp;rsquo;ve got a good start though. - &lt;a href="https://www.wsl-blog.com/posts/2016-12-20-automata-caves/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>Commenting System with Staticman!</title>
-      <link>/posts/2016-11-15-commenting-system/</link>
+      <link>https://www.wsl-blog.com/posts/2016-11-15-commenting-system/</link>
       <pubDate>Tue, 15 Nov 2016 19:18:06 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2016-11-15-commenting-system/</guid>
       <description>The one bad thing about hosting a static blog is that implementing comments means you:
- Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&amp;rsquo;t an option - Disqus looks nice and all, and I&amp;rsquo;m sure it would be fine for a lot of people, but it just wasn&amp;rsquo;t what I wanted.</description>
+ Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&amp;rsquo;t an option - Disqus looks nice and all, and I&amp;rsquo;m sure it would be fine for a lot of people, but it just wasn&amp;rsquo;t what I wanted. - &lt;a href="https://www.wsl-blog.com/posts/2016-11-15-commenting-system/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>Partying With Jekyll</title>
-      <link>/posts/2016-11-12-partying-with-jekyll/</link>
+      <link>https://www.wsl-blog.com/posts/2016-11-12-partying-with-jekyll/</link>
       <pubDate>Sat, 12 Nov 2016 18:15:06 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2016-11-12-partying-with-jekyll/</guid>
       <description>I&amp;rsquo;ve been wanting to fix this blog for a while now, and I decided in the process that I am awful at web design/programming. Haha, well, the first step to being kinda good at something is kinda sucking at something, right?
-In my scouring of the internet I discovered that a lot of static blog sites used Jekyll to generate their site. At first, I figured it was nothing more than another insta-blog program where you just dump some content into a folder and it spits out a blog - but holy cow it is so much more than (and can be exactly) that.</description>
+In my scouring of the internet I discovered that a lot of static blog sites used Jekyll to generate their site. At first, I figured it was nothing more than another insta-blog program where you just dump some content into a folder and it spits out a blog - but holy cow it is so much more than (and can be exactly) that. - &lt;a href="https://www.wsl-blog.com/posts/2016-11-12-partying-with-jekyll/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>
       <title>Fun With Dijkstra Mapping</title>
-      <link>/posts/2016-07-15-fun-with-dijkstra-mapping/</link>
+      <link>https://www.wsl-blog.com/posts/2016-07-15-fun-with-dijkstra-mapping/</link>
       <pubDate>Fri, 15 Jul 2016 08:29:06 -0700</pubDate>
+      <author>Zach Wilder</author>
       
       <guid>/posts/2016-07-15-fun-with-dijkstra-mapping/</guid>
-      <description>Continuing in my never-ending project to make a &amp;ldquo;simple&amp;rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&amp;rsquo;t going to work.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>If you&amp;rsquo;ve arrived on this page, you may be wondering: Who are you? What is WSL? Why am I reading this?
-I&amp;rsquo;m a hobbyist programmer, and have been messing around with various little programming projects since I was a kid borrowing books on C programming from the local library. I think I originally started programming because as a kid I had no way of actually buying computer games, and figured &amp;ldquo;heck, I could make something myself!</description>
+      <description>Continuing in my never-ending project to make a &amp;ldquo;simple&amp;rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&amp;rsquo;t going to work. - &lt;a href="https://www.wsl-blog.com/posts/2016-07-15-fun-with-dijkstra-mapping/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
   </channel>

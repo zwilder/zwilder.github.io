@@ -1,10 +1,260 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2023-10-23T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/life/</loc>
+    <lastmod>2023-10-23T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2023-10-23T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/rambles/</loc>
+    <lastmod>2023-10-23T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2023-10-23T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/2023-10-23-necromancy/</loc>
+    <lastmod>2023-10-23T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2023-10-23T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/2020-09-12-18lpack/</loc>
+    <lastmod>2020-09-12T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/myog/</loc>
+    <lastmod>2020-09-12T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/myog/</loc>
+    <lastmod>2020-09-12T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/projects/</loc>
+    <lastmod>2020-09-12T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/projects/</loc>
+    <lastmod>2020-09-12T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/sewing/</loc>
+    <lastmod>2020-09-12T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/vintage-machines/</loc>
+    <lastmod>2020-09-12T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/art/</loc>
+    <lastmod>2020-06-06T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/pen-and-ink/</loc>
+    <lastmod>2020-06-06T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/2020-06-06-revivingtheblog/</loc>
+    <lastmod>2020-06-06T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/sketching/</loc>
+    <lastmod>2020-06-06T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/stories/</loc>
+    <lastmod>2020-06-06T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/2019-08-02-africansumac/</loc>
+    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/african-sumac/</loc>
+    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/alternate/</loc>
+    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/anacardiaceae/</loc>
+    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/invasive/</loc>
+    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/invasive-plants/</loc>
+    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/rhus-lancea/</loc>
+    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/sersia-lancea/</loc>
+    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/trees/</loc>
+    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/trifoliate/</loc>
+    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/tales-from-the-field/</loc>
+    <lastmod>2019-07-26T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/2019-07-26-theshed/</loc>
+    <lastmod>2019-07-26T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/2019-07-21-ailanthus/</loc>
+    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/ai/</loc>
+    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/ailanthus-altissima/</loc>
+    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/deciduous/</loc>
+    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/pinnately-compound/</loc>
+    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/simaroubaceae/</loc>
+    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/tree-of-heaven/</loc>
+    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/2019-07-19-leadtree/</loc>
+    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/bipinnate/</loc>
+    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/fabaceae/</loc>
+    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/lead-tree/</loc>
+    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/leucaena-leucocephala/</loc>
+    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/seed-pods/</loc>
+    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/twice-pinnately-compound/</loc>
+    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/barbarian/</loc>
+    <lastmod>2018-09-18T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/c&#43;&#43;/</loc>
+    <lastmod>2018-09-18T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/2018-09-18-explosions/</loc>
     <lastmod>2018-09-18T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/programming/</loc>
+    <lastmod>2018-09-18T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/roguelike/</loc>
+    <lastmod>2018-09-18T14:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/tutorials/</loc>
+    <lastmod>2018-08-26T15:00:00-07:00</lastmod>
   </url>
   
   <url>
@@ -20,6 +270,11 @@
   <url>
     <loc>/posts/2018-07-31-the-roguelike-tutorial-week5b6/</loc>
     <lastmod>2018-07-31T13:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/makefile/</loc>
+    <lastmod>2018-07-24T16:00:00-07:00</lastmod>
   </url>
   
   <url>
@@ -53,7 +308,17 @@
   </url>
   
   <url>
+    <loc>/tags/hugo/</loc>
+    <lastmod>2017-10-22T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/2017-10-22-messing-with-web/</loc>
+    <lastmod>2017-10-22T07:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/web-programming/</loc>
     <lastmod>2017-10-22T07:00:00-07:00</lastmod>
   </url>
   
@@ -68,12 +333,22 @@
   </url>
   
   <url>
+    <loc>/tags/cellular-automata/</loc>
+    <lastmod>2016-12-22T19:18:06-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/2016-12-20-automata-caves/</loc>
     <lastmod>2016-12-22T19:18:06-07:00</lastmod>
   </url>
   
   <url>
     <loc>/posts/2016-11-15-commenting-system/</loc>
+    <lastmod>2016-11-15T19:18:06-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/jekyll/</loc>
     <lastmod>2016-11-15T19:18:06-07:00</lastmod>
   </url>
   
@@ -88,89 +363,15 @@
   </url>
   
   <url>
-    <loc>/tags/ai/</loc>
-    <lastmod>2016-07-15T08:29:06-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/about/</loc>
   </url>
   
   <url>
-    <loc>/tags/barbarian/</loc>
-    <lastmod>2018-09-18T14:00:00-07:00</lastmod>
-    <priority>0</priority>
+    <loc>/subscribe/</loc>
   </url>
   
   <url>
-    <loc>/tags/c&#43;&#43;/</loc>
-    <lastmod>2018-09-18T14:00:00-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/cellular-automata/</loc>
-    <lastmod>2016-12-22T19:18:06-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/hugo/</loc>
-    <lastmod>2017-10-22T07:00:00-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/jekyll/</loc>
-    <lastmod>2016-11-15T19:18:06-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/makefile/</loc>
-    <lastmod>2018-07-24T16:00:00-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/posts/</loc>
-    <lastmod>2018-09-18T14:00:00-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/roguelike/</loc>
-    <lastmod>2018-09-18T14:00:00-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2016-07-15T08:29:06-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/tutorials/</loc>
-    <lastmod>2018-08-26T15:00:00-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2018-09-18T14:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/web-programming/</loc>
-    <lastmod>2017-10-22T07:00:00-07:00</lastmod>
-    <priority>0</priority>
+    <loc>/wishlist/</loc>
   </url>
   
 </urlset>

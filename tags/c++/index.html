@@ -101,11 +101,11 @@ jQuery(document).ready(function($) {
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 09/18/2018</span>
+                <span class="list-date"> - 18 Sep 2018</span>
             
             <p class="list-summary">
             One of the big goals for Barbarian and one of the coolest things on my to do list was to add animations into the game. How exciting is it to see an arrow flying toward your character, a firebolt explode in the face of an undead horde, blood splatter flying from the wounds inflicted by the mighty barbarian decorating the walls of the dungeon?
-Obviously, the excitement added by all these visual effects is well worth the time spent adding them in.
+Obviously, the excitement added by all these visual effects is well worth the time spent adding them in. I started thinking about how I wanted to incorporate animations during the Tutorial Tuesday Challenge, and started jotting implementation ideas down in my notebook almost two months ago.
                 
                   <br/>
                   <a href="/posts/2018-09-18-explosions/">
@@ -123,10 +123,11 @@ Obviously, the excitement added by all these visual effects is well worth the ti
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 08/26/2018</span>
+                <span class="list-date"> - 26 Aug 2018</span>
             
             <p class="list-summary">
             Over the course of the 2018 r/roguelikedev Tutorial Tuesday Challenge I decided to invest some time learning some fundamental programming concepts that I probably should have learned years ago. The fun (and challenging) part of being a hobby programmer is that most of my learning comes from books, and then random tutorials on the internet. Somewhere in the course of my &ldquo;education&rdquo; I never learned about basic data structures and how they can be used.
+Around week three of the challenge I decided to implement a scheduling system for Barbarian - which led me to learn about creating lists and priority queues.
                 
                   <br/>
                   <a href="/posts/2018-08-26-lists/">
@@ -144,10 +145,11 @@ Obviously, the excitement added by all these visual effects is well worth the ti
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 08/09/2018</span>
+                <span class="list-date"> - 9 Aug 2018</span>
             
             <p class="list-summary">
-            I didn&rsquo;t do a lot of coding over the last week, but I did finish the challenge! Had a bit of a scare after finishing part 12, I found a horrible lurking bug in the program that caused a LOT of little errors and I wasn&rsquo;t sure (at first) how to track it down. Basically, shortly after finishing adding in some cool randomization functions I found that some entities weren&rsquo;t being copied correctly, or saved correctly.
+            I didn&rsquo;t do a lot of coding over the last week, but I did finish the challenge! Had a bit of a scare after finishing part 12, I found a horrible lurking bug in the program that caused a LOT of little errors and I wasn&rsquo;t sure (at first) how to track it down. Basically, shortly after finishing adding in some cool randomization functions I found that some entities weren&rsquo;t being copied correctly, or saved correctly. Turns out, the C++ Rule of 3/5/0 is actually a rule and not just a suggestion/guideline.
+This project was the first time I attempted to use smart pointers and write more &ldquo;correct&rdquo; C++ code, and apparently even when using smart pointers to allocate memory you should write at least a copy constructor and copy assignment function.
                 
                   <br/>
                   <a href="/posts/2018-08-09-the-rogueliketutorial-week7/">
@@ -165,10 +167,10 @@ Obviously, the excitement added by all these visual effects is well worth the ti
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 07/31/2018</span>
+                <span class="list-date"> - 31 Jul 2018</span>
             
             <p class="list-summary">
-            Oh man, this has been a super exciting and productive week - this project is starting to feel like a real game! Started off last week a bit behind schedule, having just finished part 8. After my rant last week about my source code files getting too long, I decided to spend a bit of time going back over my core classes and cleaning up the code. I also split Engine into multiple files - which ended up making a lot of things a lot easier.
+            Oh man, this has been a super exciting and productive week - this project is starting to feel like a real game! Started off last week a bit behind schedule, having just finished part 8. After my rant last week about my source code files getting too long, I decided to spend a bit of time going back over my core classes and cleaning up the code. I also split Engine into multiple files - which ended up making a lot of things a lot easier. Heck, recompiling a huge source file each time I make a minor change was tedious, and the time savings alone was worth splitting the files.
                 
                   <br/>
                   <a href="/posts/2018-07-31-the-roguelike-tutorial-week5b6/">
@@ -186,11 +188,11 @@ Obviously, the excitement added by all these visual effects is well worth the ti
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 07/24/2018</span>
+                <span class="list-date"> - 24 Jul 2018</span>
             
             <p class="list-summary">
             Another very productive week for this project! Although I was unable to finish last weeks goals of getting Parts 8 and 9 completed by today, I still feel pretty darn good about what I did accomplish. Besides, Parts 10, 11, and 12 are all fairly simple - heck the code is already in place, just needs to actually be used!
-After finishing Part 7 last week I decided to try and fix/change a few things that have been bothering me.
+After finishing Part 7 last week I decided to try and fix/change a few things that have been bothering me. The square, 12x12 font, looked great for the map tiles but it was really ugly for text. I figured my alternatives were to either use two fonts (like a 6x12 for text and a 12x12 for map), or just use a different font altogether.
                 
                   <br/>
                   <a href="/posts/2018-07-24-the-roguelike-tutorial-week5a/">
@@ -208,10 +210,10 @@ After finishing Part 7 last week I decided to try and fix/change a few things th
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 07/18/2018</span>
+                <span class="list-date"> - 18 Jul 2018</span>
             
             <p class="list-summary">
-            The past week has been equal parts frustration and excitement with this project. I ran into a pretty common design problem: entity components need to know about the rest of the game. Well, since each entity is just a collection of components it shouldn&rsquo;t be difficult to pass a pointer to the game engine. Then, the components would have a pointer to the entity that &ldquo;owns&rdquo; it. Simple and clean&hellip; or so I thought.
+            The past week has been equal parts frustration and excitement with this project. I ran into a pretty common design problem: entity components need to know about the rest of the game. Well, since each entity is just a collection of components it shouldn&rsquo;t be difficult to pass a pointer to the game engine. Then, the components would have a pointer to the entity that &ldquo;owns&rdquo; it. Simple and clean&hellip; or so I thought. This didn&rsquo;t work, at all. Individual entities could access the engine just fine, but the components just could not access anything about their owner. Even trying to print the address of the owner caused the game to segfault and crash.
                 
                   <br/>
                   <a href="/posts/2018-07-18-the-roguelike-tutorial-week4/">
@@ -229,7 +231,7 @@ After finishing Part 7 last week I decided to try and fix/change a few things th
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 07/10/2018</span>
+                <span class="list-date"> - 10 Jul 2018</span>
             
             <p class="list-summary">
             I originally planned for this week&rsquo;s blog post to cover my adaptation of part 5 of the Python RL tutorial - but after finishing part 5 in a matter of minutes I realized there wouldn&rsquo;t be much to write here! Part 5 is basically making new entities and getting the collision logic in place before combat is added in part 6. However, before adding combat I thought it would be beneficial to start thinking about game time - it&rsquo;s far more fun when some enemies are a lot quicker than the player, forcing the player to devise strategies for survival.
@@ -250,7 +252,7 @@ After finishing Part 7 last week I decided to try and fix/change a few things th
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 07/02/2018</span>
+                <span class="list-date"> - 2 Jul 2018</span>
             
             <p class="list-summary">
             I decided to split the third week into two separate posts so that I wouldn&rsquo;t ramble on as long as last week. Over the past week I continued fighting the BSP dungeon generator I had attempted to write the week prior, and gave up again. I&rsquo;ll probably revisit the dungeon generator later, and will definitely write something about whatever I end up doing. The artificial deadlines imposed by following along with the rest of r/roguelikedev really helps motivate me to call something &ldquo;good enough&rdquo; and move on&hellip; Heck, I think I could be satisfied just tinkering with dungeon generators and never moving on to actually making this a playable game!
@@ -271,7 +273,7 @@ After finishing Part 7 last week I decided to try and fix/change a few things th
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 06/25/2018</span>
+                <span class="list-date"> - 25 Jun 2018</span>
             
             <p class="list-summary">
             So this week&rsquo;s goal is to finish part 2 and part 3 of the tutorial - I worked ahead because I was excited to get this project going, which worked out well since shortly after finishing part 2 I switched to SDL from SFML and it gave me some time to work on this blog.
@@ -293,11 +295,11 @@ The Switch to SDL So the game logic is completely divorced from the rendering sy
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 06/20/2018</span>
+                <span class="list-date"> - 20 Jun 2018</span>
             
             <p class="list-summary">
             Last year r/roguelikedev did a really cool thing with a weekly post where everyone followed along with a tutorial, shared ideas and problems, and motivated each other to actually finish a project. Well they&rsquo;re doing it again this year, and with the announcement last week I decided to take a look at the new and improved, Python3 version of the tutorial.
-For those not familiar with this famous tutorial - each part covers a small chunk of building a roguelike using simple language and easy to follow code.
+For those not familiar with this famous tutorial - each part covers a small chunk of building a roguelike using simple language and easy to follow code. In just 13 parts you have a working roguelike to build off of and branch out from.
                 
                   <br/>
                   <a href="/posts/2018-06-20-the-roguelike-tutorial-week1/">
@@ -315,11 +317,11 @@ For those not familiar with this famous tutorial - each part covers a small chun
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 10/16/2017</span>
+                <span class="list-date"> - 16 Oct 2017</span>
             
             <p class="list-summary">
             Man, I really don&rsquo;t do a lot of work on this blog - maybe because I am not a web programmer but I can see when this blog does not look very good.
-Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore.
+Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore. Not to mention getting all the silly ruby nonsense to work. Even tried playing around with Ruby and seeing what all the fuss was about.
                 
                   <br/>
                   <a href="/posts/2017-10-15-yet-another-blog-attempt/">
@@ -337,11 +339,11 @@ Well, I officially gave up on web design. Yep! Turns out, I should probably leav
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 01/07/2017</span>
+                <span class="list-date"> - 7 Jan 2017</span>
             
             <p class="list-summary">
             Over the past couple of weeks I&rsquo;ve been working on simplifying the code for my roguelike project - heavily inspired by one of my favorite books on my shelf, Game Programming Patterns.
-I&rsquo;ve seriously read this book cover to cover, multiple times - and every time find a new use for one of the &lsquo;patterns&rsquo; in it. I just discovered that the author&rsquo;s blog has a bunch of good reads on it as well.
+I&rsquo;ve seriously read this book cover to cover, multiple times - and every time find a new use for one of the &lsquo;patterns&rsquo; in it. I just discovered that the author&rsquo;s blog has a bunch of good reads on it as well. One of the biggest problems I&rsquo;ve had with the roguelike project was a simple way to issue commands (which should have been a clue) from the player to the character, and from the computer AI to the enemies.
                 
                   <br/>
                   <a href="/posts/2017-01-07-gradients-and-actions/">
@@ -359,11 +361,12 @@ I&rsquo;ve seriously read this book cover to cover, multiple times - and every t
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 12/22/2016</span>
+                <span class="list-date"> - 22 Dec 2016</span>
             
             <p class="list-summary">
             So, every time I get the urge to write a blog post about whatever random bit of code I&rsquo;m writing - I look at the blog and think: &ldquo;Hm, this is kinda ugly.&rdquo; Then, I have to rewrite it until I&rsquo;m mostly satisfied with how it looks.
 Recently, I&rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&rsquo;t seem to find a satisfactory &lsquo;look and feel&rsquo; - I think I&rsquo;ve got a good start though.
+While procrastinating working on that, I&rsquo;ve spent a lot of time thinking about the map, and my ECS system.
                 
                   <br/>
                   <a href="/posts/2016-12-20-automata-caves/">
@@ -381,10 +384,11 @@ Recently, I&rsquo;ve been working on writing a nice little interface for handlin
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 07/15/2016</span>
+                <span class="list-date"> - 15 Jul 2016</span>
             
             <p class="list-summary">
             Continuing in my never-ending project to make a &ldquo;simple&rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&rsquo;t going to work.
+After browsing /r/roguelikedev and RogueBasin I came across a few articles on &ldquo;need driven AI&rdquo; - an absurdly cool concept, and so (seemingly) simple to implement I wasn&rsquo;t sure how I didn&rsquo;t stumble across this earlier.
                 
                   <br/>
                   <a href="/posts/2016-07-15-fun-with-dijkstra-mapping/">

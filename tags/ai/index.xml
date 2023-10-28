@@ -17,7 +17,8 @@
       <pubDate>Fri, 15 Jul 2016 08:29:06 -0700</pubDate>
       
       <guid>/posts/2016-07-15-fun-with-dijkstra-mapping/</guid>
-      <description>Continuing in my never-ending project to make a &amp;ldquo;simple&amp;rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&amp;rsquo;t going to work.</description>
+      <description>Continuing in my never-ending project to make a &amp;ldquo;simple&amp;rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&amp;rsquo;t going to work.
+After browsing /r/roguelikedev and RogueBasin I came across a few articles on &amp;ldquo;need driven AI&amp;rdquo; - an absurdly cool concept, and so (seemingly) simple to implement I wasn&amp;rsquo;t sure how I didn&amp;rsquo;t stumble across this earlier.</description>
     </item>
     
   </channel>

@@ -18,7 +18,7 @@
       
       <guid>/posts/2018-09-18-explosions/</guid>
       <description>One of the big goals for Barbarian and one of the coolest things on my to do list was to add animations into the game. How exciting is it to see an arrow flying toward your character, a firebolt explode in the face of an undead horde, blood splatter flying from the wounds inflicted by the mighty barbarian decorating the walls of the dungeon?
-Obviously, the excitement added by all these visual effects is well worth the time spent adding them in.</description>
+Obviously, the excitement added by all these visual effects is well worth the time spent adding them in. I started thinking about how I wanted to incorporate animations during the Tutorial Tuesday Challenge, and started jotting implementation ideas down in my notebook almost two months ago.</description>
     </item>
     
     <item>
@@ -27,7 +27,8 @@ Obviously, the excitement added by all these visual effects is well worth the ti
       <pubDate>Sun, 26 Aug 2018 15:00:00 -0700</pubDate>
       
       <guid>/posts/2018-08-26-lists/</guid>
-      <description>Over the course of the 2018 r/roguelikedev Tutorial Tuesday Challenge I decided to invest some time learning some fundamental programming concepts that I probably should have learned years ago. The fun (and challenging) part of being a hobby programmer is that most of my learning comes from books, and then random tutorials on the internet. Somewhere in the course of my &amp;ldquo;education&amp;rdquo; I never learned about basic data structures and how they can be used.</description>
+      <description>Over the course of the 2018 r/roguelikedev Tutorial Tuesday Challenge I decided to invest some time learning some fundamental programming concepts that I probably should have learned years ago. The fun (and challenging) part of being a hobby programmer is that most of my learning comes from books, and then random tutorials on the internet. Somewhere in the course of my &amp;ldquo;education&amp;rdquo; I never learned about basic data structures and how they can be used.
+Around week three of the challenge I decided to implement a scheduling system for Barbarian - which led me to learn about creating lists and priority queues.</description>
     </item>
     
     <item>
@@ -36,7 +37,8 @@ Obviously, the excitement added by all these visual effects is well worth the ti
       <pubDate>Thu, 09 Aug 2018 13:00:00 -0700</pubDate>
       
       <guid>/posts/2018-08-09-the-rogueliketutorial-week7/</guid>
-      <description>I didn&amp;rsquo;t do a lot of coding over the last week, but I did finish the challenge! Had a bit of a scare after finishing part 12, I found a horrible lurking bug in the program that caused a LOT of little errors and I wasn&amp;rsquo;t sure (at first) how to track it down. Basically, shortly after finishing adding in some cool randomization functions I found that some entities weren&amp;rsquo;t being copied correctly, or saved correctly.</description>
+      <description>I didn&amp;rsquo;t do a lot of coding over the last week, but I did finish the challenge! Had a bit of a scare after finishing part 12, I found a horrible lurking bug in the program that caused a LOT of little errors and I wasn&amp;rsquo;t sure (at first) how to track it down. Basically, shortly after finishing adding in some cool randomization functions I found that some entities weren&amp;rsquo;t being copied correctly, or saved correctly. Turns out, the C++ Rule of 3/5/0 is actually a rule and not just a suggestion/guideline.
+This project was the first time I attempted to use smart pointers and write more &amp;ldquo;correct&amp;rdquo; C++ code, and apparently even when using smart pointers to allocate memory you should write at least a copy constructor and copy assignment function.</description>
     </item>
     
     <item>
@@ -45,7 +47,7 @@ Obviously, the excitement added by all these visual effects is well worth the ti
       <pubDate>Tue, 31 Jul 2018 13:00:00 -0700</pubDate>
       
       <guid>/posts/2018-07-31-the-roguelike-tutorial-week5b6/</guid>
-      <description>Oh man, this has been a super exciting and productive week - this project is starting to feel like a real game! Started off last week a bit behind schedule, having just finished part 8. After my rant last week about my source code files getting too long, I decided to spend a bit of time going back over my core classes and cleaning up the code. I also split Engine into multiple files - which ended up making a lot of things a lot easier.</description>
+      <description>Oh man, this has been a super exciting and productive week - this project is starting to feel like a real game! Started off last week a bit behind schedule, having just finished part 8. After my rant last week about my source code files getting too long, I decided to spend a bit of time going back over my core classes and cleaning up the code. I also split Engine into multiple files - which ended up making a lot of things a lot easier. Heck, recompiling a huge source file each time I make a minor change was tedious, and the time savings alone was worth splitting the files.</description>
     </item>
     
     <item>
@@ -55,7 +57,7 @@ Obviously, the excitement added by all these visual effects is well worth the ti
       
       <guid>/posts/2018-07-24-the-roguelike-tutorial-week5a/</guid>
       <description>Another very productive week for this project! Although I was unable to finish last weeks goals of getting Parts 8 and 9 completed by today, I still feel pretty darn good about what I did accomplish. Besides, Parts 10, 11, and 12 are all fairly simple - heck the code is already in place, just needs to actually be used!
-After finishing Part 7 last week I decided to try and fix/change a few things that have been bothering me.</description>
+After finishing Part 7 last week I decided to try and fix/change a few things that have been bothering me. The square, 12x12 font, looked great for the map tiles but it was really ugly for text. I figured my alternatives were to either use two fonts (like a 6x12 for text and a 12x12 for map), or just use a different font altogether.</description>
     </item>
     
     <item>
@@ -64,7 +66,7 @@ After finishing Part 7 last week I decided to try and fix/change a few things th
       <pubDate>Wed, 18 Jul 2018 12:00:00 -0700</pubDate>
       
       <guid>/posts/2018-07-18-the-roguelike-tutorial-week4/</guid>
-      <description>The past week has been equal parts frustration and excitement with this project. I ran into a pretty common design problem: entity components need to know about the rest of the game. Well, since each entity is just a collection of components it shouldn&amp;rsquo;t be difficult to pass a pointer to the game engine. Then, the components would have a pointer to the entity that &amp;ldquo;owns&amp;rdquo; it. Simple and clean&amp;hellip; or so I thought.</description>
+      <description>The past week has been equal parts frustration and excitement with this project. I ran into a pretty common design problem: entity components need to know about the rest of the game. Well, since each entity is just a collection of components it shouldn&amp;rsquo;t be difficult to pass a pointer to the game engine. Then, the components would have a pointer to the entity that &amp;ldquo;owns&amp;rdquo; it. Simple and clean&amp;hellip; or so I thought. This didn&amp;rsquo;t work, at all. Individual entities could access the engine just fine, but the components just could not access anything about their owner. Even trying to print the address of the owner caused the game to segfault and crash.</description>
     </item>
     
     <item>
@@ -102,7 +104,7 @@ The Switch to SDL So the game logic is completely divorced from the rendering sy
       
       <guid>/posts/2018-06-20-the-roguelike-tutorial-week1/</guid>
       <description>Last year r/roguelikedev did a really cool thing with a weekly post where everyone followed along with a tutorial, shared ideas and problems, and motivated each other to actually finish a project. Well they&amp;rsquo;re doing it again this year, and with the announcement last week I decided to take a look at the new and improved, Python3 version of the tutorial.
-For those not familiar with this famous tutorial - each part covers a small chunk of building a roguelike using simple language and easy to follow code.</description>
+For those not familiar with this famous tutorial - each part covers a small chunk of building a roguelike using simple language and easy to follow code. In just 13 parts you have a working roguelike to build off of and branch out from.</description>
     </item>
     
     <item>
@@ -112,7 +114,7 @@ For those not familiar with this famous tutorial - each part covers a small chun
       
       <guid>/posts/2017-10-22-messing-with-web/</guid>
       <description>Ok, so it turns out I still can&amp;rsquo;t stand using a premade theme. I decided to look again at Hugo themes, and found XMin. Clean, simple, and a good basic idea of what I wanted this blog to look like. Cracked open the source code and was playing around&amp;hellip; one thing led to another and this is what I ended up with.
-Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things.</description>
+Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things. Everything is laid out in a good, logical sense which makes it much easier to customize and play around with things.</description>
     </item>
     
     <item>
@@ -122,7 +124,7 @@ Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of th
       
       <guid>/posts/2017-10-15-yet-another-blog-attempt/</guid>
       <description>Man, I really don&amp;rsquo;t do a lot of work on this blog - maybe because I am not a web programmer but I can see when this blog does not look very good.
-Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore.</description>
+Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore. Not to mention getting all the silly ruby nonsense to work. Even tried playing around with Ruby and seeing what all the fuss was about.</description>
     </item>
     
     <item>
@@ -132,7 +134,7 @@ Well, I officially gave up on web design. Yep! Turns out, I should probably leav
       
       <guid>/posts/2017-01-07-gradients-and-actions/</guid>
       <description>Over the past couple of weeks I&amp;rsquo;ve been working on simplifying the code for my roguelike project - heavily inspired by one of my favorite books on my shelf, Game Programming Patterns.
-I&amp;rsquo;ve seriously read this book cover to cover, multiple times - and every time find a new use for one of the &amp;lsquo;patterns&amp;rsquo; in it. I just discovered that the author&amp;rsquo;s blog has a bunch of good reads on it as well.</description>
+I&amp;rsquo;ve seriously read this book cover to cover, multiple times - and every time find a new use for one of the &amp;lsquo;patterns&amp;rsquo; in it. I just discovered that the author&amp;rsquo;s blog has a bunch of good reads on it as well. One of the biggest problems I&amp;rsquo;ve had with the roguelike project was a simple way to issue commands (which should have been a clue) from the player to the character, and from the computer AI to the enemies.</description>
     </item>
     
     <item>
@@ -142,7 +144,8 @@ I&amp;rsquo;ve seriously read this book cover to cover, multiple times - and eve
       
       <guid>/posts/2016-12-20-automata-caves/</guid>
       <description>So, every time I get the urge to write a blog post about whatever random bit of code I&amp;rsquo;m writing - I look at the blog and think: &amp;ldquo;Hm, this is kinda ugly.&amp;rdquo; Then, I have to rewrite it until I&amp;rsquo;m mostly satisfied with how it looks.
-Recently, I&amp;rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&amp;rsquo;t seem to find a satisfactory &amp;lsquo;look and feel&amp;rsquo; - I think I&amp;rsquo;ve got a good start though.</description>
+Recently, I&amp;rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&amp;rsquo;t seem to find a satisfactory &amp;lsquo;look and feel&amp;rsquo; - I think I&amp;rsquo;ve got a good start though.
+While procrastinating working on that, I&amp;rsquo;ve spent a lot of time thinking about the map, and my ECS system.</description>
     </item>
     
     <item>
@@ -152,7 +155,7 @@ Recently, I&amp;rsquo;ve been working on writing a nice little interface for han
       
       <guid>/posts/2016-11-15-commenting-system/</guid>
       <description>The one bad thing about hosting a static blog is that implementing comments means you:
- Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&amp;rsquo;t an option - Disqus looks nice and all, and I&amp;rsquo;m sure it would be fine for a lot of people, but it just wasn&amp;rsquo;t what I wanted.</description>
+ Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&amp;rsquo;t an option - Disqus looks nice and all, and I&amp;rsquo;m sure it would be fine for a lot of people, but it just wasn&amp;rsquo;t what I wanted. I like having full control of my data. My next idea was to find a free hosting site and write some crazy PHP and set up a SQL database to set up comments.</description>
     </item>
     
     <item>
@@ -171,7 +174,8 @@ In my scouring of the internet I discovered that a lot of static blog sites used
       <pubDate>Fri, 15 Jul 2016 08:29:06 -0700</pubDate>
       
       <guid>/posts/2016-07-15-fun-with-dijkstra-mapping/</guid>
-      <description>Continuing in my never-ending project to make a &amp;ldquo;simple&amp;rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&amp;rsquo;t going to work.</description>
+      <description>Continuing in my never-ending project to make a &amp;ldquo;simple&amp;rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&amp;rsquo;t going to work.
+After browsing /r/roguelikedev and RogueBasin I came across a few articles on &amp;ldquo;need driven AI&amp;rdquo; - an absurdly cool concept, and so (seemingly) simple to implement I wasn&amp;rsquo;t sure how I didn&amp;rsquo;t stumble across this earlier.</description>
     </item>
     
   </channel>

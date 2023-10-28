@@ -18,7 +18,8 @@
       
       <guid>/posts/2016-12-20-automata-caves/</guid>
       <description>So, every time I get the urge to write a blog post about whatever random bit of code I&amp;rsquo;m writing - I look at the blog and think: &amp;ldquo;Hm, this is kinda ugly.&amp;rdquo; Then, I have to rewrite it until I&amp;rsquo;m mostly satisfied with how it looks.
-Recently, I&amp;rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&amp;rsquo;t seem to find a satisfactory &amp;lsquo;look and feel&amp;rsquo; - I think I&amp;rsquo;ve got a good start though.</description>
+Recently, I&amp;rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&amp;rsquo;t seem to find a satisfactory &amp;lsquo;look and feel&amp;rsquo; - I think I&amp;rsquo;ve got a good start though.
+While procrastinating working on that, I&amp;rsquo;ve spent a lot of time thinking about the map, and my ECS system.</description>
     </item>
     
   </channel>

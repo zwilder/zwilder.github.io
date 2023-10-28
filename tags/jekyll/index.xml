@@ -18,7 +18,7 @@
       
       <guid>/posts/2016-11-15-commenting-system/</guid>
       <description>The one bad thing about hosting a static blog is that implementing comments means you:
- Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&amp;rsquo;t an option - Disqus looks nice and all, and I&amp;rsquo;m sure it would be fine for a lot of people, but it just wasn&amp;rsquo;t what I wanted.</description>
+ Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&amp;rsquo;t an option - Disqus looks nice and all, and I&amp;rsquo;m sure it would be fine for a lot of people, but it just wasn&amp;rsquo;t what I wanted. I like having full control of my data. My next idea was to find a free hosting site and write some crazy PHP and set up a SQL database to set up comments.</description>
     </item>
     
     <item>

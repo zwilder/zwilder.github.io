@@ -18,7 +18,7 @@
       
       <guid>/posts/2017-10-22-messing-with-web/</guid>
       <description>Ok, so it turns out I still can&amp;rsquo;t stand using a premade theme. I decided to look again at Hugo themes, and found XMin. Clean, simple, and a good basic idea of what I wanted this blog to look like. Cracked open the source code and was playing around&amp;hellip; one thing led to another and this is what I ended up with.
-Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things.</description>
+Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things. Everything is laid out in a good, logical sense which makes it much easier to customize and play around with things.</description>
     </item>
     
     <item>
@@ -28,7 +28,7 @@ Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of th
       
       <guid>/posts/2017-10-15-yet-another-blog-attempt/</guid>
       <description>Man, I really don&amp;rsquo;t do a lot of work on this blog - maybe because I am not a web programmer but I can see when this blog does not look very good.
-Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore.</description>
+Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore. Not to mention getting all the silly ruby nonsense to work. Even tried playing around with Ruby and seeing what all the fuss was about.</description>
     </item>
     
   </channel>

@@ -103,21 +103,6 @@
   </url>
   
   <url>
-    <loc>/tags/african-sumac/</loc>
-    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/alternate/</loc>
-    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/anacardiaceae/</loc>
-    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/invasive/</loc>
     <lastmod>2019-08-02T07:00:00-07:00</lastmod>
   </url>
@@ -128,22 +113,12 @@
   </url>
   
   <url>
-    <loc>/tags/rhus-lancea/</loc>
-    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/sersia-lancea/</loc>
+    <loc>/tags/trees/</loc>
     <lastmod>2019-08-02T07:00:00-07:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/trees/</loc>
-    <lastmod>2019-08-02T07:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/trifoliate/</loc>
     <lastmod>2019-08-02T07:00:00-07:00</lastmod>
   </url>
   
@@ -163,67 +138,7 @@
   </url>
   
   <url>
-    <loc>/tags/ai/</loc>
-    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/ailanthus-altissima/</loc>
-    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/deciduous/</loc>
-    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/pinnately-compound/</loc>
-    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/simaroubaceae/</loc>
-    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/tree-of-heaven/</loc>
-    <lastmod>2019-07-21T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/posts/2019-07-19-leadtree/</loc>
-    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/bipinnate/</loc>
-    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/fabaceae/</loc>
-    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/lead-tree/</loc>
-    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/leucaena-leucocephala/</loc>
-    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/seed-pods/</loc>
-    <lastmod>2019-07-19T08:00:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/twice-pinnately-compound/</loc>
     <lastmod>2019-07-19T08:00:00-07:00</lastmod>
   </url>
   
@@ -358,6 +273,11 @@
   </url>
   
   <url>
+    <loc>/tags/ai/</loc>
+    <lastmod>2016-07-15T08:29:06-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/2016-07-15-fun-with-dijkstra-mapping/</loc>
     <lastmod>2016-07-15T08:29:06-07:00</lastmod>
   </url>
@@ -368,6 +288,10 @@
   
   <url>
     <loc>/subscribe/</loc>
+  </url>
+  
+  <url>
+    <loc>/thankyou/</loc>
   </url>
   
   <url>

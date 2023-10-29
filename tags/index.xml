@@ -75,33 +75,6 @@
     </item>
     
     <item>
-      <title>African Sumac</title>
-      <link>/tags/african-sumac/</link>
-      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
-      
-      <guid>/tags/african-sumac/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Alternate</title>
-      <link>/tags/alternate/</link>
-      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
-      
-      <guid>/tags/alternate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Anacardiaceae</title>
-      <link>/tags/anacardiaceae/</link>
-      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
-      
-      <guid>/tags/anacardiaceae/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Invasive</title>
       <link>/tags/invasive/</link>
       <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
@@ -111,137 +84,11 @@
     </item>
     
     <item>
-      <title>Rhus lancea</title>
-      <link>/tags/rhus-lancea/</link>
+      <title>Trees</title>
+      <link>/tags/trees/</link>
       <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
       
-      <guid>/tags/rhus-lancea/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sersia lancea</title>
-      <link>/tags/sersia-lancea/</link>
-      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
-      
-      <guid>/tags/sersia-lancea/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Trifoliate</title>
-      <link>/tags/trifoliate/</link>
-      <pubDate>Fri, 02 Aug 2019 07:00:00 -0700</pubDate>
-      
-      <guid>/tags/trifoliate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>AI</title>
-      <link>/tags/ai/</link>
-      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/ai/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ailanthus altissima</title>
-      <link>/tags/ailanthus-altissima/</link>
-      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/ailanthus-altissima/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Deciduous</title>
-      <link>/tags/deciduous/</link>
-      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/deciduous/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Pinnately compound</title>
-      <link>/tags/pinnately-compound/</link>
-      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/pinnately-compound/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Simaroubaceae</title>
-      <link>/tags/simaroubaceae/</link>
-      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/simaroubaceae/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tree of heaven</title>
-      <link>/tags/tree-of-heaven/</link>
-      <pubDate>Sun, 21 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/tree-of-heaven/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bipinnate</title>
-      <link>/tags/bipinnate/</link>
-      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/bipinnate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Fabaceae</title>
-      <link>/tags/fabaceae/</link>
-      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/fabaceae/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lead tree</title>
-      <link>/tags/lead-tree/</link>
-      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/lead-tree/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Leucaena leucocephala</title>
-      <link>/tags/leucaena-leucocephala/</link>
-      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/leucaena-leucocephala/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Seed pods</title>
-      <link>/tags/seed-pods/</link>
-      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/seed-pods/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Twice pinnately compound</title>
-      <link>/tags/twice-pinnately-compound/</link>
-      <pubDate>Fri, 19 Jul 2019 08:00:00 -0700</pubDate>
-      
-      <guid>/tags/twice-pinnately-compound/</guid>
+      <guid>/tags/trees/</guid>
       <description></description>
     </item>
     
@@ -323,6 +170,15 @@
       <pubDate>Tue, 15 Nov 2016 19:18:06 -0700</pubDate>
       
       <guid>/tags/jekyll/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AI</title>
+      <link>/tags/ai/</link>
+      <pubDate>Fri, 15 Jul 2016 08:29:06 -0700</pubDate>
+      
+      <guid>/tags/ai/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C on Wsl Blog</title>
+    <link>/tags/c/</link>
+    <description>Recent content in C on Wsl Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Nov 2023 11:00:00 -0700</lastBuildDate>
+    
+	<atom:link href="/tags/c/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Goblin Caves</title>
+      <link>/posts/2023-11-04-goblins/</link>
+      <pubDate>Sat, 04 Nov 2023 11:00:00 -0700</pubDate>
+      
+      <guid>/posts/2023-11-04-goblins/</guid>
+      <description>As a kid, I wanted to learn how to program to make computer games. That was the original goal, anyways. I&amp;rsquo;ve always felt there is a weird sort of magic being able to type structured sentences into a text file, ram it through a compiler (sometimes with fun, cryptic looking incantations typed into the terminal), and seeing something come to life on the other end.
+Programming has always been an on again/off again sort of hobby. I think it&amp;rsquo;s more the act of making something from nothing that draws me to it then actually making something. A few years ago (actually closer to a decade, somehow) I found the Complete Roguelike Tutorial using Python and libtcod.</description>
+    </item>
+    
+  </channel>
+</rss>

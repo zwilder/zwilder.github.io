@@ -18,7 +18,12 @@
       
       <guid>/posts/2017-10-22-messing-with-web/</guid>
       <description>Ok, so it turns out I still can&amp;rsquo;t stand using a premade theme. I decided to look again at Hugo themes, and found XMin. Clean, simple, and a good basic idea of what I wanted this blog to look like. Cracked open the source code and was playing around&amp;hellip; one thing led to another and this is what I ended up with.
-Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things. Everything is laid out in a good, logical sense which makes it much easier to customize and play around with things.</description>
+Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things. Everything is laid out in a good, logical sense which makes it much easier to customize and play around with things.
+Things that still need work:
+  I&amp;rsquo;m not sure about the monospace font for the titles and headers - I like it, but that doesn&amp;rsquo;t mean it looks good! Ha.
+  The Tags page looks off. Not sure what to do with that.
+  Maybe write some sort of intro thing for the home page.
+  Most likely I&amp;rsquo;ll end up redoing this whole layout&amp;hellip; But this was the first time I&amp;rsquo;ve messed around with web design stuff and had a bit of success and didn&amp;rsquo;t pull out too many hairs! Thanks Hugo!</description>
     </item>
     
     <item>
@@ -28,7 +33,14 @@ Really enjoying working with Hugo - haven&amp;rsquo;t even played with any of th
       
       <guid>/posts/2017-10-15-yet-another-blog-attempt/</guid>
       <description>Man, I really don&amp;rsquo;t do a lot of work on this blog - maybe because I am not a web programmer but I can see when this blog does not look very good.
-Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore. Not to mention getting all the silly ruby nonsense to work. Even tried playing around with Ruby and seeing what all the fuss was about.</description>
+Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore. Not to mention getting all the silly ruby nonsense to work. Even tried playing around with Ruby and seeing what all the fuss was about. No thanks.
+Stumbled upon Hu(go) - another static blog generator. Well, Hu(go) is blazingly fast, and has a ton of cool features that you don&amp;rsquo;t have to even try hard to get to work. Not to mention the themes are easily searched through, easily switched, easily customized/expanded, and look darn good. So, for now, this is what the blog will look like - A theme called Hemmingway powered by Hugo. I also caved and signed up for Disqus, to handle comments. It really is so much easier using premade tools, haha.
+&amp;ndash;
+In other news, I continued the process of learning C++ by programming in C++ and made a bit of progress on my rougelike attempt. I had a revelation while working one day about how the &amp;ldquo;engine&amp;rdquo; should be structured: Everything manages its own shit and nothing else. No exceptions. But, you ask, how will my keypresses to move the player work? Wouldn&amp;rsquo;t the game engine have to interpret those key presses and then tell the game state to move the player, and then the player respond with&amp;hellip;
+No. Doing that causes all sorts of crazy dependencies and connections that do not have to exist.
+My solution?
+  Engine manages a stack of states. It doesn&amp;rsquo;t really know what a state is, just that it has them, and that it can add states to itself and remove states from itself. The engine is responsible for interacting with the computer and reading user input.
+  Each state manages a stack of windows.</description>
     </item>
     
     <item>
@@ -38,7 +50,13 @@ Well, I officially gave up on web design. Yep! Turns out, I should probably leav
       
       <guid>/posts/2016-11-15-commenting-system/</guid>
       <description>The one bad thing about hosting a static blog is that implementing comments means you:
- Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&amp;rsquo;t an option - Disqus looks nice and all, and I&amp;rsquo;m sure it would be fine for a lot of people, but it just wasn&amp;rsquo;t what I wanted. I like having full control of my data. My next idea was to find a free hosting site and write some crazy PHP and set up a SQL database to set up comments.</description>
+ Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&amp;rsquo;t an option - Disqus looks nice and all, and I&amp;rsquo;m sure it would be fine for a lot of people, but it just wasn&amp;rsquo;t what I wanted. I like having full control of my data. My next idea was to find a free hosting site and write some crazy PHP and set up a SQL database to set up comments.
+But this got me thinking - how did sites handle comments before all this dynamic content was commonplace? A careful google search led me to an amazing blog post by Eduardo Boucas on how he solved this exact problem. And holy crap does his solution work exactly like I wanted. In a quick nutshell: Staticman is a Github bot that pushes formatted yml (or json) files into a specified directory that can than be read as comments on the page when the site is built!
+So how did I set this up in Jekyll? Read on!
+Obviously, the first thing I did was read the documentation on the Staticman site, and followed the steps listed there. This is what was added to my _config.yml file for the site.
+staticman: allowedFields: [&amp;#39;name&amp;#39;, &amp;#39;message&amp;#39;] branch: master filename: &amp;#39;entry{@timestamp}&amp;#39; format: yml generatedFields: date: type: date options: format: &amp;#34;timestamp-seconds&amp;#34; moderation: false path: &amp;#34;_data/comments/{options.slug}&amp;#34; requiredFields: [&amp;#39;name&amp;#39;, &amp;#39;message&amp;#39;] url: https://api.staticman.net/v1/entry/zwilder/Hack_Blog/master Now, since the blog is accessible from GitHub, and the repository is public - I removed the email field. I don&amp;rsquo;t think anyone would appreciate their email being so easily accessible (something something security). The important part of this is the path variable - this saves comments in their own folder, named after the post they were generated from.
+I added the comments into their very own partial HTML page in the _includes\ directory.
+At the top of the comments.</description>
     </item>
     
     <item>
@@ -48,7 +66,11 @@ Well, I officially gave up on web design. Yep! Turns out, I should probably leav
       
       <guid>/posts/2016-11-12-partying-with-jekyll/</guid>
       <description>I&amp;rsquo;ve been wanting to fix this blog for a while now, and I decided in the process that I am awful at web design/programming. Haha, well, the first step to being kinda good at something is kinda sucking at something, right?
-In my scouring of the internet I discovered that a lot of static blog sites used Jekyll to generate their site. At first, I figured it was nothing more than another insta-blog program where you just dump some content into a folder and it spits out a blog - but holy cow it is so much more than (and can be exactly) that.</description>
+In my scouring of the internet I discovered that a lot of static blog sites used Jekyll to generate their site. At first, I figured it was nothing more than another insta-blog program where you just dump some content into a folder and it spits out a blog - but holy cow it is so much more than (and can be exactly) that. I&amp;rsquo;ve only scratched the surface of what it is capable of, since I don&amp;rsquo;t have many skills in the web developement category (yet).
+I originally attempted to create my own Jekyll theme - and successfully recreated my original blog format. Unfortunately, I remembered (after spending a good deal of time working on it) that I didn&amp;rsquo;t really like the look/feel of my original blog - and trashed it. The next attempt was to find and use another, premade, theme. I wasn&amp;rsquo;t really a fan of that route from the start, but I tried a few different ones - and tweaked them to my liking. The blog still didn&amp;rsquo;t look/feel quite right, and didn&amp;rsquo;t really seem to work well with posts that are largely text/code.
+The last theme I tried was based on hack.css. It was kinda neat looking, but still felt a little cluttered to me. After discovering what hack.css originally was, I decided that it wouldn&amp;rsquo;t be too difficult to create my own &amp;ldquo;theme&amp;rdquo; based off the framework hack.css provided. The result is what you have in front of you.
+Yeah, a few things still need tweaking - I&amp;rsquo;m not super happy with the way code blocks look for large sections of code&amp;hellip; IE this looks fine:
+#include &amp;lt;iostream&amp;gt;int main(int argc, char * argv[]) { std::cout &amp;lt;&amp;lt; &amp;#34;Hello Jekyll!\n&amp;#34;; return 0; }  However, looking at my previous [post]({{ site.baseurl }}/2016/07/15/fun-with-dijkstra-mapping.html)&amp;hellip; the large chunks of code posted there look atrocious. Ah well, it&amp;rsquo;s fun to tweak things and beat them into looking like a real website.</description>
     </item>
     
   </channel>

@@ -79,6 +79,8 @@ jQuery(document).ready(function($) {
           
               <li><a href="/subscribe/">Subscribe</a></li>
           
+              <li><a href="/index.xml">RSS</a></li>
+          
         </ul>
     </div>
     <hr/>
@@ -106,6 +108,12 @@ jQuery(document).ready(function($) {
             <p class="list-summary">
             The one bad thing about hosting a static blog is that implementing comments means you:
  Outsource, letting some other site handle it (like Disqus) Come up with some sort of crazy contraption to force a comment system into a static blog Spend hours scouring the internet to see what other people have done.  Obviously, outsourcing wasn&rsquo;t an option - Disqus looks nice and all, and I&rsquo;m sure it would be fine for a lot of people, but it just wasn&rsquo;t what I wanted. I like having full control of my data. My next idea was to find a free hosting site and write some crazy PHP and set up a SQL database to set up comments.
+But this got me thinking - how did sites handle comments before all this dynamic content was commonplace? A careful google search led me to an amazing blog post by Eduardo Boucas on how he solved this exact problem. And holy crap does his solution work exactly like I wanted. In a quick nutshell: Staticman is a Github bot that pushes formatted yml (or json) files into a specified directory that can than be read as comments on the page when the site is built!
+So how did I set this up in Jekyll? Read on!
+Obviously, the first thing I did was read the documentation on the Staticman site, and followed the steps listed there. This is what was added to my _config.yml file for the site.
+staticman: allowedFields: [&#39;name&#39;, &#39;message&#39;] branch: master filename: &#39;entry{@timestamp}&#39; format: yml generatedFields: date: type: date options: format: &#34;timestamp-seconds&#34; moderation: false path: &#34;_data/comments/{options.slug}&#34; requiredFields: [&#39;name&#39;, &#39;message&#39;] url: https://api.staticman.net/v1/entry/zwilder/Hack_Blog/master Now, since the blog is accessible from GitHub, and the repository is public - I removed the email field. I don&rsquo;t think anyone would appreciate their email being so easily accessible (something something security). The important part of this is the path variable - this saves comments in their own folder, named after the post they were generated from.
+I added the comments into their very own partial HTML page in the _includes\ directory.
+At the top of the comments.
                 
                   <br/>
                   <a href="/posts/2016-11-15-commenting-system/">
@@ -127,7 +135,11 @@ jQuery(document).ready(function($) {
             
             <p class="list-summary">
             I&rsquo;ve been wanting to fix this blog for a while now, and I decided in the process that I am awful at web design/programming. Haha, well, the first step to being kinda good at something is kinda sucking at something, right?
-In my scouring of the internet I discovered that a lot of static blog sites used Jekyll to generate their site. At first, I figured it was nothing more than another insta-blog program where you just dump some content into a folder and it spits out a blog - but holy cow it is so much more than (and can be exactly) that.
+In my scouring of the internet I discovered that a lot of static blog sites used Jekyll to generate their site. At first, I figured it was nothing more than another insta-blog program where you just dump some content into a folder and it spits out a blog - but holy cow it is so much more than (and can be exactly) that. I&rsquo;ve only scratched the surface of what it is capable of, since I don&rsquo;t have many skills in the web developement category (yet).
+I originally attempted to create my own Jekyll theme - and successfully recreated my original blog format. Unfortunately, I remembered (after spending a good deal of time working on it) that I didn&rsquo;t really like the look/feel of my original blog - and trashed it. The next attempt was to find and use another, premade, theme. I wasn&rsquo;t really a fan of that route from the start, but I tried a few different ones - and tweaked them to my liking. The blog still didn&rsquo;t look/feel quite right, and didn&rsquo;t really seem to work well with posts that are largely text/code.
+The last theme I tried was based on hack.css. It was kinda neat looking, but still felt a little cluttered to me. After discovering what hack.css originally was, I decided that it wouldn&rsquo;t be too difficult to create my own &ldquo;theme&rdquo; based off the framework hack.css provided. The result is what you have in front of you.
+Yeah, a few things still need tweaking - I&rsquo;m not super happy with the way code blocks look for large sections of code&hellip; IE this looks fine:
+#include &lt;iostream&gt;int main(int argc, char * argv[]) { std::cout &lt;&lt; &#34;Hello Jekyll!\n&#34;; return 0; }  However, looking at my previous [post]({{ site.baseurl }}/2016/07/15/fun-with-dijkstra-mapping.html)&hellip; the large chunks of code posted there look atrocious. Ah well, it&rsquo;s fun to tweak things and beat them into looking like a real website.
                 
                   <br/>
                   <a href="/posts/2016-11-12-partying-with-jekyll/">

@@ -19,7 +19,11 @@
       <guid>/posts/2016-12-20-automata-caves/</guid>
       <description>So, every time I get the urge to write a blog post about whatever random bit of code I&amp;rsquo;m writing - I look at the blog and think: &amp;ldquo;Hm, this is kinda ugly.&amp;rdquo; Then, I have to rewrite it until I&amp;rsquo;m mostly satisfied with how it looks.
 Recently, I&amp;rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&amp;rsquo;t seem to find a satisfactory &amp;lsquo;look and feel&amp;rsquo; - I think I&amp;rsquo;ve got a good start though.
-While procrastinating working on that, I&amp;rsquo;ve spent a lot of time thinking about the map, and my ECS system.</description>
+While procrastinating working on that, I&amp;rsquo;ve spent a lot of time thinking about the map, and my ECS system. At the risk of prematurely optimizing code, it seems like an awful waste of space to make every tile an entity. Most of a tiles properties are simple boolean flags anyways, so why not make tiles just a bitflag and glyph to represent them? After running some halfassed tests on this idea, the size of an entire map (100x100, or 10,000 tiles) worth of tiles was a mere 24 bytes. Yeah, this idea will work just fine.
+Basically, how it works now is a tile is just: struct Tile { int bitMask; char glyph; } 
+And the flags: enum TileFlags : int { NONE = 0, BLOCKS_MOVEMENT = 0x001, BLOCKS_LIGHT = 0x002, UP_STAIR = 0x004, DOWN_STAIR = 0x008, DOOR = 0x010, FLOOR = 0x020 }; 
+I&amp;rsquo;m a pretty huge fan of bitflags, mostly because it allows me to do all sorts of cool stuff. Say for instance we added a LIQUID flag to TileFlags - liquid blocks movement (our fearless adventurer never took swim lessons, apparently) but doesn&amp;rsquo;t block light, so the adventurer&amp;rsquo;s field of vision would see over the murky pool of whatever liquid.
+But wait! It gets better, what if our adventurer decides that, while standing next to a murky pool of water, to read a Scroll of Explosion - The game logic can now easily test to see if any of the affected tiles are also liquid, and make steam that the player CAN&amp;rsquo;T see through!</description>
     </item>
     
   </channel>

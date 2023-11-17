@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>C | Wsl Blog</title>
+    <title>Procedural Generation | Wsl Blog</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <link rel="icon" type="image/svg+xml" href="/wsl.svg" />
@@ -88,7 +88,7 @@ jQuery(document).ready(function($) {
 
 
 <div class="article-meta">
-    <div class="title"><span>C</span></div>
+    <div class="title"><span>Procedural Generation</span></div>
 </div>
     <hr/>
 <main>
@@ -127,20 +127,48 @@ If you know those probabilities, word generation becomes easy - start with a few
         <div class="list-article">
             <hr class="list-break" \>
             
-            <div class="list-title"><a href="/posts/2023-11-04-goblins/">Goblin Caves</a></div>
+            <div class="list-title"><a href="/posts/2017-01-07-gradients-and-actions/">Gradients for Colors, and Actions for Actors</a></div>
             
                 <span class="list-author">Zach Wilder</span>
             
             
-                <span class="list-date"> - 4 Nov 2023</span>
+                <span class="list-date"> - 7 Jan 2017</span>
             
             <p class="list-summary">
-            As a kid, I wanted to learn how to program to make computer games. That was the original goal, anyways. I&rsquo;ve always felt there is a weird sort of magic being able to type structured sentences into a text file, ram it through a compiler (sometimes with fun, cryptic looking incantations typed into the terminal), and seeing something come to life on the other end.
-Programming has always been an on again/off again sort of hobby. I think it&rsquo;s more the act of making something from nothing that draws me to it then actually making something. A few years ago (actually closer to a decade, somehow) I found the Complete Roguelike Tutorial using Python and libtcod. I didn&rsquo;t know Python when I started the tutorial, but the end result of that project was amazing - I had a mostly complete game. I tweaked and customized, modified and played around with that project for a while. Eventually hit a wall, probably due to my lack of knowledge with Python.
-
+            Over the past couple of weeks I&rsquo;ve been working on simplifying the code for my roguelike project - heavily inspired by one of my favorite books on my shelf, Game Programming Patterns.
+I&rsquo;ve seriously read this book cover to cover, multiple times - and every time find a new use for one of the &lsquo;patterns&rsquo; in it. I just discovered that the author&rsquo;s blog has a bunch of good reads on it as well. One of the biggest problems I&rsquo;ve had with the roguelike project was a simple way to issue commands (which should have been a clue) from the player to the character, and from the computer AI to the enemies.
+The first chapter in the book, and this blog post had the answer - the &lsquo;Command&rsquo; pattern. I have no idea how I didn&rsquo;t think of this sooner - basically, all the actions that an actor (player or enemy) can take are issued as &lsquo;commands&rsquo;. A command is just a subclass of an action, and each actor when updating gets to call it&rsquo;s most current action&rsquo;s perform() routine. What makes this super cool and useful is that the perform routine returns an ActionResult, which has a flag stating whether or not the current action was successful, and a suggested alternate action (for use if the action was unsuccessful).
+class Action { public: virtual ActionResult perform(Actor &amp; actor) = 0; protected: Action() { } }; class ActionResult { public: ActionResult() { status_ = true; } bool success() { return status_; } void setFalse() { status_ = false; } void setTrue() { status_ = true; } Action * getAlternate() { return alternative_; } void setAlternate(Action * alternate) { alternative_ = alternate; } private: Action * alternative_; bool status_; };  Now, if the player moves into a square - instead of the keypress moving the player, the keypress just sets the player&rsquo;s next action to attack in the direction of that tile. During the players update, the perform() for the attack action checks to see if there is another actor there - and if there isn&rsquo;t returns a move action as an alternate.
                 
                   <br/>
-                  <a href="/posts/2023-11-04-goblins/">
+                  <a href="/posts/2017-01-07-gradients-and-actions/">
+                    [Read more]
+                  </a>
+                
+            </p>
+        </div>
+    
+        <div class="list-article">
+            <hr class="list-break" \>
+            
+            <div class="list-title"><a href="/posts/2016-12-20-automata-caves/">Randomly Generated Caves with Cellular Automata</a></div>
+            
+                <span class="list-author">Zach Wilder</span>
+            
+            
+                <span class="list-date"> - 22 Dec 2016</span>
+            
+            <p class="list-summary">
+            So, every time I get the urge to write a blog post about whatever random bit of code I&rsquo;m writing - I look at the blog and think: &ldquo;Hm, this is kinda ugly.&rdquo; Then, I have to rewrite it until I&rsquo;m mostly satisfied with how it looks.
+Recently, I&rsquo;ve been working on writing a nice little interface for handling menus and other parts of the UI for my roguelike project. Unfortunately, like the layout of this blog, I can&rsquo;t seem to find a satisfactory &lsquo;look and feel&rsquo; - I think I&rsquo;ve got a good start though.
+While procrastinating working on that, I&rsquo;ve spent a lot of time thinking about the map, and my ECS system. At the risk of prematurely optimizing code, it seems like an awful waste of space to make every tile an entity. Most of a tiles properties are simple boolean flags anyways, so why not make tiles just a bitflag and glyph to represent them? After running some halfassed tests on this idea, the size of an entire map (100x100, or 10,000 tiles) worth of tiles was a mere 24 bytes. Yeah, this idea will work just fine.
+Basically, how it works now is a tile is just: struct Tile { int bitMask; char glyph; } 
+And the flags: enum TileFlags : int { NONE = 0, BLOCKS_MOVEMENT = 0x001, BLOCKS_LIGHT = 0x002, UP_STAIR = 0x004, DOWN_STAIR = 0x008, DOOR = 0x010, FLOOR = 0x020 }; 
+I&rsquo;m a pretty huge fan of bitflags, mostly because it allows me to do all sorts of cool stuff. Say for instance we added a LIQUID flag to TileFlags - liquid blocks movement (our fearless adventurer never took swim lessons, apparently) but doesn&rsquo;t block light, so the adventurer&rsquo;s field of vision would see over the murky pool of whatever liquid.
+But wait! It gets better, what if our adventurer decides that, while standing next to a murky pool of water, to read a Scroll of Explosion - The game logic can now easily test to see if any of the affected tiles are also liquid, and make steam that the player CAN&rsquo;T see through!
+                
+                  <br/>
+                  <a href="/posts/2016-12-20-automata-caves/">
                     [Read more]
                   </a>
                 

@@ -79,6 +79,8 @@ jQuery(document).ready(function($) {
           
               <li><a href="/subscribe/">Subscribe</a></li>
           
+              <li><a href="/index.xml">RSS</a></li>
+          
         </ul>
     </div>
     <hr/>
@@ -105,7 +107,10 @@ jQuery(document).ready(function($) {
             
             <p class="list-summary">
             Continuing in my never-ending project to make a &ldquo;simple&rdquo; roguelike in C++, I decided to tackle something I have never before tried: artificial intelligence. My first rough idea was to implement some sort of component-type system, and build the AI up like I built up entities. This turned out to be far too complicated, and even getting a monster to move randomly was a chore. Obviously, this wasn&rsquo;t going to work.
-After browsing /r/roguelikedev and RogueBasin I came across a few articles on &ldquo;need driven AI&rdquo; - an absurdly cool concept, and so (seemingly) simple to implement I wasn&rsquo;t sure how I didn&rsquo;t stumble across this earlier.
+After browsing /r/roguelikedev and RogueBasin I came across a few articles on &ldquo;need driven AI&rdquo; - an absurdly cool concept, and so (seemingly) simple to implement I wasn&rsquo;t sure how I didn&rsquo;t stumble across this earlier. Basically, creatures in the game assign a value to things they know about (treasure, the player, exits, other monsters they are friendly with, other monsters they are terrified of, etc. etc.) and make an &lsquo;informed&rsquo; decision about where to move next. A monster could desire killing the player over treasure, and would &ldquo;decide&rdquo; to move towards the player instead of a closer pile of gold. Maybe that monster is a pack hunter, and also strongly desires to be near it&rsquo;s pack - so when singled out it moves away to regroup with others. Cats could hunt mice, the undead could wander aimlessly attacking anything, golems could guard exits, archers could stay a safe distance away, and
+&hellip;
+Clearly, this idea has so many uses that I absolutely had to attempt an implementation in my game. The best article I found describing what I hope to accomplish was written by the creator of the awesome Brogue, and talked about something called &ldquo;Dijkstra mapping.&rdquo; A number on a Dijkstra map is the shortest distance from that tile to the goal. Moving from any numbered tile to any lower numbered tile adjacent will take you on the shortest path to the goal. Using this technique I could also accomplish intelligent pathfinding (another thing I&rsquo;ve never been quite able to do on my own). So,	the first step was to write up something to generate these maps.
+After much confusion (I&rsquo;m still not much of a C++ programmer), I ended up with a fairly simple and straightforward set of code to generate a vector of integers representing a Dijkstra map from the vector of integers representing a normal dungeon map.
                 
                   <br/>
                   <a href="/posts/2016-07-15-fun-with-dijkstra-mapping/">

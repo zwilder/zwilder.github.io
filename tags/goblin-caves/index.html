@@ -79,6 +79,8 @@ jQuery(document).ready(function($) {
           
               <li><a href="/subscribe/">Subscribe</a></li>
           
+              <li><a href="/index.xml">RSS</a></li>
+          
         </ul>
     </div>
     <hr/>
@@ -96,6 +98,35 @@ jQuery(document).ready(function($) {
         <div class="list-article">
             
             
+            <div class="list-title"><a href="/posts/2023-11-18-markov/">Markov Chain Word Generator</a></div>
+            
+                <span class="list-author">Zach Wilder</span>
+            
+            
+                <span class="list-date"> - 17 Nov 2023</span>
+            
+            <p class="list-summary">
+            The first screen the player sees in Goblin Caves is a black screen with a question and a prompt.
+    This &ldquo;new player&rdquo; screen was originally made as a &ldquo;quick and dirty&rdquo; sort of thing, with the intention of replacing it with something fancier - or at least more flashy. It&rsquo;s really grown on me since I originally wrote it, and I don&rsquo;t think I&rsquo;m going to change it. What does still bother me though, is that if you just hit enter without putting down something a little message box pops up, asking you to &ldquo;Please try again.&rdquo;
+    That&rsquo;s kinda lame, and directly above the code that does that error checking (was) a comment I wrote to myself: &ldquo;It would be super cool if this was replaced with a call to a random name generator&hellip;&rdquo;
+Well I came across that comment while rewriting all the drawing and input handling code, and decided that was going to be my next project.
+Random words are typically not just random characters slapped together - that would just give words like:
+ alxvik hhbatxr orikumo kxzzmk cafzrx jkiuvfm
+ Not very satisfying, right? Are those names? Places? Plants? Weapons? Who knows. To get more satisfying words, a better approach is to use a Markov Chain - what Wikipedia defines cryptically as &ldquo;a stochastic model describing a sequence of possible events in which the probability of each event depends only on the state attained in the previous event.&rdquo;
+That&rsquo;s just a bunch of fancy words to say (in this context) that if you start with a sequence of letters, which next letter is most likely to occur?
+If you know those probabilities, word generation becomes easy - start with a few letters, figure out what letter could come next, choose one of those letters and start the process over with that letter and the preceding letters. With any dataset input, the words that would be generated following these probabilities would (should) be very similar to the input. I could even take multiple datasets, generate some words, handpick words I like for another dataset, and then generate a whole bunch of words similar to the ones I like!
+                
+                  <br/>
+                  <a href="/posts/2023-11-18-markov/">
+                    [Read more]
+                  </a>
+                
+            </p>
+        </div>
+    
+        <div class="list-article">
+            <hr class="list-break" \>
+            
             <div class="list-title"><a href="/posts/2023-11-04-goblins/">Goblin Caves</a></div>
             
                 <span class="list-author">Zach Wilder</span>
@@ -105,7 +136,8 @@ jQuery(document).ready(function($) {
             
             <p class="list-summary">
             As a kid, I wanted to learn how to program to make computer games. That was the original goal, anyways. I&rsquo;ve always felt there is a weird sort of magic being able to type structured sentences into a text file, ram it through a compiler (sometimes with fun, cryptic looking incantations typed into the terminal), and seeing something come to life on the other end.
-Programming has always been an on again/off again sort of hobby. I think it&rsquo;s more the act of making something from nothing that draws me to it then actually making something. A few years ago (actually closer to a decade, somehow) I found the Complete Roguelike Tutorial using Python and libtcod.
+Programming has always been an on again/off again sort of hobby. I think it&rsquo;s more the act of making something from nothing that draws me to it then actually making something. A few years ago (actually closer to a decade, somehow) I found the Complete Roguelike Tutorial using Python and libtcod. I didn&rsquo;t know Python when I started the tutorial, but the end result of that project was amazing - I had a mostly complete game. I tweaked and customized, modified and played around with that project for a while. Eventually hit a wall, probably due to my lack of knowledge with Python.
+
                 
                   <br/>
                   <a href="/posts/2023-11-04-goblins/">

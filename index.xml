@@ -14,11 +14,11 @@
     
     <item>
       <title>Markov Chain Word Generator</title>
-      <link>https://zwilder.github.io/posts/2023-11-18-markov/</link>
+      <link>https://zwilder.github.io/posts/2023-11-17-markov/</link>
       <pubDate>Fri, 17 Nov 2023 11:00:00 -0700</pubDate>
       <author>Zach Wilder</author>
       
-      <guid>/posts/2023-11-18-markov/</guid>
+      <guid>/posts/2023-11-17-markov/</guid>
       <description>The first screen the player sees in Goblin Caves is a black screen with a question and a prompt.
     This &amp;ldquo;new player&amp;rdquo; screen was originally made as a &amp;ldquo;quick and dirty&amp;rdquo; sort of thing, with the intention of replacing it with something fancier - or at least more flashy. It&amp;rsquo;s really grown on me since I originally wrote it, and I don&amp;rsquo;t think I&amp;rsquo;m going to change it. What does still bother me though, is that if you just hit enter without putting down something a little message box pops up, asking you to &amp;ldquo;Please try again.&amp;rdquo;
     That&amp;rsquo;s kinda lame, and directly above the code that does that error checking (was) a comment I wrote to myself: &amp;ldquo;It would be super cool if this was replaced with a call to a random name generator&amp;hellip;&amp;rdquo;
@@ -27,7 +27,7 @@ Random words are typically not just random characters slapped together - that wo
  alxvik hhbatxr orikumo kxzzmk cafzrx jkiuvfm
  Not very satisfying, right? Are those names? Places? Plants? Weapons? Who knows. To get more satisfying words, a better approach is to use a Markov Chain - what Wikipedia defines cryptically as &amp;ldquo;a stochastic model describing a sequence of possible events in which the probability of each event depends only on the state attained in the previous event.&amp;rdquo;
 That&amp;rsquo;s just a bunch of fancy words to say (in this context) that if you start with a sequence of letters, which next letter is most likely to occur?
-If you know those probabilities, word generation becomes easy - start with a few letters, figure out what letter could come next, choose one of those letters and start the process over with that letter and the preceding letters. With any dataset input, the words that would be generated following these probabilities would (should) be very similar to the input. I could even take multiple datasets, generate some words, handpick words I like for another dataset, and then generate a whole bunch of words similar to the ones I like! - &lt;a href="https://zwilder.github.io/posts/2023-11-18-markov/"&gt;[Read more]&lt;/a&gt;</description>
+If you know those probabilities, word generation becomes easy - start with a few letters, figure out what letter could come next, choose one of those letters and start the process over with that letter and the preceding letters. With any dataset input, the words that would be generated following these probabilities would (should) be very similar to the input. I could even take multiple datasets, generate some words, handpick words I like for another dataset, and then generate a whole bunch of words similar to the ones I like! - &lt;a href="https://zwilder.github.io/posts/2023-11-17-markov/"&gt;[Read more]&lt;/a&gt;</description>
     </item>
     
     <item>

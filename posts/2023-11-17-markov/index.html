@@ -214,52 +214,52 @@ ten male names of 1937):</p>
 <p>Robert James John William Richard Charles Donald David Thomas George</p>
 </blockquote>
 <p>The hash table generated (with a key size of 2) would look like this:</p>
-<pre><code>	********************
-	HashTable
-	********************
-Index: 3115 | Key: al | Values: ['d']
-Index: 3116 | Key: am | Values: ['e','','','e']
-Index: 3121 | Key: ar | Values: ['d','l','l','d']
-Index: 3122 | Key: as | Values: ['']
-Index: 3125 | Key: av | Values: ['i']
-Index: 3139 | Key: be | Values: ['r']
-Index: 3173 | Key: ch | Values: ['a','a','a','a']
-Index: 3197 | Key: da | Values: ['v']
-Index: 3211 | Key: do | Values: ['n']
-Index: 3242 | Key: eo | Values: ['r']
-Index: 3245 | Key: er | Values: ['t']
-Index: 3246 | Key: es | Values: ['','','','']
-Index: 3294 | Key: ge | Values: ['o','o']
-Index: 3321 | Key: ha | Values: ['r','r','r','r']
-Index: 3334 | Key: hn | Values: ['']
-Index: 3335 | Key: ho | Values: ['m']
-Index: 3352 | Key: ia | Values: ['m']
-Index: 3354 | Key: ic | Values: ['h']
-Index: 3355 | Key: id | Values: ['']
-Index: 3363 | Key: il | Values: ['l']
-Index: 3383 | Key: ja | Values: ['m']
-Index: 3397 | Key: jo | Values: ['h']
-Index: 3448 | Key: ld | Values: ['']
-Index: 3449 | Key: le | Values: ['s']
-Index: 3453 | Key: li | Values: ['a']
-Index: 3456 | Key: ll | Values: ['i']
-Index: 3476 | Key: ma | Values: ['s']
-Index: 3480 | Key: me | Values: ['s']
-Index: 3507 | Key: na | Values: ['l']
-Index: 3539 | Key: ob | Values: ['e']
-Index: 3545 | Key: oh | Values: ['n']
-Index: 3550 | Key: om | Values: ['a']
-Index: 3551 | Key: on | Values: ['a']
-Index: 3555 | Key: or | Values: ['g']
-Index: 3634 | Key: rd | Values: ['']
-Index: 3637 | Key: rg | Values: ['e']
-Index: 3639 | Key: ri | Values: ['c']
-Index: 3642 | Key: rl | Values: ['e']
-Index: 3645 | Key: ro | Values: ['b']
-Index: 3650 | Key: rt | Values: ['']
-Index: 3700 | Key: th | Values: ['o']
-Index: 3763 | Key: vi | Values: ['d']
-Index: 3794 | Key: wi | Values: ['l']
+<pre><code>********************
+HashTable
+********************
+Key: al | Values: ['d']
+Key: am | Values: ['e','','','e']
+Key: ar | Values: ['d','l','l','d']
+Key: as | Values: ['']
+Key: av | Values: ['i']
+Key: be | Values: ['r']
+Key: ch | Values: ['a','a','a','a']
+Key: da | Values: ['v']
+Key: do | Values: ['n']
+Key: eo | Values: ['r']
+Key: er | Values: ['t']
+Key: es | Values: ['','','','']
+Key: ge | Values: ['o','o']
+Key: ha | Values: ['r','r','r','r']
+Key: hn | Values: ['']
+Key: ho | Values: ['m']
+Key: ia | Values: ['m']
+Key: ic | Values: ['h']
+Key: id | Values: ['']
+Key: il | Values: ['l']
+Key: ja | Values: ['m']
+Key: jo | Values: ['h']
+Key: ld | Values: ['']
+Key: le | Values: ['s']
+Key: li | Values: ['a']
+Key: ll | Values: ['i']
+Key: ma | Values: ['s']
+Key: me | Values: ['s']
+Key: na | Values: ['l']
+Key: ob | Values: ['e']
+Key: oh | Values: ['n']
+Key: om | Values: ['a']
+Key: on | Values: ['a']
+Key: or | Values: ['g']
+Key: rd | Values: ['']
+Key: rg | Values: ['e']
+Key: ri | Values: ['c']
+Key: rl | Values: ['e']
+Key: ro | Values: ['b']
+Key: rt | Values: ['']
+Key: th | Values: ['o']
+Key: vi | Values: ['d']
+Key: wi | Values: ['l']
 </code></pre><p>Very cool. The important thing to note is the duplicate letters and the &ldquo;empty&rdquo;
 lists. The empty lists actually contain the character &lsquo;\0&rsquo; (NULL) - indicating
 the end of a word. If you look closely you&rsquo;ll see that every two letter
@@ -274,53 +274,57 @@ Similarly, &lsquo;<code>am</code>&rsquo; has an equal chance of being followed b
 word.</p>
 <p>If we use this table by grabbing a random node and preceding outwards from there
 until some max length we end up with words like:</p>
-<pre><code>Nald Rgeorge Avid Nald John Id Es Icharle Onald Ard Nald Bert Onald Harles Mas
-Rles Hn Lliames Es Icharle 
-</code></pre><p>Better than just choosing random characters - these at least look almost
+<blockquote>
+<p><code>Nald Rgeorge Avid Nald John Id Es Icharle Onald Ard Nald Bert Onald Harles Mas Rles Hn Lliames Es Icharle</code></p>
+</blockquote>
+<p>Better than just choosing random characters - these at least look almost
 recognizable as names! However, it&rsquo;s odd starting a name with some of those
 keys - and importantly some of those keys have no chance of generating a
 following character. To fix this, the hash table keeps a list of &ldquo;starter&rdquo; keys,
 keys that are at the beginning of each word in the dataset. In our example
 dataset:</p>
-<pre><code>ro ja jo wi ri ch do da th ge
-</code></pre><p>Starting a word with those and moving outwards changes our results to:</p>
-<pre><code>Georgeo Chard Richard Donald David Thomas Robert Richarl Robert Georgeo David
-John John Charles William David James Charles Donald Charles
-</code></pre><p>Well hot dang, we are in business! Those are clearly recognizable names, but
+<blockquote>
+<p><code>ro ja jo wi ri ch do da th ge</code></p>
+</blockquote>
+<p>Starting a word with those and moving outwards changes our results to:</p>
+<blockquote>
+<p><code>Georgeo Chard Richard Donald David Thomas Robert Richarl Robert Georgeo David John John Charles William David James Charles Donald Charles</code></p>
+</blockquote>
+<p>Well hot dang, we are in business! Those are clearly recognizable names, but
 definitely not very random. In fact, only a couple of those aren&rsquo;t in our
 original dataset! We need a bigger dataset to see different names, so lets feed
 the machine a list of a 100 names:</p>
-<pre><code>Dank Me Leormas Joe Bruce Hard Billiamue Eddie Walvin Lloyd Josephill Ardonard
-Frandrenn Frene Bobby Cary Vey Haelvin Las
-</code></pre><p>Alright, better. However, using the larger dataset we definitely lost some of
+<blockquote>
+<p><code>Dank Me Leormas Joe Bruce Hard Billiamue Eddie Walvin Lloyd Josephill Ardonard Frandrenn Frene Bobby Cary Vey Haelvin Las</code></p>
+</blockquote>
+<p>Alright, better. However, using the larger dataset we definitely lost some of
 the &ldquo;flavor&rdquo; of the input. The names don&rsquo;t look very recognizable anymore - like
 maybe names in another language. Adjusting the key size from 2 to 3:</p>
-<pre><code>Samuel Kennis John Cliffordo Marvey Johnny Bruce Jim Clarence Andrew Herbert
-Edwin Johnny Jack Henry Jimmie Raymond Hen Roy Raymond Bernard Donard Martin
-Clarry Patrick Ray Paul Lawrence Gord Eugene George Vernest
-</code></pre><p>There it is. Those are clearly names, and it preserves the taste of the original
+<blockquote>
+<p><code>Samuel Kennis John Cliffordo Marvey Johnny Bruce Jim Clarence Andrew Herbert Edwin Johnny Jack Henry Jimmie Raymond Hen Roy Raymond Bernard Donard Martin Clarry Patrick Ray Paul Lawrence Gord Eugene George Vernest</code></p>
+</blockquote>
+<p>There it is. Those are clearly names, and it preserves the taste of the original
 dataset. I definitely wouldn&rsquo;t be surprised to see any of those names in
 the dataset. Now comes the fun part - what if we put in a list of something
 else?</p>
 <p><a href="https://github.com/zwilder/markov/blob/master/data/minerals.txt">Minerals</a>? That output looks like:</p>
-<pre><code>Antimotoite Austibite Algodonite Allacrandite Akagai Aeschite Alite Abertonite
-Ardite Anorthinite Bayldonite Alactite Abergentigorite Benioside Billite
-Barsenic Borax Apatite Apatite Arstowite Ldersonite Aeschite Arcticite Axinite
-Baotite Azurite Antlerite Aerite Annite Acantlerite Barsenopyrite Anorthony
-</code></pre><p><a href="https://github.com/zwilder/markov/blob/master/data/flowers_scientific.txt">Scientific names of flowers gives</a> us:</p>
-<pre><code>Syrine Lathyrus Alstrelizia Digitalis Spectabiosa Muscabiosa Neria Rosa
-Alchemilladio Syringa Lavandula Tanacea Belladonna Tanacetum Neria Chamaryllia
-Aquilegia Parthemum Aster Delphinops Dianthurium Gladonna Chrysantirrha
-</code></pre><p>Excellent - this is what I wanted. Without checking, I would believe that any of
+<blockquote>
+<p><code>Antimotoite Austibite Algodonite Allacrandite Akagai Aeschite Alite Abertonite Ardite Anorthinite Bayldonite Alactite Abergentigorite Benioside Billite Barsenic Borax Apatite Apatite Arstowite Ldersonite Aeschite Arcticite Axinite Baotite Azurite Antlerite Aerite Annite Acantlerite Barsenopyrite Anorthony</code></p>
+</blockquote>
+<p><a href="https://github.com/zwilder/markov/blob/master/data/flowers_scientific.txt">Scientific names of flowers gives</a> us:</p>
+<blockquote>
+<p><code>Syrine Lathyrus Alstrelizia Digitalis Spectabiosa Muscabiosa Neria Rosa Alchemilladio Syringa Lavandula Tanacea Belladonna Tanacetum Neria Chamaryllia Aquilegia Parthemum Aster Delphinops Dianthurium Gladonna Chrysantirrha</code></p>
+</blockquote>
+<p>Excellent - this is what I wanted. Without checking, I would believe that any of
 those are actually flowers or minerals. Now lets fancy it up a bit - lets feed
 the generator a list of <a href="https://github.com/zwilder/markov/blob/master/data/tolkein.txt">Tolkien
 names</a>, and a
 list of <a href="https://github.com/zwilder/markov/blob/master/data/dutch.txt">Dutch
 words</a>.</p>
-<pre><code>Neek Sloth Margrimbul Eradalmarie Marel Nijmegen Leod Hingeloopen
-Bardenbrambaran Veereneke Everdamiril Adrahamuet Joch Joostoffelandri Hulst Eleb
-Fran Eren Eothoron Maratan Alone Ommen Theda Belenducalmeleb Hanniel Mauhur Nime
-</code></pre><p>I would absolutely believe those are the names of some Elves or something. I
+<blockquote>
+<p><code>Neek Sloth Margrimbul Eradalmarie Marel Nijmegen Leod Hingeloopen Bardenbrambaran Veereneke Everdamiril Adrahamuet Joch Joostoffelandri Hulst Eleb Fran Eren Eothoron Maratan Alone Ommen Theda Belenducalmeleb Hanniel Mauhur Nime</code></p>
+</blockquote>
+<p>I would absolutely believe those are the names of some Elves or something. I
 could mix up and match datasets, fiddling with results all day. Probably one of
 the cooler bits of code I&rsquo;ve ever written. The project is up on
 <a href="https://github.com/zwilder/markov">Github</a>. It still needs some tweaks - if

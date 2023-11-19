@@ -19,10 +19,7 @@
       <guid>/posts/2018-08-26-lists/</guid>
       <description>Over the course of the 2018 r/roguelikedev Tutorial Tuesday Challenge I decided to invest some time learning some fundamental programming concepts that I probably should have learned years ago. The fun (and challenging) part of being a hobby programmer is that most of my learning comes from books, and then random tutorials on the internet. Somewhere in the course of my &amp;ldquo;education&amp;rdquo; I never learned about basic data structures and how they can be used.
 Around week three of the challenge I decided to implement a scheduling system for Barbarian - which led me to learn about creating lists and priority queues. STL has std::priority_queue, but like many STL classes never seems to want to play nicely with my code. Again, likely a byproduct of me learning C++ from a book and probably not the fault of STL.
-This is my very first attempt at writing a tutorial - expect some errors and feel free to comment with any corrections. I will absolutely guarantee that there is probably a better way of doing what I&amp;rsquo;ve written here, so don&amp;rsquo;t read this as gospel.
-Making a List A list is a fantastic data structure - and is so simple to implement I&amp;rsquo;m not sure why it was never included in the beginning programming books I have read. A list is an ordered collection of nodes, where each node has some data and a pointer to the next node. The list has a head and a tail - the very first and very last nodes in the list. That&amp;rsquo;s it! That&amp;rsquo;s all they are.
-Head A ---&amp;gt; B ---&amp;gt; C &amp;lt;- Node 1 2 3 &amp;lt;- Data Tail Definining a node is simple, and using the power of C++ templates you can make a node hold any data you can imagine!
-template &amp;lt;typename T&amp;gt; class Node { public: Node(T d) : data(d) { next = NULL; prev = NULL; } T data; Node * next; Node * prev; };  Then to create the list all we need is a couple of functions - one to add nodes and one to remove nodes.</description>
+This is my very first attempt at writing a tutorial - expect some errors and feel free to comment with any corrections.</description>
     </item>
     
   </channel>

@@ -110,9 +110,12 @@ jQuery(document).ready(function($) {
 Really enjoying working with Hugo - haven&rsquo;t even played with any of the cool powerful features that it has, but I am very impressed with how easy it is to modify and change things. Everything is laid out in a good, logical sense which makes it much easier to customize and play around with things.
 Things that still need work:
   I&rsquo;m not sure about the monospace font for the titles and headers - I like it, but that doesn&rsquo;t mean it looks good! Ha.
-  The Tags page looks off. Not sure what to do with that.
-  Maybe write some sort of intro thing for the home page.
-  Most likely I&rsquo;ll end up redoing this whole layout&hellip; But this was the first time I&rsquo;ve messed around with web design stuff and had a bit of success and didn&rsquo;t pull out too many hairs! Thanks Hugo!
+  The Tags page looks off.
+                
+                  <br/>
+                  <a href="/posts/2017-10-22-messing-with-web/">
+                    [Read more]
+                  </a>
                 
             </p>
         </div>
@@ -130,13 +133,7 @@ Things that still need work:
             <p class="list-summary">
             Man, I really don&rsquo;t do a lot of work on this blog - maybe because I am not a web programmer but I can see when this blog does not look very good.
 Well, I officially gave up on web design. Yep! Turns out, I should probably leave that to the professionals. Oh, and I also decided to heck with Jekyll. It was cool, and worked well - but searching for a premade Jekyll theme was a chore. Not to mention getting all the silly ruby nonsense to work. Even tried playing around with Ruby and seeing what all the fuss was about. No thanks.
-Stumbled upon Hu(go) - another static blog generator. Well, Hu(go) is blazingly fast, and has a ton of cool features that you don&rsquo;t have to even try hard to get to work. Not to mention the themes are easily searched through, easily switched, easily customized/expanded, and look darn good. So, for now, this is what the blog will look like - A theme called Hemmingway powered by Hugo. I also caved and signed up for Disqus, to handle comments. It really is so much easier using premade tools, haha.
-&ndash;
-In other news, I continued the process of learning C++ by programming in C++ and made a bit of progress on my rougelike attempt. I had a revelation while working one day about how the &ldquo;engine&rdquo; should be structured: Everything manages its own shit and nothing else. No exceptions. But, you ask, how will my keypresses to move the player work? Wouldn&rsquo;t the game engine have to interpret those key presses and then tell the game state to move the player, and then the player respond with&hellip;
-No. Doing that causes all sorts of crazy dependencies and connections that do not have to exist.
-My solution?
-  Engine manages a stack of states. It doesn&rsquo;t really know what a state is, just that it has them, and that it can add states to itself and remove states from itself. The engine is responsible for interacting with the computer and reading user input.
-  Each state manages a stack of windows.
+Stumbled upon Hu(go) - another static blog generator. Well, Hu(go) is blazingly fast, and has a ton of cool features that you don&rsquo;t have to even try hard to get to work. Not to mention the themes are easily searched through, easily switched, easily customized/expanded, and look darn good.
                 
                   <br/>
                   <a href="/posts/2017-10-15-yet-another-blog-attempt/">

@@ -6,10 +6,23 @@
     <description>Recent content in C on Wsl Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Nov 2023 11:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 27 Nov 2023 11:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/tags/c/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Procedural Mushrooms and Random Names</title>
+      <link>/posts/2023-11-27-random-names/</link>
+      <pubDate>Mon, 27 Nov 2023 11:00:00 -0700</pubDate>
+      
+      <guid>/posts/2023-11-27-random-names/</guid>
+      <description>&lt;p&gt;The holidays are always a great time to slack off and work on fun projects -
+while eating too much pie and wearing sweatpants for multiple days, of course.
+Over the past week or so I&amp;rsquo;ve made a few neat things and more importantly
+tied the Markov chain word generator into the Goblin Caves project.&lt;/p&gt;
+&lt;p&gt;The first little thing I made is a procedural mushroom generator.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Markov Chain Word Generator</title>

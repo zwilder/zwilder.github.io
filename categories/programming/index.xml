@@ -6,10 +6,21 @@
     <description>Recent content in Programming on Wsl Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Nov 2023 11:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 16 Feb 2024 11:00:00 -0700</lastBuildDate>
     
 	<atom:link href="/categories/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Solitaire Fun</title>
+      <link>/posts/2024-2-17-cards/</link>
+      <pubDate>Fri, 16 Feb 2024 11:00:00 -0700</pubDate>
+      
+      <guid>/posts/2024-2-17-cards/</guid>
+      <description>Way back in 2022 I started reading about using terminal escape codes to do away with depending on NCurses for all the terminal drawing and keyboard handling for terminal applications. If I recall correctly, my original motivation was because I wanted to use fancy unicode characters with the Goblin Caves project, and NCurses was not playing nicely.
+Of course, I couldn&amp;rsquo;t just dive right into swapping over the entirety of Goblin Caves to using terminal codes directly without testing them on something - and the first thing I thought of was why not make a simulation of a deck of cards? I messed around, designed a way overbuilt deck of cards, and even started working on implementing a Cribbage game (ambitious!). I ran into a weird problem with Cribbage, couldn&amp;rsquo;t figure it out, and shelved the project. Some screenshots of the original project:
+        Well, when I recently started working on Goblin Caves again I remembered my efforts to write some simple drawing and event handling code, brought that code over to the Goblin Caves project, buffed it up, and it worked great.</description>
+    </item>
     
     <item>
       <title>Procedural Mushrooms and Random Names</title>
